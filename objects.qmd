@@ -1,0 +1,77 @@
+# R Objects
+
+## Classes
+
+R has five basic or "atomic" **classes of objects**:
+
+-   character
+-   numeric (real numbers)
+-   integer
+-   complex
+-   logical (True/False)
+
+Entering `1` in R gives you a numeric object; entering `1L` explicitly gives you an integer object.
+
+## Attributes
+
+**Attributes** of an object (if any) can be accessed using the `attributes()` function:
+
+-   names, dimnames
+-   dimensions (e.g. matrices, arrays)
+-   class (e.g. integer, numeric)
+-   length
+
+The `mode()` of an object tells us how it's stored. It could happen that two different objects are stored in the same mode with different classes.
+
+-   For **vectors** the class and mode will always be numeric, logical, or character.
+
+-   For **matrices and arrays** a class is always a matrix or array, but its mode can be numeric, character, or logical.
+
+The primary purpose of the `class()` function is to know how different functions, including generic functions, work (e.g. print, or plot). There is a collection of R commands used to assess whether a particular object belongs to a certain class, these start with **is.**; for example, `is.numeric()`, `is.logical()`, `is.character()`, `is.list()`, `is.factor()`, and `is.data.frame()`
+
+## Mixing Objects
+
+This is not allowed! When different objects are mixed in a vector, coercion occurs so that every element in the vector is of the same class.
+
+```{r}
+y <- c(1.7, "a")
+class(y) 
+```
+
+```{r}
+y <- c(TRUE, 2)
+class(y) 
+```
+
+```{r}
+y <- c("a", TRUE)
+class(y) 
+```
+
+## Explicit Coercion
+
+Objects can be explicitly coerced from one class to another using the `as.` functions, if available.
+
+```{r}
+x <- 0:6 
+class(x) 
+```
+
+```{r}
+as.numeric(x)
+```
+
+## Expressions and Assignments
+
+In R an **expression** is used to denote a phrase of code that can be executed. The combination of expressions that are saved for evaluation is called an **assignment**:
+
+*Example:*
+
+``` r
+## An expression
+seq(10, 20, 3)
+
+## An assignment
+x1 <- seq(10, 20, 3)
+x2 <- 4
+```

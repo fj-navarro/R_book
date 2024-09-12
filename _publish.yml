@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 6c819d64-e3bb-4e36-8bce-0c5bf61b8dbb
+      url: 'https://myrbook.netlify.app'

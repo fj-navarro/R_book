@@ -1,9 +1,9 @@
-# Introduction
+# Coding Standards for R
 
-This is a book created from markdown and executable code.
+-   Always use text files/text editor.
 
-See @knuth84 for additional discussion of literate programming.
+-   Indent your code. Each indent should be a minimum of 4 spaces, and ideally 8 spaces.
 
-```{r}
-1 + 1
-```
+-   Limit the width of your code. You can limit the width of your text editor so that the code you write doesn't fly off into the wilderness on the right hand side.
+
+-   Limit the length of individual functions. A function should not take up more than one page of your editor (of course, this depends on the size of your monitor).

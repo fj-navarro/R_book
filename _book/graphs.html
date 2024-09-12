@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.290">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R from Beginner to Advanced - 17&nbsp; Graphs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./products.html" rel="next">
+<link href="./regression.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphs.html">Part 4: Graphics</a></li><li class="breadcrumb-item"><a href="./graphs.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Graphs</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R from Beginner to Advanced</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Part 1: Data Manipulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Coding Standards for R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Types</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plyrdplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./random.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Part 2: Programming in R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./habits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./profiling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Part 3: Statistics in R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Part 4: Graphics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graphs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Part 5: Data Products</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./products.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#principles-of-graphics" id="toc-principles-of-graphics" class="nav-link active" data-scroll-target="#principles-of-graphics"><span class="header-section-number">17.1</span> Principles of Graphics</a></li>
+  <li><a href="#types-of-graphs" id="toc-types-of-graphs" class="nav-link" data-scroll-target="#types-of-graphs"><span class="header-section-number">17.2</span> Types of Graphs</a>
+  <ul class="collapse">
+  <li><a href="#one-dimension-graphs" id="toc-one-dimension-graphs" class="nav-link" data-scroll-target="#one-dimension-graphs"><span class="header-section-number">17.2.1</span> One-dimension graphs</a></li>
+  <li><a href="#multi-dimension-graphs" id="toc-multi-dimension-graphs" class="nav-link" data-scroll-target="#multi-dimension-graphs"><span class="header-section-number">17.2.2</span> Multi-dimension graphs</a></li>
+  </ul></li>
+  <li><a href="#how-does-a-plot-get-created" id="toc-how-does-a-plot-get-created" class="nav-link" data-scroll-target="#how-does-a-plot-get-created"><span class="header-section-number">17.3</span> How Does a Plot Get Created?</a>
+  <ul class="collapse">
+  <li><a href="#plotxy" id="toc-plotxy" class="nav-link" data-scroll-target="#plotxy"><span class="header-section-number">17.3.1</span> plot(x,y)</a></li>
+  <li><a href="#graphics-devices" id="toc-graphics-devices" class="nav-link" data-scroll-target="#graphics-devices"><span class="header-section-number">17.3.2</span> Graphics Devices</a></li>
+  <li><a href="#copying-plots" id="toc-copying-plots" class="nav-link" data-scroll-target="#copying-plots"><span class="header-section-number">17.3.3</span> Copying Plots</a></li>
+  </ul></li>
+  <li><a href="#the-base-plotting-system" id="toc-the-base-plotting-system" class="nav-link" data-scroll-target="#the-base-plotting-system"><span class="header-section-number">17.4</span> The Base Plotting System</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">17.4.1</span> Packages</a></li>
+  <li><a href="#plot-with-a-regression-line" id="toc-plot-with-a-regression-line" class="nav-link" data-scroll-target="#plot-with-a-regression-line"><span class="header-section-number">17.4.2</span> Plot with a Regression Line</a></li>
+  <li><a href="#multiple-base-plots" id="toc-multiple-base-plots" class="nav-link" data-scroll-target="#multiple-base-plots"><span class="header-section-number">17.4.3</span> Multiple Base Plots</a></li>
+  <li><a href="#color-in-plots" id="toc-color-in-plots" class="nav-link" data-scroll-target="#color-in-plots"><span class="header-section-number">17.4.4</span> Color in Plots</a></li>
+  <li><a href="#rcolorbrewer-package" id="toc-rcolorbrewer-package" class="nav-link" data-scroll-target="#rcolorbrewer-package"><span class="header-section-number">17.4.5</span> RColorBrewer Package</a></li>
+  </ul></li>
+  <li><a href="#the-lattice-system" id="toc-the-lattice-system" class="nav-link" data-scroll-target="#the-lattice-system"><span class="header-section-number">17.5</span> The Lattice System</a></li>
+  <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">17.6</span> ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#geometric-objects" id="toc-geometric-objects" class="nav-link" data-scroll-target="#geometric-objects"><span class="header-section-number">17.6.1</span> Geometric objects</a></li>
+  <li><a href="#plotly" id="toc-plotly" class="nav-link" data-scroll-target="#plotly"><span class="header-section-number">17.6.2</span> Plotly</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Graphs</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="principles-of-graphics" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="principles-of-graphics"><span class="header-section-number">17.1</span> Principles of Graphics</h2>
+<p><strong>1. Show comparisons</strong></p>
+<p>You should always be comparing at least two things.</p>
+<p><strong>2. Show causality, mechanism, explanation, systematic structure</strong></p>
+<p>Generally, it’s difficult to prove that one thing causes another thing even with the most carefully collected data. But it’s still often useful for your data graphics to indicate what you are thinking about in terms of cause.</p>
+<p><strong>3. Show multivariate data</strong></p>
+<p>The point is that data graphics should attempt to show this information as much as possible, rather than reduce things down to one or two features that we can plot on a page… From the plot it seems that there is a slight negative relationship between the two variables….This example illustrates just one of many reasons why it can be useful to plot multivariate data and to show as many features as intelligently possible. In some cases, you may uncover unexpected relationships depending on how they are plotted or visualized.</p>
+<p><strong>4. Integrate evidence</strong></p>
+<p>Data graphics should make use of many modes of data presentation simultaneously, not just the ones that are familiar to you or that the software can handle. One should never let the tools available drive the analysis; one should integrate as much evidence as possible on to a graphic as possible.</p>
+<p><strong>5. Describe and document the evidence</strong></p>
+<p>Data graphics should be appropriately documented with labels, scales, and sources. A general rule for me is that a data graphic should tell a complete story all by itself. Is there enough information on that graphic for the person to get the story? While it is certainly possible to be too detailed, I tend to err on the side of more information rather than less.</p>
+<p><strong>6. Content, Content, Content</strong></p>
+<p>Analytical presentations ultimately stand or fall depending on the quality, relevance, and integrity of their content. This includes the question being asked and the evidence presented in favor of certain hypotheses. Starting with a good question, developing a sound approach, and only presenting information that is necessary for answering that question, is essential to every data graphic.</p>
+</section>
+<section id="types-of-graphs" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="types-of-graphs"><span class="header-section-number">17.2</span> Types of Graphs</h2>
+<p>Visualizing the data via graphics can be important at the beginning stages of data analysis to understand basic properties of the data, to find simple patterns in data, and to suggest possible modeling strategies. In later stages of an analysis, graphics can be used to “debug” an analysis, if an unexpected (but not necessarily wrong) result occurs, or ultimately, to communicate your findings to others.</p>
+<p>We will make a <strong>distinction between exploratory graphs and final graphs</strong>:</p>
+<p><strong>Exploratory graphs</strong> are usually made very quickly and a lot of them are made in the process of checking out the data, developing a personal understanding of the data and to prioritize tasks for follow up. Details like axis orientation or legends, while present, are generally cleaned up and prettified if the graph is going to be used for communication later.</p>
+<section id="one-dimension-graphs" class="level3" data-number="17.2.1">
+<h3 data-number="17.2.1" class="anchored" data-anchor-id="one-dimension-graphs"><span class="header-section-number">17.2.1</span> One-dimension graphs</h3>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 30%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Graph</th>
+<th>Code</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Five-number summary</td>
+<td><code>fivenum()</code>, <code>summary()</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Boxplots</td>
+<td><code>boxplot(pollution$pm25, col = "blue")</code></td>
+<td>Commonly plot outliers that go beyond the bulk of the data</td>
+</tr>
+<tr class="odd">
+<td>Barplot</td>
+<td><code>table(pollution$region) %&gt;% barplot(col = "wheat")</code></td>
+<td>For visualizing categorical data, with the number of entries for each category being proportional to the height of the bar</td>
+</tr>
+<tr class="even">
+<td>Histogram</td>
+<td><p><code>hist(pollution$pm25, col = "green", breaks = 100)</code></p>
+<p><code>rug(pollution$pm25)</code></p>
+<p><code>abline(v = 12, lwd = 2)</code></p>
+<p><code>abline(v = median(pollution$pm25), col = "magenta", lwd = 4)</code></p></td>
+<td>Check skewness of the data, symmetry, multi-modality, and other features</td>
+</tr>
+<tr class="odd">
+<td>Density plot</td>
+<td><p><code>a &lt;- density(airquality$Ozone, na.rm = TRUE)</code></p>
+<p><code>plot(a)</code></p></td>
+<td>Computes a non-parametric estimate of the distribution of a variables</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multi-dimension-graphs" class="level3" data-number="17.2.2">
+<h3 data-number="17.2.2" class="anchored" data-anchor-id="multi-dimension-graphs"><span class="header-section-number">17.2.2</span> Multi-dimension graphs</h3>
+<table class="table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 40%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Graph</th>
+<th>Code</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Multiple 1-D plots</td>
+<td><p><code>boxplot(pm25 ~ region, data = pollution, col = "red")</code></p>
+<p><code>par(mfrow = c(2, 1), mar = c(4, 4, 2, 1))</code></p>
+<p><code>hist(subset(pollution, region == "east")$pm25, col = "green")</code></p>
+<p><code>with(subset(airquality, Month == 5), points(Wind, Ozone, col = "blue"))</code></p>
+<p><code>hist(subset(pollution, region == "west")$pm25, col = "green")&gt; boxplot(pm25 ~ region, data = pollution, col = "red")</code></p>
+<p><code>par(mfrow = c(2, 1), mar = c(4, 4, 2, 1))</code></p>
+<p><code>hist(subset(pollution, region == "east")$pm25, col = "green")</code></p>
+<p><code>with(subset(airquality, Month == 5), points(Wind, Ozone, col = "blue"))</code></p>
+<p><code>hist(subset(pollution, region == "west")$pm25, col = "green")</code></p></td>
+<td>For seeing the relationship between two variables, especially when one is naturally <strong>categorical</strong></td>
+</tr>
+<tr class="even">
+<td>Scatterplots</td>
+<td><p><code>with(pollution, plot(latitude, pm25, col = region)) &gt; abline(h = 12, lwd = 2, lty = 2)</code></p>
+<p><code>levels(pollution$region)</code></p>
+<p><code>par(mfrow = c(2, 1), mar = c(4, 4, 2, 1))</code></p>
+<p><code>hist(subset(pollution, region == "east")$pm25, col = "green")</code></p>
+<p><code>hist(subset(pollution, region == "west")$pm25, col = "green")</code></p></td>
+<td>Visualizing two continuous variables</td>
+</tr>
+<tr class="odd">
+<td>Scatter plot matrix</td>
+<td><code>pairs(~var1+var2+var3+var4+var5, data=data, main="scatterplot matrix")</code></td>
+<td>It is used to find the correlation between a variable and other variables, and to select the important variables, which is also known as variable selection</td>
+</tr>
+<tr class="even">
+<td>Smooth scatterplots</td>
+<td><code>with(airquality, {plot(Temp, Ozone), lines(loess.smooth(Temp, Ozone))</code></td>
+<td>Similar to scatterplots but rather plots a 2-D histogram. Can be useful for scatterplots with many many data points</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="how-does-a-plot-get-created" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="how-does-a-plot-get-created"><span class="header-section-number">17.3</span> How Does a Plot Get Created?</h2>
+<ol type="1">
+<li><p>First, we can read the data into R with <code>read.csv()</code>. For example, the <em>avgpm25.csv</em> dataset contains the annual mean PM2.5 averaged over the period 2008 through 2010</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>class <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"numeric"</span>, <span class="st">"character"</span>, <span class="st">"factor"</span>, <span class="st">"numeric"</span>, <span class="st">"numeric"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pollution <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/avgpm25.csv"</span>, <span class="at">colClasses =</span> class)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Explicitly launch a graphics device</p></li>
+<li><p>Call a plotting function to make a plot (Note: if you are using a file device, no plot will appear on the screen)</p></li>
+<li><p>Annotate the plot if necessary</p></li>
+<li><p>Explicitly close graphics device with dev.off() (this is very important!)</p></li>
+</ol>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Open PDF device; create 'myplot.pdf' in my working directory</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"myplot.pdf"</span>) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Create plot and send to a file (no plot appears on screen) </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(faithful, <span class="fu">plot</span>(eruptions, waiting))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Annotate plot; still nothing on screen </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">"Old Faithful Geyser data"</span>) </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Close the PDF file device </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>() </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Now you can view the file 'myplot.pdf' on your computer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="plotxy" class="level3" data-number="17.3.1">
+<h3 data-number="17.3.1" class="anchored" data-anchor-id="plotxy"><span class="header-section-number">17.3.1</span> plot(x,y)</h3>
+<p><code>plot(x, y)</code> is used to plot one vector against another, with the x values on the x-axis and the y values on the y-axis.</p>
+<ul>
+<li>To add points (x[1], y[1]), (x[2], y[2]), … to the current plot, use <code>points(x, y)</code>.</li>
+<li>To add lines instead use <code>lines(x, y)</code>.</li>
+<li>Vertical or horizontal lines can be drawn using <code>abline(v = xpos)</code> and <code>abline(h = ypos)</code>.</li>
+<li>Both points and lines take the optional input <code>col</code>, which determines the colour (“red”, “blue”, etc.). The complete list of available colours can be obtained by the colours function (or <code>colors</code>).</li>
+<li>To add the text labels[i] at the point (x[i], y[i]), use <code>text(x, y, labels)</code>. The optional input <code>pos</code> is used to indicate where to position the labels in relation to the points.</li>
+<li>A title can be added with <code>title(text)', where</code>text`is a character string.</li>
+</ul>
+<p>As an <strong>example</strong> we plot part of the parabola y<sup>2</sup> = 4x, as well as its focus and directrix. We make use of the surprisingly useful input <code>type = "n"</code>, which results in the graph dimensions being established, and the axes being drawn, but nothing else.</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y.upper <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(x)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y.lower <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(x)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y.max <span class="ot">&lt;-</span> <span class="fu">max</span>(y.upper)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>y.min <span class="ot">&lt;-</span> <span class="fu">min</span>(y.lower)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">c</span>(y.min, y.max), <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"y"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y.upper)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y.lower)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="st">"focus (1, 0)"</span>, <span class="at">pos=</span><span class="dv">4</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="dv">1</span>, y.min, <span class="st">"directrix x = -1"</span>, <span class="at">pos =</span> <span class="dv">4</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"The parabola y^2 = 4*x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="graphs_files/figure-html/unnamed-chunk-1-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="graphics-devices" class="level3" data-number="17.3.2">
+<h3 data-number="17.3.2" class="anchored" data-anchor-id="graphics-devices"><span class="header-section-number">17.3.2</span> Graphics Devices</h3>
+<p>When you make a plot in R, it has to be “sent” to a specific <strong>graphics device</strong>. The most common place for a plot to be “sent” is the screen device. Therefore, when making a plot, you need to consider how the plot will be used to determine what device the plot should be sent to.</p>
+<p>The <strong>list of devices</strong> supported by your installation of R is found in <code>?devices</code>.</p>
+<p>Functions like <code>plot()</code> in base, <code>xyplot()</code> in lattice, or <code>qplot</code> in ggplot2 will default to sending a plot to the screen device.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 49%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Vector</th>
+<th>Bitmap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Good for line drawings and plots with solid colors using a modest number of points</td>
+<td>good for plots with a large number of points, natural scenes or web-based plots</td>
+</tr>
+<tr class="even">
+<td>pdf (line-type graphics, resizes well, usually portable)</td>
+<td>png (good for line drawings or images with solid colors)</td>
+</tr>
+<tr class="odd">
+<td>svg (XML-based scalable vector graphics; supports animation and interactivity)</td>
+<td>jpeg (good for plotting many many many points, does not resize well)</td>
+</tr>
+<tr class="even">
+<td>win.metafile</td>
+<td>tiff</td>
+</tr>
+<tr class="odd">
+<td>postscript</td>
+<td>bmp</td>
+</tr>
+</tbody>
+</table>
+<p>It is possible to <strong>open multiple graphics devices</strong> (screen, file, or both), for example when viewing multiple plots at once. Plotting can only occur on one graphics device at a time, though.</p>
+<p>[One way of having more than one plot visible is to open additional graphics devices. In a Windows environment this is done by using the command <code>windows()</code> before each additional plot.]</p>
+<p>Alternatively you can create a *grid of plots** in a single graphics window using the commands <code>par(mfrow = c(nr, nc))</code> or <code>par(mfcol = c(nr, nc))</code>. Setting <code>mfrow = c(nr, nc)</code> creates a grid of plots with <code>nr</code> rows and <code>nc</code> columns, which is filled row by row. <code>mfcol</code> is similar but fills the plots column by column.</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">0.1</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="graphs_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <strong>currently active graphics device</strong> can be found by calling <code>dev.cur()</code></p>
+<p>Every open graphics device is assigned an integer starting with 2 (there is no graphics device 1). You can change the active graphics device with <code>dev.set(&lt;integer&gt;)</code></p>
+</section>
+<section id="copying-plots" class="level3" data-number="17.3.3">
+<h3 data-number="17.3.3" class="anchored" data-anchor-id="copying-plots"><span class="header-section-number">17.3.3</span> Copying Plots</h3>
+<p>Note that copying a plot is not an exact operation, so the result may not be identical to the original:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Copy my plot to a PNG file  (follows the previous code from pdf creation)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy</span>(png, <span class="at">file =</span> <span class="st">"geyserplot.png"</span>) </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Don't forget to close the PNG device! </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="the-base-plotting-system" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="the-base-plotting-system"><span class="header-section-number">17.4</span> The Base Plotting System</h2>
+<p>The <strong>base plotting system</strong> is the original plotting system for R. The basic model is sometimes referred to as the “artist’s palette” model. The idea is you start with blank canvas and build up from there.</p>
+<p>You will typically start with a plot function (or similar plot creating function) to initiate a plot and then annotate the plot.</p>
+<p>If you don’t have a completely well-formed idea of how you want your data to look, you’ll often start by “throwing some data on the page” and then slowly add more information to it as our thought process evolves.</p>
+<p><strong>Downsides:</strong></p>
+<ul>
+<li>You can’t go backwards once the plot has started.</li>
+<li>While the base plotting system is nice in that it gives you the flexibility to specify these kinds of details to painstaking accuracy, sometimes it would be nice if the system could just figure it out for you.</li>
+<li>It’s difficult to describe or translate a plot to others because there’s no clear graphical language or grammar that can be used to communicate what you’ve done.</li>
+</ul>
+<section id="packages" class="level3" data-number="17.4.1">
+<h3 data-number="17.4.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">17.4.1</span> Packages</h3>
+<ul>
+<li><p><strong>graphics</strong>: contains plotting functions for the “base” graphing systems, including plot, hist, boxplot and many others</p></li>
+<li><p><strong>grdevices</strong>: contains all the code implementing the various graphics devices, includ- ing X11, PDF, PostScript, PNG, etc.</p></li>
+<li><p>Use <code>?par</code> for:</p>
+<ul>
+<li>Global parameters that can set and tweaked.</li>
+<li>Key annotation functions, e.g.&nbsp;lines, title, abline, points, text, axis, mtext</li>
+</ul></li>
+<li><p><strong>type = “n”</strong>. Notice that when constructing the initial plot, we use the option type = “n” in the call to <code>plot()</code>. This is a common paradigm as <code>plot()</code> will draw everything in the plot except for the data points inside the plot window.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(airquality, <span class="fu">plot</span>(Wind, Ozone, <span class="at">main =</span> <span class="st">"Ozone and Wind in New York City"</span>, <span class="at">type =</span> <span class="st">"n"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="graphs_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plot-with-a-regression-line" class="level3" data-number="17.4.2">
+<h3 data-number="17.4.2" class="anchored" data-anchor-id="plot-with-a-regression-line"><span class="header-section-number">17.4.2</span> Plot with a Regression Line</h3>
+<ul>
+<li>First make the plot (as above).</li>
+<li>Fit a simple linear regression model using the <code>lm()</code> function.</li>
+<li>Take the output of <code>lm()</code> and pass it to the <code>abline()</code> function which automatically takes the information from the model object and calculates the corresponding regression line</li>
+</ul>
+</section>
+<section id="multiple-base-plots" class="level3" data-number="17.4.3">
+<h3 data-number="17.4.3" class="anchored" data-anchor-id="multiple-base-plots"><span class="header-section-number">17.4.3</span> Multiple Base Plots</h3>
+<p>Both the <strong>mfrow</strong> and <strong>mfcol</strong> parameters take two numbers: the number of rows of plots followed by the number of columns.</p>
+<p>The only difference between the two parameters is that if <strong>mfrow</strong> is set, then the plots will be drawn row-wise; if <strong>mfcol</strong> is set, the plots will be drawn column-wise.</p>
+</section>
+<section id="color-in-plots" class="level3" data-number="17.4.4">
+<h3 data-number="17.4.4" class="anchored" data-anchor-id="color-in-plots"><span class="header-section-number">17.4.4</span> Color in Plots</h3>
+<p>Typically we add color to a plot, not to improve its artistic value, but to add another dimension to the visualization. It makes sense that the range and palette of colors you use will depend on the kind of data you are plotting.</p>
+<p>Careful choices of plotting color can have an impact on how people interpret your data and draw conclusions from them.</p>
+<p>The function <code>colors()</code> lists the names of (657) colors you can use in any plotting function. Typically, you would specify the color in a (base) plotting function via the <strong>col</strong> argument.</p>
+<p>The <strong>grDevices package</strong> has two functions, they differ only in the type of object that they return:</p>
+<ul>
+<li><p><strong>colorRamp</strong>: Take a palette of colors and return a function that takes values between 0 and 1.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRamp</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pal</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The numbers in the matrix will range from 0 to 255 and indicate the quantities of red, green, and blue (RGB) in columns 1, 2, and 3 respectively. there are over 16 million colors that can be expressed in this way.</p>
+<p>The idea here is that you do not have to provide just two colors in your initial color palette; you can start with multiple colors and <code>colorRamp()</code> will interpolate between all of them.</p></li>
+<li><p><strong>colorRampPalette</strong>: Takes a palette of colors and returns a function that takes integer arguments and returns a vector of colors interpolating the palette (like <code>heat.colors()</code> or <code>topo.colors()</code>).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"yellow"</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pal</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Returns 3 colors in between red and yellow. Note that the colors are represented as hexadecimal strings.</p></li>
+<li><p>Note that the <code>rgb()</code> function can be used to produce any color via red, green, blue proportions and return a hexadecimal representation:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">234</span>, <span class="at">maxColorValue =</span> <span class="dv">255</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="rcolorbrewer-package" class="level3" data-number="17.4.5">
+<h3 data-number="17.4.5" class="anchored" data-anchor-id="rcolorbrewer-package"><span class="header-section-number">17.4.5</span> RColorBrewer Package</h3>
+<p>Part of the art of creating good color schemes in data graphics is to start with an appropriate color palette that you can then interpolate with a function like <code>colorRamp()</code> or <code>colorRampPalette()</code>.</p>
+<p>Here is a display of all the color palettes available from the <strong>RColorBrewer package</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer) </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="graphs_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The <code>brewer.pal()</code> function which has two arguments:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">"BuGn"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>cols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "#E5F5F9" "#99D8C9" "#2CA25F"</code></pre>
+</div>
+</div>
+<p>These three colors make up my initial palette. Then I can pass them to <code>colorRampPalette()</code> to create my interpolating function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now I can plot the volcano data using this color ramp:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(volcano, <span class="at">col =</span> <span class="fu">pal</span>(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>smoothScatter()</code> function is very useful for making scatterplots of very large datasets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>) </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">smoothScatter</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="graphs_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Adding transparency</strong>: Color transparency can be added via the alpha parameter to <code>rgb()</code> to produce color specifications with varying levels of transparency.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "#FF00001A"</code></pre>
+</div>
+</div>
+<p>Transparency can be useful when you have plots with a high density of points or lines.</p>
+<p>If we add some transparency to the black circles, we can get a better sense of the varying density of the points in the plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.15</span>)) <span class="do">## x, y from the previous example</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="graphs_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="the-lattice-system" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="the-lattice-system"><span class="header-section-number">17.5</span> The Lattice System</h2>
+<p>First you must load the <strong>lattice package</strong> with the library function: <code>library(lattice)</code>.</p>
+<p>With the lattice system, plots are created with a single function call, such as <code>xyplot()</code> or <code>bwplot()</code>.</p>
+<p>There is no real distinction between the functions that create or initiate plots and the functions that annotate plots because <strong>it all happens at once</strong>.</p>
+<p><strong>Lattice plots</strong> tend to be most useful for <strong>conditioning types of plots</strong>, i.e.&nbsp;looking at how y changes with x across levels of z. These types of plots are useful for looking at <strong>multidimensional data</strong> and often allow you to squeeze a lot of information into a single window or page.</p>
+<p>Another aspect of lattice that makes it different from base plotting is that things like <strong>margins and spacing</strong> are set automatically. This is possible because entire plot is specified at once via a single function call.</p>
+<p>The notion of <strong>panels</strong> comes up a lot with lattice plots because you typically have many panels in a lattice plot (each panel typically represents a condition, like “region”).</p>
+<p>Once a plot is created, you cannot “add” to the plot (but of course you can just make it again with modifications).</p>
+</section>
+<section id="ggplot2" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">17.6</span> ggplot2</h2>
+<p>Splits the difference between base and lattice in a number of ways. Taking cues from lattice, the <strong>ggplot2</strong> system automatically deals with spacings, text, titles but also allows you to annotate by “adding” to a plot.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A typical plot with the ggplot package looks as follows:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(displ, hwy, <span class="at">data =</span> mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In <strong>ggplot2</strong>, aesthetics are the things we can see (e.g.&nbsp;position, color, fill, shape, line type, size). You can use aesthetics in ggplot2 via the <code>aes()</code> function:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="geometric-objects" class="level3" data-number="17.6.1">
+<h3 data-number="17.6.1" class="anchored" data-anchor-id="geometric-objects"><span class="header-section-number">17.6.1</span> Geometric objects</h3>
+<p><strong>Geometric objects</strong> are the plots or graphs you want to put in the chart.</p>
+<p>You can use <code>geom_point()</code> to create a scatterplot, <code>geom_line()</code> to create a line plot, and <code>geom_boxplot()</code> to create a boxplot in the chart.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geom_"</span>, <span class="at">package=</span><span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In ggplot2, <code>geom</code> is also the layers of the chart. You can add in one geom object after another, just like adding one layer after another layer.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="plotly" class="level3" data-number="17.6.2">
+<h3 data-number="17.6.2" class="anchored" data-anchor-id="plotly"><span class="header-section-number">17.6.2</span> Plotly</h3>
+<p><strong>Plotly JS</strong> allows you to create interactive, publication-quality charts. You can create a Plotly chart using ggplot:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">1</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">2</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(var1, var2)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(gg)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./regression.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./products.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,288 @@
+# Inferential Statistics
+
+**Inferential statistics** describes and makes inferences about the population from the sampled data, using hypothesis testing and estimating of parameters.
+
+-   In **hypothesis testing**, a research question is a hypothesis asked in question format
+
+    -   Based on the research question, the hypothesis can be a null hypothesis, $H_0$($μ_1$ = $μ_2$) and an alternate hypothesis, $H_a$ ($μ_1$ ≠ $μ_2$).
+
+    -   If the **p-value** is less than or equal to alpha, which is usually 0.05, you reject the null hypothesis and say that the alternate hypothesis is true at the 95% confidence interval. If the p-value is more than 0.05, you fail to reject the null hypothesis.
+
+-   By **estimating parameters**, you try to answer the population parameters.
+
+    -   For estimating parameters, the parameters can be the mean, variance, standard deviation, and others.
+
+    -   E.g. you calculate the mean of the height of the samples and then make an inference on the mean of the height of the population. You can then construct the confidence intervals, which is the range in which the mean of the height of the population will fall.,
+
+## Correlation
+
+**Correlations** are statistical associations to find how close two variables are and to derive the linear relationships between them.
+
+You can use **correlation** to find which variables are more related to the target variable and use this to reduce the number of variables.
+
+**Correlation** does not mean a causal relationship, it does not tell you the how and why of the relationship.
+
+``` r
+cor(data$var1, data$var2)
+```
+
+The correlation has a range from -1.0 to 1.0.
+
+## Covariance
+
+**Covariance** is a measure of variability between two variables.
+
+The greater the value of one variable and the greater of other variable means it will result in a covariance that is positive.
+
+``` r
+cov(data$var1, data$var2)
+```
+
+**Covariance** does not have a range. When two variables are independent of each other, the covariance is zero.
+
+## Hypothesis Testing and P-Value
+
+Based on the research question, the hypothesis can be a null hypothesis, H0 (μ1= μ2) and an alternate hypothesis, Ha (μ1 ≠ μ2).
+
+For data normally distributed:
+
+-   **p-value**:
+
+    -   A small p-value \<= alpha, which is usually 0.05, indicates that the observed data is sufficiently inconsistent with the null hypothesis, so the null hypothesis may be rejected. The alternate hypothesis is true at the 95% confidence interval.
+
+    -   A larger p-value means that you failed to reject null hypothesis.
+
+-   **t-test** continuous variables of data.
+
+-   **chi-square test** for categorical variables or data.
+
+-   **ANOVA**
+
+For data not normally distributed:
+
+-   **non-parametric** tests.
+
+## T-Test
+
+A **t-test** is used to determine whether the mean between two data points or samples are equal to each other.
+
+-   $H_0$ ($μ_1$ = $μ_2$): The null hypothesis means that the two means are equal.
+
+-   $H_a$ ($μ_1$ ≠ $μ_2$): The alternative means that the two means are different.
+
+In **t-test** there are two assumptions:
+
+-   The population is normally distributed.
+
+-   The samples are randomly sampled from their population.
+
+**Type I and Type II Errors**:
+
+-   A **Type I error** is a rejection of the null hypothesis when it is really true.
+
+-   A **Type II error** is a failure to reject a null hypothesis that is false.
+
+### One-Sample T-Test
+
+A **one-sample t-test** is used to test whether the mean of a population is equal to a specified mean.
+
+You can use the t statistics and the degree of freedom ($df = n -1$) to estimate the p-value using a t-table.
+
+``` r
+t.test(data$var1, mu=0.6) 
+```
+
+### Two-Sample Independent T-Test (unpaired, paired = FALSE)
+
+The two-sample unpaired t-test is when you compare two means of two independent samples. The degrees of freedom formula is $df = nA – nB – 2$
+
+In the two-sample unpaired t-test, when the variance is unequal, you use the **Welch t-test**.
+
+``` r
+t.test(data$var1, data\$var2, var.equal=FALSE, paired=FALSE) 
+```
+
+### Two-Sample Dependent T-Test (paired = TRUE)
+
+A two-sample paired t-test is used to test the mean of two samples that depend on each other. The degree of freedom formula is $df = n-1$
+
+``` r
+t.test(data$var1, data$var2, paired=TRUE)
+```
+
+## Chi-Square Test
+
+The **chi-square test** is used to compare the relationships between two categorical variables.
+
+The null hypothesis means that there is no relationship between the categorical variables.
+
+### Goodness of Fit Test
+
+When you have only **one categorical variable** from a population and you want to compare whether the sample is consistent with a hypothesized distribution, you can use the goodness of fit test.
+
+-   $H_0$: No significant difference between the observed and expected values.
+-   $H_A$: There is a significant difference between the observed and expected values.
+
+To use the **goodness of fit chi-square test** in R, you can use the `chisq.test()` function:
+
+``` r
+data <- c(B=200, c=300, D=400)
+chisq.test(data)
+```
+
+### Contingency Test
+
+If you have **two categorical variables** and you want to compare whether there is a relationship between two variables, you can use the **contingency test**.
+
+-   $H_0$: the two categorical variables have no relationship. The two variables are independent.
+-   $H_A$: the two categorical variables have a relationship. The two variables are not independent.
+
+``` r
+var1 <- c("Male", "Female", "Male", "Female", "Male")
+var2 <- c("chocolate", "strawberry", "strawberry", "strawberry", "chocolate")
+data <- data.frame(var1, var2)
+data.table <- table(data$var1, data$var2)
+data.table > chisq.test(data.table)
+```
+
+## ANOVA
+
+**ANOVA** is the process of testing the means of two or more groups. ANOVA also checks the impact of factors by comparing the means of different samples.
+
+In **ANOVA**, you use two kinds of means:
+
+-   Sample means.
+-   Grand mean (the mean of all of the samples' means).
+
+Hypothesis: - $H_0$: $μ_1$= $μ_2$ = ... = $μ_L$ ; the sample means are equal or do not have significant differences. - $H_A$: $μ_1$ ≠ $μ_m$; is when the sample means are not equal.
+
+You assume that the variables are sampled, independent, and selected or sampled from a population that is normally distributed with unknown but equal variances.
+
+### Between Group Variability
+
+The distribution of two samples, when they overlap, their means are not significantly different. Hence, the difference between their individual mean and the grand mean is not significantly different.
+
+![Figure 6: Between group variability](img/Picture7.png)
+
+This variability is called the **between-group variability**, which refers to the variations between the distributions of the groups or levels.
+
+### Within Group Variability
+
+For the following distributions of samples, as their variance increases, they overlap each other and become part of a population.
+
+![Figure 7: Within group variability](img/Picture8.png)
+
+The **F-statistics** are the measures if the means of samples are significantly different. The lower the F-statistics, the more the means are equal, so you cannot reject the null hypothesis.
+
+### One-Way ANOVA
+
+**One-way ANOVA** is used when you have only one independent variable.
+
+```{r}
+library(graphics)
+set.seed(123) 
+var1 <- rnorm(12, 2, 1) 
+var2 <- c("B", "B", "B", "B", "C", "C", "C", "C", "C", "D", "D", "B")
+data <- data.frame(var1, var2) 
+fit <- aov(data$var1 ~ data$var2, data = data)
+fit 
+summary(fit)
+```
+
+### Two-Way ANOVA
+
+**Two-way ANOVA** is used when you have two independent variables. (continuar en el ejemplo anterior):
+
+```{r}
+var3 <- c("D", "D", "D", "D", "E", "E", "E", "E", "E", "F", "F", "F")
+data <- data.frame(var1, var2, var3) 
+fit <- aov(data$var1 ~ data$var2 + data$var3, data=data)
+fit
+summary(fit)
+## var1 does not depend on var2's mean and var3's mean
+```
+
+### MANOVA
+
+The multivariate analysis of variance is when there are multiple response variables that you want to test.
+
+*Example:*
+
+```{r}
+res <- manova(cbind(iris$Sepal.Length, iris$Petal.Length) ~ iris$Species, data=iris) 
+summary(res)
+summary.aov(res)
+## Hence, you have two response variables, Sepal.Length and Petal.Length
+```
+
+The **p-value** is 2.2e-16, which is less than 0.05. Hence, you reject the null hypothesis
+
+## Nonparametric Test
+
+The **nonparametric test** is a test that does not require the variable and sample to be normally distributed.
+
+You use nonparametric tests when you do not have normally distributed data and the sample data is big.
+
+| Nonparametric Test         | Function                                                | Method replaced |
+|--------------------|---------------------------------|-------------------|
+| Wilcoxon Signed Rank Test  | `wilcox.test(data[,1], mu=0, alternatives="two.sided")` | one-sample      |
+| t-testundefined            |                                                         |                 |
+| Wilcoxon-Mann-Whitney Test | `wilcox.test(data[,1], data[,2], correct=FALSE)`        | substitute      |
+| to the two-sample t-test   |                                                         |                 |
+| Kruskal-Wallis Test        | `kruskal.test(airquality$Ozone ~ airquality$Month)`     | one-way         |
+
+: Table 3: Types of nonparametric tests
+
+### Wilcoxon Signed Rank Test
+
+The **Wilcoxon signed rank test** is used to replace the **one-sample t-test**.
+
+**Hypothesis:**
+
+-   \
+    $H_0$: $μ_1$= $μ_o$; the null hypothesis is that the population median has the specified value of $μ_0$
+
+-   $H_a$: $μ_1$ ≠ $μ_o$
+
+To use the **Wilcoxon signed rank test** in R, you can first generate the data set using **random.org packages**, so that the variables are not normally distributed.
+
+*Example:*
+
+``` r
+install.packages("random") 
+library(random) 
+var1 <- randomNumbers(n=100, min=1, max=1000, col=1)
+var2 <- randomNumbers(n=100, min=1, max=1000, col=1) 
+var3 <- randomNumbers(n=100, min=1, max=1000, col=1) 
+data <- data.frame(var1[,1], var2[,1], var3[,1]) 
+wilcox.test(data[,1], mu=0, alternatives="two.sided")
+```
+
+### Wilcoxon-Mann-Whitney Test
+
+The **Wilcoxon-Mann-Whitney test** is a nonparametric test to compare two samples. It is a powerful substitute to the two-sample t-test.
+
+To use the **Wilcoxon-Matt-Whitney test** (or the Wilcoxon rank sum test or the Mann-Whitney test) in R, you can use the `wilcox.test()` function:
+
+``` r
+wilcox.test(data[,1], data[,2], correct=FALSE)
+```
+
+There are not significant differences in the median for first variable median and second variable median.
+
+### Kruskal-Wallis Test
+
+The **Kruskal-Wallis test** is a nonparametric test that is an extension of the **Mann-Whitney U test** for three or more samples.
+
+The test requires samples to be identically distributed.
+
+**Kruskal-Wallis** is an alternative to **one-way ANOVA**.
+
+The **Kruskal-Wallis** test tests the differences between scores of k independent samples of unequal sizes with the ith sample containing li rows:
+
+-   $H_0$: $μ_o$ = $μ_1$= $μ_2$ = ... = $μ_k$; The null hypothesis is that all the medians are the same.
+-   $H_a$: $μ_1$ ≠ $μ_k$; The alternate hypothesis is that at least one median is different.
+
+```{r}
+kruskal.test(airquality$Ozone ~ airquality$Month)
+```

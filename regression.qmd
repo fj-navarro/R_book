@@ -1,0 +1,62 @@
+# Regression Analysis
+
+**Regression analysis** is a form of predictive modelling techniques that identifies the relationships between dependent and independent variables(s). The technique is used to find causal effect relationships between variables.
+
+**Regression analysis** identifies the significant relationships between dependent and independent variables and the strength of the impact of multiple independent variables on dependent variables.
+
+## Linear Regressions
+
+The linear regression equation is $y = b_0 + b_1 x$, where **y** is the dependent variable, **x** is the independent variable, $b_0$ is the intercept, and $b_1$ is the slope.
+
+To use linear regression in R, you use the `lm()` function:
+
+```{r}
+set.seed(123)
+x <- rnorm(100, mean=1, sd=1)
+y <- rnorm(100, mean=2, sd=2)
+data <- data.frame(x, y);
+mod <- lm(data$y ~ data$x, data=data)
+mod
+summary(mod)
+```
+
+When the **p-value** is less than 0.05, the model is significant:
+
+-   $H_0$: Coefficient associated with the variable is equal to zero
+
+-   $H_a$: Coefficient is not equal to zero (there is a relationship)
+
+Furthermore:
+
+-   The higher the **R-squared** and the **adjusted R-squared**, the better the linear model.
+
+-   The lower the **standard error**, the better the model
+
+## Multiple Linear Regressions
+
+Multiple linear regression is used when you have more than one independent variable.
+
+The equation of a multiple linear regression is: 
+
+**$y = b_0 + b_1 x_1 + b_2 x_2 + ... + b_ k x_k + ϵ$**
+
+When you have n observations or rows in the data set, you have the following model:
+
+![Figure 4: Model for multiple regressions](img/Picture5.png){fig-align="center"}
+
+Using a matrix, you can represent the equations as: $y = Xb + ϵ$
+
+![Figure 5: Representation of equations as a matrix](img/Picture6.png){fig-align="center"}
+
+To calculate the coefficients: \^b = (X' X)-1 X' y
+
+```{r}
+set.seed(123)
+x <- rnorm(100, mean=1, sd=1)
+x2 <- rnorm(100, mean=2, sd=5)
+y <- rnorm(100, mean=2, sd=2)
+data <- data.frame(x, x2, y)
+mod <- lm(data$y ~ data$x + data$x2, data=data)
+mod
+summary(mod)
+```

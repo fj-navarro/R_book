@@ -1,0 +1,50 @@
+## R and Data Bases
+-   R stores everything in RAM, and a typical personal computer consists of limited RAM. R is RAM intensive, and for that reason, the size of a dataset should be much smaller than its RAM.
+-   There are two principal ways to connect to a database: 
+    -   the first uses the **ODBC facility** available on many computers and,
+    -   the second uses the **DBI package** of R along with a specialized package for the particular database needed to be accessed (if there is a specialized package available for a database).
+
+### R and Excel/MSAccess
+-   An Excel file can be imported into R using ODBC. Remember Excel cannot deal with relational databases.
+-   We will now create an ODBC connection with an MS Excel file with the **connection string xlopen**:
+    -   In our computer: To use the ODBC approach on an Excel file, we firstly need to create the connection string using the system administrator. We need to open the control panel of the operating system and then open Administrative Tools and then choose ODBC. A dialog box will now appear. Click on the Add button and select an appropriate ODBC driver and then locate the desired file and give a data source name. In our case, the data source name is xlopen.
+    -   In R:
+``` R
+# calling ODBC library into R 
+library(RODBC)
+# creating connection with the database using odbc package. 
+xldb <- odbcConnect("xlopen") / odbcConnect("accessdata")
+# Now that the connection is created, we will use this connection and import the data xldata<- sqlFetch(xldb, "CSVanscombe")
+```
+
+### Relational databases in R
+-   There are packages to interface between R and different database software packages that use relational database management systems, such as **MySQL (RMySQL)**, **PostgreSQL (RPgSQL)**, and **Oracle (ROracle)**.
+-   One of the most popular packages is **RMySQL**. This package allows us to make connections between R and the MySQL server. In order to install this package properly, we need to download both the MySQL server and RMySQL.
+-   There are several R packages available that allow direct interactions with large datasets within R, such as **filehash**, **ff**, and **bigmemory**. The idea is to avoid loading the whole dataset into memory.
+
+### filehash package
+-   It is used for solving large-data problems. The idea behind the development of this package was to avoid loading the dataset into a computer's virtual memory. Instead, we dump the large dataset into the hard drive and then assign an environment name for the dumped objects.
+
+``` R
+library(filehash) 
+dbCreate("exampledb")
+filehash_db<- dbInit("exampledb")  ## db needs to be initialized before accessing
+dbInsert(filehash_db, "xx", rnorm(50)) 
+value<- dbFetch(filehash_db, "xx")  ## to retrieve db values
+summary(value)
+```
+-   This file connection will remain open until the database is closed via dbDisconnect or the database object in R is removed.
+
+### ff package
+This package extends the R system and stores data in the form of native binary flat files in persistent storage such as hard disks, CDs, or DVDs rather than in the RAM.
+
+This package enables users to work on several large datasets simultaneously. It also allows the allocation of vectors or arrays that are larger than the RAM.
+
+### sqldf package
+The **sqldf package** is an R package that allows users to run SQL statements within R.
+
+We can perform any type of data manipulation to an R data frame either in memory or during import. 
+
+If the dataset is too large and cannot entirely be read into the R environment, we can import a portion of that dataset using sqldf.
+
+

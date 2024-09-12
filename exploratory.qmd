@@ -1,0 +1,97 @@
+# Exploratory Analysis
+
+## Analysis Pipeline
+
+### Formulate your question 
+A sharp question or hypothesis can serve as a dimension reduction tool that can eliminate variables that are not immediately relevant to the question.
+
+It’s usually a good idea to spend a few minutes to figure out what is the question you’re really interested in and narrow it down to be as specific as possible (without becoming uninteresting).
+
+One of the most important questions you can answer with an exploratory data analysis is: **“Do I have the right data to answer this question?”**
+
+### Read in your data
+Sometimes the data will come in a very messy format, and you’ll need to do some cleaning.
+
+The **readr package** by Hadley Wickham is a nice package for reading in flat files very fast, or at least much faster than R’s built-in functions
+
+### Check the packaging 
+Assuming you don’t get any warnings or errors when reading in the dataset, you should now have an object in your workspace named e.g. “ozone”. It’s usually a good idea to poke at that object a little bit before we break open the wrapping paper.
+
+For example, you can check the number of rows and columns.
+
+### Run str()
+This is usually a safe operation in the sense that even with a very large dataset, running str() shouldn’t take too long.
+
+You can examine the classes of each of the columns to make sure they are correctly specified (i.e., numbers are numeric, and strings are character, etc.).
+
+### Look at the top and the bottom of your data
+This lets me know if the data were read in properly, things are properly formatted, and that everything is there. If your data are time series data, then make sure the dates at the beginning and end of the dataset match what you expect the beginning and ending time period are.
+
+You can peek at the top and bottom of the data with the `head()` and `tail()` functions. Sometimes there’s weird formatting at the end or some extra comment lines that someone decided to stick at the end.
+
+### Check your “n”s (frequency)
+To do this properly, you need to identify some landmarks that can be used to check against your data. For example, if you are collecting data on people, such as in a survey or clinical trial, then you should know how many people there are in your study (i.e., in an ozone monitoring data system we can take a look at the Time.Local variable to see what time measurements are recorded as being taken.)
+
+``` R
+table(ozone$Time.Local)
+```
+
+### Validate with at least one external data source 
+External validation can often be as simple as checking your data against a single number.
+
+The data are at least of the right order of magnitude (i.e., the units are correct) or, the range of the distribution is roughly what we’d expect, given the regulation around ambient pollution levels.
+
+### Try the easy solution first 
+Because we want to know which counties have the highest levels, it seems we need a list of counties that are ordered from highest to lowest with respect to their levels of ozone.
+
+``` R
+ranking <- group_by(ozone, State.Name, County.Name) %>% 
+  summarize(ozone = mean(Sample.Measurement)) %>%
+  as.data.frame %>%
+  arrange(desc(ozone))
+```
+
+### Challenge your solution/Bootstrap sample
+The easy solution is nice because it is, well, easy, but you should never allow those results to hold the day. You should always be thinking of ways to challenge the results, especially if those results comport with your prior expectation.
+
+How stable are the rankings from year to year? We can imagine that from year to year, the ozone data are somewhat different randomly, but generally follow similar patterns across the country. So, the shuffling process could approximate the data changing from one year to the next. It’s not an ideal solution, but it could give us a sense of how stable the rankings are.
+
+First, we set our random number generator and resample the indices of the rows of the data frame with replacement. The statistical jargon for this approach is a **bootstrap sample**:
+
+1.	We use the resampled indices to create a new dataset, ozone2, that shares many of the same qualities as the original but is randomly perturbed.
+
+    ``` R
+    set.seed(10234) 
+    N <- nrow(ozone) 
+    idx <- sample(N, N, replace = TRUE) 
+    ozone2 <- ozone[idx, ]
+    ```
+
+2.	We reconstruct our rankings of the counties based on this resampled data:
+
+    ``` R
+    ranking2 <- group_by(ozone2, State.Name, County.Name) %>% 
+      summarize(ozone = mean(Sample.Measurement)) %>%
+      as.data.frame %>%
+      arrange(desc(ozone))
+    ```
+
+3.	We can then compare the top 10 counties from our original ranking and the top 10 counties from our ranking based on the resampled data.
+
+    ``` R
+    cbind(head(ranking, 10)
+    head(ranking2, 10))
+    ```
+
+4.	We can see that the rankings based on the resampled data are very close to the original, with the first 7 being identical. Numbers 8 and 9 get flipped in the resampled rankings but that’s about it. This might suggest that the original rankings are somewhat stable.
+
+### Follow up
+At this point it’s useful to consider a few follow up questions:
+
+1.	Do you have the right data?
+2.	Do you need other data?
+3.	Do you have the right question?
+
+The goal of exploratory data analysis is to get you thinking about your data and reasoning about your question. At this point, we can refine our question or collect new data, all in an iterative process to get at the truth.
+
+## Hierarchical Clustering

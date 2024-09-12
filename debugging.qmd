@@ -1,0 +1,138 @@
+# Debugging
+
+Often code will be used in circumstances under which you cannot control the
+type of input (numeric, character, logical, etc.). **Unexpected input** can lead
+to undesirable consequences, for example, the function could fail to work and
+the user may not know why. Worse still, the function could seem to work
+but return plausible nonsense, and the user may be none the wiser
+
+R has a number of ways to indicate to you that **something's not right**. There are different levels of indication that can be used, ranging from mere notification to fatal error.
+
+First, R may **stop processing and report an error**, along with a brief summary of the violation. It can be worth performing simple checks on the input to be sure that it conforms to your expectations. (Useful considerations here are: what will your function do if the input is the wrong type, or the right type but incomplete?) 
+
+-   The **stop function** is useful in these circumstances: `stop("Your message here.")` will cease processing and print the message to the user.
+
+-   The **browser function** is very useful to invoke inside your own functions. The
+command `browser()` will temporarily stop the program, and allow you to inspect
+its objects. You can also step through the code, executing one expression
+at a time.
+
+    *Example:*
+    
+    ``` R
+    my_fun <- function(x) {
+      browser()
+      y <- x * z
+      return(y)
+    }
+    my_fun(c(1,2,3))
+    ```
+    ``` R
+    Called from: my_fun(c(1,2,3))
+    Browse[1]>
+    ```
+    `browser` catches the execution and presents us with a prompt. Using `n`, we
+will step through the function one line at a time. At each point, R shows us
+the next line to be evaluated. We signify our input using curly braces; thus:
+`{ Enter }`.
+
+Second, we may identify an error by **examining the output** of a program or function, and noting that it makes no sense. 
+
+Finally, R may throw a **warning** upon the execution of some code, and this warning might point to an earlier error.
+
+To ask R to convert warnings into errors, and hence stop processing at the point of warning, type:
+
+``` r
+options(warn = 2)
+```
+
+## Show values
+
+You will spend a lot of time correcting errors in your programs. To find an error or bug, you need to be able to see how your variables change as you move through the branches and loops of your code.
+
+An effective and simple way of doing this is to include statements like `cat("var =", var, "\n")` throughout the program, to display the values of variables such as var as the program executes. Once you have the program working you can delete these or just comment them so they are not executed.
+
+It is also very helpful to make **dry runs of your code**, using simple starting conditions for which you know what the answer should be. These dry runs should ideally use short and simple versions of the final program, so that analysis of the output can be kept as simple as possible.
+
+**Graphs and summary statistics** of intermediate outcomes can be very revealing, and the code to create them is easily commented out for production runs.
+
+## Message
+
+We can fix this problem by anticipating the possibility of NA values and checking to see if the input is NA with the `is.na()` function:
+
+``` r
+printmessage3 <- function(x) {
+    if(length(x) > 1L)
+        stop("'x' has length > 1")
+        if(is.na(x))
+            print("x is a missing value!")
+    else if(x > 0) 
+        print("x is greater than zero")
+    else
+        print("x is less than or equal to zero") 
+    invisible(x)
+}
+```
+
+## traceback()
+
+The `traceback()` command prints out the function call stack **after an error** has occurred. The function call stack is the sequence of functions that was called before the error occurred.
+
+The `traceback()` command must be called **immediately after** an error occurs. Once another function is called, you lose the traceback.
+
+``` R
+lm(y ~ x) 
+```
+
+``` R
+Error in eval(expr, envir, enclos) : object 'y' not found
+```
+
+``` R
+traceback() 
+```
+``` R
+7: eval(expr, envir, enclos)
+6: eval(predvars, data, env)
+5: model.frame.default(formula = y \~ x, drop.unused.levels = TRUE)
+4: model.frame(formula = y \~ x, drop.unused.levels = TRUE)
+3: eval(expr, envir, enclos)
+2: eval(mf, parent.frame())
+1: lm(y \~ x)
+```
+
+Looking at the **traceback** is useful for figuring out roughly where an error occurred but it's not useful for more detailed debugging. For that you might turn to the `debug()` function.
+
+## debug()
+
+The `debug()` function takes a function as its first argument. Here is an example of debugging the `lm()` function.
+
+``` r
+debug(lm)   ## Flag the 'lm()' function for interactive debugging
+lm(y ~ x) debugging
+```
+
+Now, every time you call the `lm()` function it will launch the interactive debugger. To turn this behavior off you need to call the `undebug()` function.
+
+The debugger calls the browser at the very top level of the function body. From there you can step through each expression in the body. There are a few **special commands** you can call in the browser:
+
+-   **n**: executes the current expression and moves to the next expression.
+-   **c**: continues execution of the function and does not stop until either an error or the function exits.
+-   **Q**: quits the browser.
+
+You can turn off interactive debugging with the `undebug()` function like this:
+
+``` r
+undebug(lm)  ## Unflag the 'lm()' function for debugging
+```
+
+## recover()
+
+The `recover()` function can be used to modify the error behavior of R when an error occurs. Normally, when an error occurs in a function, R will print out an error message, exit out of the function, and return you to your workspace to await further commands.
+
+With `recover()` you can tell R that when an error occurs, it should halt execution at the exact point at which the error occurred.
+
+``` r
+options(error = recover)  ## Change default R error behavior
+read.csv("nosuchfile")  ## This code doesn't work
+```

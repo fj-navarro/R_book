@@ -1,0 +1,175 @@
+# Descriptive Statistics
+
+**Descriptive statistics** summarizes the data set, lets us have a feel and understanding of the data and variables. Descriptive statistics usually focuses on:
+-   the **distribution**: can be a normal distribution, binomial distribution, and other distributions like Bernoulli distribution.
+-   the **central tendency**: can be the mean, median, and mode of the data.
+-   the **dispersion of the data**: it describes the spread of the data, and dispersion can be the variance, standard deviation, and interquartile range.
+
+**Descriptive statistics** allows us to decide or determine whether we should use inferential statistics to identify the relationship between data sets, or use regression analysis instead to identify the relationships between variables.
+
+## summary() and str()
+
+The `summary()` and `str()` functions are the fastest ways to get descriptive statistics of the data.
+
+The `summary()` function gives the basic descriptive statistics of the data.
+
+The `str()` function gives the structure of the variables.
+
+## Measures of Centrality
+
+### Mode
+
+The **mode** is a value in data that has the highest frequency:
+
+*Example:*
+
+```{r}
+a <- c(1, 2, 3, 4, 5, 5, 5, 6, 7, 8)
+y <- table(a)  ## To get mode in a vector, you create a frequency table
+y
+names(y)[which(y==max(y))]
+```
+
+### Median
+
+The **median** is the middle or midpoint of the data and is also the 50 percentile of the data.
+
+The **median** is affected by the outliers and skewness of the data.
+
+``` r
+median(A)
+```
+
+### Mean
+
+The **mean** is the average of the data. The mean works best if the data is distributed in a normal distribution or distributed evenly.
+
+``` r
+mean(A)
+```
+
+## Measures of Variability
+
+The **measures of variability** are the measures of the spread of the data.
+
+The \*\*measures of variability\* can be: - variance - standard deviation - range - interquartile range - and more.
+
+### Variance
+
+The **variance** is the average of squared differences from the mean, and it is used to measure the spreadness of the data:
+
+-   **Population variance**:
+
+```{r}
+A <- c(1, 2, 3, 4, 5, 5, 5, 6, 7, 8)
+N <- length(A)
+var(A) * (N - 1) / N
+```
+
+-   **Sample variance**:
+
+```{r}
+var(A)
+```
+
+### Standard Deviation
+
+The **standard deviation** is the square root of a variance and it measures the spread of the data.
+
+-   **Population standard deviation**:
+
+```{r}
+A <- c(1, 2, 3, 4, 5, 5, 5, 6, 7, 8)
+N <- length(A)
+variance <- var(A) * (N - 1) / N
+sqrt(variance)
+```
+
+-   **Sample standard deviation**:
+
+```{r}
+sd(A)
+```
+
+### range()
+
+The **range** is the difference between the largest and smallest points in the data:
+
+```{r}
+range(A)	
+res <- range(A)
+diff(res)
+min(A)
+max(A)
+```
+
+### Interquartile Range
+
+The **interquartile range** is the measure of the difference between the 75 percentile or third quartile and the 25 percentile or first quartile.
+
+```{r}
+IQR(A)
+```
+
+You can get the quartiles by using the quantile() function:
+
+```{r}
+quantile(A)
+```
+
+## Distributions
+
+### Normal Distribution
+
+If the points do not deviate away from the line, the data is normally distributed.
+
+![Figure 1: The normal distribution](img/Picture2.png)
+
+To see whether data is normally distributed, you can use the `qqnorm()` and `qqline()` functions:
+
+``` r
+qqnorm(data$x) #You must first draw the distribution to draw the line afterwards 
+qqline(data$x)
+```
+
+You can also use a **Shapiro Test** to test whether the data is normally distributed. If the p-value is more than 0.05, you can conclude that the data does not deviate from normal distribution:
+
+``` r
+shapiro.test(data$x)
+```
+
+### Modality
+
+The **modality** of a distribution can be seen by the number of peaks when we plot the histogram.
+
+![Figure 2: The modality of a distribution](img/Picture3.png)
+
+### Skewness
+
+**Skewness** is a measure of how symmetric a distribution is and how much the distribution is different from the normal distribution.
+
+**Negative skew** is also known as left skewed, and **positive skew** is also known as right skewed: - A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail. - A negative skewness indicates that the left-hand tail will typically be longer than the right-hand tail.
+
+![Figure 3: Skewness of a distribution](img/Picture4.png)
+
+The **Pearson's Kurtosis measure** is used to see whether a dataset is heavy tailed, or light tailed. High kurtosis means heavy tailed, so there are more outliers in the data.
+
+-   When kurtosis is close to 0, then a normal distribution is often assumed. These are called mesokurtic distributions.\
+-   When kurtosis\>0, then the distribution has heavier tails and is called a leptokurtic distribution.
+-   When kurtosis\<0, then the distribution is light tails and is called a platykurtic distribution.
+
+To find the kurtosis and skewness in R, you must install the **moments package**:
+
+``` r
+install.packages("moments")
+skewness(data$x)
+kurtosis(data$x)
+```
+
+### Binomial Distribution
+
+A **binomial distribution** has two outcomes, success or failure, and can be thought of as the probability of success or failure in a survey that is repeated various times.
+
+```{r}
+dbinom(32, 100, 0.5)
+```

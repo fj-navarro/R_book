@@ -1,0 +1,390 @@
+# Logic
+
+Control (logical) structures mentioned here are primarily useful for writing programs; for command-line interactive work, the "apply" functions are more useful.
+
+## Logical expressions
+
+A **logical expression** is formed using:
+
+-   the **comparison operators** `<` , `>` , `<=`, `>=`, `==` (equal to), `!=` (not equal to), `&&`, `||` (sequentially evaluated versions of `&` and `|`, respectively), and
+
+-   the **logical operators** `&` (and), `|` (or), and `!` (not).
+
+The order of operations can be controlled using parentheses `( )`.
+
+The value of a logical expression is either **TRUE or FALSE** (the integers 1 and 0 can also be used to represent TRUE and FALSE, respectively).
+
+*Example:*
+
+```{r}
+## Note that A|B is TRUE if A or B or both are TRUE
+c(0,0,1,1)|c(0,1,0,1)
+## If you want exclusive disjunction, that is either A or B is TRUE but not both, then use xor(A,B)
+xor(c(0,0,1,1), c(0,1,0,1))
+```
+
+### Sequential `&&` and `||`
+
+To evaluate `x & y`, R first evaluates `x` and `y`, then returns `TRUE` if `x` and `y` are both `TRUE`, `FALSE` otherwise.
+
+To evaluate `x && y`, R first evaluates x. If `x` is `FALSE` then R returns `FALSE` without evaluating `y`. If `x` is `TRUE` then R evaluates `y` and returns `TRUE` if `y` is `TRUE`, `FALSE` otherwise.
+
+Sequential evaluation of `x` and `y` is useful when `y` is not always well defined, or when `y` takes a long time to compute.
+
+Note that `&&` and `||` only work on scalars, whereas `&` and `|` work on vectors on an element-by-element basis.
+
+### Index position
+
+If you wish to know the **index positions** of TRUE elements of a logical vector `x`, then use **which(x)**:
+
+*Example:*
+
+```{r}
+x <- c(1, 1, 2, 3, 5, 8, 13)
+which(x %% 2 == 0)
+```
+
+## if-else
+
+A natural extension of the if command includes an else part:
+
+``` r
+if (logical_expression) {
+  expression_1 # do something
+  ...
+} else {
+  expression_2 # do something different
+  ...
+}
+```
+
+**Braces `{ }`** are used to group together one or more expressions. If there is only one expression then the braces are optional.
+
+When an if expression is evaluated, if *logical_expression* is *TRUE* then the first group of expressions is executed and the second group of expressions is not executed. Conversely if *logical_expression* is *FALSE* then only the second group of expressions is executed.
+
+### elseif
+
+When the `else` expression contains an `if`, then it can be written equivalently (and more clearly) as follows:
+
+``` r
+if (logical_expression_1) {
+  expression_1
+  ...
+} else if (logical_expression_2) {
+  expression_2
+  ...
+} else {
+  expression_3
+  ...
+}
+```
+
+## Loops
+
+*Tip:* R is set up so that such programming tasks can be accomplished using vector operations rather than looping. Using vector operations is more efficient computationally, as well as more concise literally.
+
+*Example:*
+
+```{r}
+# We could find the sum of the first n squares using a loop as follows:
+n <- 100
+S <- 0
+for (i in 1:n) {
+  S <- S + i^2
+}
+S
+# Alternatively, using vector operations we have:
+sum((1:n)^2)
+```
+
+### `for` Loops
+
+The `for` command has the following form, where `x` is a simple variable and vector is a vector.
+
+``` r
+for (x in vector) {
+  expression_1
+  ...
+}
+```
+
+*Example:*
+
+``` r
+x <- c("a", "b", "c", "d")
+for(i in 1:4) / for(i in seq_along(x)) / for(letter in x) { ## set an iterator variable and assign it successive values over the elements of an object (list, vector, etc.) 
+  print(x[i])
+  print(letter)
+}
+```
+
+When executed, the `for` command executes the group of expressions within the braces `{ }` once for each element of vector. The grouped expressions can use `x`, which takes on each of the values of the elements of vector as the loop is repeated.
+
+### nested `for` loops
+
+*Example:*
+
+``` r
+x <- matrix(1:6, 2, 3) 
+for(i in seq_len(nrow(x))) { 
+  for(j in seq_len(ncol(x))) { 
+    print(x[i,j]) 
+  }
+}
+```
+
+### `while` Loops
+
+Often we do not know beforehand how many times we need to go around a loop. That is, each time we go around the loop, we check some condition to see if we are done yet. In this situation we use a `while` loop, which has the form:
+
+``` r
+while (logical_expression) {
+  expression_1
+  ...
+}
+```
+
+When a `while` command is executed, *logical_expression* is evaluated first. If it is TRUE then the group of expressions in braces `{ }` is executed. Control is then passed back to the start of the command: if `logical_expression` is still `TRUE` then the grouped expressions are executed again, and so on. Clearly, for the loop to stop eventually, *logical_expression* must eventually be `FALSE`. To achieve this *logical_expression* usually depends on a variable that is altered within the grouped expressions.
+
+*Example:*
+
+``` r
+time <- 0
+debt <- debt_initial
+while (debt > 0) {
+  time <- time + period
+  debt <- debt*(1 + r*period) - repayments
+}
+```
+
+### `repeat` Loops
+
+`repeat` initiates an infinite loop right from the start. The only way to exit a repeat loop is to call break:
+
+``` r
+repeat { 
+  if() { 
+    break
+  }
+}
+```
+
+### `next`, `break`
+
+**next** is used to skip an iteration of a loop:
+
+``` r
+for(i in 1:100) { 
+  if(i <= 20) { 
+    next ## Skip the first 20 iterations 
+  } 
+  ## Do something here
+}
+```
+
+**break** is used to exit a loop immediately, regardless of what iteration the loop may be on.
+
+``` r
+for(i in 1:100) { 
+  print(i) 
+  if(i > 20) { 
+    break ## Stop loop after 20 iterations 
+  }
+}
+```
+
+## Loop Functions
+
+Many R **functions are vectorised**, meaning that given vector input the function acts on each element separately, and a vector output is returned. This is a very powerful aspect of R that allows for compact, efficient, and readable code. Moreover, for many R functions, applying the function to a vector is much faster than if we were to write a loop to apply it to each element one at a time.
+
+Besides, writing **for** and **while loops** is useful when programming but not particularly easy when working interactively on the command line.
+
+R has some functions which implement looping in a compact form to make your life easier:
+
+``` R
+lapply() ## Apply the function FUN to every element of vector X
+sapply() ## Same as lapply but try to simplify the result 
+apply() ## Apply a function that takes a vector argument to each of the rows (or columns) of a matrix, 
+tapply() ## Apply a function over subsets of a vector
+mapply() ## Multivariate version of lapply (to vectorise over more than one argument)
+```
+
+`X` can be a **list or an atomic vector**, which is a vector that comprises atomic objects (logical, integer, numeric, complex, character and raw). That is, `sapply(X, FUN)` returns a vector whose i -th element is the value of the expression `FUN(X[i])`. Note that R performs a loop over the elements of `X`, so execution of this code is not faster than execution of an equivalent loop.
+
+If `FUN` has arguments other than `X[i]`, then they can be included using the dots protocol as shown above. That is, `sapply(X, FUN, ...)` returns `FUN(X[i], ...)` as the i -th element.
+
+### lapply
+
+The `lapply()` function does the following simple series of operations:
+
+1.  It loops over a **list**, iterating over each element in that list
+2.  It applies a function to each element of the list (a function that you specify)
+3.  Returns a list (the "l" is for "list").
+
+`lapply()` **always returns a list**, regardless of the class of the input.
+
+```{r}
+str(lapply)
+```
+
+Note that the `function()` definition is right in the call to `lapply()`:
+
+``` R
+lapply(x, function(elt) { elt[,1] }
+```
+
+*Example:*
+
+``` {r}
+x <- list(a = 1:5, b = rnorm(10)) 
+lapply(x, mean)
+```
+
+Note that when you pass a function to another function, you do not need to include the open and **closed parentheses ()** like you do when you are calling a function.
+
+Once the call to `lapply()` is finished, the function disappears and does not appear in the workspace.
+
+### sapply
+
+The `sapply()` function behaves similarly to `lapply()`, the only real difference being that the **return value is a vector or a matrix**.
+
+``` {r}
+str(sapply)
+```
+
+`sapply()` will try to simplify the result of `lapply()` if possible.
+
+*Example:*
+
+```{r}
+s <- split(airquality, airquality$Month)
+mode(s)
+(q <- sapply(s, function(x) { 
+              colMeans(x[, c("Ozone", "Solar.R", "Wind")])
+          }
+))
+mode(q)
+```
+
+### apply
+
+The `apply()` function can take a list, matrix, or array. It is most often used to apply a function to the **rows or columns of a matrix** (which is just a 2-dimensional array).
+
+```{r}
+str(apply)
+```
+
+Using `apply()` is not really faster than writing a loop, but it works in one line and is highly compact.
+
+``` {r}
+x <- matrix(rnorm(200), 20, 10)
+# Take the mean of each column
+(k <- apply(x, 2, mean))
+mode(k)
+## Take the mean of each row
+apply(x, 1, sum) 
+```
+
+For the special case of **column/row sums** and **column/row means** of matrices, there are some useful **shortcuts**:
+
+``` r
+rowSums = apply(x, 1, sum) 
+rowMeans = apply(x, 1, mean)
+colSums = apply(x, 2, sum) 
+colMeans = apply(x, 2, mean)
+```
+
+### tapply
+
+`tapply()` is used to apply a function over subsets of a vector. It can be thought of as a combination of `split()` and `sapply()` for vectors only.
+
+``` {r}
+str(tapply)
+```
+
+*Example:*
+
+``` {r}
+(x <- c(rnorm(10), runif(10), rnorm(10, 1)))
+# Define some groups with a factor variable
+(f <- gl(3, 10))
+tapply(x, f, mean)
+# We can reduce the noise as follows:
+round(tapply(x, f, mean), digits=1)
+```
+
+### mapply
+
+The `mapply()` function is a multivariate apply of sorts which applies a function in parallel over a set of arguments. Recall that `lapply()` and friends only iterate over a single R object. What if you want to iterate over multiple R objects in parallel? This is what `mapply()` is for.
+
+``` {r}
+str(mapply) 
+```
+
+The `mapply()` function has a different argument order from `lapply()` because the function to apply comes first rather than the object to iterate over. The R objects over which we apply the function are given in the `...` argument because we can apply over an arbitrary number of R objects.
+
+*Example 1:*
+
+```{r}
+mapply(rep, 1:4, 4:1)
+```
+
+*Example 2:*
+
+```{r}
+noise <- function(n, mean, sd) { 
+            rnorm(n, mean, sd)
+          }
+mapply(noise, 1:5, 1:5, 2)
+```
+
+The `mapply()` function can be used to automatically "vectorize" a function. What this means is that it can be used to take a function that typically only takes single arguments and create a new function that can take vector arguments. This is often needed when you want to plot functions.
+
+*Example:*
+
+``` R
+## Generate some data
+x <- rnorm(100)
+## This is not what we want
+sumsq(1:10, 1:10, x)  
+## Note that the call to sumsq() only produced one value instead of 10 values.
+mapply(sumsq, 1:10, 1:10, MoreArgs = list(x = x))
+```
+
+There's even a function in R called `vectorize()` that automatically can create a vectorized version of your function. So, we could create a `vsumsq()` function that is fully vectorized as follows.
+
+*Example:*
+
+``` r
+vsumsq <- vectorize(sumsq, c("mu", "sigma")) 
+vsumsq(1:10, 1:10, x)
+```
+
+### split
+
+The `split()` function takes a vector or other objects and splits it into groups determined by a factor or list of factors.
+
+The form of the `split()` function is this:
+
+``` {r}
+str(split) 
+```
+
+The combination of `split()` and a function like `lapply()` or `sapply()` is a common paradigm in R.
+
+*Example 1:*
+
+```{r}
+x <- c(rnorm(10), runif(10), rnorm(10, 1))
+f <- gl(3, 10) 
+# split() returns a list
+(j <- split(x, f))
+mode(j)
+```
+
+*Example 2:*
+
+``` R
+# Splitting a Dataframe
+s <- split(airquality, airquality$Month)
+```

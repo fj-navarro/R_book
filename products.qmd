@@ -1,0 +1,164 @@
+# Packages for Data Products
+
+## Manipulate
+The **manipulate package** creates a quick interactive graphic that offers simple controls, including sliders, pickers and checkboxes.
+
+``` R
+library(manipulate) 
+manipulate(plot(1:x), x = slider(1, 100))
+```
+With **manipulate** you can have more than one set of controls by simply adding more arguments to the manipulate function.
+
+Note that it’s difficult to share a manipulate interactive graphic.
+
+This is a link on how **manipulate** actually works: [link](https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate)
+
+## Shiny
+It is described by RStudio as “A web application framework for R”. “Turn your analyses into interactive web applications No HTML, CSS, or JavaScript knowledge required”.
+
+Only those who have **shiny** installed and have access to your code could run your web page. However, RStudio offers a service for hosting shiny apps (their servers) on a platform called **shinyapps.io**.
+
+If on Windows, make sure that you have Rtools installed. Then, you can install shiny with:
+
+``` R
+install.packages("shiny") 
+library(shiny)
+```
+A **shiny app** consists of two files. First, a file called **ui.R** that controls the User Interface (hence the ui in the filename) and secondly, a file **server.R** that controls the shiny server (hence the server in the filename).
+
+### Create ui.R file:
+
+``` R
+library(shiny)
+shinyUI(
+  pageWithSidebar( 
+    headerPanel("Hello Shiny!"), 
+    sidebarPanel( 
+      h3('Sidebar text')
+    ),
+    mainPanel( 
+      h3('Main Panel text')
+    )
+  )
+)
+```
+
+### Create server.R file:
+
+``` R
+library(shiny) 
+shinyServer( 
+  function(input, output) {
+  }
+)
+```
+
+The current version of Rstudio has a **“Run app” button** in the upper right hand corner of the editor if a ui.R or server.R file is open.
+
+To get used to programming shiny apps, you need to throw away a little of your thinking about R; it’s a different style of programming.
+
+### Types of inputs
+
+-   Numeric input:
+
+    ``` R
+    numericInput('id1', 'Numeric input, labeled id1', 0, min = 0, max = 10, step= 1)
+    ```
+-   Checkbox input:
+
+    ``` R
+    checkboxGroupInput("id2", "Checkbox", c("Value 1" = "1", "Value 2" = "2", "Value 3" = "3"))
+    ```
+
+-   Date input:
+    
+    ``` R
+    dateInput("date", "Date:")
+    ```
+
+### Sharing your app
+Now that we have a working app we’d like to share it with the world. It’s much nicer to have it display as a standalone web application. 
+
+This requires running a shiny server to host the app. Instead of creating and deploying our own shiny server, we’ll rely on RStudio’s service: [link](https://www.shinyapps.io/)
+
+-   After login in shinyapps:
+
+    ``` R
+    install.packages("devtools")
+    install.packages("shinyapps")
+    ```
+-   Run code:
+
+    ``` R
+    shinyapps::setAccountInfo(name='<ACCOUNT NAME>', 
+          token='<TOKEN>', 
+          secret='<SECRET>')
+    ```
+
+-   Submit code:
+
+    ``` R
+    deployApp(appName = "myFirstApp")
+    ```
+
+### Build a GUI with html
+Check out this [link](https://shiny.rstudio.com/articles/html-ui.html)
+
+## Reproducible presentations
+### Slidify
+**Slidify** is for building reproducible presentations.
+
+``` R
+install.packages("devtools") 
+library(devtools)/ require(devtools)
+install_github('ramnathv/slidify')
+install_github('ramnathv'/'slidifyLibraries') o devtools::install_github(pkgs, force = TRUE)
+library(slidify)
+```
+### R studio presenter
+For more information about R studio presenter, chek out this [link](https://suppor.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations)
+
+**Tip**: if you’re sort of a hacker type and you like to tinker with things, use slidify. If you just want to get it done and not worry about it, use RPres. Either way, you really can’t go wrong.
+
+## Interactive Graphs
+### rCharts
+[link to rCharts](https://ramnathv.github.io/rCharts/)
+
+**rCharts** is a way to create interactive javascript visualizations using R.
+
+``` R
+require(devtools) 
+install_github('rCharts', 'ramnathv')
+```
+### googleVis
+[link to googlevis](https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html)
+
+Google has some nice visualization tools built into their products (e.g. Google Maps). These include maps and interactive graphs.  
+
+``` R
+install.packages("googleVis")
+library(googlevis)
+```
+
+### leaflet
+[link to leaflet](https://rstudio.github.io/leaflet/)
+
+**leaflet** seems to be emerging as the most popular R package for creating **interactive maps**.
+
+The map widget (the `leaflet()` command) starts out a map and then you add elements or modify the map by passing it as arguments to mapping functions. 
+
+### plot.ly
+[link to plot.ly](https://plot.ly)
+
+**plotly** relies on the platform/website plot.ly for creating interactive graphics. 
+
+``` R
+require(devtools) 
+install_github("ropensci/plotly")
+```
+
+**Plotly** will give you the json data and gives a tremendous number of options for publishing the graph.
+
+Notably, **plotly** allows for integration with **ggplot2**. 
+
+For interactive graphics, learning some javascript and following that up with D3 would be the logical next step

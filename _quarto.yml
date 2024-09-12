@@ -2,13 +2,40 @@ project:
   type: book
 
 book:
-  title: "myRbook"
-  author: "Norah Jones"
-  date: "30/8/2024"
+  title: "R from Beginner to Advanced"
+  author: "Francisco J Navarro"
+  date: "11/9/2024"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: "Part 1: Data Manipulation"
+      chapters: 
+        - intro.qmd
+        - objects.qmd
+        - types.qmd
+        - manipulation.qmd
+        - plyrdplyr.qmd
+        - random.qmd
+        - databases.qmd
+    - part: "Part 2: Programming in R"
+      chapters:
+        - habits.qmd
+        - logic.qmd
+        - functions.qmd
+        - debugging.qmd
+        - profiling.qmd
+    - part: "Part 3: Statistics in R"
+      chapters:
+        - descriptive.qmd
+        - exploratory.qmd
+        - inferential.qmd
+        - regression.qmd
+    - part: "Part 4: Graphics"
+      chapters: 
+        - graphs.qmd
+    - part: "Part 5: Data Products"
+      chapters: 
+        - products.qmd
+        - reproducible.qmd
     - references.qmd
 
 bibliography: references.bib
