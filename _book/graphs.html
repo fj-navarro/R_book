@@ -329,21 +329,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#one-dimension-graphs" id="toc-one-dimension-graphs" class="nav-link" data-scroll-target="#one-dimension-graphs"><span class="header-section-number">17.2.1</span> One-dimension graphs</a></li>
   <li><a href="#multi-dimension-graphs" id="toc-multi-dimension-graphs" class="nav-link" data-scroll-target="#multi-dimension-graphs"><span class="header-section-number">17.2.2</span> Multi-dimension graphs</a></li>
   </ul></li>
-  <li><a href="#how-does-a-plot-get-created" id="toc-how-does-a-plot-get-created" class="nav-link" data-scroll-target="#how-does-a-plot-get-created"><span class="header-section-number">17.3</span> How Does a Plot Get Created?</a>
+  <li><a href="#the-base-plotting-system" id="toc-the-base-plotting-system" class="nav-link" data-scroll-target="#the-base-plotting-system"><span class="header-section-number">17.3</span> The Base Plotting System</a>
   <ul class="collapse">
-  <li><a href="#plotxy" id="toc-plotxy" class="nav-link" data-scroll-target="#plotxy"><span class="header-section-number">17.3.1</span> plot(x,y)</a></li>
+  <li><a href="#how-to-create-a-base-plot" id="toc-how-to-create-a-base-plot" class="nav-link" data-scroll-target="#how-to-create-a-base-plot"><span class="header-section-number">17.3.1</span> How to Create a Base Plot?</a></li>
   <li><a href="#graphics-devices" id="toc-graphics-devices" class="nav-link" data-scroll-target="#graphics-devices"><span class="header-section-number">17.3.2</span> Graphics Devices</a></li>
-  <li><a href="#copying-plots" id="toc-copying-plots" class="nav-link" data-scroll-target="#copying-plots"><span class="header-section-number">17.3.3</span> Copying Plots</a></li>
+  <li><a href="#graphics-parameters" id="toc-graphics-parameters" class="nav-link" data-scroll-target="#graphics-parameters"><span class="header-section-number">17.3.3</span> Graphics Parameters</a></li>
+  <li><a href="#make-a-plot-with-plotxy" id="toc-make-a-plot-with-plotxy" class="nav-link" data-scroll-target="#make-a-plot-with-plotxy"><span class="header-section-number">17.3.4</span> Make a Plot with <code>plot(x,y)</code></a></li>
+  <li><a href="#augmenting-a-plot" id="toc-augmenting-a-plot" class="nav-link" data-scroll-target="#augmenting-a-plot"><span class="header-section-number">17.3.5</span> Augmenting a Plot</a></li>
+  <li><a href="#color-in-plots" id="toc-color-in-plots" class="nav-link" data-scroll-target="#color-in-plots"><span class="header-section-number">17.3.6</span> Color in Plots</a></li>
+  <li><a href="#copying-plots" id="toc-copying-plots" class="nav-link" data-scroll-target="#copying-plots"><span class="header-section-number">17.3.7</span> Copying Plots</a></li>
+  <li><a href="#complementary-packages" id="toc-complementary-packages" class="nav-link" data-scroll-target="#complementary-packages"><span class="header-section-number">17.3.8</span> Complementary Packages</a></li>
   </ul></li>
-  <li><a href="#the-base-plotting-system" id="toc-the-base-plotting-system" class="nav-link" data-scroll-target="#the-base-plotting-system"><span class="header-section-number">17.4</span> The Base Plotting System</a>
+  <li><a href="#the-lattice-system" id="toc-the-lattice-system" class="nav-link" data-scroll-target="#the-lattice-system"><span class="header-section-number">17.4</span> The Lattice System</a>
   <ul class="collapse">
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">17.4.1</span> Packages</a></li>
-  <li><a href="#plot-with-a-regression-line" id="toc-plot-with-a-regression-line" class="nav-link" data-scroll-target="#plot-with-a-regression-line"><span class="header-section-number">17.4.2</span> Plot with a Regression Line</a></li>
-  <li><a href="#multiple-base-plots" id="toc-multiple-base-plots" class="nav-link" data-scroll-target="#multiple-base-plots"><span class="header-section-number">17.4.3</span> Multiple Base Plots</a></li>
-  <li><a href="#color-in-plots" id="toc-color-in-plots" class="nav-link" data-scroll-target="#color-in-plots"><span class="header-section-number">17.4.4</span> Color in Plots</a></li>
-  <li><a href="#rcolorbrewer-package" id="toc-rcolorbrewer-package" class="nav-link" data-scroll-target="#rcolorbrewer-package"><span class="header-section-number">17.4.5</span> RColorBrewer Package</a></li>
+  <li><a href="#when-to-use-trellis-plots" id="toc-when-to-use-trellis-plots" class="nav-link" data-scroll-target="#when-to-use-trellis-plots"><span class="header-section-number">17.4.1</span> When to Use Trellis Plots</a></li>
+  <li><a href="#how-to-use-lattice" id="toc-how-to-use-lattice" class="nav-link" data-scroll-target="#how-to-use-lattice"><span class="header-section-number">17.4.2</span> How to Use Lattice</a></li>
   </ul></li>
-  <li><a href="#the-lattice-system" id="toc-the-lattice-system" class="nav-link" data-scroll-target="#the-lattice-system"><span class="header-section-number">17.5</span> The Lattice System</a></li>
+  <li><a href="#d-plots" id="toc-d-plots" class="nav-link" data-scroll-target="#d-plots"><span class="header-section-number">17.5</span> 3D Plots</a></li>
   <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"><span class="header-section-number">17.6</span> ggplot2</a>
   <ul class="collapse">
   <li><a href="#geometric-objects" id="toc-geometric-objects" class="nav-link" data-scroll-target="#geometric-objects"><span class="header-section-number">17.6.1</span> Geometric objects</a></li>
@@ -492,64 +494,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </section>
 </section>
-<section id="how-does-a-plot-get-created" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="how-does-a-plot-get-created"><span class="header-section-number">17.3</span> How Does a Plot Get Created?</h2>
+<section id="the-base-plotting-system" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="the-base-plotting-system"><span class="header-section-number">17.3</span> The Base Plotting System</h2>
+<p>The <strong>base plotting system</strong> is the original plotting system for R. The basic model is sometimes referred to as the “artist’s palette” model. The idea is you start with blank canvas and build up from there.</p>
+<p>You will typically start with a plot function (or similar plot creating function) to initiate a plot and then annotate the plot. If you don’t have a completely well-formed idea of how you want your data to look, you’ll often start by “throwing some data on the page” and then slowly add more information to it as our thought process evolves.</p>
+<p>There are a few <strong>downsides</strong> though:</p>
+<ul>
+<li>You can’t go backwards once the plot has started.</li>
+<li>While the base plotting system is nice in that it gives you the flexibility to specify these kinds of details to painstaking accuracy, sometimes it would be nice if the system could just figure it out for you.</li>
+<li>It’s difficult to describe or translate a plot to others because there’s no clear graphical language or grammar that can be used to communicate what you’ve done.</li>
+</ul>
+<section id="how-to-create-a-base-plot" class="level3" data-number="17.3.1">
+<h3 data-number="17.3.1" class="anchored" data-anchor-id="how-to-create-a-base-plot"><span class="header-section-number">17.3.1</span> How to Create a Base Plot?</h3>
 <ol type="1">
-<li><p>First, we can read the data into R with <code>read.csv()</code>. For example, the <em>avgpm25.csv</em> dataset contains the annual mean PM2.5 averaged over the period 2008 through 2010</p>
+<li><p>First, you must read the data into R with <code>read.csv()</code>. For example, the <em>avgpm25.csv</em> dataset contains the annual mean PM2.5 averaged over the period 2008 through 2010</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>class <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"numeric"</span>, <span class="st">"character"</span>, <span class="st">"factor"</span>, <span class="st">"numeric"</span>, <span class="st">"numeric"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pollution <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/avgpm25.csv"</span>, <span class="at">colClasses =</span> class)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Explicitly launch a graphics device</p></li>
-<li><p>Call a plotting function to make a plot (Note: if you are using a file device, no plot will appear on the screen)</p></li>
-<li><p>Annotate the plot if necessary</p></li>
-<li><p>Explicitly close graphics device with dev.off() (this is very important!)</p></li>
+<li><p>Explicitly launch a graphics device.</p></li>
+<li><p>Call a plotting function to make a plot (Note: if you are using a file device, no plot will appear on the screen).</p></li>
+<li><p>Annotate the plot if necessary.</p></li>
+<li><p>Explicitly close graphics device with dev.off() (this is very important!).</p></li>
 </ol>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Open PDF device; create 'myplot.pdf' in my working directory</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"myplot.pdf"</span>) </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Create plot and send to a file (no plot appears on screen) </span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open PDF device; create 'myplot.pdf' in my working directory</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">"myplot.pdf"</span>, <span class="at">width =</span> <span class="dv">4</span>, <span class="at">height =</span> <span class="dv">3</span>) <span class="co"># The height and width arguments are in units of inches.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot and send to a file (no plot appears on screen) </span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(faithful, <span class="fu">plot</span>(eruptions, waiting))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Annotate plot; still nothing on screen </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate plot; still nothing on screen </span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main =</span> <span class="st">"Old Faithful Geyser data"</span>) </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Close the PDF file device </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the PDF file device </span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>() </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Now you can view the file 'myplot.pdf' on your computer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="plotxy" class="level3" data-number="17.3.1">
-<h3 data-number="17.3.1" class="anchored" data-anchor-id="plotxy"><span class="header-section-number">17.3.1</span> plot(x,y)</h3>
-<p><code>plot(x, y)</code> is used to plot one vector against another, with the x values on the x-axis and the y values on the y-axis.</p>
-<ul>
-<li>To add points (x[1], y[1]), (x[2], y[2]), … to the current plot, use <code>points(x, y)</code>.</li>
-<li>To add lines instead use <code>lines(x, y)</code>.</li>
-<li>Vertical or horizontal lines can be drawn using <code>abline(v = xpos)</code> and <code>abline(h = ypos)</code>.</li>
-<li>Both points and lines take the optional input <code>col</code>, which determines the colour (“red”, “blue”, etc.). The complete list of available colours can be obtained by the colours function (or <code>colors</code>).</li>
-<li>To add the text labels[i] at the point (x[i], y[i]), use <code>text(x, y, labels)</code>. The optional input <code>pos</code> is used to indicate where to position the labels in relation to the points.</li>
-<li>A title can be added with <code>title(text)', where</code>text`is a character string.</li>
-</ul>
-<p>As an <strong>example</strong> we plot part of the parabola y<sup>2</sup> = 4x, as well as its focus and directrix. We make use of the surprisingly useful input <code>type = "n"</code>, which results in the graph dimensions being established, and the axes being drawn, but nothing else.</p>
-<p><em>Example:</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y.upper <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(x)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y.lower <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(x)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>y.max <span class="ot">&lt;-</span> <span class="fu">max</span>(y.upper)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>y.min <span class="ot">&lt;-</span> <span class="fu">min</span>(y.lower)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">c</span>(y.min, y.max), <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"y"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y.upper)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y.lower)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="st">"focus (1, 0)"</span>, <span class="at">pos=</span><span class="dv">4</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="dv">1</span>, y.min, <span class="st">"directrix x = -1"</span>, <span class="at">pos =</span> <span class="dv">4</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"The parabola y^2 = 4*x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="graphs_files/figure-html/unnamed-chunk-1-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
-</div>
-</div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now you can view the file 'myplot.pdf' on your computer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s further detail each of the steps involved in creating a <strong>base plot</strong>.</p>
 </section>
 <section id="graphics-devices" class="level3" data-number="17.3.2">
 <h3 data-number="17.3.2" class="anchored" data-anchor-id="graphics-devices"><span class="header-section-number">17.3.2</span> Graphics Devices</h3>
-<p>When you make a plot in R, it has to be “sent” to a specific <strong>graphics device</strong>. The most common place for a plot to be “sent” is the screen device. Therefore, when making a plot, you need to consider how the plot will be used to determine what device the plot should be sent to.</p>
-<p>The <strong>list of devices</strong> supported by your installation of R is found in <code>?devices</code>.</p>
-<p>Functions like <code>plot()</code> in base, <code>xyplot()</code> in lattice, or <code>qplot</code> in ggplot2 will default to sending a plot to the screen device.</p>
+<p>We can think of a <strong>graphics device</strong> as being a platform upon which the plot is created. If we create a plot, then a default graphics device is automatically opened for the plot to appear upon. In other words, when you make a plot in R, it has to be “sent” to a specific <strong>graphics device</strong>.</p>
+<p>The most common place for a plot to be “sent” is the <strong>screen</strong> device. Functions like <code>plot()</code> in base, <code>xyplot()</code> in lattice, or <code>qplot</code> in ggplot2 will default to sending a plot to the screen device. Therefore, when making a plot, you need to consider how the plot will be used to determine what device the plot should be sent to.</p>
+<p>The <strong>list of devices</strong> supported by your installation of R is found in <code>?Devices</code>.</p>
+<ul>
+<li>Using the commands <code>pdf</code>, <code>postscript</code>, <code>jpeg</code>, <code>png</code>, or <code>bmp</code>, we can also produce graphics in the formats that correspond to these names.</li>
+<li>The <code>jpeg</code>, <code>png</code>, and <code>bmp</code> graphics are all <strong>raster-style</strong> graphics, which may translate poorly when included in a document.</li>
+<li>In contrast, the <code>pdf</code>, <code>postscript</code>, and <code>windows metafile</code> (win.metafile, available on Windows) formats allow for <strong>vector-style</strong> graphics, which are scaleable, and better suited to integration in documents.</li>
+</ul>
 <table class="table">
 <colgroup>
 <col style="width: 50%">
@@ -585,188 +572,330 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>It is possible to <strong>open multiple graphics devices</strong> (screen, file, or both), for example when viewing multiple plots at once. Plotting can only occur on one graphics device at a time, though.</p>
-<p>[One way of having more than one plot visible is to open additional graphics devices. In a Windows environment this is done by using the command <code>windows()</code> before each additional plot.]</p>
-<p>Alternatively you can create a *grid of plots** in a single graphics window using the commands <code>par(mfrow = c(nr, nc))</code> or <code>par(mfcol = c(nr, nc))</code>. Setting <code>mfrow = c(nr, nc)</code> creates a grid of plots with <code>nr</code> rows and <code>nc</code> columns, which is filled row by row. <code>mfcol</code> is similar but fills the plots column by column.</p>
+<p>One way of having more than one plot visible is to open additional graphics devices. In a Windows environment this is done by using the command <code>windows()</code> before each additional plot.</p>
+<p>To create a graphics device without a plot, we call the function that is specific to our operating system (that is, <code>windows</code> for Windows, <code>quartz</code> for Mac, and <code>X11</code> for Unix).</p>
+<p>The <strong>currently active graphics device</strong> can be found by calling <code>dev.cur()</code></p>
+<p>Every open graphics device is assigned an integer starting with 2 (there is no graphics device 1). You can change the active graphics device with <code>dev.set(&lt;integer&gt;)</code>.</p>
+</section>
+<section id="graphics-parameters" class="level3" data-number="17.3.3">
+<h3 data-number="17.3.3" class="anchored" data-anchor-id="graphics-parameters"><span class="header-section-number">17.3.3</span> Graphics Parameters</h3>
+<p><strong>Graphics parameters</strong> control how output appears on graphics devices. To get a complete list with their current values, type <code>par()</code>. Some of the parameters mentioned above, namely <code>pch</code>, <code>lwd</code> and <code>col</code>, are examples of graphics parameters. To get the value of a specific parameter, for example <code>pch</code>, type <code>par("pch")</code>.</p>
+<p>Some <strong>graphics parameters</strong> can apply to <strong>one or more plots</strong>, and others only make sense when applied to graphics devices. For example, to change the symbol for a single plot, we could include the argument <code>pch = 2</code> in the call to the plot function. However, we could also make this change for all graphics that are produced on the device.</p>
+<p>To change a graphics parameter for the graphics device, we use the <code>par</code> command. These are some examples:</p>
+<ul>
+<li><p><code>par(mfrow = c(a,b))</code> where a and b are integers, will create a matrix of plots on one page, with a rows and b columns. These will be filled by rows; use mfcol if you wish to fill them by columns.</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">0.1</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(x<span class="sc">*</span><span class="fu">sin</span>(x), <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">0.1</span>, <span class="at">n =</span> <span class="dv">1001</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="graphs_files/figure-html/unnamed-chunk-1-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
+</div>
+</div></li>
+<li><p><code>par(mar = c(bottom, left, top, right))</code> will create space around each plot, in which to write axis labels and titles. Measurements are in units of character widths.</p></li>
+<li><p><code>par(oma = c(bottom, left, top, right))</code> will create space around the matrix of plots (an outer margin). Measurements are in units of character widths.</p></li>
+<li><p><code>par(las = 1)</code> rotates labels on the y-axis to be horizontal rather than vertical.</p></li>
+<li><p><code>par(pty = "s")</code> forces the plot shape to be square. The alternative is that the plot shape is mutable, which is the default, and corresponds to <code>pty ="m"</code>.</p></li>
+</ul>
+</section>
+<section id="make-a-plot-with-plotxy" class="level3" data-number="17.3.4">
+<h3 data-number="17.3.4" class="anchored" data-anchor-id="make-a-plot-with-plotxy"><span class="header-section-number">17.3.4</span> Make a Plot with <code>plot(x,y)</code></h3>
+<p><code>plot(x, y)</code> is used to plot one vector against another, with the <code>x</code> values on the x-axis and the <code>y</code> values on the y-axis.</p>
+<p>The <code>plot</code> command offers a wide variety of <strong>options for customizing</strong> the graphic. Each of the following arguments can be used within the plot statement, singly or together, separated by commas</p>
+<ul>
+<li><p><code>type = "p"</code>: Determines the type of plot, with options:</p>
+<ul>
+<li>“p” for points (the default);</li>
+<li>“l” for lines;</li>
+<li>“b” for both, with gaps in the lines for the points; …</li>
+</ul>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(airquality, <span class="fu">plot</span>(Wind, Ozone, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Ozone and Wind in New York City"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"p"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="graphs_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The <strong>currently active graphics device</strong> can be found by calling <code>dev.cur()</code></p>
-<p>Every open graphics device is assigned an integer starting with 2 (there is no graphics device 1). You can change the active graphics device with <code>dev.set(&lt;integer&gt;)</code></p>
-</section>
-<section id="copying-plots" class="level3" data-number="17.3.3">
-<h3 data-number="17.3.3" class="anchored" data-anchor-id="copying-plots"><span class="header-section-number">17.3.3</span> Copying Plots</h3>
-<p>Note that copying a plot is not an exact operation, so the result may not be identical to the original:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Copy my plot to a PNG file  (follows the previous code from pdf creation)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy</span>(png, <span class="at">file =</span> <span class="st">"geyserplot.png"</span>) </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Don't forget to close the PNG device! </span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="the-base-plotting-system" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="the-base-plotting-system"><span class="header-section-number">17.4</span> The Base Plotting System</h2>
-<p>The <strong>base plotting system</strong> is the original plotting system for R. The basic model is sometimes referred to as the “artist’s palette” model. The idea is you start with blank canvas and build up from there.</p>
-<p>You will typically start with a plot function (or similar plot creating function) to initiate a plot and then annotate the plot.</p>
-<p>If you don’t have a completely well-formed idea of how you want your data to look, you’ll often start by “throwing some data on the page” and then slowly add more information to it as our thought process evolves.</p>
-<p><strong>Downsides:</strong></p>
+</div></li>
+<li><p><code>points(x, y)</code>: To add points (<code>x[1]</code>, <code>y[1]</code>), (<code>x[2]</code>, <code>y[2]</code>), … to the current plot.</p></li>
+<li><p><code>lines(x, y)</code>: To add lines.</p></li>
+<li><p><code>abline(v = xpos)</code> and <code>abline(h = ypos)</code>: to draw vertical or horizontal lines. - <code>col</code>: Both points and lines take the optional input from <code>col</code> (e.g.&nbsp;“red”, “blue”, etc.). The complete list of available colours can be obtained by the <code>colours</code> function (or <code>colors</code>).</p>
+<p><em>Example:</em> # Plot with a Regression Line</p>
 <ul>
-<li>You can’t go backwards once the plot has started.</li>
-<li>While the base plotting system is nice in that it gives you the flexibility to specify these kinds of details to painstaking accuracy, sometimes it would be nice if the system could just figure it out for you.</li>
-<li>It’s difficult to describe or translate a plot to others because there’s no clear graphical language or grammar that can be used to communicate what you’ve done.</li>
-</ul>
-<section id="packages" class="level3" data-number="17.4.1">
-<h3 data-number="17.4.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">17.4.1</span> Packages</h3>
-<ul>
-<li><p><strong>graphics</strong>: contains plotting functions for the “base” graphing systems, including plot, hist, boxplot and many others</p></li>
-<li><p><strong>grdevices</strong>: contains all the code implementing the various graphics devices, includ- ing X11, PDF, PostScript, PNG, etc.</p></li>
-<li><p>Use <code>?par</code> for:</p>
-<ul>
-<li>Global parameters that can set and tweaked.</li>
-<li>Key annotation functions, e.g.&nbsp;lines, title, abline, points, text, axis, mtext</li>
+<li>First make the plot (as above).</li>
+<li>Fit a simple linear regression model using the <code>lm()</code> function.</li>
+<li>Take the output of <code>lm()</code> and pass it to the <code>abline()</code> function which automatically takes the information from the model object and calculates the corresponding regression line</li>
 </ul></li>
-<li><p><strong>type = “n”</strong>. Notice that when constructing the initial plot, we use the option type = “n” in the call to <code>plot()</code>. This is a common paradigm as <code>plot()</code> will draw everything in the plot except for the data points inside the plot window.</p></li>
+<li><p><code>text(x, y, labels)</code>: To add the text labels [i] at the point (<code>x[i]</code>, <code>y[i]</code>). The optional input <code>pos</code> is used to indicate where to position the labels in relation to the points.</p></li>
+<li><p><code>title(text)</code>: To add a title, where <code>text</code> is a character string.</p></li>
+<li><p><code>main = "Plot title goes in here"</code>: provides the plot title.</p></li>
+<li><p><code>xlab = " "</code> / <code>ylab = " "</code>: To add axis labels.</p>
+<p>Note: In a call to plot, the arguments for <code>main</code>, <code>sub</code>, and <code>xlab</code> and <code>ylab</code> can be character strings or expressions that contain a mathematical expression. For <strong>mathematical typesetting</strong> you can use the functions <code>expression</code>(require graphics) and <code>bquote</code>(base):</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>xlab <span class="ot">=</span> <span class="fu">expression</span>(alpha),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ylab <span class="ot">=</span> <span class="fu">expression</span>(<span class="dv">100</span> <span class="sc">%*%</span> (alpha<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> alpha<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="dv">15</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mix of mathematical expressions and character strings into a single expression by using the paste function</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"Function: "</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">f</span>(alpha) <span class="sc">==</span> <span class="dv">100</span> <span class="sc">%*%</span> (alpha<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> alpha<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="dv">15</span>)),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>xlab = expression(alpha)</code> tells R to interpret alpha in the context of the MML (mathematical markup language), producing an α as the label for the x-axis.</p></li>
+<li><p><code>pch = k</code>: Determines the shape of points, with k taking a value from 1 to 25.</p></li>
+<li><p><code>lwd = 1</code>: line width, default 1.</p></li>
+<li><p><code>xlim = c(a,b)</code>/ `<code>ylim = c(a,b)</code>: Will set the lower and upper limits of the x-axis/y-axis to be a and b, respectively.</p></li>
 </ul>
+<p>As an <strong>example</strong> we plot part of the parabola y<sup>2</sup> = 4x, as well as its focus and directrix. We make use of the surprisingly useful input <code>type = "n"</code>, which results in the graph dimensions being established, and the axes being drawn, but nothing else.</p>
+<p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(airquality, <span class="fu">plot</span>(Wind, Ozone, <span class="at">main =</span> <span class="st">"Ozone and Wind in New York City"</span>, <span class="at">type =</span> <span class="st">"n"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y.upper <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(x)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y.lower <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(x)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y.max <span class="ot">&lt;-</span> <span class="fu">max</span>(y.upper)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y.min <span class="ot">&lt;-</span> <span class="fu">min</span>(y.lower)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">c</span>(y.min, y.max), <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"y"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y.upper)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y.lower)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="st">"focus (1, 0)"</span>, <span class="at">pos=</span><span class="dv">4</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="dv">1</span>, y.min, <span class="st">"directrix x = -1"</span>, <span class="at">pos =</span> <span class="dv">4</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"The parabola y^2 = 4*x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="graphs_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="plot-with-a-regression-line" class="level3" data-number="17.4.2">
-<h3 data-number="17.4.2" class="anchored" data-anchor-id="plot-with-a-regression-line"><span class="header-section-number">17.4.2</span> Plot with a Regression Line</h3>
-<ul>
-<li>First make the plot (as above).</li>
-<li>Fit a simple linear regression model using the <code>lm()</code> function.</li>
-<li>Take the output of <code>lm()</code> and pass it to the <code>abline()</code> function which automatically takes the information from the model object and calculates the corresponding regression line</li>
-</ul>
+<section id="augmenting-a-plot" class="level3" data-number="17.3.5">
+<h3 data-number="17.3.5" class="anchored" data-anchor-id="augmenting-a-plot"><span class="header-section-number">17.3.5</span> Augmenting a Plot</h3>
+<p>A traditional plot can be augmented using any of a number of different tools after its creation. A number of these different steps are detailed below:</p>
+<ol type="1">
+<li><p>Start by creating the <strong>plot object</strong>, which sets up the dimensions of the space, but omit any plot objects for the moment:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>opar1 <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">las =</span> <span class="dv">1</span>, <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>))   </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ufc<span class="sc">$</span>dbh.cm, ufc<span class="sc">$</span>height.m, <span class="at">axes=</span><span class="cn">FALSE</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab=</span><span class="st">""</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">""</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">type=</span><span class="st">"n"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Next, we <strong>add the points</strong>. Here we use different colours and symbols for different heights of trees: those that are realistic, and those that are not, which may reflect measurement errors. We use the vectorised <code>ifelse()</code> function:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(ufc<span class="sc">$</span>dbh.cm, ufc<span class="sc">$</span>height.m,     </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">ifelse</span>(ufc<span class="sc">$</span>height.m <span class="sc">&gt;</span> <span class="fl">4.9</span>, <span class="st">"darkseagreen4"</span>, <span class="st">"red"</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pch =</span> <span class="fu">ifelse</span>(ufc<span class="sc">$</span>height.m <span class="sc">&gt;</span> <span class="fl">4.9</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Then we <strong>add axes</strong>. The following are the simplest possible calls. We can also control the locations of the tickmarks, and their labels; we can overlay different axes, change colour, and so on. <code>?axis</code> provides the details:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>We can next <strong>add axis labels</strong> using margin text (switching back to vertical direction for the y-axis text):</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>opar2 <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">las=</span><span class="dv">0</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Diameter (cm)"</span>, <span class="at">side=</span><span class="dv">1</span>, <span class="at">line=</span><span class="dv">3</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mtext</span>(<span class="st">"Height (m)"</span>, <span class="at">side=</span><span class="dv">2</span>, <span class="at">line=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Wrap the plot</strong> in the traditional frame. As before, we can opt to use different line types and different colours:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Finally, we <strong>add a legend</strong>:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="dv">60</span>, <span class="at">y =</span> <span class="dv">15</span>, <span class="fu">c</span>(<span class="st">"Normal trees"</span>, <span class="st">"A weird tree"</span>),</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">col=</span><span class="fu">c</span>(<span class="st">"darkseagreen3"</span>, <span class="st">"red"</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pch=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bty=</span><span class="st">"n"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note the first two arguments: the location of the legend can also be expressed relative to the graph components, for example, by “bottomright”.</p></li>
+<li><p>If we wish, we can return the graphics environment to a previous state:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(opar1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>Check out the <strong>playwith package</strong>, which provides interaction with graphical objects at a level unattainable in base R.</p>
 </section>
-<section id="multiple-base-plots" class="level3" data-number="17.4.3">
-<h3 data-number="17.4.3" class="anchored" data-anchor-id="multiple-base-plots"><span class="header-section-number">17.4.3</span> Multiple Base Plots</h3>
-<p>Both the <strong>mfrow</strong> and <strong>mfcol</strong> parameters take two numbers: the number of rows of plots followed by the number of columns.</p>
-<p>The only difference between the two parameters is that if <strong>mfrow</strong> is set, then the plots will be drawn row-wise; if <strong>mfcol</strong> is set, the plots will be drawn column-wise.</p>
-</section>
-<section id="color-in-plots" class="level3" data-number="17.4.4">
-<h3 data-number="17.4.4" class="anchored" data-anchor-id="color-in-plots"><span class="header-section-number">17.4.4</span> Color in Plots</h3>
-<p>Typically we add color to a plot, not to improve its artistic value, but to add another dimension to the visualization. It makes sense that the range and palette of colors you use will depend on the kind of data you are plotting.</p>
-<p>Careful choices of plotting color can have an impact on how people interpret your data and draw conclusions from them.</p>
+<section id="color-in-plots" class="level3" data-number="17.3.6">
+<h3 data-number="17.3.6" class="anchored" data-anchor-id="color-in-plots"><span class="header-section-number">17.3.6</span> Color in Plots</h3>
+<p>Typically we add color to a plot, not to improve its artistic value, but to add another dimension to the visualization. It makes sense that the range and palette of colors you use will depend on the kind of data you are plotting. Careful choices of plotting color can have an impact on how people interpret your data and draw conclusions from them.</p>
 <p>The function <code>colors()</code> lists the names of (657) colors you can use in any plotting function. Typically, you would specify the color in a (base) plotting function via the <strong>col</strong> argument.</p>
 <p>The <strong>grDevices package</strong> has two functions, they differ only in the type of object that they return:</p>
 <ul>
 <li><p><strong>colorRamp</strong>: Take a palette of colors and return a function that takes values between 0 and 1.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRamp</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pal</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRamp</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>)) </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pal</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The numbers in the matrix will range from 0 to 255 and indicate the quantities of red, green, and blue (RGB) in columns 1, 2, and 3 respectively. there are over 16 million colors that can be expressed in this way.</p>
 <p>The idea here is that you do not have to provide just two colors in your initial color palette; you can start with multiple colors and <code>colorRamp()</code> will interpolate between all of them.</p></li>
 <li><p><strong>colorRampPalette</strong>: Takes a palette of colors and returns a function that takes integer arguments and returns a vector of colors interpolating the palette (like <code>heat.colors()</code> or <code>topo.colors()</code>).</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"yellow"</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pal</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"yellow"</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pal</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Returns 3 colors in between red and yellow. Note that the colors are represented as hexadecimal strings.</p></li>
 <li><p>Note that the <code>rgb()</code> function can be used to produce any color via red, green, blue proportions and return a hexadecimal representation:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">234</span>, <span class="at">maxColorValue =</span> <span class="dv">255</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">234</span>, <span class="at">maxColorValue =</span> <span class="dv">255</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Part of the art of creating good color schemes in data graphics is to start with an appropriate color palette that you can then interpolate with a function like <code>colorRamp()</code> or <code>colorRampPalette()</code>.</p></li>
 </ul>
-</section>
-<section id="rcolorbrewer-package" class="level3" data-number="17.4.5">
-<h3 data-number="17.4.5" class="anchored" data-anchor-id="rcolorbrewer-package"><span class="header-section-number">17.4.5</span> RColorBrewer Package</h3>
-<p>Part of the art of creating good color schemes in data graphics is to start with an appropriate color palette that you can then interpolate with a function like <code>colorRamp()</code> or <code>colorRampPalette()</code>.</p>
-<p>Here is a display of all the color palettes available from the <strong>RColorBrewer package</strong>:</p>
+<p>For improved color palettes you can use the <strong>RColorBrewer package</strong>. Here is a display of all the color palettes available from this package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer) </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer) </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="graphs_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The <code>brewer.pal()</code> function which has two arguments:</p>
+<ul>
+<li><p>The <code>brewer.pal()</code> function creates nice looking color palettes especially for thematic maps:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">"BuGn"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>cols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>(cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">"BuGn"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "#E5F5F9" "#99D8C9" "#2CA25F"</code></pre>
 </div>
 </div>
-<p>These three colors make up my initial palette. Then I can pass them to <code>colorRampPalette()</code> to create my interpolating function.</p>
+<p>These three colors make up your initial palette. Then you can pass them to <code>colorRampPalette()</code> to create my interpolating function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now I can plot the volcano data using this color ramp:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(volcano, <span class="at">col =</span> <span class="fu">pal</span>(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>smoothScatter()</code> function is very useful for making scatterplots of very large datasets:</p>
+<p>Now you can plot your data using this newly created color (ramp) palette:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(volcano, <span class="at">col =</span> <span class="fu">pal</span>(<span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The <code>smoothScatter()</code> function is very useful for making <strong>scatterplots</strong> of very large datasets:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>) </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">smoothScatter</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>) </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">smoothScatter</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="graphs_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
-</div>
-<p><strong>Adding transparency</strong>: Color transparency can be added via the alpha parameter to <code>rgb()</code> to produce color specifications with varying levels of transparency.</p>
+</div></li>
+<li><p><strong>Adding transparency</strong>: Color transparency can be added via the alpha parameter to <code>rgb()</code> to produce color specifications with varying levels of transparency.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rgb</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "#FF00001A"</code></pre>
 </div>
 </div>
-<p>Transparency can be useful when you have plots with a high density of points or lines.</p>
-<p>If we add some transparency to the black circles, we can get a better sense of the varying density of the points in the plot.</p>
+<p><strong>Transparency</strong> can be useful when you have plots with a high density of points or lines. If you add some transparency to the black circles, you can get a better sense of the varying density of the points in the plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.15</span>)) <span class="do">## x, y from the previous example</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x, y from the previous example</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.15</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="graphs_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
-</div>
+</div></li>
+</ul>
+</section>
+<section id="copying-plots" class="level3" data-number="17.3.7">
+<h3 data-number="17.3.7" class="anchored" data-anchor-id="copying-plots"><span class="header-section-number">17.3.7</span> Copying Plots</h3>
+<p>Note that copying a plot is not an exact operation, so the result may not be identical to the original:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Copy my plot to a PNG file  (follows the previous code from pdf creation)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy</span>(png, <span class="at">file =</span> <span class="st">"geyserplot.png"</span>) </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Don't forget to close the PNG device! </span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="complementary-packages" class="level3" data-number="17.3.8">
+<h3 data-number="17.3.8" class="anchored" data-anchor-id="complementary-packages"><span class="header-section-number">17.3.8</span> Complementary Packages</h3>
+<ul>
+<li><p><strong>graphics</strong>: contains plotting functions for the “base” graphing systems, including <code>plot</code>, <code>hist</code>, <code>boxplot</code> and many others</p></li>
+<li><p><strong>grdevices</strong>: contains all the code implementing the various graphics devices, including X11, PDF, PostScript, PNG, etc.</p></li>
+</ul>
 </section>
 </section>
-<section id="the-lattice-system" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="the-lattice-system"><span class="header-section-number">17.5</span> The Lattice System</h2>
-<p>First you must load the <strong>lattice package</strong> with the library function: <code>library(lattice)</code>.</p>
-<p>With the lattice system, plots are created with a single function call, such as <code>xyplot()</code> or <code>bwplot()</code>.</p>
-<p>There is no real distinction between the functions that create or initiate plots and the functions that annotate plots because <strong>it all happens at once</strong>.</p>
-<p><strong>Lattice plots</strong> tend to be most useful for <strong>conditioning types of plots</strong>, i.e.&nbsp;looking at how y changes with x across levels of z. These types of plots are useful for looking at <strong>multidimensional data</strong> and often allow you to squeeze a lot of information into a single window or page.</p>
-<p>Another aspect of lattice that makes it different from base plotting is that things like <strong>margins and spacing</strong> are set automatically. This is possible because entire plot is specified at once via a single function call.</p>
-<p>The notion of <strong>panels</strong> comes up a lot with lattice plots because you typically have many panels in a lattice plot (each panel typically represents a condition, like “region”).</p>
-<p>Once a plot is created, you cannot “add” to the plot (but of course you can just make it again with modifications).</p>
+<section id="the-lattice-system" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="the-lattice-system"><span class="header-section-number">17.4</span> The Lattice System</h2>
+<p>Trellis graphics are a data visualisation framework developed at the Bell Labs, which have been implemented in R as the <strong>lattice package</strong>.</p>
+<p><strong>Trellis graphics</strong> are a set of techniques for displaying multidimensional data. They allow great flexibility for producing <strong>conditioning plots</strong>; that is, plots obtained by conditioning on the value of one of the variables.</p>
+<p>To use Trellis graphics you must first you must load the <strong>lattice package</strong> with the library function: <code>library(lattice)</code>.</p>
+<section id="when-to-use-trellis-plots" class="level3" data-number="17.4.1">
+<h3 data-number="17.4.1" class="anchored" data-anchor-id="when-to-use-trellis-plots"><span class="header-section-number">17.4.1</span> When to Use Trellis Plots</h3>
+<ul>
+<li><strong>Lattice plots</strong> tend to be most useful for <strong>conditioning types of plots</strong>, i.e.&nbsp;looking at how y changes with x across levels of z. These types of plots are useful for looking at <strong>multidimensional data</strong> and often allow you to squeeze a lot of information into a single window or page.</li>
+<li>With the lattice system, plots are created with a single function call, such as <code>xyplot()</code> or <code>bwplot()</code>.</li>
+<li>Note that there is no real distinction between the functions that create or initiate plots and the functions that annotate plots because <strong>it all happens at once</strong>.</li>
+<li>Another difference from base plotting is that things like <strong>margins and spacing</strong> are set automatically. This is possible because entire plot is specified at once via a single function call.</li>
+<li>The notion of <strong>panels</strong> comes up a lot with lattice plots because you typically have many panels in a lattice plot (each panel typically represents a condition, like “region”).</li>
+<li>Once a plot is created, you <strong>cannot “add”</strong> to the plot (but of course you can just make it again with modifications).</li>
+</ul>
+</section>
+<section id="how-to-use-lattice" class="level3" data-number="17.4.2">
+<h3 data-number="17.4.2" class="anchored" data-anchor-id="how-to-use-lattice"><span class="header-section-number">17.4.2</span> How to Use Lattice</h3>
+<p>To illustrate the use of the <strong>lattice package</strong> we use the <em>ufc dataset</em>, where <em>dbh (diameter at breast height)</em> and <em>height</em> vary by <em>species</em>. That is, the plots are conditioned on the value of the variable species.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These plots display a distribution of values taken on by the variable dbh, divided up according to the value of the variable species</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">densityplot</span>(<span class="sc">~</span> dbh.cm <span class="sc">|</span> species, <span class="at">data =</span> ufc) <span class="co"># A density plot</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(<span class="sc">~</span> dbh.cm <span class="sc">|</span> species, <span class="at">data =</span> ufc) <span class="co"># # A box and whiskers plot</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">histogram</span>(<span class="sc">~</span> dbh.cm <span class="sc">|</span> species, <span class="at">data =</span> ufc) <span class="co"># A histogram</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We plot height as a function of dbh.</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(height.m <span class="sc">~</span> dbh.cm <span class="sc">|</span> species, <span class="at">data =</span> ufc) <span class="co"># A scatterplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All four commands require a formula object, which is described using <code>~</code>and <code>|</code>.</p>
+<ul>
+<li>If a <strong>dataframe</strong> is passed to the function, using the argument <code>data</code>, then the column names of the dataframe can be used for describing the model.</li>
+<li>We interpret <code>y ~ x | a</code> as saying we want <code>y</code> as a function of <code>x</code>, divided up by the different levels of <code>a</code>.</li>
+<li>If `<code>a</code> is not a factor then a factor will be created by coercion.</li>
+<li>If we are just interested in <code>x</code> we still include the <code>~</code> symbol, so that R knows that we are specifying a model.</li>
+<li>If we wish to provide within-panel conditioning on a second variable, then we use the group argument.</li>
+</ul>
+<p>In order to display <strong>numerous lattice objects</strong> on a graphics device, we call the <code>print</code> function with the <code>split</code> and more arguments.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Place a lattice object (called my.lat) in the top-right corner of a 3-row, 2-column graphics device, and allow for more objects</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(my.lat, <span class="at">split =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">more =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See <code>?print.trellis</code> for further details.</p>
+<p>Graphics produced by lattice are <strong>highly customisable</strong>.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xyplot</span>(height.m <span class="sc">~</span> dbh.cm <span class="sc">|</span> species,</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> ufc,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">subset =</span> species <span class="sc">%in%</span> <span class="fu">list</span>(<span class="st">"WC"</span>, <span class="st">"GF"</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">panel.xyplot</span>(x, y, ...),       </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">panel.abline</span>(<span class="fu">lm</span>(y<span class="sc">~</span>x), ...)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"Diameter (cm)"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">"Height (m)"</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the <code>subset</code> argument is a logical expression or a vector of integers, and is used to restrict the data that are plotted. We can also change the order of the panels using the <code>index.cond</code> argument (see <code>?xyplot</code> for more details). The panels are plotted bottom left to top right by default, or top left to bottom right if the argument <code>as.table = TRUE</code> is supplied.</p>
+<p>The <code>panel</code> argument accepts a function, the purpose of which is to control the appearance of the plot in each panel. The panel function should have one input argument for each variable in the model, not including the conditioning variable.</p>
+</section>
+</section>
+<section id="d-plots" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="d-plots"><span class="header-section-number">17.5</span> 3D Plots</h2>
+<p>R provides considerable functionality for constructing <strong>3D graphics</strong>, using either the <strong>base</strong> graphics engine or the <strong>lattice package</strong>. However, its is recommended to use the <strong>lattice package</strong>, because the data can be supplied to the lattice functions in a familiar structure: observations in rows and variables in columns, unlike that required by the base 3D graphics engine (observations in a grid).</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ufc.plots <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/ufc-plots.csv"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ufc.plots)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wireframe</span>(vol.m3.ha <span class="sc">~</span> east <span class="sc">*</span> north,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">"Volume ("</span>, m<span class="sc">^</span><span class="dv">3</span>, ha<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>}, <span class="st">")"</span>, <span class="at">sep =</span>        <span class="st">""</span>)),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">"East (m)"</span>, <span class="at">ylab =</span> <span class="st">"North (m)"</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> ufc.plots</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To learn more about <strong>base-graphics 3D plots</strong>, run the demonstrations <code>demo(persp)</code> and <code>demo(image)</code> and look at the examples presented.</p>
 </section>
 <section id="ggplot2" class="level2" data-number="17.6">
 <h2 data-number="17.6" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">17.6</span> ggplot2</h2>
 <p>Splits the difference between base and lattice in a number of ways. Taking cues from lattice, the <strong>ggplot2</strong> system automatically deals with spacings, text, titles but also allows you to annotate by “adding” to a plot.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A typical plot with the ggplot package looks as follows:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(displ, hwy, <span class="at">data =</span> mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mpg)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(displ, hwy, <span class="at">data =</span> mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In <strong>ggplot2</strong>, aesthetics are the things we can see (e.g.&nbsp;position, color, fill, shape, line type, size). You can use aesthetics in ggplot2 via the <code>aes()</code> function:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="geometric-objects" class="level3" data-number="17.6.1">
 <h3 data-number="17.6.1" class="anchored" data-anchor-id="geometric-objects"><span class="header-section-number">17.6.1</span> Geometric objects</h3>
 <p><strong>Geometric objects</strong> are the plots or graphs you want to put in the chart.</p>
 <p>You can use <code>geom_point()</code> to create a scatterplot, <code>geom_line()</code> to create a line plot, and <code>geom_boxplot()</code> to create a boxplot in the chart.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geom_"</span>, <span class="at">package=</span><span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help.search</span>(<span class="st">"geom_"</span>, <span class="at">package=</span><span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In ggplot2, <code>geom</code> is also the layers of the chart. You can add in one geom object after another, just like adding one layer after another layer.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="plotly" class="level3" data-number="17.6.2">
 <h3 data-number="17.6.2" class="anchored" data-anchor-id="plotly"><span class="header-section-number">17.6.2</span> Plotly</h3>
-<p><strong>Plotly JS</strong> allows you to create interactive, publication-quality charts. You can create a Plotly chart using ggplot:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">1</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">2</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(var1, var2)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2))</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(gg)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Plotly JS</strong> allows you to create interactive, publication-quality charts. You can create a Plotly chart using <strong>ggplot</strong>:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">1</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">2</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(var1, var2)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>var1, <span class="at">y=</span>var2))</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplotly</span>(gg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

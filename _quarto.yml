@@ -3,7 +3,7 @@ project:
 
 book:
   title: "R from Beginner to Advanced"
-  author: "Francisco J Navarro"
+  author: "Francisco J. Navarro"
   date: "11/9/2024"
   chapters:
     - index.qmd
