@@ -1,18 +1,21 @@
 # Random Numbers
 
-Simulation is an important (and big) topic for both statistics and for a variety of other areas where there is a need to introduce randomness. 
+**Simulation** is an important (and big) topic for both statistics and for a variety of other areas where there is a need to introduce randomness.
 
-Sometimes you want to implement a statistical procedure that requires random number generation or sample (i.e. Markov chain Monte Carlo, the bootstrap, random forests, bagging) and sometimes you want to simulate a system and random number generators can be used to model random inputs.
+Sometimes you want to implement a statistical procedure that requires random number generation or sample (i.e. Markov chain Monte Carlo, the bootstrap, random forests, bagging), or you want to simulate a system, then **random number generators** can be used to model random inputs.
 
-Some example functions for probability distributions in R:
+Some **example functions** of random numbers probability distributions in R are these:
 
-``` R
+``` r
 rnorm(n, mean = 0, sd = 1) ## generate random Normal variates with a given mean and standard deviation
 dnorm(x, mean = 0, sd = 1, log = FALSE) ## evaluate the Normal probability density (with a given mean/SD) at a point (or vector of points)
 pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)  ## evaluate the cumulative distribution function for a Normal distribution
 qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE) ## generate random Poisson variates with a given rate
 ```
-Maybe the most common probability distribution to work with is the Normal distribution (also known as the Gaussian).  
+
+Maybe the most common probability distribution to work with is the **normal distribution** (also known as the Gaussian).
+
+*Example:*
 
 ```{r}
 x <- rnorm(10, 20, 2) 
@@ -21,7 +24,9 @@ summary(x)
 
 ## Always Remember to Set Your Seed!
 
-When simulating any random numbers it is essential to set the random number seed. Setting the random number seed with `set.seed()` ensures reproducibility of the sequence of random numbers.
+When simulating any random numbers it is essential to set the **random number seed**. Setting the random number seed with `set.seed()` ensures reproducibility of the sequence of random numbers.
+
+*Example:*
 
 ```{r}
 set.seed(1)
@@ -30,13 +35,11 @@ rnorm(5)
 
 *Example: Simulating a Linear Model*
 
-For that we need to specify the model and then simulate from it using the functions described above.
+Suppose we want to simulate from the following linear model $y=β_0+β_1x+ε$ where $ε ∼ N(0, 22)$
 
-Suppose we want to simulate from the following linear model y = β0 + β1x + ε where ε ∼ N(0, 22)
+Assume $x ∼ N(0, 12)$, $β_0 = 0.5$ and $β_1 = 2$. The variable `x` might represent an important predictor of the outcome `y`.
 
-Assume x ∼ N(0, 12), β0 = 0.5 and β1 = 2. The variable x might represent an important predictor of the outcome y.
-
-Here's how we could do that in R:
+Here's how you could do that in R:
 
 ```{r}
 ## Always set your seed! 
@@ -55,17 +58,16 @@ plot(x, y)
 
 The `sample()` function draws randomly from a specified set of (scalar) objects allowing you to sample from arbitrary distributions of numbers.
 
+*Example:*
+
 ```{r}
 set.seed(1)
 sample(1:10,4)
-```
-
-```{r}
-## Doesn't have to be numbers
+# Doesn't have to be numbers
 sample(letters, 5)
 ```
 
-To sample more complicated things, such as rows from a data frame or a list, you can sample the indices into an object rather than the elements of the object itself:
+To sample more complicated things, such as rows from a **dataframe or a list**, you can sample the indices into an object rather than the elements of the object itself:
 
 ```{r}
 set.seed(20)

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R from Beginner to Advanced - 8&nbsp; Random Numbers</title>
+<title>R from Beginner to Advanced - 7&nbsp; Tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./databases.html" rel="next">
-<link href="./tidy.html" rel="prev">
+<link href="./random.html" rel="next">
+<link href="./plyrdplyr.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -95,8 +61,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -109,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manipulation.html">Part 1: Data Manipulation</a></li><li class="breadcrumb-item"><a href="./random.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manipulation.html">Part 1: Data Manipulation</a></li><li class="breadcrumb-item"><a href="./tidy.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidyverse</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -198,13 +162,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidy.html" class="sidebar-item-text sidebar-link">
+  <a href="./tidy.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./random.html" class="sidebar-item-text sidebar-link active">
+  <a href="./random.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
@@ -348,8 +312,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#always-remember-to-set-your-seed" id="toc-always-remember-to-set-your-seed" class="nav-link active" data-scroll-target="#always-remember-to-set-your-seed"><span class="header-section-number">8.1</span> Always Remember to Set Your Seed!</a></li>
-  <li><a href="#random-sampling" id="toc-random-sampling" class="nav-link" data-scroll-target="#random-sampling"><span class="header-section-number">8.2</span> Random Sampling</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">7.1</span> Installation</a></li>
+  <li><a href="#core-packages" id="toc-core-packages" class="nav-link" data-scroll-target="#core-packages"><span class="header-section-number">7.2</span> Core Packages</a></li>
+  <li><a href="#functionalities" id="toc-functionalities" class="nav-link" data-scroll-target="#functionalities"><span class="header-section-number">7.3</span> Functionalities</a>
+  <ul class="collapse">
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import"><span class="header-section-number">7.3.1</span> Import</a></li>
+  <li><a href="#wrangle" id="toc-wrangle" class="nav-link" data-scroll-target="#wrangle"><span class="header-section-number">7.3.2</span> Wrangle</a></li>
+  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming"><span class="header-section-number">7.3.3</span> Programming</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling"><span class="header-section-number">7.3.4</span> Modeling</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -358,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidyverse</span></h1>
 </div>
 
 
@@ -373,92 +344,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><strong>Simulation</strong> is an important (and big) topic for both statistics and for a variety of other areas where there is a need to introduce randomness.</p>
-<p>Sometimes you want to implement a statistical procedure that requires random number generation or sample (i.e.&nbsp;Markov chain Monte Carlo, the bootstrap, random forests, bagging), or you want to simulate a system, then <strong>random number generators</strong> can be used to model random inputs.</p>
-<p>Some <strong>example functions</strong> of random numbers probability distributions in R are these:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="do">## generate random Normal variates with a given mean and standard deviation</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">log =</span> <span class="cn">FALSE</span>) <span class="do">## evaluate the Normal probability density (with a given mean/SD) at a point (or vector of points)</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(q, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>, <span class="at">log.p =</span> <span class="cn">FALSE</span>)  <span class="do">## evaluate the cumulative distribution function for a Normal distribution</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(p, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>, <span class="at">log.p =</span> <span class="cn">FALSE</span>) <span class="do">## generate random Poisson variates with a given rate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Maybe the most common probability distribution to work with is the <strong>normal distribution</strong> (also known as the Gaussian).</p>
-<p><em>Example:</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>) </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  15.83   17.53   18.23   18.95   19.95   24.17 </code></pre>
-</div>
-</div>
-<section id="always-remember-to-set-your-seed" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="always-remember-to-set-your-seed"><span class="header-section-number">8.1</span> Always Remember to Set Your Seed!</h2>
-<p>When simulating any random numbers it is essential to set the <strong>random number seed</strong>. Setting the random number seed with <code>set.seed()</code> ensures reproducibility of the sequence of random numbers.</p>
-<p><em>Example:</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.6264538  0.1836433 -0.8356286  1.5952808  0.3295078</code></pre>
-</div>
-</div>
-<p><em>Example: Simulating a Linear Model</em></p>
-<p>Suppose we want to simulate from the following linear model <span class="math inline">\(y=β_0+β_1x+ε\)</span> where <span class="math inline">\(ε ∼ N(0, 22)\)</span></p>
-<p>Assume <span class="math inline">\(x ∼ N(0, 12)\)</span>, <span class="math inline">\(β_0 = 0.5\)</span> and <span class="math inline">\(β_1 = 2\)</span>. The variable <code>x</code> might represent an important predictor of the outcome <code>y</code>.</p>
-<p>Here’s how you could do that in R:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Always set your seed! </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>) </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Simulate predictor variable </span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>) </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Simulate the error term </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>) </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the outcome via the model </span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> e </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--6.4084 -1.5402  0.6789  0.6893  2.9303  6.5052 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="random_files/figure-html/unnamed-chunk-3-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
-</div>
-</div>
+<p>The <strong>tidyverse</strong> is a set of packages that work in harmony because they share common data representations and API design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command.</p>
+<p>If you’d like to learn how to use the tidyverse effectively, the best place to start is <a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>.</p>
+<section id="installation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">7.1</span> Installation</h2>
+<ul>
+<li>Install all the packages in the tidyverse by running <code>install.packages("tidyverse")</code>.</li>
+<li>Run <code>library(tidyverse)</code> to load the core tidyverse and make it available in your current R session.</li>
+<li>Learn more about the tidyverse package <a href="https://tidyverse.tidyverse.org">here</a></li>
+</ul>
 </section>
-<section id="random-sampling" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="random-sampling"><span class="header-section-number">8.2</span> Random Sampling</h2>
-<p>The <code>sample()</code> function draws randomly from a specified set of (scalar) objects allowing you to sample from arbitrary distributions of numbers.</p>
-<p><em>Example:</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 9 4 7 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Doesn't have to be numbers</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(letters, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "b" "w" "k" "n" "r"</code></pre>
-</div>
-</div>
-<p>To sample more complicated things, such as rows from a <strong>dataframe or a list</strong>, you can sample the indices into an object rather than the elements of the object itself:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(airquality))<span class="do">## Create index vector </span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">&lt;-</span> <span class="fu">sample</span>(idx, <span class="dv">6</span>) <span class="do">##Sample from the index vector </span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>airquality[samp, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Ozone Solar.R Wind Temp Month Day
-107    NA      64 11.5   79     8  15
-120    76     203  9.7   97     8  28
-130    20     252 10.9   80     9   7
-98     66      NA  4.6   87     8   6
-29     45     252 14.9   81     5  29
-45     NA     332 13.8   80     6  14</code></pre>
-</div>
-</div>
+<section id="core-packages" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="core-packages"><span class="header-section-number">7.2</span> Core Packages</h2>
+<p><code>library(tidyverse)</code> will load the <strong>core tidyverse</strong> packages:</p>
+<ul>
+<li><strong>ggplot2</strong>, for data visualisation, <a href="https://ggplot2.tidyverse.org/">more info</a>.</li>
+<li><strong>dplyr</strong>, for data manipulation, <a href="https://dplyr.tidyverse.org/">more info</a>.</li>
+<li><strong>tidyr</strong>, for data tidying, <a href="https://tidyr.tidyverse.org/https://tidyr.tidyverse.org/">more info</a></li>
+<li><strong>readr</strong>, for data import, <a href="https://readr.tidyverse.org/">more info</a></li>
+<li><strong>purrr</strong>, for functional programming, <a href="https://purrr.tidyverse.org/">more info</a>.</li>
+<li><strong>tibble</strong>, for tibbles, a modern re-imagining of data frames, <a href="https://tibble.tidyverse.org/">more info</a>.</li>
+<li><strong>stringr</strong>, for strings, <a href="https://stringr.tidyverse.org/">more info</a></li>
+<li><strong>forcats</strong>, for factors, [more info] (https://forcats.tidyverse.org/)</li>
+<li><strong>lubridate</strong>, for date/times.</li>
+</ul>
+</section>
+<section id="functionalities" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="functionalities"><span class="header-section-number">7.3</span> Functionalities</h2>
+<section id="import" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="import"><span class="header-section-number">7.3.1</span> Import</h3>
+<p>As well as <strong>readr</strong>, for reading flat files, the tidyverse package installs a number of other packages for reading data:</p>
+<ul>
+<li><strong>DBI</strong> for relational databases. You’ll need to pair DBI with a database specific backends like RSQLite, RMariaDB, RPostgres, or odbc. More info <a href="https://db.rstudio.com">here</a>.</li>
+<li><strong>haven</strong> for SPSS, Stata, and SAS data.</li>
+<li><strong>httr</strong> for web APIs.</li>
+<li><strong>readxl</strong> for .xls and .xlsx sheets.</li>
+<li><strong>googlesheets4</strong> for Google Sheets via the Sheets API v4.</li>
+<li><strong>googledrive</strong> for Google Drive files.</li>
+<li><strong>rvest</strong> for web scraping.</li>
+<li><strong>jsonlite</strong> for JSON. (Maintained by Jeroen Ooms.)</li>
+<li><strong>xml2</strong> for XML.</li>
+</ul>
+</section>
+<section id="wrangle" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="wrangle"><span class="header-section-number">7.3.2</span> Wrangle</h3>
+<p>In addition to <strong>tidyr</strong>, and <strong>dplyr</strong>, there are five packages (including <strong>stringr</strong> and <strong>forcats</strong>) which are designed to work with specific types of data:</p>
+<ul>
+<li><strong>lubridate</strong> for dates and date-times.</li>
+<li><strong>hms</strong> for time-of-day values.</li>
+<li><strong>blob</strong> for storing blob (binary) data.</li>
+</ul>
+<p>There are also two packages that allow you to interface with different backends using the same dplyr syntax:</p>
+<ul>
+<li><strong>dbplyr</strong> allows you to use remote database tables by converting dplyr code into SQL.</li>
+<li><strong>dtplyr</strong> provides a data.table backend by automatically translating to the equivalent, but usually much faster, data.table code. Program</li>
+</ul>
+</section>
+<section id="programming" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="programming"><span class="header-section-number">7.3.3</span> Programming</h3>
+<p>In addition to <strong>purrr</strong>, which provides very consistent and natural methods for iterating on R objects, there are two additional tidyverse packages that help with general programming challenges:</p>
+<ul>
+<li><p><strong>magrittr</strong> provides the pipe, <code>%&gt;%</code> used throughout the tidyverse. It also provide a number of more specialised piping operators (like <code>%$%</code> and <code>%&lt;&gt;%</code>) that can be useful in other places.</p></li>
+<li><p><strong>glue</strong> provides an alternative to <code>paste()</code> that makes it easier to combine data and strings.</p></li>
+</ul>
+</section>
+<section id="modeling" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="modeling"><span class="header-section-number">7.3.4</span> Modeling</h3>
+<p><strong>Modeling</strong> with the tidyverse uses the collection of <strong>tidymodels packages</strong>, which largely replace the modelr package used in R4DS.</p>
+<p>Visit the <a href="https://www.tidymodels.org/start/">Getting Started Guide</a> for more detailed examples, or go straight to the Learn page.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -697,13 +653,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./tidy.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidyverse</span></span>
+      <a href="./plyrdplyr.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./databases.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./random.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

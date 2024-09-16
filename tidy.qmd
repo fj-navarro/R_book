@@ -1,0 +1,64 @@
+# Tidyverse
+The **tidyverse** is a set of packages that work in harmony because they share common data representations and API design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command.
+
+If you’d like to learn how to use the tidyverse effectively, the best place to start is [R for Data Science (2e)](https://r4ds.hadley.nz/).
+
+## Installation
+
+-   Install all the packages in the tidyverse by running `install.packages("tidyverse")`.
+-   Run `library(tidyverse)` to load the core tidyverse and make it available in your current R session.
+-   Learn more about the tidyverse package [here](https://tidyverse.tidyverse.org)
+
+## Core Packages
+`library(tidyverse)` will load the **core tidyverse** packages:
+
+-   **ggplot2**, for data visualisation, [more info](https://ggplot2.tidyverse.org/).
+-   **dplyr**, for data manipulation, [more info](https://dplyr.tidyverse.org/).
+-   **tidyr**, for data tidying, [more info](https://tidyr.tidyverse.org/https://tidyr.tidyverse.org/)
+-   **readr**, for data import, [more info](https://readr.tidyverse.org/)
+-   **purrr**, for functional programming, [more info](https://purrr.tidyverse.org/).
+-   **tibble**, for tibbles, a modern re-imagining of data frames, [more info](https://tibble.tidyverse.org/).
+-   **stringr**, for strings, [more info](https://stringr.tidyverse.org/)
+-   **forcats**, for factors, [more info] (https://forcats.tidyverse.org/)
+-   **lubridate**, for date/times.
+
+## Functionalities
+
+### Import
+As well as **readr**, for reading flat files, the tidyverse package installs a number of other packages for reading data:
+
+-   **DBI** for relational databases. You’ll need to pair DBI with a database specific backends like RSQLite, RMariaDB, RPostgres, or odbc. More info [here](https://db.rstudio.com).
+-   **haven** for SPSS, Stata, and SAS data.
+-   **httr** for web APIs.
+-   **readxl** for .xls and .xlsx sheets.
+-   **googlesheets4** for Google Sheets via the Sheets API v4.
+-   **googledrive** for Google Drive files.
+-   **rvest** for web scraping.
+-   **jsonlite** for JSON. (Maintained by Jeroen Ooms.)
+-   **xml2** for XML.
+
+### Wrangle
+In addition to **tidyr**, and **dplyr**, there are five packages (including **stringr** and **forcats**) which are designed to work with specific types of data:
+
+-   **lubridate** for dates and date-times.
+-   **hms** for time-of-day values.
+-   **blob** for storing blob (binary) data.
+
+There are also two packages that allow you to interface with different backends using the same dplyr syntax:
+
+-   **dbplyr** allows you to use remote database tables by converting dplyr code into SQL.
+-   **dtplyr** provides a data.table backend by automatically translating to the equivalent, but usually much faster, data.table code.
+Program 
+
+### Programming
+In addition to **purrr**, which provides very consistent and natural methods for iterating on R objects, there are two additional tidyverse packages that help with general programming challenges:
+
+-   **magrittr** provides the pipe, `%>%` used throughout the tidyverse. It also provide a number of more specialised piping operators (like `%$%` and `%<>%`) that can be useful in other places.
+
+-   **glue** provides an alternative to `paste()` that makes it easier to combine data and strings.
+
+### Modeling
+
+**Modeling** with the tidyverse uses the collection of **tidymodels packages**, which largely replace the modelr package used in R4DS.
+
+Visit the [Getting Started Guide](https://www.tidymodels.org/start/) for more detailed examples, or go straight to the Learn page.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R from Beginner to Advanced - 14&nbsp; Exploratory Analysis</title>
+<title>R from Beginner to Advanced - 16&nbsp; Exploratory Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./descriptive.html">Part 3: Statistics in R</a></li><li class="breadcrumb-item"><a href="./exploratory.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./descriptive.html">Part 3: Statistics in R</a></li><li class="breadcrumb-item"><a href="./exploratory.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Part 1: Data Manipulation</span></a>
+ <span class="menu-text">Introduction</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+  <a href="./standards.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Coding Standards for R</span></span></a>
   </div>
 </li>
@@ -167,26 +167,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./plyrdplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
       </ul>
@@ -194,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Part 2: Programming in R</span></a>
+ <span class="menu-text">Part 1: Data Manipulation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -202,32 +184,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+  <a href="./manipulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+  <a href="./plyrdplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  <a href="./tidy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+  <a href="./random.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+  <a href="./databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
   </div>
 </li>
       </ul>
@@ -235,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Part 3: Statistics in R</span></a>
+ <span class="menu-text">Part 2: Programming in R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -243,26 +225,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  <a href="./habits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exploratory.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+  <a href="./logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+  <a href="./debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./profiling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Part 4: Graphics</span></a>
+ <span class="menu-text">Part 3: Statistics in R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,8 +266,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exploratory.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Part 5: Data Products</span></a>
+ <span class="menu-text">Part 4: Graphics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -295,14 +301,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./graphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Part 5: Data Products</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -323,20 +346,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#analysis-pipeline" id="toc-analysis-pipeline" class="nav-link active" data-scroll-target="#analysis-pipeline"><span class="header-section-number">14.1</span> Analysis Pipeline</a>
+  <li><a href="#analysis-pipeline" id="toc-analysis-pipeline" class="nav-link active" data-scroll-target="#analysis-pipeline"><span class="header-section-number">16.1</span> Analysis Pipeline</a>
   <ul class="collapse">
-  <li><a href="#formulate-your-question" id="toc-formulate-your-question" class="nav-link" data-scroll-target="#formulate-your-question"><span class="header-section-number">14.1.1</span> Formulate your question</a></li>
-  <li><a href="#read-in-your-data" id="toc-read-in-your-data" class="nav-link" data-scroll-target="#read-in-your-data"><span class="header-section-number">14.1.2</span> Read in your data</a></li>
-  <li><a href="#check-the-packaging" id="toc-check-the-packaging" class="nav-link" data-scroll-target="#check-the-packaging"><span class="header-section-number">14.1.3</span> Check the packaging</a></li>
-  <li><a href="#run-str" id="toc-run-str" class="nav-link" data-scroll-target="#run-str"><span class="header-section-number">14.1.4</span> Run str()</a></li>
-  <li><a href="#look-at-the-top-and-the-bottom-of-your-data" id="toc-look-at-the-top-and-the-bottom-of-your-data" class="nav-link" data-scroll-target="#look-at-the-top-and-the-bottom-of-your-data"><span class="header-section-number">14.1.5</span> Look at the top and the bottom of your data</a></li>
-  <li><a href="#check-your-ns-frequency" id="toc-check-your-ns-frequency" class="nav-link" data-scroll-target="#check-your-ns-frequency"><span class="header-section-number">14.1.6</span> Check your “n”s (frequency)</a></li>
-  <li><a href="#validate-with-at-least-one-external-data-source" id="toc-validate-with-at-least-one-external-data-source" class="nav-link" data-scroll-target="#validate-with-at-least-one-external-data-source"><span class="header-section-number">14.1.7</span> Validate with at least one external data source</a></li>
-  <li><a href="#try-the-easy-solution-first" id="toc-try-the-easy-solution-first" class="nav-link" data-scroll-target="#try-the-easy-solution-first"><span class="header-section-number">14.1.8</span> Try the easy solution first</a></li>
-  <li><a href="#challenge-your-solutionbootstrap-sample" id="toc-challenge-your-solutionbootstrap-sample" class="nav-link" data-scroll-target="#challenge-your-solutionbootstrap-sample"><span class="header-section-number">14.1.9</span> Challenge your solution/Bootstrap sample</a></li>
-  <li><a href="#follow-up" id="toc-follow-up" class="nav-link" data-scroll-target="#follow-up"><span class="header-section-number">14.1.10</span> Follow up</a></li>
+  <li><a href="#formulate-your-question" id="toc-formulate-your-question" class="nav-link" data-scroll-target="#formulate-your-question"><span class="header-section-number">16.1.1</span> Formulate your question</a></li>
+  <li><a href="#read-in-your-data" id="toc-read-in-your-data" class="nav-link" data-scroll-target="#read-in-your-data"><span class="header-section-number">16.1.2</span> Read in your data</a></li>
+  <li><a href="#check-the-packaging" id="toc-check-the-packaging" class="nav-link" data-scroll-target="#check-the-packaging"><span class="header-section-number">16.1.3</span> Check the packaging</a></li>
+  <li><a href="#run-str" id="toc-run-str" class="nav-link" data-scroll-target="#run-str"><span class="header-section-number">16.1.4</span> Run str()</a></li>
+  <li><a href="#look-at-the-top-and-the-bottom-of-your-data" id="toc-look-at-the-top-and-the-bottom-of-your-data" class="nav-link" data-scroll-target="#look-at-the-top-and-the-bottom-of-your-data"><span class="header-section-number">16.1.5</span> Look at the top and the bottom of your data</a></li>
+  <li><a href="#check-your-ns-frequency" id="toc-check-your-ns-frequency" class="nav-link" data-scroll-target="#check-your-ns-frequency"><span class="header-section-number">16.1.6</span> Check your “n”s (frequency)</a></li>
+  <li><a href="#validate-with-at-least-one-external-data-source" id="toc-validate-with-at-least-one-external-data-source" class="nav-link" data-scroll-target="#validate-with-at-least-one-external-data-source"><span class="header-section-number">16.1.7</span> Validate with at least one external data source</a></li>
+  <li><a href="#try-the-easy-solution-first" id="toc-try-the-easy-solution-first" class="nav-link" data-scroll-target="#try-the-easy-solution-first"><span class="header-section-number">16.1.8</span> Try the easy solution first</a></li>
+  <li><a href="#challenge-your-solutionbootstrap-sample" id="toc-challenge-your-solutionbootstrap-sample" class="nav-link" data-scroll-target="#challenge-your-solutionbootstrap-sample"><span class="header-section-number">16.1.9</span> Challenge your solution/Bootstrap sample</a></li>
+  <li><a href="#follow-up" id="toc-follow-up" class="nav-link" data-scroll-target="#follow-up"><span class="header-section-number">16.1.10</span> Follow up</a></li>
   </ul></li>
-  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering"><span class="header-section-number">14.2</span> Hierarchical Clustering</a></li>
+  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering"><span class="header-section-number">16.2</span> Hierarchical Clustering</a></li>
   </ul>
 </nav>
     </div>
@@ -345,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></h1>
 </div>
 
 
@@ -360,54 +383,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="analysis-pipeline" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="analysis-pipeline"><span class="header-section-number">14.1</span> Analysis Pipeline</h2>
-<section id="formulate-your-question" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="formulate-your-question"><span class="header-section-number">14.1.1</span> Formulate your question</h3>
+<section id="analysis-pipeline" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="analysis-pipeline"><span class="header-section-number">16.1</span> Analysis Pipeline</h2>
+<section id="formulate-your-question" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="formulate-your-question"><span class="header-section-number">16.1.1</span> Formulate your question</h3>
 <p>A sharp question or hypothesis can serve as a dimension reduction tool that can eliminate variables that are not immediately relevant to the question.</p>
 <p>It’s usually a good idea to spend a few minutes to figure out what is the question you’re really interested in and narrow it down to be as specific as possible (without becoming uninteresting).</p>
 <p>One of the most important questions you can answer with an exploratory data analysis is: <strong>“Do I have the right data to answer this question?”</strong></p>
 </section>
-<section id="read-in-your-data" class="level3" data-number="14.1.2">
-<h3 data-number="14.1.2" class="anchored" data-anchor-id="read-in-your-data"><span class="header-section-number">14.1.2</span> Read in your data</h3>
+<section id="read-in-your-data" class="level3" data-number="16.1.2">
+<h3 data-number="16.1.2" class="anchored" data-anchor-id="read-in-your-data"><span class="header-section-number">16.1.2</span> Read in your data</h3>
 <p>Sometimes the data will come in a very messy format, and you’ll need to do some cleaning.</p>
 <p>The <strong>readr package</strong> by Hadley Wickham is a nice package for reading in flat files very fast, or at least much faster than R’s built-in functions</p>
 </section>
-<section id="check-the-packaging" class="level3" data-number="14.1.3">
-<h3 data-number="14.1.3" class="anchored" data-anchor-id="check-the-packaging"><span class="header-section-number">14.1.3</span> Check the packaging</h3>
+<section id="check-the-packaging" class="level3" data-number="16.1.3">
+<h3 data-number="16.1.3" class="anchored" data-anchor-id="check-the-packaging"><span class="header-section-number">16.1.3</span> Check the packaging</h3>
 <p>Assuming you don’t get any warnings or errors when reading in the dataset, you should now have an object in your workspace named e.g.&nbsp;“ozone”. It’s usually a good idea to poke at that object a little bit before we break open the wrapping paper.</p>
 <p>For example, you can check the number of rows and columns.</p>
 </section>
-<section id="run-str" class="level3" data-number="14.1.4">
-<h3 data-number="14.1.4" class="anchored" data-anchor-id="run-str"><span class="header-section-number">14.1.4</span> Run str()</h3>
+<section id="run-str" class="level3" data-number="16.1.4">
+<h3 data-number="16.1.4" class="anchored" data-anchor-id="run-str"><span class="header-section-number">16.1.4</span> Run str()</h3>
 <p>This is usually a safe operation in the sense that even with a very large dataset, running str() shouldn’t take too long.</p>
 <p>You can examine the classes of each of the columns to make sure they are correctly specified (i.e., numbers are numeric, and strings are character, etc.).</p>
 </section>
-<section id="look-at-the-top-and-the-bottom-of-your-data" class="level3" data-number="14.1.5">
-<h3 data-number="14.1.5" class="anchored" data-anchor-id="look-at-the-top-and-the-bottom-of-your-data"><span class="header-section-number">14.1.5</span> Look at the top and the bottom of your data</h3>
+<section id="look-at-the-top-and-the-bottom-of-your-data" class="level3" data-number="16.1.5">
+<h3 data-number="16.1.5" class="anchored" data-anchor-id="look-at-the-top-and-the-bottom-of-your-data"><span class="header-section-number">16.1.5</span> Look at the top and the bottom of your data</h3>
 <p>This lets me know if the data were read in properly, things are properly formatted, and that everything is there. If your data are time series data, then make sure the dates at the beginning and end of the dataset match what you expect the beginning and ending time period are.</p>
 <p>You can peek at the top and bottom of the data with the <code>head()</code> and <code>tail()</code> functions. Sometimes there’s weird formatting at the end or some extra comment lines that someone decided to stick at the end.</p>
 </section>
-<section id="check-your-ns-frequency" class="level3" data-number="14.1.6">
-<h3 data-number="14.1.6" class="anchored" data-anchor-id="check-your-ns-frequency"><span class="header-section-number">14.1.6</span> Check your “n”s (frequency)</h3>
+<section id="check-your-ns-frequency" class="level3" data-number="16.1.6">
+<h3 data-number="16.1.6" class="anchored" data-anchor-id="check-your-ns-frequency"><span class="header-section-number">16.1.6</span> Check your “n”s (frequency)</h3>
 <p>To do this properly, you need to identify some landmarks that can be used to check against your data. For example, if you are collecting data on people, such as in a survey or clinical trial, then you should know how many people there are in your study (i.e., in an ozone monitoring data system we can take a look at the Time.Local variable to see what time measurements are recorded as being taken.)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ozone<span class="sc">$</span>Time.Local)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="validate-with-at-least-one-external-data-source" class="level3" data-number="14.1.7">
-<h3 data-number="14.1.7" class="anchored" data-anchor-id="validate-with-at-least-one-external-data-source"><span class="header-section-number">14.1.7</span> Validate with at least one external data source</h3>
+<section id="validate-with-at-least-one-external-data-source" class="level3" data-number="16.1.7">
+<h3 data-number="16.1.7" class="anchored" data-anchor-id="validate-with-at-least-one-external-data-source"><span class="header-section-number">16.1.7</span> Validate with at least one external data source</h3>
 <p>External validation can often be as simple as checking your data against a single number.</p>
 <p>The data are at least of the right order of magnitude (i.e., the units are correct) or, the range of the distribution is roughly what we’d expect, given the regulation around ambient pollution levels.</p>
 </section>
-<section id="try-the-easy-solution-first" class="level3" data-number="14.1.8">
-<h3 data-number="14.1.8" class="anchored" data-anchor-id="try-the-easy-solution-first"><span class="header-section-number">14.1.8</span> Try the easy solution first</h3>
+<section id="try-the-easy-solution-first" class="level3" data-number="16.1.8">
+<h3 data-number="16.1.8" class="anchored" data-anchor-id="try-the-easy-solution-first"><span class="header-section-number">16.1.8</span> Try the easy solution first</h3>
 <p>Because we want to know which counties have the highest levels, it seems we need a list of counties that are ordered from highest to lowest with respect to their levels of ozone.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ranking <span class="ot">&lt;-</span> <span class="fu">group_by</span>(ozone, State.Name, County.Name) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">ozone =</span> <span class="fu">mean</span>(Sample.Measurement)) <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ozone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="challenge-your-solutionbootstrap-sample" class="level3" data-number="14.1.9">
-<h3 data-number="14.1.9" class="anchored" data-anchor-id="challenge-your-solutionbootstrap-sample"><span class="header-section-number">14.1.9</span> Challenge your solution/Bootstrap sample</h3>
+<section id="challenge-your-solutionbootstrap-sample" class="level3" data-number="16.1.9">
+<h3 data-number="16.1.9" class="anchored" data-anchor-id="challenge-your-solutionbootstrap-sample"><span class="header-section-number">16.1.9</span> Challenge your solution/Bootstrap sample</h3>
 <p>The easy solution is nice because it is, well, easy, but you should never allow those results to hold the day. You should always be thinking of ways to challenge the results, especially if those results comport with your prior expectation.</p>
 <p>How stable are the rankings from year to year? We can imagine that from year to year, the ozone data are somewhat different randomly, but generally follow similar patterns across the country. So, the shuffling process could approximate the data changing from one year to the next. It’s not an ideal solution, but it could give us a sense of how stable the rankings are.</p>
 <p>First, we set our random number generator and resample the indices of the rows of the data frame with replacement. The statistical jargon for this approach is a <strong>bootstrap sample</strong>:</p>
@@ -428,8 +451,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We can see that the rankings based on the resampled data are very close to the original, with the first 7 being identical. Numbers 8 and 9 get flipped in the resampled rankings but that’s about it. This might suggest that the original rankings are somewhat stable.</p></li>
 </ol>
 </section>
-<section id="follow-up" class="level3" data-number="14.1.10">
-<h3 data-number="14.1.10" class="anchored" data-anchor-id="follow-up"><span class="header-section-number">14.1.10</span> Follow up</h3>
+<section id="follow-up" class="level3" data-number="16.1.10">
+<h3 data-number="16.1.10" class="anchored" data-anchor-id="follow-up"><span class="header-section-number">16.1.10</span> Follow up</h3>
 <p>At this point it’s useful to consider a few follow up questions:</p>
 <ol type="1">
 <li>Do you have the right data?</li>
@@ -439,8 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The goal of exploratory data analysis is to get you thinking about your data and reasoning about your question. At this point, we can refine our question or collect new data, all in an iterative process to get at the truth.</p>
 </section>
 </section>
-<section id="hierarchical-clustering" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="hierarchical-clustering"><span class="header-section-number">14.2</span> Hierarchical Clustering</h2>
+<section id="hierarchical-clustering" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="hierarchical-clustering"><span class="header-section-number">16.2</span> Hierarchical Clustering</h2>
 
 
 </section>
@@ -682,12 +705,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./descriptive.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./inferential.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

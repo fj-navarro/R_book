@@ -1,0 +1,39 @@
+# Packages
+
+A **package** is an archive of files that conforms to a certain format and structure and that provides extra functionality, usually extending R in a particular direction. The R community has produced many high-quality R packages for performing specific tasks,
+
+Any package is in one of **three states**:
+
+-   **Installed and loaded**. A package that is loaded is directly available to your R session. Find out which packages are loaded using `sessionInfo()`.
+-   **Installed but not loaded**. A package that is installed is available for loading but its contents are not available until it is loaded. The function `help.start()` gives details of the packages that are installed on your computer.
+-   **Not installed**. These packages cannot be loaded. If a package is **not installed** then the `library()` function produces an error. If the install status is uncertain at the time of calling library (for example if you are writing a function that requires the package), then use the `require()` function, which returns FALSE if the package is not installed, rather than an error.
+
+Installing all available packages would be a waste of space and time, as you would never use most of them. Similarly, loading all installed packages every time you start R would take some time, so by default R only loads the **base packages** when it starts and requires the user to load any others as and when they are needed.
+
+Packages are divided into **three groups**:
+
+-   **Base**. Base packages are installed along with R, and their objects are always available.
+-   **Recommended**. Recommended packages are installed along with R but must be loaded before they can be used.
+-   **Other**. Other packages are not installed by default, and must be installed separately.
+
+The command to find out what packages are available for loading is `installed.packages`. The output of the function is quite verbose, but we only need the first column:
+
+*Example:*
+
+```{r}
+installed.packages()[1:5, 1] # Returns only the first five packages
+```
+
+All the packages that are available at a repository, and whose requirements are matched by the currently running version of R, can be listed using the command `available.packages()`. A package that is available in the repository but has not yet been installed may be installed using the `install.packages()` function. If we include the argument `dependencies = TRUE`, then the function will also install packages that are necessary to run the package or packages of interest; such packages are called dependencies.
+
+The status of the packages that are installed can be compared with the repository using the `old.packages()` function, and easily updated using the `update.packages()` function.
+
+R can be easily updated with **installr package**. To update R on MacOS, you need to use **updateR" package** instead.
+
+*Example:*
+
+``` r
+install.packages("installr")
+library(installr)
+updateR()
+```

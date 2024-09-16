@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R from Beginner to Advanced - 8&nbsp; Random Numbers</title>
+<title>R from Beginner to Advanced - 4&nbsp; Packages</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./databases.html" rel="next">
-<link href="./tidy.html" rel="prev">
+<link href="./manipulation.html" rel="next">
+<link href="./types.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -95,8 +95,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -109,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manipulation.html">Part 1: Data Manipulation</a></li><li class="breadcrumb-item"><a href="./random.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./standards.html">Introduction</a></li><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Packages</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -169,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+  <a href="./packages.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
   </div>
 </li>
@@ -204,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./random.html" class="sidebar-item-text sidebar-link active">
+  <a href="./random.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
@@ -344,21 +342,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#always-remember-to-set-your-seed" id="toc-always-remember-to-set-your-seed" class="nav-link active" data-scroll-target="#always-remember-to-set-your-seed"><span class="header-section-number">8.1</span> Always Remember to Set Your Seed!</a></li>
-  <li><a href="#random-sampling" id="toc-random-sampling" class="nav-link" data-scroll-target="#random-sampling"><span class="header-section-number">8.2</span> Random Sampling</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Packages</span></h1>
 </div>
 
 
@@ -373,93 +364,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><strong>Simulation</strong> is an important (and big) topic for both statistics and for a variety of other areas where there is a need to introduce randomness.</p>
-<p>Sometimes you want to implement a statistical procedure that requires random number generation or sample (i.e.&nbsp;Markov chain Monte Carlo, the bootstrap, random forests, bagging), or you want to simulate a system, then <strong>random number generators</strong> can be used to model random inputs.</p>
-<p>Some <strong>example functions</strong> of random numbers probability distributions in R are these:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) <span class="do">## generate random Normal variates with a given mean and standard deviation</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">log =</span> <span class="cn">FALSE</span>) <span class="do">## evaluate the Normal probability density (with a given mean/SD) at a point (or vector of points)</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(q, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>, <span class="at">log.p =</span> <span class="cn">FALSE</span>)  <span class="do">## evaluate the cumulative distribution function for a Normal distribution</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(p, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>, <span class="at">log.p =</span> <span class="cn">FALSE</span>) <span class="do">## generate random Poisson variates with a given rate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Maybe the most common probability distribution to work with is the <strong>normal distribution</strong> (also known as the Gaussian).</p>
+<p>A <strong>package</strong> is an archive of files that conforms to a certain format and structure and that provides extra functionality, usually extending R in a particular direction. The R community has produced many high-quality R packages for performing specific tasks,</p>
+<p>Any package is in one of <strong>three states</strong>:</p>
+<ul>
+<li><strong>Installed and loaded</strong>. A package that is loaded is directly available to your R session. Find out which packages are loaded using <code>sessionInfo()</code>.</li>
+<li><strong>Installed but not loaded</strong>. A package that is installed is available for loading but its contents are not available until it is loaded. The function <code>help.start()</code> gives details of the packages that are installed on your computer.</li>
+<li><strong>Not installed</strong>. These packages cannot be loaded. If a package is <strong>not installed</strong> then the <code>library()</code> function produces an error. If the install status is uncertain at the time of calling library (for example if you are writing a function that requires the package), then use the <code>require()</code> function, which returns FALSE if the package is not installed, rather than an error.</li>
+</ul>
+<p>Installing all available packages would be a waste of space and time, as you would never use most of them. Similarly, loading all installed packages every time you start R would take some time, so by default R only loads the <strong>base packages</strong> when it starts and requires the user to load any others as and when they are needed.</p>
+<p>Packages are divided into <strong>three groups</strong>:</p>
+<ul>
+<li><strong>Base</strong>. Base packages are installed along with R, and their objects are always available.</li>
+<li><strong>Recommended</strong>. Recommended packages are installed along with R but must be loaded before they can be used.</li>
+<li><strong>Other</strong>. Other packages are not installed by default, and must be installed separately.</li>
+</ul>
+<p>The command to find out what packages are available for loading is <code>installed.packages</code>. The output of the function is quite verbose, but we only need the first column:</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">2</span>) </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">installed.packages</span>()[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span>] <span class="co"># Returns only the first five packages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  15.83   17.53   18.23   18.95   19.95   24.17 </code></pre>
+<pre><code>  base64enc       bslib      cachem         cli      digest 
+"base64enc"     "bslib"    "cachem"       "cli"    "digest" </code></pre>
 </div>
 </div>
-<section id="always-remember-to-set-your-seed" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="always-remember-to-set-your-seed"><span class="header-section-number">8.1</span> Always Remember to Set Your Seed!</h2>
-<p>When simulating any random numbers it is essential to set the <strong>random number seed</strong>. Setting the random number seed with <code>set.seed()</code> ensures reproducibility of the sequence of random numbers.</p>
+<p>All the packages that are available at a repository, and whose requirements are matched by the currently running version of R, can be listed using the command <code>available.packages()</code>. A package that is available in the repository but has not yet been installed may be installed using the <code>install.packages()</code> function. If we include the argument <code>dependencies = TRUE</code>, then the function will also install packages that are necessary to run the package or packages of interest; such packages are called dependencies.</p>
+<p>The status of the packages that are installed can be compared with the repository using the <code>old.packages()</code> function, and easily updated using the <code>update.packages()</code> function.</p>
+<p>R can be easily updated with <strong>installr package</strong>. To update R on MacOS, you need to use <strong>updateR” package</strong> instead.</p>
 <p><em>Example:</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.6264538  0.1836433 -0.8356286  1.5952808  0.3295078</code></pre>
-</div>
-</div>
-<p><em>Example: Simulating a Linear Model</em></p>
-<p>Suppose we want to simulate from the following linear model <span class="math inline">\(y=β_0+β_1x+ε\)</span> where <span class="math inline">\(ε ∼ N(0, 22)\)</span></p>
-<p>Assume <span class="math inline">\(x ∼ N(0, 12)\)</span>, <span class="math inline">\(β_0 = 0.5\)</span> and <span class="math inline">\(β_1 = 2\)</span>. The variable <code>x</code> might represent an important predictor of the outcome <code>y</code>.</p>
-<p>Here’s how you could do that in R:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Always set your seed! </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>) </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Simulate predictor variable </span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>) </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Simulate the error term </span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">2</span>) </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute the outcome via the model </span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">+</span> e </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
--6.4084 -1.5402  0.6789  0.6893  2.9303  6.5052 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="random_files/figure-html/unnamed-chunk-3-1.png" class="quarto-discovered-preview-image img-fluid" width="672"></p>
-</div>
-</div>
-</section>
-<section id="random-sampling" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="random-sampling"><span class="header-section-number">8.2</span> Random Sampling</h2>
-<p>The <code>sample()</code> function draws randomly from a specified set of (scalar) objects allowing you to sample from arbitrary distributions of numbers.</p>
-<p><em>Example:</em></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 9 4 7 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Doesn't have to be numbers</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(letters, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "b" "w" "k" "n" "r"</code></pre>
-</div>
-</div>
-<p>To sample more complicated things, such as rows from a <strong>dataframe or a list</strong>, you can sample the indices into an object rather than the elements of the object itself:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(airquality))<span class="do">## Create index vector </span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>samp <span class="ot">&lt;-</span> <span class="fu">sample</span>(idx, <span class="dv">6</span>) <span class="do">##Sample from the index vector </span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>airquality[samp, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Ozone Solar.R Wind Temp Month Day
-107    NA      64 11.5   79     8  15
-120    76     203  9.7   97     8  28
-130    20     252 10.9   80     9   7
-98     66      NA  4.6   87     8   6
-29     45     252 14.9   81     5  29
-45     NA     332 13.8   80     6  14</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"installr"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(installr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">updateR</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -697,13 +633,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./tidy.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidyverse</span></span>
+      <a href="./types.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Types</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./databases.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./manipulation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
