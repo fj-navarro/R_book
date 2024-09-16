@@ -8,18 +8,18 @@ If you’d like to learn how to use the tidyverse effectively, the best place to
 
 -   Install all the packages in the tidyverse by running:
 
-    ``` R
+    ``` r
     install.packages("tidyverse")
     ```
 
 -   Run `library(tidyverse)` to load the core tidyverse and make it available in your current R session.
 
-    ``` {r echo = FALSE}
+    ```{r echo = FALSE}
     library(tidyverse)
     ```
 
     Note the conflicts message that’s printed when you load the tidyverse. It tells you that dplyr overwrites some functions in base R. If you want to use the base version of these functions after loading dplyr, you’ll need to use their full names: `stats::filter()` and `stats::lag()`.
-    
+
 -   Learn more about the tidyverse package [here](https://tidyverse.tidyverse.org)
 
 ## Core Packages
