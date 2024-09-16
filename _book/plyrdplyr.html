@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R from Beginner to Advanced - 6&nbsp; Plyr &amp; Dplyr</title>
+<title>R in Action: From Beginner to Advanced - 6&nbsp; Plyr &amp; Dplyr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">R from Beginner to Advanced</a> 
+      <a href="./">R in Action: From Beginner to Advanced</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -149,26 +149,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./standards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Coding Standards for R</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Objects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Objects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Types</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Types</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./standards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Coding Standards for R</span></span></a>
   </div>
 </li>
       </ul>
@@ -305,6 +305,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./typesofgraphs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -319,13 +331,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -383,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><strong>The plyr package works on every type of data structure, whereas the dplyr package is designed to work only on data frames.</strong></p>
+<p>The <strong>plyr package</strong> works on <strong>every type</strong> of data structure, whereas the <strong>dplyr package</strong> is designed to work only on <strong>dataframes</strong>.</p>
 <section id="plyr" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="plyr"><span class="header-section-number">6.1</span> Plyr</h2>
 <p>The most important utility of the <strong>plyr package</strong> is that a single line of code can perform all the <code>split()</code>, <code>apply()</code>, and <code>combine()</code> steps.</p>
@@ -423,10 +435,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="6.2" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">6.2</span> Dplyr</h2>
 <p>Quite often, in real-life situations, we start our analysis with a <strong>data frame-type structure</strong>. What do we do after getting a dataset and what are the basic data-manipulation tasks we usually perform before starting modeling?:</p>
 <ol type="1">
-<li><p>We check the validity of a dataset based on conditions.</p></li>
-<li><p>We sort the dataset based on some variables, in ascending or descending order.</p></li>
-<li><p>We create new variables based on existing variables.</p></li>
-<li><p>Finally, we summarize them</p></li>
+<li><p>Check the validity of a dataset based on conditions.</p></li>
+<li><p>Sort the dataset based on some variables, in ascending or descending order.</p></li>
+<li><p>Create new variables based on existing variables.</p></li>
+<li><p>Finally, summarize them.</p></li>
 </ol>
 <p><strong>dplyr</strong> can work with other data frame “backends” such as <strong>SQL databases</strong>. In fact, there is an SQL interface for relational databases via the DBI package</p>
 <p><strong>dplyr</strong> can also be integrated with the <strong>data.table package</strong> for large fast tables.</p>
@@ -435,11 +447,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="dplyr-grammar"><span class="header-section-number">6.2.1</span> dplyr Grammar</h3>
 <p>All <strong>dplyr functions</strong> have a few common characteristics:</p>
 <ol type="1">
-<li>The first argument is a data frame.</li>
-<li>The subsequent arguments describe what to do with the data frame specified in the first argument, and you can refer to columns in the data frame directly without using the $ operator (just use the column names).</li>
-<li>The return result of a function is a new data frame</li>
-<li>Data frames must be properly formatted and annotated for this to all be useful. In particular, the data must be tidy. In short, there should be one observation per row, and each column should represent a feature or characteristic of that observation.</li>
+<li>The first argument is a dataframe.</li>
+<li>The subsequent arguments typically describe which columns to operate on using the variable names (without quotes).</li>
+<li>The output is a new datafram (dplyr doesn’t modify the existing original dataset because dplyr functions never modify their inputs).</li>
 </ol>
+<p><strong>Dataframes</strong> must be properly formatted and annotated for this to word. In particular, the data must be <strong>tidy</strong>, namely, there should be one observation per row, and each column should represent a feature or characteristic of that observation.</p>
+<p><strong>dplyr’s verbs</strong> are organized into four groups based on what they operate on: <strong>rows, columns, groups, or tables</strong>.</p>
 <table class="table">
 <caption>Table 2. Dplyr functions</caption>
 <thead>
@@ -463,6 +476,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<p>Because each <strong>verb</strong> does one thing well, solving complex problems will usually require <strong>combining multiple verbs</strong>, and we’ll do so with the <strong>pipe</strong>, <code>|&gt;</code>.</p>
+<p>The <strong>pipe</strong> takes the thing on its left and passes it along to the function on its right so that <code>x |&gt; f(y)</code> is equivalent to f(x, y), and <code>x |&gt; f(y) |&gt; g(z)</code> is equivalent to g(f(x, y), z). The easiest way to pronounce the pipe is <strong>“then”</strong>.</p>
 </section>
 <section id="select" class="level3" data-number="6.2.2">
 <h3 data-number="6.2.2" class="anchored" data-anchor-id="select"><span class="header-section-number">6.2.2</span> select()</h3>
@@ -508,60 +523,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="filter" class="level3" data-number="6.2.5">
 <h3 data-number="6.2.5" class="anchored" data-anchor-id="filter"><span class="header-section-number">6.2.5</span> filter()</h3>
-<p>The <code>filter()</code> function is used to extract subsets of rows from a data frame. This function is similar to the existing <code>subset()</code>.</p>
+<p>The <code>filter()</code> function is used to extract <strong>subsets of rows</strong> from a dataframe. This function is similar to the existing <code>subset()</code>.</p>
 <p><em>Example:</em></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>chic.f <span class="ot">&lt;-</span> <span class="fu">filter</span>(chicago, pm25tmean2 <span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">&amp;</span> tmpd <span class="sc">&gt;</span> <span class="dv">80</span>) </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(chic.f\<span class="sc">$</span>pm25tmean2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Sometimes, it is more important to subset the data frame based on values of a variable or multiple variables.</p>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(chic.f<span class="sc">$</span>pm25tmean2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <strong>tidyverse</strong> alternative writing:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights with a departure dely higher than 120 mins</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dep_delay <span class="sc">&gt;</span> <span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sometimes, it is more important to subset the dataframe based on <strong>values</strong> of a variable or <strong>multiple</strong> variables.</p>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"virginica"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"virginica"</span> <span class="sc">&amp;</span> Sepal.Length <span class="sc">&lt;</span><span class="dv">6</span> <span class="sc">&amp;</span> Sepal. Width <span class="sc">&lt;=</span><span class="fl">2.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"virginica"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(iris, Species<span class="sc">==</span><span class="st">"virginica"</span> <span class="sc">&amp;</span> Sepal.Length <span class="sc">&lt;</span><span class="dv">6</span> <span class="sc">&amp;</span> Sepal. Width <span class="sc">&lt;=</span><span class="fl">2.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Tidyverse:</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights that departed on January 1</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> day <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Flights that departed in January or February</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> month <span class="sc">==</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There’s a useful shortcut when you’re combining <code>|</code> and <code>==</code>: <code>%in%</code>. It keeps rows where the variable equals one of the values on the right:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="arrange" class="level3" data-number="6.2.6">
 <h3 data-number="6.2.6" class="anchored" data-anchor-id="arrange"><span class="header-section-number">6.2.6</span> arrange()</h3>
 <p>The <code>arrange()</code> function is used to reorder rows of a data frame according to one of the variables/columns (while preserving corresponding order of other columns). To sort the whole data frame based on a single variable or multiple variables, we could use the <code>arrange()</code> function:</p>
 <p><em>Example 1:</em></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>chicago <span class="ot">&lt;-</span> <span class="fu">arrange</span>(chicago, date) </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>chicago <span class="ot">&lt;-</span> <span class="fu">arrange</span>(chicago, <span class="fu">desc</span>(date))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Columns can be arranged in descending order</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>chicago <span class="ot">&lt;-</span> <span class="fu">arrange</span>(chicago, date) </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>chicago <span class="ot">&lt;-</span> <span class="fu">arrange</span>(chicago, <span class="fu">desc</span>(date))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Columns can be arranged in descending order</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Example 2:</em></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(iris, Sepal.Length, <span class="fu">desc</span>(Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(iris, Sepal.Length, <span class="fu">desc</span>(Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="slice" class="level3" data-number="6.2.7">
 <h3 data-number="6.2.7" class="anchored" data-anchor-id="slice"><span class="header-section-number">6.2.7</span> slice()</h3>
 <p>We could also extract the subset of a data frame using the <code>slice()</code> function:</p>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(iris, <span class="dv">95</span><span class="sc">:</span><span class="dv">105</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(iris, <span class="dv">95</span><span class="sc">:</span><span class="dv">105</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="distinct" class="level3" data-number="6.2.8">
 <h3 data-number="6.2.8" class="anchored" data-anchor-id="distinct"><span class="header-section-number">6.2.8</span> distinct()</h3>
 <p>Sometimes, we might encounter duplicate observations in a data frame. The <code>distinct()</code> function helps eliminates these observations:</p>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(iris, Species, Petal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(iris, Species, Petal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="group_by-base-aggregate" class="level3" data-number="6.2.9">
 <h3 data-number="6.2.9" class="anchored" data-anchor-id="group_by-base-aggregate"><span class="header-section-number">6.2.9</span> group_by() (base: aggregate() )</h3>
 <p>The <code>group_by()</code> function is used to generate summary statistics from the data frame within strata defined by a variable. In conjunction with the <code>group_by()</code> function we often use the <code>summarize()</code> function.</p>
 <p><em>Example 1:</em></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a year variable using as.POSIXlt()</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>chicago \<span class="ot">&lt;-</span> <span class="fu">mutate</span>(chicago, <span class="at">year =</span> <span class="fu">as.POSIXlt</span>(date)\<span class="sc">$</span>year <span class="sc">+</span> <span class="dv">1900</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="do">## create a separate data frame that splits the original data frame by year</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>years \<span class="ot">&lt;-</span> <span class="fu">group_by</span>(chicago, year)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="do">## compute summary statistics for each year in the data frame </span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(years, <span class="at">pm25 =</span> <span class="fu">mean</span>(pm25, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">o3 =</span> <span class="fu">max</span>(o3tmean2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">no2 =</span> <span class="fu">median</span>(no2tmean2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create a year variable using as.POSIXlt()</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>chicago \<span class="ot">&lt;-</span> <span class="fu">mutate</span>(chicago, <span class="at">year =</span> <span class="fu">as.POSIXlt</span>(date)\<span class="sc">$</span>year <span class="sc">+</span> <span class="dv">1900</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="do">## create a separate data frame that splits the original data frame by year</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>years \<span class="ot">&lt;-</span> <span class="fu">group_by</span>(chicago, year)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="do">## compute summary statistics for each year in the data frame </span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(years, <span class="at">pm25 =</span> <span class="fu">mean</span>(pm25, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">o3 =</span> <span class="fu">max</span>(o3tmean2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">no2 =</span> <span class="fu">median</span>(no2tmean2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Example 2:</em></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Here, group_by() takes the data frame as an input and produces a data frame too. However, this data frame is a special type of data frame where grouping information is stored inside it</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>iris.grouped\<span class="ot">&lt;-</span> <span class="fu">group_by</span>(iris, Species)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="do">## When this special type of data frame (iris_grouped) is supplied as an input of the summarise() function, it knows that the calculation should be group- wise. Here, all the calculations using n(), mean() are performed group-wise</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(iris, <span class="at">meanSL=</span><span class="fu">mean</span>(Sepal.Length), <span class="at">meanSW=</span><span class="fu">mean</span>(Sepal.Width), <span class="at">meanPL=</span><span class="fu">mean</span>(Petal.Length), <span class="at">meanPW=</span><span class="fu">mean</span>(Petal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Here, group_by() takes the data frame as an input and produces a data frame too. However, this data frame is a special type of data frame where grouping information is stored inside it</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>iris.grouped\<span class="ot">&lt;-</span> <span class="fu">group_by</span>(iris, Species)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="do">## When this special type of data frame (iris_grouped) is supplied as an input of the summarise() function, it knows that the calculation should be group- wise. Here, all the calculations using n(), mean() are performed group-wise</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(iris, <span class="at">meanSL=</span><span class="fu">mean</span>(Sepal.Length), <span class="at">meanSW=</span><span class="fu">mean</span>(Sepal.Width), <span class="at">meanPL=</span><span class="fu">mean</span>(Petal.Length), <span class="at">meanPW=</span><span class="fu">mean</span>(Petal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="chaining" class="level3" data-number="6.2.10">
 <h3 data-number="6.2.10" class="anchored" data-anchor-id="chaining"><span class="header-section-number">6.2.10</span> Chaining (%&gt;%)</h3>
 <p>Sometimes, it could be necessary to use multiple functions to perform a single task. The pipeline operator %&gt;% is very handy for stringing together multiple dplyr functions in a sequence of operations.</p>
 <p>This nesting is not a natural way to think about a sequence of operations:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">third</span>(<span class="fu">second</span>(<span class="fu">first</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">third</span>(<span class="fu">second</span>(<span class="fu">first</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The %&gt;% operator allows you to string operations in a left-to-right fashion:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(x) <span class="sc">%&gt;%</span> <span class="fu">second</span>(x) <span class="sc">%&gt;%</span> <span class="fu">third</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">first</span>(x) <span class="sc">%&gt;%</span> <span class="fu">second</span>(x) <span class="sc">%&gt;%</span> <span class="fu">third</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This way we don’t have to create a set of temporary variables along the way or create a massive nested sequence of function calls.</p>
 <p>Once you travel down the pipeline with %&gt;%, the first argument is taken to be the output of the previous element in the pipeline.</p>
 

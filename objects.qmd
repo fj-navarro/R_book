@@ -61,17 +61,52 @@ class(x)
 as.numeric(x)
 ```
 
-## Expressions and Assignments
+## Names
 
-In R an **expression** is used to denote a phrase of code that can be executed. The combination of expressions that are saved for evaluation is called an **assignment**:
+**Object names** must start with a letter and can only contain letters, numbers, `_`, and `.`.
+
+You want your object names to be descriptive, so you’ll need to adopt a convention for multiple words. 
 
 *Example:*
 
-``` r
+``` R
+i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+```
+## R Workspace
+
+The **objects** that you create using R remain in existence until you explicitly delete them or you conclude the session.
+
+-   To **list** all currently defined objects, use `ls()` or `objects()`.
+
+-   To **remove object x**, use `rm(x)`. To **remove all** currently defined objects, use `rm(list = ls())`.
+
+-   To **save all** of your existing objects to a file called `fname` in the current working directory, use `save.image(file = "fname")`.
+
+-   To **save specific** objects (say x and y) use `save(x, y, file = "fname")`.
+
+-   To **load a set** of saved objects use `load(file = "fname")`.
+
+-   To `save` this history to the file `fname` use `savehistory(file = "fname")` and to load the history file fname use `loadhistory(file = "fname")`.
+
+## Expressions and Assignments
+
+In R an **expression** is used to denote a phrase of code that can be executed. 
+
+*Example:*
+
+``` R
 ## An expression
 seq(10, 20, 3)
-
-## An assignment
-x1 <- seq(10, 20, 3)
-x2 <- 4
 ```
+
+The combination of expressions that are saved for evaluation is called an **assignment**:
+
+``` R
+## An assignment
+object_name <- value
+```
+When reading that code, say “object name gets value” in your head. You will make lots of assignments, and `<-` is a pain to type. 
+
+You can save time with RStudio’s keyboard shortcut: **Alt + -** (the minus sign). 

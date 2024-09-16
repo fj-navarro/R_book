@@ -97,6 +97,7 @@ We will make a **distinction between exploratory graphs and final graphs**:
 +---------------------+------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 ## The Base Plotting System
+
 The **base plotting system** is the original plotting system for R. The basic model is sometimes referred to as the "artist's palette" model. The idea is you start with blank canvas and build up from there.
 
 You will typically start with a plot function (or similar plot creating function) to initiate a plot and then annotate the plot. If you don't have a completely well-formed idea of how you want your data to look, you'll often start by "throwing some data on the page" and then slowly add more information to it as our thought process evolves.
@@ -126,7 +127,7 @@ There are a few **downsides** though:
 
 *Example:*
 
-``` R
+``` r
 # Open PDF device; create 'myplot.pdf' in my working directory
 pdf(file = "myplot.pdf", width = 4, height = 3) # The height and width arguments are in units of inches.
 # Create plot and send to a file (no plot appears on screen) 
@@ -137,6 +138,7 @@ title(main = "Old Faithful Geyser data")
 dev.off() 
 # Now you can view the file 'myplot.pdf' on your computer
 ```
+
 Let's further detail each of the steps involved in creating a **base plot**.
 
 ### Graphics Devices
@@ -148,7 +150,7 @@ The most common place for a plot to be "sent" is the **screen** device. Function
 The **list of devices** supported by your installation of R is found in `?Devices`.
 
 -   Using the commands `pdf`, `postscript`, `jpeg`, `png`, or `bmp`, we can also produce graphics in the formats that correspond to these names.
--   The `jpeg`, `png`, and `bmp` graphics are all **raster-style** graphics, which may translate poorly when included in a document. 
+-   The `jpeg`, `png`, and `bmp` graphics are all **raster-style** graphics, which may translate poorly when included in a document.
 -   In contrast, the `pdf`, `postscript`, and `windows metafile` (win.metafile, available on Windows) formats allow for **vector-style** graphics, which are scaleable, and better suited to integration in documents.
 
 +------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
@@ -210,12 +212,13 @@ To change a graphics parameter for the graphics device, we use the `par` command
 The `plot` command offers a wide variety of **options for customizing** the graphic. Each of the following arguments can be used within the plot statement, singly or together, separated by commas
 
 -   `type = "p"`: Determines the type of plot, with options:
+
     -   "p" for points (the default);
     -   "l" for lines;
-    -   "b" for both, with gaps in the lines for the points;
-    ...
+    -   "b" for both, with gaps in the lines for the points; ...
 
     *Example:*
+
     ```{r}
     with(airquality, plot(Wind, Ozone, 
         main = "Ozone and Wind in New York City",
@@ -224,39 +227,45 @@ The `plot` command offers a wide variety of **options for customizing** the grap
     ```
 
 -   `points(x, y)`: To add points (`x[1]`, `y[1]`), (`x[2]`, `y[2]`), ... to the current plot.
+
 -   `lines(x, y)`: To add lines.
+
 -   `abline(v = xpos)` and `abline(h = ypos)`: to draw vertical or horizontal lines. - `col`: Both points and lines take the optional input from `col` (e.g. "red", "blue", etc.). The complete list of available colours can be obtained by the `colours` function (or `colors`).
 
-    *Example:*
-    # Plot with a Regression Line
+    *Example:* \# Plot with a Regression Line
 
     -   First make the plot (as above).
     -   Fit a simple linear regression model using the `lm()` function.
     -   Take the output of `lm()` and pass it to the `abline()` function which automatically takes the information from the model object and calculates the corresponding regression line
 
 -   `text(x, y, labels)`: To add the text labels \[i\] at the point (`x[i]`, `y[i]`). The optional input `pos` is used to indicate where to position the labels in relation to the points.
+
 -   `title(text)`: To add a title, where `text` is a character string.
+
 -   `main = "Plot title goes in here"`: provides the plot title.
+
 -   `xlab = " "` / `ylab = " "`: To add axis labels.
-    
+
     Note: In a call to plot, the arguments for `main`, `sub`, and `xlab` and `ylab` can be character strings or expressions that contain a mathematical expression. For **mathematical typesetting** you can use the functions `expression`(require graphics) and `bquote`(base):
-    
+
     *Example:*
-     
-     ``` R
-     ...
-     xlab = expression(alpha),
-     ylab = expression(100 %*% (alpha^3 - alpha^2) + 15),
-     # Mix of mathematical expressions and character strings into a single expression by using the paste function
-     main = expression(paste("Function: ",
-        f(alpha) == 100 %*% (alpha^3 - alpha^2) + 15)),
+
+    ``` r
+    ...
+    xlab = expression(alpha),
+    ylab = expression(100 %*% (alpha^3 - alpha^2) + 15),
+    # Mix of mathematical expressions and character strings into a single expression by using the paste function
+    main = expression(paste("Function: ",
+       f(alpha) == 100 %*% (alpha^3 - alpha^2) + 15)),
     ...
     ```
-    
+
     `xlab = expression(alpha)` tells R to interpret alpha in the context of the MML (mathematical markup language), producing an α as the label for the x-axis.
 
 -   `pch = k`: Determines the shape of points, with k taking a value from 1 to 25.
+
 -   `lwd = 1`: line width, default 1.
+
 -   `xlim = c(a,b)`/ \``ylim = c(a,b)`: Will set the lower and upper limits of the x-axis/y-axis to be a and b, respectively.
 
 As an **example** we plot part of the parabola y^2^ = 4x, as well as its focus and directrix. We make use of the surprisingly useful input `type = "n"`, which results in the graph dimensions being established, and the axes being drawn, but nothing else.
@@ -286,7 +295,8 @@ A traditional plot can be augmented using any of a number of different tools aft
 1.  Start by creating the **plot object**, which sets up the dimensions of the space, but omit any plot objects for the moment:
 
     *Example:*
-    ``` R
+
+    ``` r
     opar1 <- par(las = 1, mar=c(4,4,3,2))   
     plot(ufc$dbh.cm, ufc$height.m, axes=FALSE, 
         xlab="",
@@ -298,17 +308,19 @@ A traditional plot can be augmented using any of a number of different tools aft
 2.  Next, we **add the points**. Here we use different colours and symbols for different heights of trees: those that are realistic, and those that are not, which may reflect measurement errors. We use the vectorised `ifelse()` function:
 
     *Example:*
-    ``` R
+
+    ``` r
     points(ufc$dbh.cm, ufc$height.m,     
       col = ifelse(ufc$height.m > 4.9, "darkseagreen4", "red"),
       pch = ifelse(ufc$height.m > 4.9, 1, 3)
     )
     ```
+
 3.  Then we **add axes**. The following are the simplest possible calls. We can also control the locations of the tickmarks, and their labels; we can overlay different axes, change colour, and so on. `?axis` provides the details:
 
     *Example:*
-    
-    ``` R
+
+    ``` r
     axis(1)
     axis(2)
     ```
@@ -316,44 +328,42 @@ A traditional plot can be augmented using any of a number of different tools aft
 4.  We can next **add axis labels** using margin text (switching back to vertical direction for the y-axis text):
 
     *Example:*
-    
-    ``` R
+
+    ``` r
     opar2 <- par(las=0)
     mtext("Diameter (cm)", side=1, line=3)
     mtext("Height (m)", side=2, line=3)
     ```
-    
+
 5.  **Wrap the plot** in the traditional frame. As before, we can opt to use different line types and different colours:
 
     *Example:*
-    
-    ``` R
+
+    ``` r
     box()
     ```
-  
+
 6.  Finally, we **add a legend**:
-  
+
     *Example:*
 
-    ``` R
+    ``` r
     legend(x = 60, y = 15, c("Normal trees", "A weird tree"),
         col=c("darkseagreen3", "red"),
         pch=c(1, 3),
         bty="n"
     )
     ```
-  
-    Note the first two arguments: the location of the legend can        also be expressed relative to the graph components, for example,
-    by "bottomright".
+
+    Note the first two arguments: the location of the legend can also be expressed relative to the graph components, for example, by "bottomright".
 
 7.  If we wish, we can return the graphics environment to a previous state:
-    
-    ``` R
+
+    ``` r
     par(opar1)
     ```
-    
-Check out the **playwith package**, which provides interaction with
-graphical objects at a level unattainable in base R.
+
+Check out the **playwith package**, which provides interaction with graphical objects at a level unattainable in base R.
 
 ### Color in Plots
 
@@ -365,7 +375,7 @@ The **grDevices package** has two functions, they differ only in the type of obj
 
 -   **colorRamp**: Take a palette of colors and return a function that takes values between 0 and 1.
 
-    ``` R
+    ``` r
     pal <- colorRamp(c("red", "blue")) 
     pal(0)
     ```
@@ -376,7 +386,7 @@ The **grDevices package** has two functions, they differ only in the type of obj
 
 -   **colorRampPalette**: Takes a palette of colors and returns a function that takes integer arguments and returns a vector of colors interpolating the palette (like `heat.colors()` or `topo.colors()`).
 
-    ``` R
+    ``` r
     pal <- colorRampPalette(c("red", "yellow"))
     pal(3)
     ```
@@ -398,7 +408,7 @@ library(RColorBrewer)
 display.brewer.all()
 ```
 
--   The `brewer.pal()` function creates nice looking color palettes especially for thematic maps: 
+-   The `brewer.pal()` function creates nice looking color palettes especially for thematic maps:
 
     ```{r}
     library(RColorBrewer)
@@ -406,14 +416,14 @@ display.brewer.all()
     ```
 
     These three colors make up your initial palette. Then you can pass them to `colorRampPalette()` to create my interpolating function.
- 
+
     ```{r}
     pal <- colorRampPalette(cols)
     ```
 
     Now you can plot your data using this newly created color (ramp) palette:
 
-    ``` R
+    ``` r
     image(volcano, col = pal(20))
     ```
 
@@ -443,7 +453,7 @@ display.brewer.all()
 
 Note that copying a plot is not an exact operation, so the result may not be identical to the original:
 
-``` R
+``` r
 ## Copy my plot to a PNG file  (follows the previous code from pdf creation)
 dev.copy(png, file = "geyserplot.png") 
 
@@ -459,7 +469,7 @@ dev.off()
 
 ## The Lattice System
 
-Trellis graphics are a data visualisation framework developed at the Bell Labs, which have been implemented in R as the **lattice package**. 
+Trellis graphics are a data visualisation framework developed at the Bell Labs, which have been implemented in R as the **lattice package**.
 
 **Trellis graphics** are a set of techniques for displaying multidimensional data. They allow great flexibility for producing **conditioning plots**; that is, plots obtained by conditioning on the value of one of the variables.
 
@@ -468,7 +478,7 @@ To use Trellis graphics you must first you must load the **lattice package** wit
 ### When to Use Trellis Plots
 
 -   **Lattice plots** tend to be most useful for **conditioning types of plots**, i.e. looking at how y changes with x across levels of z. These types of plots are useful for looking at **multidimensional data** and often allow you to squeeze a lot of information into a single window or page.
--   With the lattice system, plots are created with a single function call, such as `xyplot()` or `bwplot()`. 
+-   With the lattice system, plots are created with a single function call, such as `xyplot()` or `bwplot()`.
 -   Note that there is no real distinction between the functions that create or initiate plots and the functions that annotate plots because **it all happens at once**.
 -   Another difference from base plotting is that things like **margins and spacing** are set automatically. This is possible because entire plot is specified at once via a single function call.
 -   The notion of **panels** comes up a lot with lattice plots because you typically have many panels in a lattice plot (each panel typically represents a condition, like "region").
@@ -480,7 +490,7 @@ To illustrate the use of the **lattice package** we use the *ufc dataset*, where
 
 *Example:*
 
-``` R
+``` r
 # These plots display a distribution of values taken on by the variable dbh, divided up according to the value of the variable species
 densityplot(~ dbh.cm | species, data = ufc) # A density plot
 bwplot(~ dbh.cm | species, data = ufc) # # A box and whiskers plot
@@ -489,18 +499,19 @@ histogram(~ dbh.cm | species, data = ufc) # A histogram
 xyplot(height.m ~ dbh.cm | species, data = ufc) # A scatterplot
 ```
 
-All four commands require a formula object, which is described using `~`and `|`. 
+All four commands require a formula object, which is described using `~`and `|`.
 
--   If a **dataframe** is passed to the function, using the argument `data`, then the column names of the dataframe can be used for describing the model. 
--   We interpret `y ~ x | a` as saying we want `y` as a function of `x`, divided up by the different levels of `a`. 
--   If ``a` is not a factor then a factor will be created by coercion. 
--   If we are just interested in `x` we still include the `~` symbol, so that R knows that we are specifying a model. 
+-   If a **dataframe** is passed to the function, using the argument `data`, then the column names of the dataframe can be used for describing the model.
+-   We interpret `y ~ x | a` as saying we want `y` as a function of `x`, divided up by the different levels of `a`.
+-   If \``a` is not a factor then a factor will be created by coercion.
+-   If we are just interested in `x` we still include the `~` symbol, so that R knows that we are specifying a model.
 -   If we wish to provide within-panel conditioning on a second variable, then we use the group argument.
 
 In order to display **numerous lattice objects** on a graphics device, we call the `print` function with the `split` and more arguments.
 
 *Example:*
-``` R
+
+``` r
 # Place a lattice object (called my.lat) in the top-right corner of a 3-row, 2-column graphics device, and allow for more objects
 print(my.lat, split = c(2,1,2,3), more = TRUE)
 ```
@@ -511,7 +522,7 @@ Graphics produced by lattice are **highly customisable**.
 
 *Example:*
 
-``` R
+``` r
 xyplot(height.m ~ dbh.cm | species,
     data = ufc,
     subset = species %in% list("WC", "GF"),
@@ -523,16 +534,18 @@ xyplot(height.m ~ dbh.cm | species,
     ylab = "Height (m)"
     )
 ```
+
 Note that the `subset` argument is a logical expression or a vector of integers, and is used to restrict the data that are plotted. We can also change the order of the panels using the `index.cond` argument (see `?xyplot` for more details). The panels are plotted bottom left to top right by default, or top left to bottom right if the argument `as.table = TRUE` is supplied.
 
 The `panel` argument accepts a function, the purpose of which is to control the appearance of the plot in each panel. The panel function should have one input argument for each variable in the model, not including the conditioning variable.
 
 ## 3D Plots
+
 R provides considerable functionality for constructing **3D graphics**, using either the **base** graphics engine or the **lattice package**. However, its is recommended to use the **lattice package**, because the data can be supplied to the lattice functions in a familiar structure: observations in rows and variables in columns, unlike that required by the base 3D graphics engine (observations in a grid).
 
 *Example:*
 
-``` R
+``` r
 ufc.plots <- read.csv("../data/ufc-plots.csv")
 str(ufc.plots)
 library(lattice)
@@ -547,7 +560,13 @@ To learn more about **base-graphics 3D plots**, run the demonstrations `demo(per
 
 ## ggplot2
 
-Splits the difference between base and lattice in a number of ways. Taking cues from lattice, the **ggplot2** system automatically deals with spacings, text, titles but also allows you to annotate by "adding" to a plot.
+**ggplot2** is one of the most elegant and most versatile systems for making graphs. **ggplot2** implements the grammar of graphics, a coherent system for describing and building graphs.
+
+**ggplot2** splits the difference between base and lattice in a number of ways. Taking cues from lattice, the ggplot2 system automatically deals with spacings, text, titles but also allows you to annotate by "adding" to a plot.
+
+You can find more information in the Graphs section [here](/ggplot.html).
+
+### Installation
 
 ``` r
 install.packages("ggplot2")
@@ -580,14 +599,15 @@ help.search("geom_", package="ggplot2")
 In ggplot2, `geom` is also the layers of the chart. You can add in one geom object after another, just like adding one layer after another layer.
 
 ``` r
-ggplot(data, aes(x=var1, y=var2)) + geom_point(aes(color="red"))
+ggplot(data, aes(x=var1, y=var2)) + 
+  geom_point(aes(color="red"))
 ```
 
 ### Plotly
 
 **Plotly JS** allows you to create interactive, publication-quality charts. You can create a Plotly chart using **ggplot**:
 
-``` R
+``` r
 install.packages("plotly")
 set.seed(12)
 var1 <- rnorm(100, mean=1, sd=1)

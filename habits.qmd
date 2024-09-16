@@ -1,6 +1,6 @@
 # Programming Habits
 
-We find the following to be useful guidelines: 
+We find the following to be useful guidelines:
 
 -   Start each program with some **comments** giving the name of the program, the author, the date it was written, and what the program does. A description of what a program does should explain what all the inputs and outputs are.
 
@@ -8,4 +8,4 @@ We find the following to be useful guidelines:
 
 -   Use **blank lines** to separate sections of code into related parts, and use **indenting** to distinguish the inside part of an `if` statement or a `for` or `while` loop.
 
-- **Document the programs** that you use in detail, ideally with citations for specific algorithms. There is no worse feeling than returning to undocumented code that had been written several years earlier to try to find and then explain an anomaly.
+-   **Document the programs** that you use in detail, ideally with citations for specific algorithms. There is no worse feeling than returning to undocumented code that had been written several years earlier to try to find and then explain an anomaly.
