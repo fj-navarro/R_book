@@ -4,7 +4,7 @@ project:
 book:
   title: "R in Action: From Beginner to Advanced"
   author: "Francisco J. Navarro"
-  date: "09/16/2024"
+  date: "09/17/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -12,13 +12,16 @@ book:
         - objects.qmd
         - types.qmd   
         - packages.qmd
-        - standards.qmd
-    - part: "Part 1: Data Manipulation"
+        - style.qmd
+    - part: "Part 1: Manipulating Data"
       chapters: 
         - manipulation.qmd
+        - subsetting.qmd
+        - missing.qmd
+        - date.qmd
         - plyrdplyr.qmd
+        - tidyverse.qmd
         - tidy.qmd
-        - random.qmd
         - databases.qmd
     - part: "Part 2: Programming in R"
       chapters:
@@ -38,7 +41,10 @@ book:
         - graphs.qmd
         - ggplot.qmd
         - typesofgraphs.qmd
-    - part: "Part 5: Data Products"
+    - part: "Part 5: Modeling"
+      chapters: 
+        - random.qmd
+    - part: "Part 6: Data Products"
       chapters: 
         - products.qmd
         - reproducible.qmd

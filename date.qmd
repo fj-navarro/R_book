@@ -1,0 +1,88 @@
+# Date and Text Manipulation
+
+## Date Manipulation
+
+In R, **dates** are stored as the number of days elapsed since **January 1, 1970**. The built-in R function `as.Date()` can handle only dates but not time. So if we convert any date object to its internal number, it will show the number of days.
+
+We can reformat the number into a date using the date class.
+
+```{r 8}
+as.numeric(as.Date("1970-01-01")) ## We can also create a date object with other formats
+as.numeric(as.Date("Jan-01-1970", format = "%b-%d-%Y"))
+```
+
+``` r
+## For the complete list of code that is used to specify date formats
+help(strptime)
+```
+
+The **chron package** can handle both date and time. However, it cannot work with time zones.
+
+Using the **POSIXct** and **POSIXlt** class objects, we can work with time zones.
+
+The **lubridate package** has a much more user-friendly functionality to process date and time, with time zone support:
+
+-   It can process date variables in heterogeneous formats.
+-   Note that the default time zone in the mdy, dmy, or ymd function is Coordinated Universal Time (UTC)
+
+``` r
+## creating a heterogeneous date object
+library(lubridate)
+hetero_date <- c("second chapter due on 2013, august, 24", "first chapter submitted on 2013, 08, 18", "2013 aug 23") 
+ymd(hetero_date)
+```
+
+-   the sequence of year, month, and day should be similar across all values within the same object, otherwise during date extraction there will be a missing value that will be generated, along with a warning message.
+
+## Text Manipulation
+
+Besides default R functionality (`paste()`, `nchar()`, `substr()` ...) , there is one contributed package to deal with character data, which is more user friendly and intuitive: **stringr package**.
+
+**Strings** can be arranged into **vectors and matrices** just like numbers. We can also paste strings together using `paste(..., sep)`. Here sep is an optional input, with default value " ", that determines which padding character is to be placed between the strings (which are input where ... appears).
+
+*Example:*
+
+```{r}
+x <- "Citroen SM"
+y <- "Jaguar XK150"
+z <- "Ford Falcon GT-HO"
+(wish.list <- paste(x, y, z, sep = ", "))
+```
+
+Special characters can be included in strings using the escape character `\`:
+
+-   `\"` for "
+-   `\n` for a newline
+-   `\t` for a tab
+-   `\b` for a backspace
+-   `\\` for `\`
+
+**Text data** can be used to retrieve information in sentiment analysis and even entity recognition.
+
+### Sources of Text data
+
+Text data can be found on tweets from any individual, or from any company, Facebook status updates, RSS feeds from any news site, Blog articles, Journal articles, Newspapers, Verbatim transcripts of an in-depth interview.
+
+For example, t extract **Twitter data**, we can use `tweetR()` and, to extract data from **Facebook**, we could use `facebookR()`.
+
+### Getting Text Data
+
+The easiest way to get text data is to import from a .csv file where some of the variables contain character data. We have to protect automatic factor conversion by specifying the `stringsAsFactors = FALSE argument`
+
+*Example 1:* The tweets.txt file is the plain text file. We will import this file using the generic `readLines()` function. It is a vector of characters (not a data.frame).
+
+*Example 2:* Html (this is also a character string):
+
+``` r
+conURL <- "http://en.wikipedia.org/wiki/R_%28programming_language%29"
+# Establish the connection with the URL 
+link2URL <- url(conURL) 
+# Reading html code
+htmlCode <- readLines(link2URL)
+# Closing the connection
+close(link2URL)
+# Printing the result 
+htmlCode
+```
+
+The **tm** text mining library has some other functions to import text data from various files such as PDF files, plain text files, and even from doc files.

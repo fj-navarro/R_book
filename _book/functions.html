@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R in Action: From Beginner to Advanced - 12&nbsp; Functions</title>
+<title>R in Action: From Beginner to Advanced - 15&nbsp; Functions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./habits.html">Part 2: Programming in R</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Functions</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./habits.html">Part 2: Programming in R</a></li><li class="breadcrumb-item"><a href="./functions.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,8 +167,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./standards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Coding Standards for R</span></span></a>
+  <a href="./style.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Code Style</span></span></a>
   </div>
 </li>
       </ul>
@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Part 1: Data Manipulation</span></a>
+ <span class="menu-text">Part 1: Manipulating Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -185,31 +185,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reading and Writing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./subsetting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subsetting R Objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing Values</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./date.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./plyrdplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
   </div>
 </li>
       </ul>
@@ -226,31 +244,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,25 +285,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inferential.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,19 +320,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./typesofgraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
   </div>
 </li>
       </ul>
@@ -322,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Part 5: Data Products</span></a>
+ <span class="menu-text">Part 5: Modeling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -330,14 +348,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./random.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Part 6: Data Products</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -358,15 +393,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#building-functions" id="toc-building-functions" class="nav-link active" data-scroll-target="#building-functions"><span class="header-section-number">12.1</span> Building Functions</a></li>
-  <li><a href="#call-or-run-a-function" id="toc-call-or-run-a-function" class="nav-link" data-scroll-target="#call-or-run-a-function"><span class="header-section-number">12.2</span> Call or Run a Function</a></li>
-  <li><a href="#a-function-return" id="toc-a-function-return" class="nav-link" data-scroll-target="#a-function-return"><span class="header-section-number">12.3</span> A Function Return</a></li>
-  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments"><span class="header-section-number">12.4</span> Arguments</a>
+  <li><a href="#building-functions" id="toc-building-functions" class="nav-link active" data-scroll-target="#building-functions"><span class="header-section-number">15.1</span> Building Functions</a></li>
+  <li><a href="#call-or-run-a-function" id="toc-call-or-run-a-function" class="nav-link" data-scroll-target="#call-or-run-a-function"><span class="header-section-number">15.2</span> Call or Run a Function</a></li>
+  <li><a href="#a-function-return" id="toc-a-function-return" class="nav-link" data-scroll-target="#a-function-return"><span class="header-section-number">15.3</span> A Function Return</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments"><span class="header-section-number">15.4</span> Arguments</a>
   <ul class="collapse">
-  <li><a href="#argument-matching" id="toc-argument-matching" class="nav-link" data-scroll-target="#argument-matching"><span class="header-section-number">12.4.1</span> Argument Matching</a></li>
-  <li><a href="#the-argument" id="toc-the-argument" class="nav-link" data-scroll-target="#the-argument"><span class="header-section-number">12.4.2</span> The … Argument</a></li>
+  <li><a href="#argument-matching" id="toc-argument-matching" class="nav-link" data-scroll-target="#argument-matching"><span class="header-section-number">15.4.1</span> Argument Matching</a></li>
+  <li><a href="#the-argument" id="toc-the-argument" class="nav-link" data-scroll-target="#the-argument"><span class="header-section-number">15.4.2</span> The … Argument</a></li>
   </ul></li>
-  <li><a href="#scoping-rules" id="toc-scoping-rules" class="nav-link" data-scroll-target="#scoping-rules"><span class="header-section-number">12.5</span> Scoping Rules</a></li>
+  <li><a href="#scoping-rules" id="toc-scoping-rules" class="nav-link" data-scroll-target="#scoping-rules"><span class="header-section-number">15.5</span> Scoping Rules</a></li>
   </ul>
 </nav>
     </div>
@@ -375,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Functions</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></h1>
 </div>
 
 
@@ -393,8 +428,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Functions</strong> are one of the main building blocks for large programs: they are an essential tool for structuring complex algorithms. Arguably one of R’s strengths as a tool for scientific programming is the ease with which it can be extended for specific purposes, using functions written by the <strong>R community</strong> and made available as <strong>R packages</strong>.</p>
 <p>The most important advantage of using a function is that once it is loaded, it can be <strong>used again and again</strong> without having to reload it. <strong>User-defined functions</strong> can be used in the same way as predefined functions are used in R. In particular they can be used within other functions.</p>
 <p>The second most important use of functions is to <strong>break down</strong> a programming task into smaller logical units. Large programs are typically made up of a number of smaller functions, each of which does a simple well-defined task.</p>
-<section id="building-functions" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="building-functions"><span class="header-section-number">12.1</span> Building Functions</h2>
+<section id="building-functions" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="building-functions"><span class="header-section-number">15.1</span> Building Functions</h2>
 <p><strong>Functions</strong> are often used to encapsulate a sequence of expressions that need to be executed numerous times, perhaps under slightly different conditions. Functions are also often written when code must be shared with others or the public.</p>
 <p>The writing of a function allows a developer to create an <strong>interface to the code</strong>, that is explicitly specified with a <strong>set of parameters</strong>.</p>
 <p>A function has the general <strong>form</strong>:</p>
@@ -425,8 +460,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>formals()</code> function returns a list of all the formal arguments of a function.</p>
 <p>Note that functions have their own <strong>class</strong>.</p>
 </section>
-<section id="call-or-run-a-function" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="call-or-run-a-function"><span class="header-section-number">12.2</span> Call or Run a Function</h2>
+<section id="call-or-run-a-function" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="call-or-run-a-function"><span class="header-section-number">15.2</span> Call or Run a Function</h2>
 <p>To <strong>call or run the function</strong> we type (for example) <code>name(x1, x2)</code>. The value of this expression is the value of the expression <code>output</code>. To calculate the value of <code>output</code> the function first copies the value of <code>x1</code> to <code>argument_1</code>, <code>x2</code> to <code>argument_2</code>, and so on. The arguments then act as variables within the function. We say that the arguments have been passed to the function. Next the function evaluates the grouped expressions contained in the braces <code>{ }</code>; the value of the expression <code>output</code> is returned as the value of the function.</p>
 <p>To <strong>use the function</strong> we first load it (using source or by copying and pasting into R), then call it, supplying suitable arguments.</p>
 <p><em>Example:</em></p>
@@ -435,14 +470,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">quad3</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that the <strong>name of the function</strong> does not have to match the <strong>name of the program file</strong>, but when a program consists of a single function this is conventional.</p>
 </section>
-<section id="a-function-return" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="a-function-return"><span class="header-section-number">12.3</span> A Function Return</h2>
+<section id="a-function-return" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="a-function-return"><span class="header-section-number">15.3</span> A Function Return</h2>
 <p><strong>A function always returns a value</strong>. For some functions the value returned is unimportant, for example if the function has written its output to a file then there may be no need to return a value as well. In such cases one usually omits the return statement, or returns NULL.</p>
 <p>A function may have <strong>more than one return statement</strong>, in which case it stops after executing the first one it reaches. If there is no <code>return(output)</code> statement then the value returned by the function is the value of the last expression in the braces.</p>
 <p>If, when called, the value returned by a function (or any expression) is not assigned to a variable, then it is printed. The expression <code>invisible(x)</code> will return the same value as x, but its value is not printed. For example, some versions of the <code>summary()</code> function use invisible on their returned object.</p>
 </section>
-<section id="arguments" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="arguments"><span class="header-section-number">12.4</span> Arguments</h2>
+<section id="arguments" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="arguments"><span class="header-section-number">15.4</span> Arguments</h2>
 <p>We think about <strong>arguments</strong> both when the functions are written and when they are called. The arguments of an existing function can be obtained by calling the <code>formals</code> function.</p>
 <p>In order to simplify calling functions, some arguments may be assigned <strong>default values</strong>, which are used in case the argument is not provided in the call to the function:</p>
 <p><em>Example:</em></p>
@@ -474,8 +509,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">funk</span>(Peter)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">match.arg</span>(vibe) (from <span class="co">#2) :</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">'arg'</span> should be one of <span class="st">"Do"</span>, <span class="st">"Be"</span>, <span class="st">"Dooby"</span>, <span class="st">"Dooo"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="argument-matching" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="argument-matching"><span class="header-section-number">12.4.1</span> Argument Matching</h3>
+<section id="argument-matching" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="argument-matching"><span class="header-section-number">15.4.1</span> Argument Matching</h3>
 <p>R functions arguments can be matched (called) <strong>positionally</strong> or <strong>by name</strong>:</p>
 <ul>
 <li><p><strong>Positional matching</strong> just means that R assigns the first value to the first argument, the second value to second argument, etc.:</p>
@@ -505,8 +540,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div></li>
 </ul>
 </section>
-<section id="the-argument" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="the-argument"><span class="header-section-number">12.4.2</span> The … Argument</h3>
+<section id="the-argument" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="the-argument"><span class="header-section-number">15.4.2</span> The … Argument</h3>
 <p><code>...</code>indicates a variable number of arguments that are usually passed on to other functions, it is often used when extending another function and you don’t want to copy the entire argument list of the original function.</p>
 <p>The <code>...</code> argument is necessary when the number of arguments passed to the function cannot be known in advance, e.g.&nbsp;<code>paste()</code>, <code>cat()</code>.</p>
 <p>Any arguments that appear after <code>...</code> on the argument list must be named explicitly and cannot be partially matched or matched positionally.</p>
@@ -530,8 +565,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In general, <strong>naming the arguments</strong> in the function call is good practice, because it increases the readability and eliminates one potential source of errors.</p>
 </section>
 </section>
-<section id="scoping-rules" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="scoping-rules"><span class="header-section-number">12.5</span> Scoping Rules</h2>
+<section id="scoping-rules" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="scoping-rules"><span class="header-section-number">15.5</span> Scoping Rules</h2>
 <p>Arguments and variables that are defined within a function exist only within that function. That is, if you define and use a variable <code>x</code> inside a function, it does not exist outside the function. If variables with the same name exist inside and outside a function, then they are separate and do not interact at all. You can think of a function as a separate environment that communicates with the outside world only through the values of its arguments and its output expression. For example if you execute the command <code>rm(list=ls())</code> inside a function (which is only rarely a good idea), you only delete those objects that are defined inside the function.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -802,12 +837,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./logic.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logic</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./debugging.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Debugging</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

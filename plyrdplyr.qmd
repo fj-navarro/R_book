@@ -57,8 +57,6 @@ All **dplyr functions** have a few common characteristics:
 2.  The subsequent arguments typically describe which columns to operate on using the variable names (without quotes).
 3.  The output is a new datafram (dplyr doesn’t modify the existing original dataset because dplyr functions never modify their inputs).
 
-**Dataframes** must be properly formatted and annotated for this to word. In particular, the data must be **tidy**, namely, there should be one observation per row, and each column should represent a feature or characteristic of that observation.
-
 **dplyr’s verbs** are organized into four groups based on what they operate on: **rows, columns, groups, or tables**.
 
 | Columns      | Rows                      |
@@ -72,23 +70,32 @@ All **dplyr functions** have a few common characteristics:
 
 Because each **verb** does one thing well, solving complex problems will usually require **combining multiple verbs**, and we’ll do so with the **pipe**, `|>`.
 
-The **pipe** takes the thing on its left and passes it along to the function on its right so that `x |> f(y)` is equivalent to f(x, y), and `x |> f(y) |> g(z)` is equivalent to g(f(x, y), z). The easiest way to pronounce the pipe is **“then”**.
+For verbs to work at all, **dataframes** must be properly formatted and annotated. In particular, the data must be **tidy**, that is, the data comply with the following three interrelated rules:
+
+-   Each **variable** is a column; each column is a variable.
+-   Each **observation** is a row; each row is an observation.
+-   Each **value** is a cell; each cell is a single value.
+
+Note that there’s a specific **advantage** to placing variables in columns because it allows R’s vectorized nature to shine. **dplyr**, **ggplot2**, and all the other packages in the tidyverse are designed to work with tidy data.
 
 ### The Pipe
-Its real power arises when you start to combine **multiple verbs**. For example, imagine that you wanted to find the fastest flights to Houston’s IAH airport: you need to combine `filter()`, `mutate()`, `select()`, and `arrange()`:
 
-``` R
+The real power of dplyr arises when you start to combine **multiple verbs**. For example, imagine that you wanted to find the fastest flights to Houston’s IAH airport: you need to combine `filter()`, `mutate()`, `select()`, and `arrange()`:
+
+The **pipe** takes the thing on its left and passes it along to the function on its right so that `x |> f(y)` is equivalent to f(x, y), and `x |> f(y) |> g(z)` is equivalent to g(f(x, y), z). The easiest way to pronounce the pipe is **“then”**.
+
+*Example:*
+``` r
 flights |> 
   filter(dest == "IAH") |> 
   mutate(speed = distance / air_time * 60) |> 
   select(year:day, dep_time, carrier, flight, speed) |> 
   arrange(desc(speed))
 ```
+
 Even though this pipeline has four steps, it’s easy to skim because the verbs come at the start of each line: start with the flights data, then filter, then mutate, then select, then arrange.
 
-**IMPORTANT:** **Chaining** `(|>)` is a powerful feature of **dplyr** that allows the output from one verb to be piped into the input of another verb using a short, easy-to-read syntax.
-
-To **add the pipe** to your code, we recommend using the built-in keyboard shortcut Ctrl/Cmd + Shift + M. You’ll need to make one change to your RStudio options to use `|>` instead of `%>%`. 
+**IMPORTANT:** **Chaining** `(|>)` is a powerful feature of **dplyr** that allows the output from one verb to be piped into the input of another verb using a short, easy-to-read syntax. To **add the pipe** to your code, we recommend using the built-in keyboard shortcut Ctrl/Cmd + Shift + M. You’ll need to make one change to your RStudio options to use `|>` instead of `%>%`.
 
 ### filter()
 
@@ -204,7 +211,7 @@ flights |>
 
 ### slice()
 
-You can extract the subset of a dataframe using the `slice()` function. 
+You can extract the subset of a dataframe using the `slice()` function.
 
 *Example:*
 
@@ -214,7 +221,7 @@ slice(iris, 95:105)
 
 There are **five handy functions** that allow you to extract specific rows within each group:
 
-``` R
+``` r
 # Takes the first row from each group.
 df |> slice_head(n = 1)
 # Takes the last row in each group
@@ -231,7 +238,7 @@ You can vary `n` to select more than one row, or instead of `n =`, you can use `
 
 *Example:*
 
-``` R
+``` r
 flights |> 
   group_by(dest) |> 
   slice_max(arr_delay, n = 1) |>
@@ -244,7 +251,7 @@ Most of the time, you do not work on all the variables in a dataframe. Selecting
 
 *Example:*
 
-``` R
+``` r
 chicago <- readRDS("chicago.rds")
 names(chicago)[1:3] 
 select(chicago, c("city", "tmpd"))
@@ -256,28 +263,28 @@ subset <- select(chicago, city:dptp)
 
 -   Select columns by name:
 
-    ``` R
+    ``` r
     flights |> 
       select(year, month, day)
     ```
 
 -   Select all columns between year and day (inclusive):
 
-    ``` R
+    ``` r
     flights |> 
       select(year:day)
     ```
 
 -   Select all columns except those from year to day (inclusive):
 
-    ``` R
+    ``` r
     flights |> 
       select(!year:day)
     ```
-    
+
 -   Select all columns that are characters:
 
-    ``` R
+    ``` r
     flights |> 
       select(where(is.character))
     ```
@@ -293,12 +300,12 @@ You can **rename variables** as you `select()` them by using `=`. The new name a
 
 *Example:*
 
-``` R
+``` r
 flights |> 
   select(tail_num = tailnum)
 ```
 
-You can also **omit variables** using the `select()` function by using the negative sign: 
+You can also **omit variables** using the `select()` function by using the negative sign:
 
 *Example:*
 
@@ -320,7 +327,7 @@ The syntax inside the `rename()` function is to have the **new name** on the lef
 
 **Tidyverse**
 
-``` R
+``` r
 flights |> 
   rename(tail_num = tailnum)
 ```
@@ -340,17 +347,19 @@ mutate(iris, SLm=Sepal.Length/100, SWm= Sepal.Width/100, PLm=Petal. Length/100, 
 
 **Tidyverse:**
 
-``` R
+``` r
 flights |> 
   mutate(
     gain = dep_delay - arr_delay,
     speed = distance / air_time * 60
   )
 ```
+
 You can use the `.before` argument to add the variables to the **left-hand side**.
 
 *Example:*
-``` R
+
+``` r
 flights |> 
   mutate(
     gain = dep_delay - arr_delay,
@@ -365,7 +374,7 @@ Note that since we haven’t assigned the result of the above computation back t
 
 Alternatively, you can control which variables are kept with the `.keep` argument. A particularly useful argument is `"used"` which specifies that we only keep the columns that were used in the “create” step with `mutate()`. For example, the following output will contain only the variables dep_delay, arr_delay, air_time, gain, hours, and gain_per_hour.
 
-``` R
+``` r
 flights |> 
   mutate(
     gain = dep_delay - arr_delay,
@@ -392,14 +401,14 @@ Use `relocate()` to move variables around. You might want to collect related var
 
 **Tidyverse**
 
-``` R
+``` r
 flights |> 
   relocate(time_hour, air_time)
 ```
 
 You can also specify where to put them using the `.before` and `.after` arguments, just like in `mutate()`:
 
-``` R
+``` r
 flights |> 
   relocate(year:dep_time, .after = time_hour)
 flights |> 
@@ -412,7 +421,7 @@ The `group_by()` function is used to divide your dataset into groups meaningful 
 
 *Example 1:*
 
-``` R
+``` r
 flights |> 
   group_by(month)
 ```
@@ -421,7 +430,7 @@ You can create groups using **more than one variable**. For example, we could ma
 
 *Example:*
 
-``` R
+``` r
 daily <- flights |>  
   group_by(year, month, day)
 ```
@@ -432,18 +441,18 @@ You might also want to **remove grouping** from a dataframe without using summar
 
 *Example:*
 
-``` R
+``` r
 daily |> 
   ungroup()
 ```
 
 ### summarize()
 
-The `summarize()` function is used to calculate a single summary statistic, and reduces the data frame to have a single row for each group.  
+The `summarize()` function is used to calculate a single summary statistic, and reduces the data frame to have a single row for each group.
 
 *Example:*
 
-``` R
+``` r
 flights |> 
   group_by(month) |> 
   summarize(
@@ -455,7 +464,7 @@ You can create any number of **summaries in a single call** to `summarize()`. On
 
 *Example:*
 
-``` R
+``` r
 flights |> 
   group_by(month) |> 
   summarize(

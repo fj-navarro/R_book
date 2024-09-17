@@ -1,6 +1,6 @@
-# Coding Standards for R
+# Code Style
 
-Even as a very new programmer, it’s a good idea to work on your code style. Using a consistent style makes it easier for others (including future-you!) to read your work and is particularly important if you need to get help from someone else. 
+Even as a very new programmer, it’s a good idea to work on your code style. Using a consistent style makes it easier for others (including future-you!) to read your work and is particularly important if you need to get help from someone else.
 
 A summary set of recommendations:
 
@@ -26,7 +26,7 @@ Put **spaces** on either side of mathematical operators apart from `^` (i.e. `+`
 
 *Example:*
 
-``` R
+``` r
 # Strive for
 z <- (a + b)^2 / d
 
@@ -36,7 +36,7 @@ z<-( a + b ) ^ 2/d
 
 Don’t put spaces inside or outside parentheses for regular function calls. Always put a space after a comma, just like in standard English.
 
-``` R
+``` r
 # Strive for
 mean(x, na.rm = TRUE)
 
@@ -48,7 +48,7 @@ mean (x ,na.rm=TRUE)
 
 `|>` should always have a space before it and should typically be the last thing on a line. This makes it easier to add new steps, rearrange existing steps, modify elements within a step, and get a sky view by skimming the verbs on the left-hand side.
 
-``` R
+``` r
 # Strive for 
 flights |>  
   filter(!is.na(arr_delay), !is.na(tailnum)) |> 
@@ -60,7 +60,7 @@ flights|>filter(!is.na(arr_delay), !is.na(tailnum))|>count(dest)
 
 If the function you’re piping into has **named arguments** (like `mutate()` or `summarize()`), put each argument on a new line. If the function doesn’t have named arguments (like `select()` or `filter()`), keep everything on one line unless it doesn’t fit, in which case you should put each argument on its own line.
 
-``` R
+``` r
 # Strive for
 flights |>  
   group_by(tailnum) |> 
@@ -79,7 +79,7 @@ flights |>
 
 After the first step of the pipeline, **indent** each line by **two spaces**. RStudio will automatically put the spaces in for you after a line break following a `|>` . If you’re putting each argument on its own line, indent by an extra two spaces. Make sure `)`is on its own line, and un-indented to match the horizontal position of the function name.
 
-``` R
+``` r
 # Strive for 
 flights |>  
   group_by(tailnum) |> 
