@@ -1,0 +1,63 @@
+# Writing Data
+
+R provides a number of commands for **writing** output to a file. You will generally use `write()` or `write.table()` for writing numeric values and `cat()` for writing text, or a combination of numeric and character values.
+
+The command `write()` has the form:
+
+``` r
+write(x, file = "data", ncolumns = if(is.character(x)) 1 else 5, append = FALSE)
+```
+
+To write a **dataframe** to a file we use this:
+
+``` r
+write.table(x, file = "", append = FALSE, sep = " ", row.names = TRUE, col.names = TRUE)
+```
+
+Here `x` is the vector to be written. If `x` is a **matrix or array** then it is converted to a vector (column by column) before being written. The other parameters are optional.
+
+We can identify the **complete rows** from a two-dimensional object such as a dataframe (that is, rows that have no missing values) via the `complete.cases` command. We can easily remove rows with missing values using the `na.omit` function.
+
+## Writing Matrices
+
+Because `write()` converts matrices to vectors before writing them, using it to write a matrix to a file can cause unexpected results. Since R stores its matrices by column, you should pass the **transpose of the matrix to write** if you want the output to reflect the matrix structure.
+
+``` r
+x <- matrix(1:24, nrow = 4, ncol = 6)
+write(t(x), file = "../results/out.txt", ncolumns = 6)
+```
+
+## `cat()`
+
+A more flexible command for writing to a file is `cat()`, which has the form:
+
+``` r
+cat(..., file = "", sep = " ", append = FALSE)
+```
+
+Note that cat does not automatically write a newline after the expressions *....* If you want a newline you must explicitly include the string `\n`.
+
+## Tabular Data
+
+For **writing tabular data** to text files (i.e. CSV) or connections you may use `write.table()`, which has this format:
+
+*Example:*
+
+``` r
+write.table()
+```
+
+## `dump()`
+
+There is also the very useful `dump()` function, which creates a text representation of almost any R object that can subsequently be read by source.
+
+*Example:*
+
+``` r
+x <- matrix(rep(1:5, 1:5), nrow = 3, ncol = 5)
+dump("x", file = "../results/x.txt")
+rm(x)
+source("../results/x.txt")
+x
+```
+

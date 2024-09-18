@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.290">
+<meta name="generator" content="quarto-1.3.294">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R in Action: From Beginner to Advanced - 3&nbsp; Packages</title>
+<title>R for Research in Action - 3&nbsp; Packages</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">R in Action: From Beginner to Advanced</a> 
+      <a href="./">R for Research in Action</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -430,8 +430,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">installed.packages</span>()[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span>] <span class="co"># Returns only the first five packages</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    askpass   backports   base64enc         bit       bit64 
-  "askpass" "backports" "base64enc"       "bit"     "bit64" </code></pre>
+<pre><code>         abc     abc.data      askpass   assertthat    backports 
+       "abc"   "abc.data"    "askpass" "assertthat"  "backports" </code></pre>
 </div>
 </div>
 <p>All the packages that are available at a repository, and whose requirements are matched by the currently running version of R, can be listed using the command <code>available.packages()</code>. A package that is available in the repository but has not yet been installed may be installed using the <code>install.packages()</code> function. If we include the argument <code>dependencies = TRUE</code>, then the function will also install packages that are necessary to run the package or packages of interest; such packages are called dependencies.</p>

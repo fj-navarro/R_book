@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "R in Action: From Beginner to Advanced"
+  title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "09/17/2024"
+  date: "09/18/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -15,7 +15,9 @@ book:
         - style.qmd
     - part: "Part 1: Manipulating Data"
       chapters: 
-        - manipulation.qmd
+        - reading.qmd
+        - writing.qmd
+        - transforming.qmd
         - subsetting.qmd
         - missing.qmd
         - date.qmd

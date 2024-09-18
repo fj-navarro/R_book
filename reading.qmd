@@ -1,0 +1,145 @@
+# Reading Data
+
+## Reading Data
+
+R provides a number of ways to read data from a file, the **most flexible** of which is the `scan()` function. We use scan to read a vector of values from a file. It has the form:
+
+*Example:*
+
+``` r
+scan(file = "", what = 0, n = -1, sep = "", skip = 0, quiet = FALSE)
+```
+
+`scan()` returns a vector.
+
+### Tabular data
+
+It is common for data to be arranged in **tables**, with columns corresponding to variables and rows corresponding to separate observations. These **dataframes** are usually read into R using the function `read.table()`, which has the form:
+
+``` r
+read.table(file, header = FALSE, sep = "") 
+# read.table() returns a dataframe
+```
+
+There are two commonly used **variants** of `read.table()`:
+
+-   `read.csv()` is for comma-separated data and is equivalent to `read.table(file, header = TRUE, sep = ",")`
+
+-   `read.delim()` is for tab-delimited data and is equivalent to`read.table(file, header = TRUE, sep = "\t")`.
+
+*Example:*
+
+``` r
+## skips the first 2 lines
+anscombe <- read.csv("CSVanscombe.csv", skip=2) 
+```
+
+If a **.csv file** contains both numeric and character variables, and we use `read.csv()`, the character variables get automatically converted to the **factor** type. We can prevent character variables from this automatic conversion to factor, by specifying `stringsAsFactors=FALSE` within the `read.csv()` function.
+
+*Example:*
+
+``` r
+iris_b <- read.csv("iris.csv", stringsAsFactors=F)
+```
+
+Sometimes, it could happen that the file extension is **.csv**, but the data is **not comma separated**. In that case, we can still use the `read.csv()` function, but in this case we have to specify the separator:
+
+*Example:*
+
+``` r
+read.csv("iris_semicolon.csv", stringsAsFactors = FALSE, sep=";")
+anscombe_tab_2 <- read.table("anscombe.txt", header=TRUE)
+```
+
+Note that you can assign your **own column names** after reading the dataframe using the `names()` function, or when you read it in, using the `col.names` argument, which should be assigned a character vector the same length as the number of columns. If there is no header and no col.names argument, then R uses the names "V1", "V2", etc.
+
+After reading the file, you can use the `head()` and `tail()` functions to examine the object:
+
+*Example:*
+
+``` r
+head(ufc)
+tail()
+```
+
+### Read line by line
+
+Text files can be **read line by line** using the `readLines()` function:
+
+*Example:*
+
+``` r
+con <- gzfile("words.gz") 
+x <- readLines(con, 10)
+```
+
+This approach is useful because it allows you to read from a file **without having to uncompress the file first**, which would be a waste of space and time.
+
+To read in lines of **webpages** it can be useful the `readLines()` function:
+
+*Example:*
+
+``` r
+con <- url("http://www.jhsph.edu", "r") ## Read the web page 
+x <- readLines(con) ## Print out the first few lines head(x)
+```
+
+### xls format
+
+If the dataset is stored in the ***.xls or*** **.xlsx format** you can use `read.xlsx2`:
+
+*Example:*
+
+``` r
+library(xlsx) 
+anscombe_xlsx <- read.xlsx2("xlsxanscombe.xlsx", sheetIndex=1)
+```
+
+### RData format
+
+If you need to store more than one dataset in a single file we can use the **\*.RData format**:
+
+*Example:*
+
+``` r
+## example to load multiple datasets, and a vector of R objects from a single *.RData
+load("robjects.RData")
+## to check if objects have been loaded correctly
+objects()
+```
+
+### Import Stata/SPSS file
+
+To import a **Stata/SPSS file** into R:
+
+-   First you need to call the foreign library:
+
+    ``` r
+    install.packages("foreign")
+    ```
+
+-   Then use `read.data()`/`read.spss()`:
+
+    ``` r
+    data <- read.spss(file="data.spss", to.data.frame=TRUE)
+    ```
+
+-   The output will always be a data frame:
+
+    ``` r
+    write.foreign(data, "mydata.txt", "mydata.sps", package="SPSS")
+    ```
+
+### JSON File
+
+To read a **JSON file**:
+
+``` r
+install.packages("rjson") 
+data <- fromJSON(file="data.json")
+data2 <- as.data.frame(data)
+```
+
+### `view()`
+
+To view the data variable, you can use the `view()`.

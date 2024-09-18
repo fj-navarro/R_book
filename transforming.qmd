@@ -1,0 +1,144 @@
+# Transforming Data
+
+## Removing Duplicates
+
+You can **remove duplicates** based on the `x` variable using:
+
+``` r
+x <- c(1, 2, NA, 4, NA, 5) 
+data[!duplicated(data$x), ]
+```
+
+## Reshaping Datasets
+
+Statistical analysis sometimes requires wide data and sometimes long data. In such cases, we need to be able to fluently and fluidly **reshape** the data to meet the requirements of statistical analysis. The function `reshape()` reshapes a dataframe between ‘wide’ format (with repeated measurements in separate columns of the same row) and ‘long’ format (with the repeated measurements in separate rows).
+
+Data reshaping is just a rearrangement of the form of the data---it does not change the content of the dataset.
+
+*Example:*
+
+``` r
+students <- data.frame(sid=c(1,1,2,2), exmterm=c(1,2,1,2), math=c(50,65,75,69), 
+literature=c(40,45,55,59), language=c(70,80,75,78))
+
+# Reshaping dataset using reshape function to wide format
+wide_students <- reshape(students, direction="wide", idvar="sid", timevar="exmterm")
+
+# Now again reshape to long format
+long_students <- reshape (wide_students, direction="long", idvar="id")
+```
+
+### The reshape package
+
+-   **Melting data (molten data)**:
+
+    -   Though melting can be applied to different R objects, the most common use is to melt a data frame.
+    -   To perform melting operations using the melt function, we need to know what the identification variables and measured variables in the original input dataset are.
+    -   One important thing to note is that, whenever we use the melt function, all the measured variables should be of the same type, that is, the measured variables should be either numeric, factor, character, or date.
+    -   To deal with the implicit missing value, it is good to use `na.rm = TRUE` with the melt function to remove the structural missing value (i.e., it will fill empty cells in the data table with NA).
+
+    *Example:*
+
+    ``` r
+    ## the format of the resulting table is id/variable/value
+    melt(students, id=c("sid","exmterm"), measured=c("math", "literature", "language"))
+    ```
+
+-   **Casting molten data**:
+
+    -   Once we have molten data, we can rearrange it in any layout using the cast function from the reshape package.
+    -   There are two main arguments required to cast molten data: data and formula.
+    -   The basic casting formula is col_var_1+col_var_2 \~ row_var_1+ row_var_2, which describes the variables to appear in columns and rows.
+
+    *Example:*
+
+    ``` r
+    # to return to the original data structure  
+    cast(molten_students, sid+exmterm ~ variable)
+    ```
+
+-   For faster and large data rearrangement, use the **reshape2 package** and the functions `dcast` (data frames) and `acast` (arrays):
+
+    *Example:*
+
+    ``` r
+    acast(molten_students, sid+exmterm~variable)
+    ```
+
+## Missing Values
+
+R represents missing observations through the data value **NA**. It is easiest to think of **NA** values as place holders for data that should have been there, but, for some reason, are not.
+
+### Detect NA
+
+We can **detect** whether variables are missing value using:
+
+-   `is.na()` is used to test objects if they are NA.
+-   `is.nan()` is used to test for NaN.
+
+*Example:*
+
+```{r}
+x <- c(1, 2, NaN, NA, 4) 
+is.na(x) 
+is.nan(x)
+```
+
+To check if there is any **NA** in a dataframe:
+
+*Example:*
+
+```{r}
+any(is.na(x))
+```
+
+### Remove NAs
+
+*Example:*
+
+```{r}
+a <- c(11, NA, 13)
+mean(a, na.rm = TRUE)
+```
+
+### Extract NA from a vector
+
+*Example:*
+
+```{r 6}
+x <- c(1, 2, NA, 3) 
+z <- is.na(x) 
+x[!z]
+```
+
+### NA vs NULL
+
+Note that **NA** and **NULL** are not equivalent:
+
+-   **NA** is a place holder for something that exists but is missing.
+
+-   **NULL** stands for something that never existed at all.
+
+### Removing NA values
+
+You can remove rows with **NA** values in any variables:
+
+``` r
+na.omit(data)
+```
+
+```{r 7}
+## Another example
+x <- c(1, 2, NA, 4, NA, 5) 
+bad <- is.na(x) 
+x[!bad]
+```
+
+How can you take the **subset with no missing values** in any of those objects?:
+
+*Example:*
+
+``` r
+good <- complete.cases(airquality) 
+head(airquality[good,])
+```
