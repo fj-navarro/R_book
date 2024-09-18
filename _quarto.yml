@@ -19,7 +19,6 @@ book:
         - writing.qmd
         - transforming.qmd
         - subsetting.qmd
-        - missing.qmd
         - date.qmd
         - plyrdplyr.qmd
         - tidyverse.qmd
