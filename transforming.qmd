@@ -1,5 +1,56 @@
 # Transforming Data
 
+## 'head()` and `tail()`
+
+After reading the file, you can use the `head()` and `tail()` functions to examine the object:
+
+*Example:*
+
+``` r
+head(dataset)
+tail()
+```
+
+## Changing Variable Types
+
+A common task after reading in data is to consider **variable types**. For example, if a variable in a dataset is a categorical variable with a known set of possible values but you see it is represented as a character, then you will want to make it a factor. Or a numeric variable is a character variable because one of the observations is typed out as a character instead of a numeric (e.g. "five" instead of 5).
+
+*Example:*
+
+``` R
+students |>
+  mutate(meal_plan = factor(meal_plan),
+  age = parse_number(if_else(age == "five", "5", age))
+```
+
+After this, you will that the type of variable denoted underneath the variable name has changed from character (<chr>) to factor (<fct>).
+
+## Changing Columns Names
+
+Note that you can assign your **own column names** after reading a dataframe using the `names()` function, or when you read it in, using the `col.names` argument, which should be assigned a character vector the same length as the number of columns. 
+
+If there is no header and no `col.names` argument, then R uses the names `V1`, `V2`, etc.
+
+## Columns No-Syntatic Names
+
+Sometimes, you might also notice that the columns names are surrounded by **backticks**. That’s because they contain spaces, breaking R’s usual rules for variable names; they’re non-syntactic names. 
+    
+    *Example:*
+    
+    ``` R
+    students |> 
+      rename(
+        student_id = `Student ID`,
+        full_name = `Full Name`
+      )
+    ```
+    
+An alternative approach is to use `janitor::clean_names()` to use some heuristics to turn them all into snake case at once1.
+
+``` R
+students |> janitor::clean_names()
+```
+
 ## Removing Duplicates
 
 You can **remove duplicates** based on the `x` variable using:

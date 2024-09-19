@@ -5,8 +5,31 @@ R provides a number of commands for **writing** output to a file. You will gener
 The command `write()` has the form:
 
 ``` r
+# `x` is the dataframe to save / `file` is the location to save it
 write(x, file = "data", ncolumns = if(is.character(x)) 1 else 5, append = FALSE)
 ```
+
+*Example:*
+
+```R
+write_csv(students, "students.csv")
+```
+Note that the **variable type** information is lost when you save to CSV. This makes CSVs a little **unreliable** for caching interim results, so you will need to recreate the column specification every time you load in. 
+
+*Example:*
+
+``` R
+write_rds(students, "students.rds")
+read_rds("students.rds")
+
+# An alternative method
+library(arrow)
+write_parquet(students, "students.parquet")
+read_parquet("students.parquet")
+```
+These store data in R’s custom binary format called **RDS**. This means that when you reload the object, you are loading the exact same R object that you stored. **Parquet** tends to be much faster than **RDS** and is usable outside of R, but does require the **arrow package**.
+
+## Writing a Dataframe
 
 To write a **dataframe** to a file we use this:
 
@@ -60,4 +83,3 @@ rm(x)
 source("../results/x.txt")
 x
 ```
-

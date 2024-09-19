@@ -4,6 +4,8 @@ The **tidyverse** is a set of packages that work in harmony because they share c
 
 If you’d like to learn how to use the tidyverse effectively, the best place to start is [R for Data Science (2e)](https://r4ds.hadley.nz/).
 
+To check that you’re using the **latest version** of each package the easiest way is to run `tidyverse_update()`.
+
 ## Installation
 
 -   Install all the packages in the tidyverse by running:

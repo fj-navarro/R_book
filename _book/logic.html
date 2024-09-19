@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.294">
+<meta name="generator" content="quarto-1.3.290">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 14&nbsp; Logic</title>
+<title>R for Research in Action - 15&nbsp; Logic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./habits.html">Part 2: Programming in R</a></li><li class="breadcrumb-item"><a href="./logic.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./habits.html">Part 2: Programming in R</a></li><li class="breadcrumb-item"><a href="./logic.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Logic</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,50 +184,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reading and Writing Data</span></span></a>
+  <a href="./reading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./writing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Writing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transforming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transforming Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./subsetting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subsetting R Objects</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing Values</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Subsetting R Objects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./date.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./plyrdplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,31 +250,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logic.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -285,25 +291,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inferential.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -320,19 +326,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./typesofgraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
   </div>
 </li>
       </ul>
@@ -349,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,13 +372,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -393,31 +399,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#logical-expressions" id="toc-logical-expressions" class="nav-link active" data-scroll-target="#logical-expressions"><span class="header-section-number">14.1</span> Logical expressions</a>
+  <li><a href="#logical-expressions" id="toc-logical-expressions" class="nav-link active" data-scroll-target="#logical-expressions"><span class="header-section-number">15.1</span> Logical expressions</a>
   <ul class="collapse">
-  <li><a href="#sequential-and" id="toc-sequential-and" class="nav-link" data-scroll-target="#sequential-and"><span class="header-section-number">14.1.1</span> Sequential <code>&amp;&amp;</code> and <code>||</code></a></li>
-  <li><a href="#index-position" id="toc-index-position" class="nav-link" data-scroll-target="#index-position"><span class="header-section-number">14.1.2</span> Index position</a></li>
+  <li><a href="#sequential-and" id="toc-sequential-and" class="nav-link" data-scroll-target="#sequential-and"><span class="header-section-number">15.1.1</span> Sequential <code>&amp;&amp;</code> and <code>||</code></a></li>
+  <li><a href="#index-position" id="toc-index-position" class="nav-link" data-scroll-target="#index-position"><span class="header-section-number">15.1.2</span> Index position</a></li>
   </ul></li>
-  <li><a href="#if-else" id="toc-if-else" class="nav-link" data-scroll-target="#if-else"><span class="header-section-number">14.2</span> if-else</a>
+  <li><a href="#if-else" id="toc-if-else" class="nav-link" data-scroll-target="#if-else"><span class="header-section-number">15.2</span> if-else</a>
   <ul class="collapse">
-  <li><a href="#elseif" id="toc-elseif" class="nav-link" data-scroll-target="#elseif"><span class="header-section-number">14.2.1</span> elseif</a></li>
+  <li><a href="#elseif" id="toc-elseif" class="nav-link" data-scroll-target="#elseif"><span class="header-section-number">15.2.1</span> elseif</a></li>
   </ul></li>
-  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="header-section-number">14.3</span> Loops</a>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="header-section-number">15.3</span> Loops</a>
   <ul class="collapse">
-  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span class="header-section-number">14.3.1</span> <code>for</code> Loops</a></li>
-  <li><a href="#nested-for-loops" id="toc-nested-for-loops" class="nav-link" data-scroll-target="#nested-for-loops"><span class="header-section-number">14.3.2</span> nested <code>for</code> loops</a></li>
-  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops"><span class="header-section-number">14.3.3</span> <code>while</code> Loops</a></li>
-  <li><a href="#repeat-loops" id="toc-repeat-loops" class="nav-link" data-scroll-target="#repeat-loops"><span class="header-section-number">14.3.4</span> <code>repeat</code> Loops</a></li>
-  <li><a href="#next-break" id="toc-next-break" class="nav-link" data-scroll-target="#next-break"><span class="header-section-number">14.3.5</span> <code>next</code>, <code>break</code></a></li>
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span class="header-section-number">15.3.1</span> <code>for</code> Loops</a></li>
+  <li><a href="#nested-for-loops" id="toc-nested-for-loops" class="nav-link" data-scroll-target="#nested-for-loops"><span class="header-section-number">15.3.2</span> nested <code>for</code> loops</a></li>
+  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops"><span class="header-section-number">15.3.3</span> <code>while</code> Loops</a></li>
+  <li><a href="#repeat-loops" id="toc-repeat-loops" class="nav-link" data-scroll-target="#repeat-loops"><span class="header-section-number">15.3.4</span> <code>repeat</code> Loops</a></li>
+  <li><a href="#next-break" id="toc-next-break" class="nav-link" data-scroll-target="#next-break"><span class="header-section-number">15.3.5</span> <code>next</code>, <code>break</code></a></li>
   </ul></li>
-  <li><a href="#loop-functions" id="toc-loop-functions" class="nav-link" data-scroll-target="#loop-functions"><span class="header-section-number">14.4</span> Loop Functions</a>
+  <li><a href="#loop-functions" id="toc-loop-functions" class="nav-link" data-scroll-target="#loop-functions"><span class="header-section-number">15.4</span> Loop Functions</a>
   <ul class="collapse">
-  <li><a href="#lapply" id="toc-lapply" class="nav-link" data-scroll-target="#lapply"><span class="header-section-number">14.4.1</span> lapply</a></li>
-  <li><a href="#sapply" id="toc-sapply" class="nav-link" data-scroll-target="#sapply"><span class="header-section-number">14.4.2</span> sapply</a></li>
-  <li><a href="#apply" id="toc-apply" class="nav-link" data-scroll-target="#apply"><span class="header-section-number">14.4.3</span> apply</a></li>
-  <li><a href="#tapply" id="toc-tapply" class="nav-link" data-scroll-target="#tapply"><span class="header-section-number">14.4.4</span> tapply</a></li>
-  <li><a href="#mapply" id="toc-mapply" class="nav-link" data-scroll-target="#mapply"><span class="header-section-number">14.4.5</span> mapply</a></li>
-  <li><a href="#split" id="toc-split" class="nav-link" data-scroll-target="#split"><span class="header-section-number">14.4.6</span> split</a></li>
+  <li><a href="#lapply" id="toc-lapply" class="nav-link" data-scroll-target="#lapply"><span class="header-section-number">15.4.1</span> lapply</a></li>
+  <li><a href="#sapply" id="toc-sapply" class="nav-link" data-scroll-target="#sapply"><span class="header-section-number">15.4.2</span> sapply</a></li>
+  <li><a href="#apply" id="toc-apply" class="nav-link" data-scroll-target="#apply"><span class="header-section-number">15.4.3</span> apply</a></li>
+  <li><a href="#tapply" id="toc-tapply" class="nav-link" data-scroll-target="#tapply"><span class="header-section-number">15.4.4</span> tapply</a></li>
+  <li><a href="#mapply" id="toc-mapply" class="nav-link" data-scroll-target="#mapply"><span class="header-section-number">15.4.5</span> mapply</a></li>
+  <li><a href="#split" id="toc-split" class="nav-link" data-scroll-target="#split"><span class="header-section-number">15.4.6</span> split</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -427,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Logic</span></h1>
 </div>
 
 
@@ -443,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>Control (logical) structures mentioned here are primarily useful for writing programs; for command-line interactive work, the “apply” functions are more useful.</p>
-<section id="logical-expressions" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="logical-expressions"><span class="header-section-number">14.1</span> Logical expressions</h2>
+<section id="logical-expressions" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="logical-expressions"><span class="header-section-number">15.1</span> Logical expressions</h2>
 <p>A <strong>logical expression</strong> is formed using:</p>
 <ul>
 <li><p>the <strong>comparison operators</strong> <code>&lt;</code> , <code>&gt;</code> , <code>&lt;=</code>, <code>&gt;=</code>, <code>==</code> (equal to), <code>!=</code> (not equal to), <code>&amp;&amp;</code>, <code>||</code> (sequentially evaluated versions of <code>&amp;</code> and <code>|</code>, respectively), and</p></li>
@@ -465,15 +471,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] FALSE  TRUE  TRUE FALSE</code></pre>
 </div>
 </div>
-<section id="sequential-and" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="sequential-and"><span class="header-section-number">14.1.1</span> Sequential <code>&amp;&amp;</code> and <code>||</code></h3>
+<section id="sequential-and" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="sequential-and"><span class="header-section-number">15.1.1</span> Sequential <code>&amp;&amp;</code> and <code>||</code></h3>
 <p>To evaluate <code>x &amp; y</code>, R first evaluates <code>x</code> and <code>y</code>, then returns <code>TRUE</code> if <code>x</code> and <code>y</code> are both <code>TRUE</code>, <code>FALSE</code> otherwise.</p>
 <p>To evaluate <code>x &amp;&amp; y</code>, R first evaluates x. If <code>x</code> is <code>FALSE</code> then R returns <code>FALSE</code> without evaluating <code>y</code>. If <code>x</code> is <code>TRUE</code> then R evaluates <code>y</code> and returns <code>TRUE</code> if <code>y</code> is <code>TRUE</code>, <code>FALSE</code> otherwise.</p>
 <p>Sequential evaluation of <code>x</code> and <code>y</code> is useful when <code>y</code> is not always well defined, or when <code>y</code> takes a long time to compute.</p>
 <p>Note that <code>&amp;&amp;</code> and <code>||</code> only work on scalars, whereas <code>&amp;</code> and <code>|</code> work on vectors on an element-by-element basis.</p>
 </section>
-<section id="index-position" class="level3" data-number="14.1.2">
-<h3 data-number="14.1.2" class="anchored" data-anchor-id="index-position"><span class="header-section-number">14.1.2</span> Index position</h3>
+<section id="index-position" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="index-position"><span class="header-section-number">15.1.2</span> Index position</h3>
 <p>If you wish to know the <strong>index positions</strong> of TRUE elements of a logical vector <code>x</code>, then use <strong>which(x)</strong>:</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -485,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="if-else" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="if-else"><span class="header-section-number">14.2</span> if-else</h2>
+<section id="if-else" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="if-else"><span class="header-section-number">15.2</span> if-else</h2>
 <p>A natural extension of the if command includes an else part:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (logical_expression) {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  expression_1 <span class="co"># do something</span></span>
@@ -497,8 +503,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Braces <code>{ }</code></strong> are used to group together one or more expressions. If there is only one expression then the braces are optional.</p>
 <p>When an if expression is evaluated, if <em>logical_expression</em> is <em>TRUE</em> then the first group of expressions is executed and the second group of expressions is not executed. Conversely if <em>logical_expression</em> is <em>FALSE</em> then only the second group of expressions is executed.</p>
-<section id="elseif" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="elseif"><span class="header-section-number">14.2.1</span> elseif</h3>
+<section id="elseif" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="elseif"><span class="header-section-number">15.2.1</span> elseif</h3>
 <p>When the <code>else</code> expression contains an <code>if</code>, then it can be written equivalently (and more clearly) as follows:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (logical_expression_1) {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  expression_1</span>
@@ -512,8 +518,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="loops" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">14.3</span> Loops</h2>
+<section id="loops" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">15.3</span> Loops</h2>
 <p><em>Tip:</em> R is set up so that such programming tasks can be accomplished using vector operations rather than looping. Using vector operations is more efficient computationally, as well as more concise literally.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -533,8 +539,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 338350</code></pre>
 </div>
 </div>
-<section id="for-loops" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">14.3.1</span> <code>for</code> Loops</h3>
+<section id="for-loops" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">15.3.1</span> <code>for</code> Loops</h3>
 <p>The <code>for</code> command has the following form, where <code>x</code> is a simple variable and vector is a vector.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> vector) {</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  expression_1</span>
@@ -548,8 +554,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When executed, the <code>for</code> command executes the group of expressions within the braces <code>{ }</code> once for each element of vector. The grouped expressions can use <code>x</code>, which takes on each of the values of the elements of vector as the loop is repeated.</p>
 </section>
-<section id="nested-for-loops" class="level3" data-number="14.3.2">
-<h3 data-number="14.3.2" class="anchored" data-anchor-id="nested-for-loops"><span class="header-section-number">14.3.2</span> nested <code>for</code> loops</h3>
+<section id="nested-for-loops" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="nested-for-loops"><span class="header-section-number">15.3.2</span> nested <code>for</code> loops</h3>
 <p><em>Example:</em></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">3</span>) </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(x))) { </span>
@@ -558,8 +564,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="while-loops" class="level3" data-number="14.3.3">
-<h3 data-number="14.3.3" class="anchored" data-anchor-id="while-loops"><span class="header-section-number">14.3.3</span> <code>while</code> Loops</h3>
+<section id="while-loops" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="while-loops"><span class="header-section-number">15.3.3</span> <code>while</code> Loops</h3>
 <p>Often we do not know beforehand how many times we need to go around a loop. That is, each time we go around the loop, we check some condition to see if we are done yet. In this situation we use a <code>while</code> loop, which has the form:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (logical_expression) {</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  expression_1</span>
@@ -574,8 +580,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  debt <span class="ot">&lt;-</span> debt<span class="sc">*</span>(<span class="dv">1</span> <span class="sc">+</span> r<span class="sc">*</span>period) <span class="sc">-</span> repayments</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="repeat-loops" class="level3" data-number="14.3.4">
-<h3 data-number="14.3.4" class="anchored" data-anchor-id="repeat-loops"><span class="header-section-number">14.3.4</span> <code>repeat</code> Loops</h3>
+<section id="repeat-loops" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="repeat-loops"><span class="header-section-number">15.3.4</span> <code>repeat</code> Loops</h3>
 <p><code>repeat</code> initiates an infinite loop right from the start. The only way to exit a repeat loop is to call break:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> { </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>() { </span>
@@ -583,8 +589,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="next-break" class="level3" data-number="14.3.5">
-<h3 data-number="14.3.5" class="anchored" data-anchor-id="next-break"><span class="header-section-number">14.3.5</span> <code>next</code>, <code>break</code></h3>
+<section id="next-break" class="level3" data-number="15.3.5">
+<h3 data-number="15.3.5" class="anchored" data-anchor-id="next-break"><span class="header-section-number">15.3.5</span> <code>next</code>, <code>break</code></h3>
 <p><strong>next</strong> is used to skip an iteration of a loop:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) { </span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">&lt;=</span> <span class="dv">20</span>) { </span>
@@ -601,8 +607,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="loop-functions" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="loop-functions"><span class="header-section-number">14.4</span> Loop Functions</h2>
+<section id="loop-functions" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="loop-functions"><span class="header-section-number">15.4</span> Loop Functions</h2>
 <p>Many R <strong>functions are vectorised</strong>, meaning that given vector input the function acts on each element separately, and a vector output is returned. This is a very powerful aspect of R that allows for compact, efficient, and readable code. Moreover, for many R functions, applying the function to a vector is much faster than if we were to write a loop to apply it to each element one at a time.</p>
 <p>Besides, writing <strong>for</strong> and <strong>while loops</strong> is useful when programming but not particularly easy when working interactively on the command line.</p>
 <p>R has some functions which implement looping in a compact form to make your life easier:</p>
@@ -613,8 +619,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mapply</span>() <span class="do">## Multivariate version of lapply (to vectorise over more than one argument)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>X</code> can be a <strong>list or an atomic vector</strong>, which is a vector that comprises atomic objects (logical, integer, numeric, complex, character and raw). That is, <code>sapply(X, FUN)</code> returns a vector whose i -th element is the value of the expression <code>FUN(X[i])</code>. Note that R performs a loop over the elements of <code>X</code>, so execution of this code is not faster than execution of an equivalent loop.</p>
 <p>If <code>FUN</code> has arguments other than <code>X[i]</code>, then they can be included using the dots protocol as shown above. That is, <code>sapply(X, FUN, ...)</code> returns <code>FUN(X[i], ...)</code> as the i -th element.</p>
-<section id="lapply" class="level3" data-number="14.4.1">
-<h3 data-number="14.4.1" class="anchored" data-anchor-id="lapply"><span class="header-section-number">14.4.1</span> lapply</h3>
+<section id="lapply" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="lapply"><span class="header-section-number">15.4.1</span> lapply</h3>
 <p>The <code>lapply()</code> function does the following simple series of operations:</p>
 <ol type="1">
 <li>It loops over a <strong>list</strong>, iterating over each element in that list</li>
@@ -639,14 +645,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1] 3
 
 $b
-[1] -0.4898236</code></pre>
+[1] -0.03526134</code></pre>
 </div>
 </div>
 <p>Note that when you pass a function to another function, you do not need to include the open and <strong>closed parentheses ()</strong> like you do when you are calling a function.</p>
 <p>Once the call to <code>lapply()</code> is finished, the function disappears and does not appear in the workspace.</p>
 </section>
-<section id="sapply" class="level3" data-number="14.4.2">
-<h3 data-number="14.4.2" class="anchored" data-anchor-id="sapply"><span class="header-section-number">14.4.2</span> sapply</h3>
+<section id="sapply" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="sapply"><span class="header-section-number">15.4.2</span> sapply</h3>
 <p>The <code>sapply()</code> function behaves similarly to <code>lapply()</code>, the only real difference being that the <strong>return value is a vector or a matrix</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sapply)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -678,8 +684,8 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 </div>
 </div>
 </section>
-<section id="apply" class="level3" data-number="14.4.3">
-<h3 data-number="14.4.3" class="anchored" data-anchor-id="apply"><span class="header-section-number">14.4.3</span> apply</h3>
+<section id="apply" class="level3" data-number="15.4.3">
+<h3 data-number="15.4.3" class="anchored" data-anchor-id="apply"><span class="header-section-number">15.4.3</span> apply</h3>
 <p>The <code>apply()</code> function can take a list, matrix, or array. It is most often used to apply a function to the <strong>rows or columns of a matrix</strong> (which is just a 2-dimensional array).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(apply)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -693,8 +699,8 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the mean of each column</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>(k <span class="ot">&lt;-</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -0.001048505 -0.062812679 -0.038554947  0.339330183 -0.180465737
- [6] -0.044088563  0.662970913  0.119674723  0.395865957 -0.164317561</code></pre>
+<pre><code> [1]  0.27806832 -0.25798929 -0.17506033  0.25721496  0.16266512 -0.26012694
+ [7]  0.05524635  0.10882432  0.07791612  0.29701142</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -703,10 +709,10 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Take the mean of each row</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(x, <span class="dv">1</span>, sum) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -2.8919795  4.5054037  1.5426896 -1.1006147  2.5873932 -1.3957548
- [7] -2.9772247 -0.6437356  3.2308236  8.1209931 -3.8077108  1.0793008
-[13] -7.0902669  7.1924620 -3.1644074  2.6183475 -1.0388646  4.1079074
-[19]  4.9679173  4.6883966</code></pre>
+<pre><code> [1]  5.64932412  2.46648689 -0.07463241  3.50349293  5.99840193 -3.71207443
+ [7] -3.00270122 -4.46661326 -1.74415913 -1.49855248  0.97566971 -2.85647036
+[13]  2.00231432 -4.72055344  4.74729680  2.81756977  2.17608114 -0.20857833
+[19]  4.13872851 -1.31562999</code></pre>
 </div>
 </div>
 <p>For the special case of <strong>column/row sums</strong> and <strong>column/row means</strong> of matrices, there are some useful <strong>shortcuts</strong>:</p>
@@ -715,8 +721,8 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>colSums <span class="ot">=</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, sum) </span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>colMeans <span class="ot">=</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tapply" class="level3" data-number="14.4.4">
-<h3 data-number="14.4.4" class="anchored" data-anchor-id="tapply"><span class="header-section-number">14.4.4</span> tapply</h3>
+<section id="tapply" class="level3" data-number="15.4.4">
+<h3 data-number="15.4.4" class="anchored" data-anchor-id="tapply"><span class="header-section-number">15.4.4</span> tapply</h3>
 <p><code>tapply()</code> is used to apply a function over subsets of a vector. It can be thought of as a combination of <code>split()</code> and <code>sapply()</code> for vectors only.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tapply)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -728,11 +734,11 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">runif</span>(<span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] -1.34232767 -1.20645047  1.38713646  0.42559835 -0.44203392  1.19223972
- [7] -0.05486259  1.90400847  2.15912917  1.21608394  0.42135614  0.09164257
-[13]  0.58436758  0.26980392  0.07671665  0.64141375  0.52962386  0.43118217
-[19]  0.48779318  0.80556332  0.69799539  0.31701644  1.97692722 -0.77692906
-[25]  2.59970846 -0.27802890  0.28906958  1.31537063  2.91083664  2.43786049</code></pre>
+<pre><code> [1]  1.2155272  0.9609575 -0.5714931  0.5219119  0.4900032  0.4218441
+ [7] -0.5980670  1.2915797  0.7644262  0.8983802  0.8402404  0.8420242
+[13]  0.3014455  0.5448305  0.4618934  0.7326966  0.7082098  0.9621302
+[19]  0.5155297  0.5524668  0.9700105  2.2534504  1.3843759  1.0292284
+[25]  1.2026066  1.7589615  1.3929836  1.0087717  0.2822601 -0.5342200</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define some groups with a factor variable</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">3</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -743,18 +749,18 @@ Levels: 1 2 3</code></pre>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(x, f, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        1         2         3 
-0.5238521 0.4339463 1.1489827 </code></pre>
+0.5395070 0.6461467 1.0748429 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can reduce the noise as follows:</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">tapply</span>(x, f, mean), <span class="at">digits=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  1   2   3 
-0.5 0.4 1.1 </code></pre>
+0.5 0.6 1.1 </code></pre>
 </div>
 </div>
 </section>
-<section id="mapply" class="level3" data-number="14.4.5">
-<h3 data-number="14.4.5" class="anchored" data-anchor-id="mapply"><span class="header-section-number">14.4.5</span> mapply</h3>
+<section id="mapply" class="level3" data-number="15.4.5">
+<h3 data-number="15.4.5" class="anchored" data-anchor-id="mapply"><span class="header-section-number">15.4.5</span> mapply</h3>
 <p>The <code>mapply()</code> function is a multivariate apply of sorts which applies a function in parallel over a set of arguments. Recall that <code>lapply()</code> and friends only iterate over a single R object. What if you want to iterate over multiple R objects in parallel? This is what <code>mapply()</code> is for.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mapply) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -788,19 +794,19 @@ Levels: 1 2 3</code></pre>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mapply</span>(noise, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] 3.091045
+[1] 3.499207
 
 [[2]]
-[1]  1.493775 -2.915408
+[1] 3.012999 0.801007
 
 [[3]]
-[1] 3.525633 2.889469 2.670213
+[1]  1.807176  1.713394 -1.155735
 
 [[4]]
-[1] 5.139289 5.433135 6.424086 3.883236
+[1]  6.052233  5.633952  5.037111 -1.047606
 
 [[5]]
-[1] 4.858631 6.164733 5.745587 4.903479 4.752632</code></pre>
+[1] 4.925512 5.880555 3.641812 4.476903 5.656139</code></pre>
 </div>
 </div>
 <p>The <code>mapply()</code> function can be used to automatically “vectorize” a function. What this means is that it can be used to take a function that typically only takes single arguments and create a new function that can take vector arguments. This is often needed when you want to plot functions.</p>
@@ -816,8 +822,8 @@ Levels: 1 2 3</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>vsumsq <span class="ot">&lt;-</span> <span class="fu">vectorize</span>(sumsq, <span class="fu">c</span>(<span class="st">"mu"</span>, <span class="st">"sigma"</span>)) </span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vsumsq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="split" class="level3" data-number="14.4.6">
-<h3 data-number="14.4.6" class="anchored" data-anchor-id="split"><span class="header-section-number">14.4.6</span> split</h3>
+<section id="split" class="level3" data-number="15.4.6">
+<h3 data-number="15.4.6" class="anchored" data-anchor-id="split"><span class="header-section-number">15.4.6</span> split</h3>
 <p>The <code>split()</code> function takes a vector or other objects and splits it into groups determined by a factor or list of factors.</p>
 <p>The form of the <code>split()</code> function is this:</p>
 <div class="cell">
@@ -835,16 +841,16 @@ Levels: 1 2 3</code></pre>
 <span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>(j <span class="ot">&lt;-</span> <span class="fu">split</span>(x, f))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`1`
- [1]  0.7765922  0.1824812 -0.4049691  0.0372755 -1.5135405  0.6881224
- [7]  0.3121907 -0.3627897  0.9887026  1.0949514
+ [1]  0.03095243 -1.80536705  1.35089190  1.47562129  0.60599504 -1.02949164
+ [7] -0.84605506  0.16484876  0.72378238  0.34332740
 
 $`2`
- [1] 0.33933611 0.60879485 0.64613225 0.19572348 0.09627397 0.18479362
- [7] 0.18525842 0.79639869 0.13647416 0.47908217
+ [1] 0.1437678 0.6691713 0.3772613 0.2227557 0.1029630 0.7701663 0.8666348
+ [8] 0.0501637 0.6777221 0.1407250
 
 $`3`
- [1]  0.6310476 -0.4212898 -0.1105973 -0.2709951  0.5154562  1.4982634
- [7]  1.5225275  0.7724228  0.8786669  2.0186931</code></pre>
+ [1] -0.2562139 -1.2618013  1.1340079  0.1119456  1.3408241  1.1853042
+ [7]  1.4405920  1.1125433  1.3369245  2.0593680</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1096,12 +1102,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./habits.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Programming Habits</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./functions.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

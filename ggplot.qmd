@@ -1,5 +1,7 @@
 # Creating a ggplot
 
+The best place to continue learning about ggplot is the **ggplot2 book**: [ggplot2: Elegant graphics for data analysis](https://ggplot2-book.org/).
+
 ## Define a Plot Object
 
 With **ggplot2**, you begin a plot with the function `ggplot()`, defining a plot object that you then add layers to.
@@ -8,18 +10,17 @@ The first argument of `ggplot()` is the **dataset** to use in the graph and so `
 
 *Example:*
 
-
-```{r echo = FALSE}
+```{r echo = FALSE, message = FALSE}
 library(tidyverse)
 library(palmerpenguins)
 library(ggthemes)
 ```
 
-``` {r}
+```{r}
 ggplot(data = penguins)
 ```
 
-## Map the data
+## Map the Data
 
 Next, we need to tell `ggplot()` how the information from our data will be visually represented. The `mapping` argument of the `ggplot()` function defines how variables in your dataset are mapped to visual properties (aesthetics) of your plot.
 
@@ -27,7 +28,7 @@ The `mapping` argument is always defined in the `aes()` function, and the `x` an
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, y = body_mass_g)
@@ -36,7 +37,7 @@ ggplot(
 
 Our empty canvas now has more structure – it’s clear where flipper lengths will be displayed (on the x-axis) and where body masses will be displayed (on the y-axis). But the penguins themselves are not yet on the plot. This is because we have not yet determine how to represent the observations from our dataframe on our plot.
 
-## Represent the data
+## Represent the Data
 
 To do so, we need to define a `geom`: the geometrical object that a plot uses to represent data. These geometric objects are made available in ggplot2 with functions that start with `geom_`.
 
@@ -44,7 +45,7 @@ For example, bar charts use `geom_bar()`, line charts use `geom_line()`, boxplot
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, y = body_mass_g)
@@ -56,14 +57,14 @@ ggplot(
 
 You can **rewrite the previous plot** more concisely:
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + 
   geom_point()
 ```
 
 Or using the pipe, `|>`:
 
-``` {r}
+```{r}
 penguins |> 
   ggplot(aes(x = flipper_length_mm, y = body_mass_g)) + 
   geom_point()
@@ -77,7 +78,7 @@ You will we need to modify the aesthetic mapping, inside of `aes()`.
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)
@@ -91,7 +92,7 @@ Now let’s add **one more layer**: a **smooth curve** displaying the relationsh
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, y = body_mass_g, color = species)
@@ -104,7 +105,7 @@ Note that When aesthetic mappings are defined in ggplot(), at the **global level
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, y = body_mass_g)
@@ -117,7 +118,7 @@ It’s generally not a good idea to represent information using only colors on a
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, y = body_mass_g)
@@ -140,7 +141,7 @@ In addition, we can improve the color palette to be **colorblind safe** with the
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(
   data = penguins,
   mapping = aes(x = flipper_length_mm, y = body_mass_g)

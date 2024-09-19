@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.294">
+<meta name="generator" content="quarto-1.3.290">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 20&nbsp; Inferential Statistics</title>
+<title>R for Research in Action - 21&nbsp; Inferential Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./descriptive.html">Part 3: Statistics in R</a></li><li class="breadcrumb-item"><a href="./inferential.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./descriptive.html">Part 3: Statistics in R</a></li><li class="breadcrumb-item"><a href="./inferential.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,50 +186,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manipulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reading and Writing Data</span></span></a>
+  <a href="./reading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Reading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./writing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Writing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transforming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transforming Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./subsetting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Subsetting R Objects</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./missing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Missing Values</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Subsetting R Objects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./date.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./plyrdplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tidyverse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
   </div>
 </li>
       </ul>
@@ -246,31 +252,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,25 +293,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inferential.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -322,19 +328,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./typesofgraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
   </div>
 </li>
       </ul>
@@ -351,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -368,13 +374,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -395,33 +401,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link active" data-scroll-target="#correlation"><span class="header-section-number">20.1</span> Correlation</a></li>
-  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><span class="header-section-number">20.2</span> Covariance</a></li>
-  <li><a href="#hypothesis-testing-and-p-value" id="toc-hypothesis-testing-and-p-value" class="nav-link" data-scroll-target="#hypothesis-testing-and-p-value"><span class="header-section-number">20.3</span> Hypothesis Testing and P-Value</a></li>
-  <li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test"><span class="header-section-number">20.4</span> T-Test</a>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link active" data-scroll-target="#correlation"><span class="header-section-number">21.1</span> Correlation</a></li>
+  <li><a href="#covariance" id="toc-covariance" class="nav-link" data-scroll-target="#covariance"><span class="header-section-number">21.2</span> Covariance</a></li>
+  <li><a href="#hypothesis-testing-and-p-value" id="toc-hypothesis-testing-and-p-value" class="nav-link" data-scroll-target="#hypothesis-testing-and-p-value"><span class="header-section-number">21.3</span> Hypothesis Testing and P-Value</a></li>
+  <li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test"><span class="header-section-number">21.4</span> T-Test</a>
   <ul class="collapse">
-  <li><a href="#one-sample-t-test" id="toc-one-sample-t-test" class="nav-link" data-scroll-target="#one-sample-t-test"><span class="header-section-number">20.4.1</span> One-Sample T-Test</a></li>
-  <li><a href="#two-sample-independent-t-test-unpaired-paired-false" id="toc-two-sample-independent-t-test-unpaired-paired-false" class="nav-link" data-scroll-target="#two-sample-independent-t-test-unpaired-paired-false"><span class="header-section-number">20.4.2</span> Two-Sample Independent T-Test (unpaired, paired = FALSE)</a></li>
-  <li><a href="#two-sample-dependent-t-test-paired-true" id="toc-two-sample-dependent-t-test-paired-true" class="nav-link" data-scroll-target="#two-sample-dependent-t-test-paired-true"><span class="header-section-number">20.4.3</span> Two-Sample Dependent T-Test (paired = TRUE)</a></li>
+  <li><a href="#one-sample-t-test" id="toc-one-sample-t-test" class="nav-link" data-scroll-target="#one-sample-t-test"><span class="header-section-number">21.4.1</span> One-Sample T-Test</a></li>
+  <li><a href="#two-sample-independent-t-test-unpaired-paired-false" id="toc-two-sample-independent-t-test-unpaired-paired-false" class="nav-link" data-scroll-target="#two-sample-independent-t-test-unpaired-paired-false"><span class="header-section-number">21.4.2</span> Two-Sample Independent T-Test (unpaired, paired = FALSE)</a></li>
+  <li><a href="#two-sample-dependent-t-test-paired-true" id="toc-two-sample-dependent-t-test-paired-true" class="nav-link" data-scroll-target="#two-sample-dependent-t-test-paired-true"><span class="header-section-number">21.4.3</span> Two-Sample Dependent T-Test (paired = TRUE)</a></li>
   </ul></li>
-  <li><a href="#chi-square-test" id="toc-chi-square-test" class="nav-link" data-scroll-target="#chi-square-test"><span class="header-section-number">20.5</span> Chi-Square Test</a>
+  <li><a href="#chi-square-test" id="toc-chi-square-test" class="nav-link" data-scroll-target="#chi-square-test"><span class="header-section-number">21.5</span> Chi-Square Test</a>
   <ul class="collapse">
-  <li><a href="#goodness-of-fit-test" id="toc-goodness-of-fit-test" class="nav-link" data-scroll-target="#goodness-of-fit-test"><span class="header-section-number">20.5.1</span> Goodness of Fit Test</a></li>
-  <li><a href="#contingency-test" id="toc-contingency-test" class="nav-link" data-scroll-target="#contingency-test"><span class="header-section-number">20.5.2</span> Contingency Test</a></li>
+  <li><a href="#goodness-of-fit-test" id="toc-goodness-of-fit-test" class="nav-link" data-scroll-target="#goodness-of-fit-test"><span class="header-section-number">21.5.1</span> Goodness of Fit Test</a></li>
+  <li><a href="#contingency-test" id="toc-contingency-test" class="nav-link" data-scroll-target="#contingency-test"><span class="header-section-number">21.5.2</span> Contingency Test</a></li>
   </ul></li>
-  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">20.6</span> ANOVA</a>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova"><span class="header-section-number">21.6</span> ANOVA</a>
   <ul class="collapse">
-  <li><a href="#between-group-variability" id="toc-between-group-variability" class="nav-link" data-scroll-target="#between-group-variability"><span class="header-section-number">20.6.1</span> Between Group Variability</a></li>
-  <li><a href="#within-group-variability" id="toc-within-group-variability" class="nav-link" data-scroll-target="#within-group-variability"><span class="header-section-number">20.6.2</span> Within Group Variability</a></li>
-  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">20.6.3</span> One-Way ANOVA</a></li>
-  <li><a href="#two-way-anova" id="toc-two-way-anova" class="nav-link" data-scroll-target="#two-way-anova"><span class="header-section-number">20.6.4</span> Two-Way ANOVA</a></li>
-  <li><a href="#manova" id="toc-manova" class="nav-link" data-scroll-target="#manova"><span class="header-section-number">20.6.5</span> MANOVA</a></li>
+  <li><a href="#between-group-variability" id="toc-between-group-variability" class="nav-link" data-scroll-target="#between-group-variability"><span class="header-section-number">21.6.1</span> Between Group Variability</a></li>
+  <li><a href="#within-group-variability" id="toc-within-group-variability" class="nav-link" data-scroll-target="#within-group-variability"><span class="header-section-number">21.6.2</span> Within Group Variability</a></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">21.6.3</span> One-Way ANOVA</a></li>
+  <li><a href="#two-way-anova" id="toc-two-way-anova" class="nav-link" data-scroll-target="#two-way-anova"><span class="header-section-number">21.6.4</span> Two-Way ANOVA</a></li>
+  <li><a href="#manova" id="toc-manova" class="nav-link" data-scroll-target="#manova"><span class="header-section-number">21.6.5</span> MANOVA</a></li>
   </ul></li>
-  <li><a href="#nonparametric-test" id="toc-nonparametric-test" class="nav-link" data-scroll-target="#nonparametric-test"><span class="header-section-number">20.7</span> Nonparametric Test</a>
+  <li><a href="#nonparametric-test" id="toc-nonparametric-test" class="nav-link" data-scroll-target="#nonparametric-test"><span class="header-section-number">21.7</span> Nonparametric Test</a>
   <ul class="collapse">
-  <li><a href="#wilcoxon-signed-rank-test" id="toc-wilcoxon-signed-rank-test" class="nav-link" data-scroll-target="#wilcoxon-signed-rank-test"><span class="header-section-number">20.7.1</span> Wilcoxon Signed Rank Test</a></li>
-  <li><a href="#wilcoxon-mann-whitney-test" id="toc-wilcoxon-mann-whitney-test" class="nav-link" data-scroll-target="#wilcoxon-mann-whitney-test"><span class="header-section-number">20.7.2</span> Wilcoxon-Mann-Whitney Test</a></li>
-  <li><a href="#kruskal-wallis-test" id="toc-kruskal-wallis-test" class="nav-link" data-scroll-target="#kruskal-wallis-test"><span class="header-section-number">20.7.3</span> Kruskal-Wallis Test</a></li>
+  <li><a href="#wilcoxon-signed-rank-test" id="toc-wilcoxon-signed-rank-test" class="nav-link" data-scroll-target="#wilcoxon-signed-rank-test"><span class="header-section-number">21.7.1</span> Wilcoxon Signed Rank Test</a></li>
+  <li><a href="#wilcoxon-mann-whitney-test" id="toc-wilcoxon-mann-whitney-test" class="nav-link" data-scroll-target="#wilcoxon-mann-whitney-test"><span class="header-section-number">21.7.2</span> Wilcoxon-Mann-Whitney Test</a></li>
+  <li><a href="#kruskal-wallis-test" id="toc-kruskal-wallis-test" class="nav-link" data-scroll-target="#kruskal-wallis-test"><span class="header-section-number">21.7.3</span> Kruskal-Wallis Test</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -431,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></h1>
 </div>
 
 
@@ -459,23 +465,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>E.g. you calculate the mean of the height of the samples and then make an inference on the mean of the height of the population. You can then construct the confidence intervals, which is the range in which the mean of the height of the population will fall.,</p></li>
 </ul></li>
 </ul>
-<section id="correlation" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="correlation"><span class="header-section-number">20.1</span> Correlation</h2>
+<section id="correlation" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="correlation"><span class="header-section-number">21.1</span> Correlation</h2>
 <p><strong>Correlations</strong> are statistical associations to find how close two variables are and to derive the linear relationships between them.</p>
 <p>You can use <strong>correlation</strong> to find which variables are more related to the target variable and use this to reduce the number of variables.</p>
 <p><strong>Correlation</strong> does not mean a causal relationship, it does not tell you the how and why of the relationship.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(data<span class="sc">$</span>var1, data<span class="sc">$</span>var2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The correlation has a range from -1.0 to 1.0.</p>
 </section>
-<section id="covariance" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="covariance"><span class="header-section-number">20.2</span> Covariance</h2>
+<section id="covariance" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="covariance"><span class="header-section-number">21.2</span> Covariance</h2>
 <p><strong>Covariance</strong> is a measure of variability between two variables.</p>
 <p>The greater the value of one variable and the greater of other variable means it will result in a covariance that is positive.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(data<span class="sc">$</span>var1, data<span class="sc">$</span>var2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Covariance</strong> does not have a range. When two variables are independent of each other, the covariance is zero.</p>
 </section>
-<section id="hypothesis-testing-and-p-value" class="level2" data-number="20.3">
-<h2 data-number="20.3" class="anchored" data-anchor-id="hypothesis-testing-and-p-value"><span class="header-section-number">20.3</span> Hypothesis Testing and P-Value</h2>
+<section id="hypothesis-testing-and-p-value" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="hypothesis-testing-and-p-value"><span class="header-section-number">21.3</span> Hypothesis Testing and P-Value</h2>
 <p>Based on the research question, the hypothesis can be a null hypothesis, H0 (μ1= μ2) and an alternate hypothesis, Ha (μ1 ≠ μ2).</p>
 <p>For data normally distributed:</p>
 <ul>
@@ -493,8 +499,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>non-parametric</strong> tests.</li>
 </ul>
 </section>
-<section id="t-test" class="level2" data-number="20.4">
-<h2 data-number="20.4" class="anchored" data-anchor-id="t-test"><span class="header-section-number">20.4</span> T-Test</h2>
+<section id="t-test" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="t-test"><span class="header-section-number">21.4</span> T-Test</h2>
 <p>A <strong>t-test</strong> is used to determine whether the mean between two data points or samples are equal to each other.</p>
 <ul>
 <li><p><span class="math inline">\(H_0\)</span> (<span class="math inline">\(μ_1\)</span> = <span class="math inline">\(μ_2\)</span>): The null hypothesis means that the two means are equal.</p></li>
@@ -510,30 +516,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>A <strong>Type I error</strong> is a rejection of the null hypothesis when it is really true.</p></li>
 <li><p>A <strong>Type II error</strong> is a failure to reject a null hypothesis that is false.</p></li>
 </ul>
-<section id="one-sample-t-test" class="level3" data-number="20.4.1">
-<h3 data-number="20.4.1" class="anchored" data-anchor-id="one-sample-t-test"><span class="header-section-number">20.4.1</span> One-Sample T-Test</h3>
+<section id="one-sample-t-test" class="level3" data-number="21.4.1">
+<h3 data-number="21.4.1" class="anchored" data-anchor-id="one-sample-t-test"><span class="header-section-number">21.4.1</span> One-Sample T-Test</h3>
 <p>A <strong>one-sample t-test</strong> is used to test whether the mean of a population is equal to a specified mean.</p>
 <p>You can use the t statistics and the degree of freedom (<span class="math inline">\(df = n -1\)</span>) to estimate the p-value using a t-table.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>var1, <span class="at">mu=</span><span class="fl">0.6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="two-sample-independent-t-test-unpaired-paired-false" class="level3" data-number="20.4.2">
-<h3 data-number="20.4.2" class="anchored" data-anchor-id="two-sample-independent-t-test-unpaired-paired-false"><span class="header-section-number">20.4.2</span> Two-Sample Independent T-Test (unpaired, paired = FALSE)</h3>
+<section id="two-sample-independent-t-test-unpaired-paired-false" class="level3" data-number="21.4.2">
+<h3 data-number="21.4.2" class="anchored" data-anchor-id="two-sample-independent-t-test-unpaired-paired-false"><span class="header-section-number">21.4.2</span> Two-Sample Independent T-Test (unpaired, paired = FALSE)</h3>
 <p>The two-sample unpaired t-test is when you compare two means of two independent samples. The degrees of freedom formula is <span class="math inline">\(df = nA – nB – 2\)</span></p>
 <p>In the two-sample unpaired t-test, when the variance is unequal, you use the <strong>Welch t-test</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>var1, data\<span class="sc">$</span>var2, <span class="at">var.equal=</span><span class="cn">FALSE</span>, <span class="at">paired=</span><span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="two-sample-dependent-t-test-paired-true" class="level3" data-number="20.4.3">
-<h3 data-number="20.4.3" class="anchored" data-anchor-id="two-sample-dependent-t-test-paired-true"><span class="header-section-number">20.4.3</span> Two-Sample Dependent T-Test (paired = TRUE)</h3>
+<section id="two-sample-dependent-t-test-paired-true" class="level3" data-number="21.4.3">
+<h3 data-number="21.4.3" class="anchored" data-anchor-id="two-sample-dependent-t-test-paired-true"><span class="header-section-number">21.4.3</span> Two-Sample Dependent T-Test (paired = TRUE)</h3>
 <p>A two-sample paired t-test is used to test the mean of two samples that depend on each other. The degree of freedom formula is <span class="math inline">\(df = n-1\)</span></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>var1, data<span class="sc">$</span>var2, <span class="at">paired=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="chi-square-test" class="level2" data-number="20.5">
-<h2 data-number="20.5" class="anchored" data-anchor-id="chi-square-test"><span class="header-section-number">20.5</span> Chi-Square Test</h2>
+<section id="chi-square-test" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="chi-square-test"><span class="header-section-number">21.5</span> Chi-Square Test</h2>
 <p>The <strong>chi-square test</strong> is used to compare the relationships between two categorical variables.</p>
 <p>The null hypothesis means that there is no relationship between the categorical variables.</p>
-<section id="goodness-of-fit-test" class="level3" data-number="20.5.1">
-<h3 data-number="20.5.1" class="anchored" data-anchor-id="goodness-of-fit-test"><span class="header-section-number">20.5.1</span> Goodness of Fit Test</h3>
+<section id="goodness-of-fit-test" class="level3" data-number="21.5.1">
+<h3 data-number="21.5.1" class="anchored" data-anchor-id="goodness-of-fit-test"><span class="header-section-number">21.5.1</span> Goodness of Fit Test</h3>
 <p>When you have only <strong>one categorical variable</strong> from a population and you want to compare whether the sample is consistent with a hypothesized distribution, you can use the goodness of fit test.</p>
 <ul>
 <li><span class="math inline">\(H_0\)</span>: No significant difference between the observed and expected values.</li>
@@ -543,8 +549,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">B=</span><span class="dv">200</span>, <span class="at">c=</span><span class="dv">300</span>, <span class="at">D=</span><span class="dv">400</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="contingency-test" class="level3" data-number="20.5.2">
-<h3 data-number="20.5.2" class="anchored" data-anchor-id="contingency-test"><span class="header-section-number">20.5.2</span> Contingency Test</h3>
+<section id="contingency-test" class="level3" data-number="21.5.2">
+<h3 data-number="21.5.2" class="anchored" data-anchor-id="contingency-test"><span class="header-section-number">21.5.2</span> Contingency Test</h3>
 <p>If you have <strong>two categorical variables</strong> and you want to compare whether there is a relationship between two variables, you can use the <strong>contingency test</strong>.</p>
 <ul>
 <li><span class="math inline">\(H_0\)</span>: the two categorical variables have no relationship. The two variables are independent.</li>
@@ -557,8 +563,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>data.table <span class="sc">&gt;</span> <span class="fu">chisq.test</span>(data.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="anova" class="level2" data-number="20.6">
-<h2 data-number="20.6" class="anchored" data-anchor-id="anova"><span class="header-section-number">20.6</span> ANOVA</h2>
+<section id="anova" class="level2" data-number="21.6">
+<h2 data-number="21.6" class="anchored" data-anchor-id="anova"><span class="header-section-number">21.6</span> ANOVA</h2>
 <p><strong>ANOVA</strong> is the process of testing the means of two or more groups. ANOVA also checks the impact of factors by comparing the means of different samples.</p>
 <p>In <strong>ANOVA</strong>, you use two kinds of means:</p>
 <ul>
@@ -567,8 +573,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Hypothesis: - <span class="math inline">\(H_0\)</span>: <span class="math inline">\(μ_1\)</span>= <span class="math inline">\(μ_2\)</span> = … = <span class="math inline">\(μ_L\)</span> ; the sample means are equal or do not have significant differences. - <span class="math inline">\(H_A\)</span>: <span class="math inline">\(μ_1\)</span> ≠ <span class="math inline">\(μ_m\)</span>; is when the sample means are not equal.</p>
 <p>You assume that the variables are sampled, independent, and selected or sampled from a population that is normally distributed with unknown but equal variances.</p>
-<section id="between-group-variability" class="level3" data-number="20.6.1">
-<h3 data-number="20.6.1" class="anchored" data-anchor-id="between-group-variability"><span class="header-section-number">20.6.1</span> Between Group Variability</h3>
+<section id="between-group-variability" class="level3" data-number="21.6.1">
+<h3 data-number="21.6.1" class="anchored" data-anchor-id="between-group-variability"><span class="header-section-number">21.6.1</span> Between Group Variability</h3>
 <p>The distribution of two samples, when they overlap, their means are not significantly different. Hence, the difference between their individual mean and the grand mean is not significantly different.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -578,8 +584,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This variability is called the <strong>between-group variability</strong>, which refers to the variations between the distributions of the groups or levels.</p>
 </section>
-<section id="within-group-variability" class="level3" data-number="20.6.2">
-<h3 data-number="20.6.2" class="anchored" data-anchor-id="within-group-variability"><span class="header-section-number">20.6.2</span> Within Group Variability</h3>
+<section id="within-group-variability" class="level3" data-number="21.6.2">
+<h3 data-number="21.6.2" class="anchored" data-anchor-id="within-group-variability"><span class="header-section-number">21.6.2</span> Within Group Variability</h3>
 <p>For the following distributions of samples, as their variance increases, they overlap each other and become part of a population.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -589,8 +595,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <strong>F-statistics</strong> are the measures if the means of samples are significantly different. The lower the F-statistics, the more the means are equal, so you cannot reject the null hypothesis.</p>
 </section>
-<section id="one-way-anova" class="level3" data-number="20.6.3">
-<h3 data-number="20.6.3" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">20.6.3</span> One-Way ANOVA</h3>
+<section id="one-way-anova" class="level3" data-number="21.6.3">
+<h3 data-number="21.6.3" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">21.6.3</span> One-Way ANOVA</h3>
 <p><strong>One-way ANOVA</strong> is used when you have only one independent variable.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(graphics)</span>
@@ -620,8 +626,8 @@ Residuals    9  9.256  1.0284               </code></pre>
 </div>
 </div>
 </section>
-<section id="two-way-anova" class="level3" data-number="20.6.4">
-<h3 data-number="20.6.4" class="anchored" data-anchor-id="two-way-anova"><span class="header-section-number">20.6.4</span> Two-Way ANOVA</h3>
+<section id="two-way-anova" class="level3" data-number="21.6.4">
+<h3 data-number="21.6.4" class="anchored" data-anchor-id="two-way-anova"><span class="header-section-number">21.6.4</span> Two-Way ANOVA</h3>
 <p><strong>Two-way ANOVA</strong> is used when you have two independent variables. (continuar en el ejemplo anterior):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>var3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"D"</span>, <span class="st">"D"</span>, <span class="st">"D"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>, <span class="st">"E"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>)</span>
@@ -651,8 +657,8 @@ Residuals    8  9.238  1.1547               </code></pre>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## var1 does not depend on var2's mean and var3's mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="manova" class="level3" data-number="20.6.5">
-<h3 data-number="20.6.5" class="anchored" data-anchor-id="manova"><span class="header-section-number">20.6.5</span> MANOVA</h3>
+<section id="manova" class="level3" data-number="21.6.5">
+<h3 data-number="21.6.5" class="anchored" data-anchor-id="manova"><span class="header-section-number">21.6.5</span> MANOVA</h3>
 <p>The multivariate analysis of variance is when there are multiple response variables that you want to test.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -686,8 +692,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p>The <strong>p-value</strong> is 2.2e-16, which is less than 0.05. Hence, you reject the null hypothesis</p>
 </section>
 </section>
-<section id="nonparametric-test" class="level2" data-number="20.7">
-<h2 data-number="20.7" class="anchored" data-anchor-id="nonparametric-test"><span class="header-section-number">20.7</span> Nonparametric Test</h2>
+<section id="nonparametric-test" class="level2" data-number="21.7">
+<h2 data-number="21.7" class="anchored" data-anchor-id="nonparametric-test"><span class="header-section-number">21.7</span> Nonparametric Test</h2>
 <p>The <strong>nonparametric test</strong> is a test that does not require the variable and sample to be normally distributed.</p>
 <p>You use nonparametric tests when you do not have normally distributed data and the sample data is big.</p>
 <table class="table">
@@ -732,8 +738,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tr>
 </tbody>
 </table>
-<section id="wilcoxon-signed-rank-test" class="level3" data-number="20.7.1">
-<h3 data-number="20.7.1" class="anchored" data-anchor-id="wilcoxon-signed-rank-test"><span class="header-section-number">20.7.1</span> Wilcoxon Signed Rank Test</h3>
+<section id="wilcoxon-signed-rank-test" class="level3" data-number="21.7.1">
+<h3 data-number="21.7.1" class="anchored" data-anchor-id="wilcoxon-signed-rank-test"><span class="header-section-number">21.7.1</span> Wilcoxon Signed Rank Test</h3>
 <p>The <strong>Wilcoxon signed rank test</strong> is used to replace the <strong>one-sample t-test</strong>.</p>
 <p><strong>Hypothesis:</strong></p>
 <ul>
@@ -751,15 +757,15 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(var1[,<span class="dv">1</span>], var2[,<span class="dv">1</span>], var3[,<span class="dv">1</span>]) </span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(data[,<span class="dv">1</span>], <span class="at">mu=</span><span class="dv">0</span>, <span class="at">alternatives=</span><span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="wilcoxon-mann-whitney-test" class="level3" data-number="20.7.2">
-<h3 data-number="20.7.2" class="anchored" data-anchor-id="wilcoxon-mann-whitney-test"><span class="header-section-number">20.7.2</span> Wilcoxon-Mann-Whitney Test</h3>
+<section id="wilcoxon-mann-whitney-test" class="level3" data-number="21.7.2">
+<h3 data-number="21.7.2" class="anchored" data-anchor-id="wilcoxon-mann-whitney-test"><span class="header-section-number">21.7.2</span> Wilcoxon-Mann-Whitney Test</h3>
 <p>The <strong>Wilcoxon-Mann-Whitney test</strong> is a nonparametric test to compare two samples. It is a powerful substitute to the two-sample t-test.</p>
 <p>To use the <strong>Wilcoxon-Matt-Whitney test</strong> (or the Wilcoxon rank sum test or the Mann-Whitney test) in R, you can use the <code>wilcox.test()</code> function:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(data[,<span class="dv">1</span>], data[,<span class="dv">2</span>], <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are not significant differences in the median for first variable median and second variable median.</p>
 </section>
-<section id="kruskal-wallis-test" class="level3" data-number="20.7.3">
-<h3 data-number="20.7.3" class="anchored" data-anchor-id="kruskal-wallis-test"><span class="header-section-number">20.7.3</span> Kruskal-Wallis Test</h3>
+<section id="kruskal-wallis-test" class="level3" data-number="21.7.3">
+<h3 data-number="21.7.3" class="anchored" data-anchor-id="kruskal-wallis-test"><span class="header-section-number">21.7.3</span> Kruskal-Wallis Test</h3>
 <p>The <strong>Kruskal-Wallis test</strong> is a nonparametric test that is an extension of the <strong>Mann-Whitney U test</strong> for three or more samples.</p>
 <p>The test requires samples to be identically distributed.</p>
 <p><strong>Kruskal-Wallis</strong> is an alternative to <strong>one-way ANOVA</strong>.</p>
@@ -1020,12 +1026,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./exploratory.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./regression.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

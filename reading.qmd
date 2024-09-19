@@ -1,7 +1,5 @@
 # Reading Data
 
-## Reading Data
-
 R provides a number of ways to read data from a file, the **most flexible** of which is the `scan()` function. We use scan to read a vector of values from a file. It has the form:
 
 *Example:*
@@ -10,9 +8,9 @@ R provides a number of ways to read data from a file, the **most flexible** of w
 scan(file = "", what = 0, n = -1, sep = "", skip = 0, quiet = FALSE)
 ```
 
-`scan()` returns a vector.
+Remember that `scan()` returns a **vector**.
 
-### Tabular data
+## Tabular Data
 
 It is common for data to be arranged in **tables**, with columns corresponding to variables and rows corresponding to separate observations. These **dataframes** are usually read into R using the function `read.table()`, which has the form:
 
@@ -21,26 +19,13 @@ read.table(file, header = FALSE, sep = "")
 # read.table() returns a dataframe
 ```
 
+`read_table()` reads a common variation of fixed-width files where columns are separated by white space.
+
 There are two commonly used **variants** of `read.table()`:
 
--   `read.csv()` is for comma-separated data and is equivalent to `read.table(file, header = TRUE, sep = ",")`
+### `read.csv()`
 
--   `read.delim()` is for tab-delimited data and is equivalent to`read.table(file, header = TRUE, sep = "\t")`.
-
-*Example:*
-
-``` r
-## skips the first 2 lines
-anscombe <- read.csv("CSVanscombe.csv", skip=2) 
-```
-
-If a **.csv file** contains both numeric and character variables, and we use `read.csv()`, the character variables get automatically converted to the **factor** type. We can prevent character variables from this automatic conversion to factor, by specifying `stringsAsFactors=FALSE` within the `read.csv()` function.
-
-*Example:*
-
-``` r
-iris_b <- read.csv("iris.csv", stringsAsFactors=F)
-```
+`read.csv()` is for comma-separated data and is equivalent to `read.table(file, header = TRUE, sep = ",")`.
 
 Sometimes, it could happen that the file extension is **.csv**, but the data is **not comma separated**. In that case, we can still use the `read.csv()` function, but in this case we have to specify the separator:
 
@@ -51,18 +36,89 @@ read.csv("iris_semicolon.csv", stringsAsFactors = FALSE, sep=";")
 anscombe_tab_2 <- read.table("anscombe.txt", header=TRUE)
 ```
 
-Note that you can assign your **own column names** after reading the dataframe using the `names()` function, or when you read it in, using the `col.names` argument, which should be assigned a character vector the same length as the number of columns. If there is no header and no col.names argument, then R uses the names "V1", "V2", etc.
-
-After reading the file, you can use the `head()` and `tail()` functions to examine the object:
+Usually, `read_csv()` uses the **first line** of the data for the column names, which is a very common convention. But it’s not uncommon for a few lines of metadata to be included at the top of the file. You can use `skip = n` to skip the first n lines or use `comment = "#"` to drop all lines that start with (e.g.) `#`.
 
 *Example:*
 
 ``` r
-head(ufc)
-tail()
+read_csv("data/students.csv,
+  skip = 2,
+  comment = "#"
+)
 ```
 
-### Read line by line
+In other cases, the data might **not have column names**. You can use `col_names = FALSE` to tell `read_csv()` not to treat the first row as headings and instead label them sequentially from $X_1$ to $X_n$. Alternatively, you can pass `col_names` a character vector which will be used as the column names (e.g. `col_names = c("x", "y", "z")`):
+
+Note that by default `read_csv()` only recognizes empty strings ("") in as NAs, however you surely want it to also recognize the **character string "N/A"**.
+
+*Example:*
+
+``` r
+students <- read_csv("data/students.csv", na = c("N/A", ""))
+```
+
+If a **.csv file** contains both numeric and character variables, and we use `read.csv()`, the character variables get automatically converted to the **factor** type. We can prevent character variables from this automatic conversion to factor, by specifying `stringsAsFactors=FALSE` within the `read.csv()` function.
+
+*Example:*
+
+``` r
+read.csv("iris.csv", stringsAsFactors=F)
+```
+
+**readr** provides a total of nine column types for you to use: `col_logical()`, `col_logical()`, `col_factor()`... Find more information [here](https://readr.tidyverse.org/https://readr.tidyverse.org/).
+
+### `read.delim()`
+
+`read_delim()` reads in files with any delimiter, attempting to automatically guess the delimiter if you don’t specify it. For example, `read.delim()`is for tab-delimited data and is equivalent to `read.table(file, header = TRUE, sep = "\t")`.
+
+*Example:*
+
+``` r
+## skips the first 2 lines
+anscombe <- read.csv("CSVanscombe.csv", skip=2) 
+```
+
+### Other file types
+
+Once you’ve mastered `read_csv()`, using **readr’s** other functions is straightforward; it’s just a matter of knowing which function to reach for:
+
+-   `read_csv2()`: reads semicolon-separated files. These use `;` instead of `,` to separate fields and are common in countries that use `,` as the decimal marker.
+
+-   `read_tsv()`: reads tab-delimited files.
+
+-   `read_fwf()`: reads fixed-width files. You can specify fields by their widths with `fwf_widths()` or by their positions with `fwf_positions()`.
+
+-   `read_log()`: reads Apache-style log files.
+
+## Reading Multiple Files
+
+Sometimes your data is split across **multiple files** instead of being contained in a single file. For example, you might have sales data for multiple months, with each month’s data in a separate file: `01-sales.csv` for January, `02-sales.csv` for February, and `03-sales.csv` for March.
+
+With `read_csv()`you can read these data in at once and stack them on top of each other in a single data frame.
+
+*Example:*
+
+``` r
+sales_files <- c("data/01-sales.csv", "data/02-sales.csv", "data/03-sales.csv")
+read_csv(sales_files, id = "file")
+```
+
+The `id` argument adds a new column called file to the resulting data frame that identifies the file the data come from. This is especially helpful in circumstances where the files you’re reading in do not have an identifying column that can help you trace the observations back to their original sources.
+
+An alternative to read multiple data made **available online** is this:
+
+*Example:*
+
+``` r
+sales_files <- c(
+  "https://pos.it/r4ds-01-sales",
+  "https://pos.it/r4ds-02-sales",
+  "https://pos.it/r4ds-03-sales"
+)
+read_csv(sales_files, id = "file") 
+```
+
+## Reading Line by Line
 
 Text files can be **read line by line** using the `readLines()` function:
 
@@ -84,7 +140,7 @@ con <- url("http://www.jhsph.edu", "r") ## Read the web page
 x <- readLines(con) ## Print out the first few lines head(x)
 ```
 
-### xls format
+## xls Format
 
 If the dataset is stored in the ***.xls or*** **.xlsx format** you can use `read.xlsx2`:
 
@@ -95,7 +151,7 @@ library(xlsx)
 anscombe_xlsx <- read.xlsx2("xlsxanscombe.xlsx", sheetIndex=1)
 ```
 
-### RData format
+## RData Format
 
 If you need to store more than one dataset in a single file we can use the **\*.RData format**:
 
@@ -108,7 +164,7 @@ load("robjects.RData")
 objects()
 ```
 
-### Import Stata/SPSS file
+## Import Stata/SPSS File
 
 To import a **Stata/SPSS file** into R:
 
@@ -130,7 +186,7 @@ To import a **Stata/SPSS file** into R:
     write.foreign(data, "mydata.txt", "mydata.sps", package="SPSS")
     ```
 
-### JSON File
+## JSON File
 
 To read a **JSON file**:
 
@@ -140,6 +196,37 @@ data <- fromJSON(file="data.json")
 data2 <- as.data.frame(data)
 ```
 
-### `view()`
+## `view()`
 
 To view the data variable, you can use the `view()`.
+
+## Manual Data Entry
+
+Sometimes you’ll need to assemble a **tibble “by hand”** doing a little data entry in your R script. 
+
+There are **two useful functions** to help you do this which differ in whether you layout the tibble by columns or by rows. 
+
+-   `tibble()` works by column:
+
+    *Example:*
+    
+    ``` {r}
+    tidyr::tibble(
+      x = c(1, 2, 5), 
+      y = c("h", "m", "g"),
+      z = c(0.08, 0.83, 0.60)
+    )   
+    ```
+
+-   `tribble()` (transposed tibble) lets you lay out your data row by row: column headings start with `~` and entries are separated by commas. This makes it possible to lay out small amounts of data in an easy to read form:
+
+    *Example:*
+  
+    ``` {r}
+    tidyr::tribble(
+      ~x, ~y, ~z,
+      1, "h", 0.08,
+      2, "m", 0.83,
+      5, "g", 0.60
+    )
+    ```
