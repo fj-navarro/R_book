@@ -1,0 +1,180 @@
+# Tidy Data
+
+The **tidyverse** is a set of packages that work in harmony because they share common data representations and API design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command.
+
+If you’d like to learn how to use the tidyverse effectively, the best place to start is [R for Data Science (2e)](https://r4ds.hadley.nz/).
+
+To check that you’re using the **latest version** of each package the easiest way is to run `tidyverse_update()`.
+
+## Installation
+
+-   Install all the packages in the tidyverse by running:
+
+    ``` r
+    install.packages("tidyverse")
+    ```
+
+-   Run `library(tidyverse)` to load the core tidyverse and make it available in your current R session.
+
+    ```{r echo = FALSE, message = FALSE}
+    library(tidyverse)
+    ```
+
+    Note the conflicts message that’s printed when you load the tidyverse. It tells you that dplyr overwrites some functions in base R. If you want to use the base version of these functions after loading dplyr, you’ll need to use their full names: `stats::filter()` and `stats::lag()`.
+
+-   Learn more about the tidyverse package <https://tidyverse.tidyverse.org>
+
+## Core Packages
+
+`library(tidyverse)` will load the **core tidyverse** packages:
+
+-   **ggplot2**, for data visualisation, [more info](https://ggplot2.tidyverse.org/).
+-   **dplyr**, for data manipulation, [more info](https://dplyr.tidyverse.org/).
+-   **tidyr**, for data tidying, [more info](https://tidyr.tidyverse.org/https://tidyr.tidyverse.org/)
+-   **readr**, for data import, [more info](https://readr.tidyverse.org/)
+-   **purrr**, for functional programming, [more info](https://purrr.tidyverse.org/).
+-   **tibble**, for tibbles, a modern re-imagining of data frames, [more info](https://tibble.tidyverse.org/).
+-   **stringr**, for strings, [more info](https://stringr.tidyverse.org/)
+-   **forcats**, for factors, \[more info\] (https://forcats.tidyverse.org/)
+-   **lubridate**, for date/times.
+
+## Functionalities
+
+### Import
+
+As well as **readr**, for reading flat files, the tidyverse package installs a number of other packages for reading data:
+
+-   **DBI** for relational databases. You’ll need to pair DBI with a database specific backends like RSQLite, RMariaDB, RPostgres, or odbc. More info [here](https://db.rstudio.com).
+-   **haven** for SPSS, Stata, and SAS data.
+-   **httr** for web APIs.
+-   **readxl** for .xls and .xlsx sheets.
+-   **googlesheets4** for Google Sheets via the Sheets API v4.
+-   **googledrive** for Google Drive files.
+-   **rvest** for web scraping.
+-   **jsonlite** for JSON. (Maintained by Jeroen Ooms.)
+-   **xml2** for XML.
+
+### Wrangle
+
+In addition to **tidyr**, and **dplyr**, there are five packages (including **stringr** and **forcats**) which are designed to work with specific types of data:
+
+-   **lubridate** for dates and date-times.
+-   **hms** for time-of-day values.
+-   **blob** for storing blob (binary) data.
+
+There are also two packages that allow you to interface with different backends using the same dplyr syntax:
+
+-   **dbplyr** allows you to use remote database tables by converting dplyr code into SQL.
+-   **dtplyr** provides a data.table backend by automatically translating to the equivalent, but usually much faster, data.table code. Program
+
+### Programming
+
+In addition to **purrr**, which provides very consistent and natural methods for iterating on R objects, there are two additional tidyverse packages that help with general programming challenges:
+
+-   **magrittr** provides the pipe, `%>%` used throughout the tidyverse. It also provide a number of more specialised piping operators (like `%$%` and `%<>%`) that can be useful in other places.
+
+-   **glue** provides an alternative to `paste()` that makes it easier to combine data and strings.
+
+### Modeling
+
+**Modeling** with the tidyverse uses the collection of **tidymodels packages**, which largely replace the modelr package used in R4DS.
+
+Visit the [Getting Started Guide](https://www.tidymodels.org/start/) for more detailed examples, or go straight to the Learn page.
+
+## Tidying Data
+
+We'll focus on **tidyr**, a package that provides a bunch of tools to help tidy up messy datasets. **tidyr** is a member of the core tidyverse.
+
+``` r
+library(tidyverse)
+```
+
+There are two main **advantages** of tidy data:
+
+-   There's a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it's easier to learn the tools that work with it because they have an underlying uniformity.
+
+-   There's a specific advantage to placing variables in columns because it allows R's vectorized nature to shine.
+
+### Pivot Data
+
+You'll begin by figuring out what the underlying **variables and observations** are. Sometimes this is easy; other times you'll need to consult with the people who originally generated the data. Next, you'll **pivot** your data into a tidy form, with variables in the columns and observations in the rows.
+
+**tidyr** provides two functions for pivoting data: `pivot_longer()` and `pivot_wider()`. We'll first start with pivot_longer() because it's the most common case. Let's dive into some examples.
+
+### Lengthening Data
+
+**Lengthening data** means increasing the number of rows and decreasing the number of columns. The inverse transformation is `pivot_wider()`.
+
+In this dataset, each observation is a song. The first three columns (`artist`, `track` and `date.entered`) are variables that describe the song. Then we have 76 columns (`wk1-wk76`) that describe the rank of the song in each week1. Here, the column names are one variable (the `week`) and the cell values are another (the `rank`).
+
+```{r}
+tidyr::billboard
+```
+
+To tidy this data, we'll use `pivot_longer()`:
+
+```{r}
+tidyr::billboard |> 
+  tidyr::pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank",
+    values_drop_na = TRUE # to get rid of NAs
+  )
+```
+
+This data is now tidy, but we could make future computation a bit easier by converting values of week from character strings to numbers using `mutate()` and `readr::parse_number()`. `parse_number()` is a handy function that will extract the first number from a string, ignoring all other text.
+
+```{r}
+billboard_longer <- tidyr::billboard |> 
+  tidyr::pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) |> 
+  dplyr::mutate(
+    week = readr::parse_number(week)
+  )
+billboard_longer
+```
+
+Other cases on how to deal with lenghtening data can be found [here](https://r4ds.hadley.nz/data-tidy#sec-pivoting).
+
+### Widening data
+
+`pivot_wider()` makes datasets wider by increasing columns and reducing rows and helps when one observation is spread across multiple rows.
+
+*Example:*
+
+```{r}
+tidyr::cms_patient_experience
+```
+
+The core unit being studied is an organization, but each organization is spread across six rows, with one row for each measurement taken in the survey organization. We can see the complete set of values for `measure_cd` and `measure_title` by using `distinct()`:
+
+```{r}
+tidyr::cms_patient_experience |> 
+  dplyr::distinct(measure_cd, measure_title)
+```
+
+We’ll use `measure_cd` as the source for our new column names for now. Instead of choosing new column names, we need to provide the existing columns that define the values (`values_from`) and the column name (`names_from`):
+
+```{r}
+tidyr::cms_patient_experience |> 
+  tidyr::pivot_wider(
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```
+
+The output doesn’t look quite right; we still seem to have multiple rows for each organization. That’s because, we also need to tell `pivot_wider()` which column or columns have values that uniquely identify each row; in this case those are the variables starting with "org":
+
+```{r}
+tidyr::cms_patient_experience |> 
+  tidyr::pivot_wider(
+    id_cols = starts_with("org"),
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```

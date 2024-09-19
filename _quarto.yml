@@ -18,11 +18,10 @@ book:
         - reading.qmd
         - writing.qmd
         - transforming.qmd
+        - tidydata.qmd
         - subsetting.qmd
-        - date.qmd
         - plyrdplyr.qmd
-        - tidyverse.qmd
-        - tidy.qmd
+        - date.qmd
         - databases.qmd
     - part: "Part 2: Programming in R"
       chapters:

@@ -1,9 +1,5 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisi porta, lobortis mi eget, laoreet sapien. Etiam sit amet tellus luctus, rhoncus dolor pharetra, faucibus sem. Nulla viverra risus et urna porttitor mattis. In et tortor a justo convallis ultricies. Praesent consectetur bibendum tellus eget malesuada. In fermentum sodales luctus. Curabitur in ornare eros. In pulvinar tempor odio et cursus. Aenean tristique vel leo vel congue. Pellentesque id metus mollis, tincidunt nibh a, dapibus elit. Etiam at augue et nisl volutpat ornare pulvinar vitae urna. Duis auctor urna quam, eget rhoncus diam fermentum at.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r}
-1 + 1
-```
+Praesent scelerisque efficitur euismod. Aliquam neque augue, fermentum a magna vitae, interdum varius turpis. Fusce commodo maximus magna sit amet rutrum. Nulla sit amet sem a eros tempus finibus non ac leo. Donec sit amet gravida eros. Donec ut lacus eget velit aliquet luctus. Ut pellentesque tellus varius, gravida velit eu, finibus ante. Maecenas vehicula, elit non volutpat mollis, est augue placerat orci, nec condimentum neque nulla vulputate elit. Nunc hendrerit hendrerit cursus. Aenean elementum mi dolor, sed maximus ex rutrum convallis. Nulla lobortis faucibus justo, in elementum ligula semper non. Quisque sollicitudin pretium tortor vel sollicitudin. Curabitur quis luctus ante. Ut sit amet dui consequat, tristique diam a, suscipit lacus.

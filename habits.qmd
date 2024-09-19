@@ -1,4 +1,4 @@
-# Programming Habits
+# Good Programming Habits
 
 We find the following to be useful guidelines:
 
