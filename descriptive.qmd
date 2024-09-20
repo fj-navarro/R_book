@@ -1,19 +1,19 @@
 # Descriptive Statistics
 
-**Descriptive statistics** summarizes the data set, lets us have a feel and understanding of the data and variables. Descriptive statistics usually focuses on:
--   the **distribution**: can be a normal distribution, binomial distribution, and other distributions like Bernoulli distribution.
--   the **central tendency**: can be the mean, median, and mode of the data.
--   the **dispersion of the data**: it describes the spread of the data, and dispersion can be the variance, standard deviation, and interquartile range.
+**Descriptive statistics** summarizes the data set, lets us have a feel and understanding of the data and variables. Descriptive statistics usually focuses on: 
+
+1.    the **distribution**: can be a normal distribution, binomial distribution, and other distributions like Bernoulli distribution. 
+2.    the **central tendency**: can be the mean, median, and mode of the data. 
+3.    the **dispersion of the data**: it describes the spread of the data, and dispersion can be the variance, standard deviation, and interquartile range.
 
 **Descriptive statistics** allows us to decide or determine whether we should use inferential statistics to identify the relationship between data sets, or use regression analysis instead to identify the relationships between variables.
 
-## summary() and str()
+## `summary()` and `str()`
 
-The `summary()` and `str()` functions are the fastest ways to get descriptive statistics of the data.
+The `summary()` and `str()` functions are the fastest ways to get **descriptive statistics** of the data.
 
-The `summary()` function gives the basic descriptive statistics of the data.
-
-The `str()` function gives the structure of the variables.
+-   The `summary()` function gives the basic descriptive statistics of the data.
+-   The `str()` function gives the structure of the variables.
 
 ## Measures of Centrality
 
@@ -25,8 +25,8 @@ The **mode** is a value in data that has the highest frequency:
 
 ```{r}
 a <- c(1, 2, 3, 4, 5, 5, 5, 6, 7, 8)
-y <- table(a)  ## To get mode in a vector, you create a frequency table
-y
+# To get mode in a vector you create a frequency table
+(y <- table(a)) 
 names(y)[which(y==max(y))]
 ```
 
@@ -36,23 +36,27 @@ The **median** is the middle or midpoint of the data and is also the 50 percenti
 
 The **median** is affected by the outliers and skewness of the data.
 
-``` r
-median(A)
+``` {r}
+median(a)
 ```
 
 ### Mean
 
 The **mean** is the average of the data. The mean works best if the data is distributed in a normal distribution or distributed evenly.
 
-``` r
-mean(A)
+``` {r}
+mean(a)
 ```
 
 ## Measures of Variability
 
-The **measures of variability** are the measures of the spread of the data.
+The **measures of variability** are the measures of the spread of the data. These are encompasses:
 
-The \*\*measures of variability\* can be: - variance - standard deviation - range - interquartile range - and more.
+-   Variance.
+-   Standard deviation.
+-   Range.
+-   Interquartile range.
+-   and more.
 
 ### Variance
 
@@ -72,7 +76,7 @@ var(A) * (N - 1) / N
 var(A)
 ```
 
-### Standard Deviation
+### Standard deviation
 
 The **standard deviation** is the square root of a variance and it measures the spread of the data.
 

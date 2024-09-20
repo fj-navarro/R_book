@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 19&nbsp; Exploratory Analysis</title>
+<title>R for Research in Action - 19&nbsp; Exploratory Analysis Pipeline</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./descriptive.html">Part 3: Statistics in R</a></li><li class="breadcrumb-item"><a href="./exploratory.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./descriptive.html">Part 3: Statistics in R</a></li><li class="breadcrumb-item"><a href="./exploratory.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -291,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exploratory.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,20 +393,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#analysis-pipeline" id="toc-analysis-pipeline" class="nav-link active" data-scroll-target="#analysis-pipeline"><span class="header-section-number">19.1</span> Analysis Pipeline</a>
+  <li><a href="#formulate-questions" id="toc-formulate-questions" class="nav-link active" data-scroll-target="#formulate-questions"><span class="header-section-number">19.1</span> Formulate Questions</a></li>
+  <li><a href="#read-in-your-data" id="toc-read-in-your-data" class="nav-link" data-scroll-target="#read-in-your-data"><span class="header-section-number">19.2</span> Read In Your Data</a></li>
+  <li><a href="#check-the-packaging" id="toc-check-the-packaging" class="nav-link" data-scroll-target="#check-the-packaging"><span class="header-section-number">19.3</span> Check the Packaging</a></li>
+  <li><a href="#run-str" id="toc-run-str" class="nav-link" data-scroll-target="#run-str"><span class="header-section-number">19.4</span> Run str()</a></li>
+  <li><a href="#look-top-and-bottom-of-your-data" id="toc-look-top-and-bottom-of-your-data" class="nav-link" data-scroll-target="#look-top-and-bottom-of-your-data"><span class="header-section-number">19.5</span> Look Top and Bottom of Your Data</a></li>
+  <li><a href="#check-ns-frequency" id="toc-check-ns-frequency" class="nav-link" data-scroll-target="#check-ns-frequency"><span class="header-section-number">19.6</span> Check “n”s (frequency)</a></li>
+  <li><a href="#validate-with-external-data-source" id="toc-validate-with-external-data-source" class="nav-link" data-scroll-target="#validate-with-external-data-source"><span class="header-section-number">19.7</span> Validate With External Data Source</a></li>
+  <li><a href="#check-the-variation-of-data" id="toc-check-the-variation-of-data" class="nav-link" data-scroll-target="#check-the-variation-of-data"><span class="header-section-number">19.8</span> Check the Variation of Data</a>
   <ul class="collapse">
-  <li><a href="#formulate-your-question" id="toc-formulate-your-question" class="nav-link" data-scroll-target="#formulate-your-question"><span class="header-section-number">19.1.1</span> Formulate your question</a></li>
-  <li><a href="#read-in-your-data" id="toc-read-in-your-data" class="nav-link" data-scroll-target="#read-in-your-data"><span class="header-section-number">19.1.2</span> Read in your data</a></li>
-  <li><a href="#check-the-packaging" id="toc-check-the-packaging" class="nav-link" data-scroll-target="#check-the-packaging"><span class="header-section-number">19.1.3</span> Check the packaging</a></li>
-  <li><a href="#run-str" id="toc-run-str" class="nav-link" data-scroll-target="#run-str"><span class="header-section-number">19.1.4</span> Run str()</a></li>
-  <li><a href="#look-at-the-top-and-the-bottom-of-your-data" id="toc-look-at-the-top-and-the-bottom-of-your-data" class="nav-link" data-scroll-target="#look-at-the-top-and-the-bottom-of-your-data"><span class="header-section-number">19.1.5</span> Look at the top and the bottom of your data</a></li>
-  <li><a href="#check-your-ns-frequency" id="toc-check-your-ns-frequency" class="nav-link" data-scroll-target="#check-your-ns-frequency"><span class="header-section-number">19.1.6</span> Check your “n”s (frequency)</a></li>
-  <li><a href="#validate-with-at-least-one-external-data-source" id="toc-validate-with-at-least-one-external-data-source" class="nav-link" data-scroll-target="#validate-with-at-least-one-external-data-source"><span class="header-section-number">19.1.7</span> Validate with at least one external data source</a></li>
-  <li><a href="#try-the-easy-solution-first" id="toc-try-the-easy-solution-first" class="nav-link" data-scroll-target="#try-the-easy-solution-first"><span class="header-section-number">19.1.8</span> Try the easy solution first</a></li>
-  <li><a href="#challenge-your-solutionbootstrap-sample" id="toc-challenge-your-solutionbootstrap-sample" class="nav-link" data-scroll-target="#challenge-your-solutionbootstrap-sample"><span class="header-section-number">19.1.9</span> Challenge your solution/Bootstrap sample</a></li>
-  <li><a href="#follow-up" id="toc-follow-up" class="nav-link" data-scroll-target="#follow-up"><span class="header-section-number">19.1.10</span> Follow up</a></li>
+  <li><a href="#typical-values" id="toc-typical-values" class="nav-link" data-scroll-target="#typical-values"><span class="header-section-number">19.8.1</span> Typical values</a></li>
+  <li><a href="#unusual-values" id="toc-unusual-values" class="nav-link" data-scroll-target="#unusual-values"><span class="header-section-number">19.8.2</span> Unusual values</a></li>
   </ul></li>
-  <li><a href="#hierarchical-clustering" id="toc-hierarchical-clustering" class="nav-link" data-scroll-target="#hierarchical-clustering"><span class="header-section-number">19.2</span> Hierarchical Clustering</a></li>
+  <li><a href="#check-the-covariation" id="toc-check-the-covariation" class="nav-link" data-scroll-target="#check-the-covariation"><span class="header-section-number">19.9</span> Check the Covariation</a>
+  <ul class="collapse">
+  <li><a href="#categorical-numerical-variable" id="toc-categorical-numerical-variable" class="nav-link" data-scroll-target="#categorical-numerical-variable"><span class="header-section-number">19.9.1</span> Categorical &amp; numerical variable</a></li>
+  <li><a href="#two-categorical-variables" id="toc-two-categorical-variables" class="nav-link" data-scroll-target="#two-categorical-variables"><span class="header-section-number">19.9.2</span> Two categorical variables</a></li>
+  <li><a href="#two-numerical-variables" id="toc-two-numerical-variables" class="nav-link" data-scroll-target="#two-numerical-variables"><span class="header-section-number">19.9.3</span> Two numerical variables</a></li>
+  </ul></li>
+  <li><a href="#challenge-your-solutionbootstrap-sample" id="toc-challenge-your-solutionbootstrap-sample" class="nav-link" data-scroll-target="#challenge-your-solutionbootstrap-sample"><span class="header-section-number">19.10</span> Challenge Your Solution/Bootstrap Sample</a></li>
+  <li><a href="#follow-up" id="toc-follow-up" class="nav-link" data-scroll-target="#follow-up"><span class="header-section-number">19.11</span> Follow Up</a></li>
   </ul>
 </nav>
     </div>
@@ -415,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></h1>
 </div>
 
 
@@ -430,76 +436,152 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="analysis-pipeline" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="analysis-pipeline"><span class="header-section-number">19.1</span> Analysis Pipeline</h2>
-<section id="formulate-your-question" class="level3" data-number="19.1.1">
-<h3 data-number="19.1.1" class="anchored" data-anchor-id="formulate-your-question"><span class="header-section-number">19.1.1</span> Formulate your question</h3>
+<section id="formulate-questions" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="formulate-questions"><span class="header-section-number">19.1</span> Formulate Questions</h2>
 <p>A sharp question or hypothesis can serve as a dimension reduction tool that can eliminate variables that are not immediately relevant to the question.</p>
-<p>It’s usually a good idea to spend a few minutes to figure out what is the question you’re really interested in and narrow it down to be as specific as possible (without becoming uninteresting).</p>
-<p>One of the most important questions you can answer with an exploratory data analysis is: <strong>“Do I have the right data to answer this question?”</strong></p>
+<p>It’s usually a good idea to spend a few minutes to figure out what is the <strong>question</strong> you’re really interested in and narrow it down to be as specific as possible (without becoming uninteresting). One of the most important questions you can answer with an exploratory data analysis is: <strong>“Do I have the right data to answer this question?”</strong></p>
+<p>There is no universal rule about which questions you should ask to guide your research. However, <strong>two types of questions</strong> will always be useful for making discoveries within your data:</p>
+<ul>
+<li>What type of <strong>variation</strong> occurs within my variables?</li>
+<li>What type of <strong>covariation</strong> occurs between my variables?</li>
+</ul>
 </section>
-<section id="read-in-your-data" class="level3" data-number="19.1.2">
-<h3 data-number="19.1.2" class="anchored" data-anchor-id="read-in-your-data"><span class="header-section-number">19.1.2</span> Read in your data</h3>
-<p>Sometimes the data will come in a very messy format, and you’ll need to do some cleaning.</p>
-<p>The <strong>readr package</strong> by Hadley Wickham is a nice package for reading in flat files very fast, or at least much faster than R’s built-in functions</p>
+<section id="read-in-your-data" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="read-in-your-data"><span class="header-section-number">19.2</span> Read In Your Data</h2>
+<p>Sometimes the data will come in a very messy format, and you’ll need to do some cleaning and transformations.</p>
+<p>The <strong>readr package</strong> is a nice package for reading in flat files very fast, or at least much faster than R’s built-in functions</p>
 </section>
-<section id="check-the-packaging" class="level3" data-number="19.1.3">
-<h3 data-number="19.1.3" class="anchored" data-anchor-id="check-the-packaging"><span class="header-section-number">19.1.3</span> Check the packaging</h3>
-<p>Assuming you don’t get any warnings or errors when reading in the dataset, you should now have an object in your workspace named e.g.&nbsp;“ozone”. It’s usually a good idea to poke at that object a little bit before we break open the wrapping paper.</p>
-<p>For example, you can check the number of rows and columns.</p>
+<section id="check-the-packaging" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="check-the-packaging"><span class="header-section-number">19.3</span> Check the Packaging</h2>
+<p>Assuming you don’t get any warnings or errors when reading in the dataset, you should now have an <strong>object</strong> in your workspace, e.g.&nbsp;named “ozone”. It’s usually a good idea to poke at that object a little bit before we break open the wrapping paper. For example, you can check the number of rows and columns.</p>
 </section>
-<section id="run-str" class="level3" data-number="19.1.4">
-<h3 data-number="19.1.4" class="anchored" data-anchor-id="run-str"><span class="header-section-number">19.1.4</span> Run str()</h3>
-<p>This is usually a safe operation in the sense that even with a very large dataset, running str() shouldn’t take too long.</p>
+<section id="run-str" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="run-str"><span class="header-section-number">19.4</span> Run str()</h2>
+<p>This is usually a safe operation in the sense that even with a very large dataset, running <code>str()</code> shouldn’t take too long.</p>
 <p>You can examine the classes of each of the columns to make sure they are correctly specified (i.e., numbers are numeric, and strings are character, etc.).</p>
 </section>
-<section id="look-at-the-top-and-the-bottom-of-your-data" class="level3" data-number="19.1.5">
-<h3 data-number="19.1.5" class="anchored" data-anchor-id="look-at-the-top-and-the-bottom-of-your-data"><span class="header-section-number">19.1.5</span> Look at the top and the bottom of your data</h3>
+<section id="look-top-and-bottom-of-your-data" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="look-top-and-bottom-of-your-data"><span class="header-section-number">19.5</span> Look Top and Bottom of Your Data</h2>
 <p>This lets me know if the data were read in properly, things are properly formatted, and that everything is there. If your data are time series data, then make sure the dates at the beginning and end of the dataset match what you expect the beginning and ending time period are.</p>
 <p>You can peek at the top and bottom of the data with the <code>head()</code> and <code>tail()</code> functions. Sometimes there’s weird formatting at the end or some extra comment lines that someone decided to stick at the end.</p>
 </section>
-<section id="check-your-ns-frequency" class="level3" data-number="19.1.6">
-<h3 data-number="19.1.6" class="anchored" data-anchor-id="check-your-ns-frequency"><span class="header-section-number">19.1.6</span> Check your “n”s (frequency)</h3>
+<section id="check-ns-frequency" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="check-ns-frequency"><span class="header-section-number">19.6</span> Check “n”s (frequency)</h2>
 <p>To do this properly, you need to identify some landmarks that can be used to check against your data. For example, if you are collecting data on people, such as in a survey or clinical trial, then you should know how many people there are in your study (i.e., in an ozone monitoring data system we can take a look at the Time.Local variable to see what time measurements are recorded as being taken.)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ozone<span class="sc">$</span>Time.Local)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="validate-with-at-least-one-external-data-source" class="level3" data-number="19.1.7">
-<h3 data-number="19.1.7" class="anchored" data-anchor-id="validate-with-at-least-one-external-data-source"><span class="header-section-number">19.1.7</span> Validate with at least one external data source</h3>
-<p>External validation can often be as simple as checking your data against a single number.</p>
-<p>The data are at least of the right order of magnitude (i.e., the units are correct) or, the range of the distribution is roughly what we’d expect, given the regulation around ambient pollution levels.</p>
+<section id="validate-with-external-data-source" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="validate-with-external-data-source"><span class="header-section-number">19.7</span> Validate With External Data Source</h2>
+<p>External validation can often be as simple as checking your data against a single number.Is the data are at least of the right order of magnitude (i.e., the units are correct)? or, is the range of the distribution roughly what we’d expect, given the regulation around ambient pollution levels?</p>
 </section>
-<section id="try-the-easy-solution-first" class="level3" data-number="19.1.8">
-<h3 data-number="19.1.8" class="anchored" data-anchor-id="try-the-easy-solution-first"><span class="header-section-number">19.1.8</span> Try the easy solution first</h3>
-<p>Because we want to know which counties have the highest levels, it seems we need a list of counties that are ordered from highest to lowest with respect to their levels of ozone.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ranking <span class="ot">&lt;-</span> <span class="fu">group_by</span>(ozone, State.Name, County.Name) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">ozone =</span> <span class="fu">mean</span>(Sample.Measurement)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ozone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="check-the-variation-of-data" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="check-the-variation-of-data"><span class="header-section-number">19.8</span> Check the Variation of Data</h2>
+<p><strong>Variation</strong> is the tendency of the values of a variable to change from measurement to measurement.</p>
+<p>Every variable has its own pattern of variation, which can reveal interesting information about how that it varies between measurements on the same observation as well as across observations. The best way to understand a pattern is to <strong>visualize the distribution</strong> of the variable’s values.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizing the carat from the diamonds dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that you can visualize variation, what should you look for in your plot? And what type of follow-up questions should you ask?</p>
+<p>This histogram suggests several interesting questions:</p>
+<ul>
+<li>Why are there more diamonds at whole carats and common fractions of carats?</li>
+<li>Why are there more diamonds slightly to the right of each peak than there are slightly to the left of each peak?</li>
+</ul>
+<p>Visualizations can also reveal <strong>clusters</strong>, which suggest that subgroups exist in your data. To understand the subgroups, ask:</p>
+<ul>
+<li>How are the observations within each subgroup similar to each other?</li>
+<li>How are the observations in separate clusters different from each other?</li>
+<li>How can you explain or describe the clusters?</li>
+</ul>
+<section id="typical-values" class="level3" data-number="19.8.1">
+<h3 data-number="19.8.1" class="anchored" data-anchor-id="typical-values"><span class="header-section-number">19.8.1</span> Typical values</h3>
+<p>In both <strong>bar charts</strong> and <strong>histograms</strong>, tall bars show the common values of a variable, and shorter bars show less-common values. Places that do not have bars reveal values that were not seen in your data. Now you can turn this information into useful questions:</p>
+<ul>
+<li><p>Which values are the most common? Why?</p></li>
+<li><p>Which values are rare? Why? Does that match your expectations?</p></li>
+<li><p>Can you see any unusual patterns? What might explain them?</p></li>
+</ul>
+<p>Let’s take a look at the distribution of <code>carat</code> for smaller diamonds.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>smaller <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">filter</span>(carat <span class="sc">&lt;</span> <span class="dv">3</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="challenge-your-solutionbootstrap-sample" class="level3" data-number="19.1.9">
-<h3 data-number="19.1.9" class="anchored" data-anchor-id="challenge-your-solutionbootstrap-sample"><span class="header-section-number">19.1.9</span> Challenge your solution/Bootstrap sample</h3>
-<p>The easy solution is nice because it is, well, easy, but you should never allow those results to hold the day. You should always be thinking of ways to challenge the results, especially if those results comport with your prior expectation.</p>
-<p>How stable are the rankings from year to year? We can imagine that from year to year, the ozone data are somewhat different randomly, but generally follow similar patterns across the country. So, the shuffling process could approximate the data changing from one year to the next. It’s not an ideal solution, but it could give us a sense of how stable the rankings are.</p>
-<p>First, we set our random number generator and resample the indices of the rows of the data frame with replacement. The statistical jargon for this approach is a <strong>bootstrap sample</strong>:</p>
+<section id="unusual-values" class="level3" data-number="19.8.2">
+<h3 data-number="19.8.2" class="anchored" data-anchor-id="unusual-values"><span class="header-section-number">19.8.2</span> Unusual values</h3>
+<p><strong>Outliers</strong> are observations that are unusual; data points that don’t seem to fit the pattern. Sometimes outliers are data entry errors, sometimes they are simply values at the extremes that happened to be observed in this data collection, and other times they suggest important new discoveries.</p>
+<p>When you have a lot of data, outliers are sometimes difficult to see in a histogram. For example, take the distribution of the y variable from the diamonds dataset. The only evidence of outliers is the unusually wide limits on the x-axis.</p>
+<p>*Example:**</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> y)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you’ve <strong>encountered unusual values</strong> in your dataset, and simply want to move on to the rest of your analysis, you have two options.</p>
+<ul>
+<li><p>Drop the entire row with the strange values:</p>
+<p>*Example:**</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(y, <span class="dv">3</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Instead, we recommend replacing the unusual values with missing values. The easiest way to do this is to use <code>mutate()</code> to replace the variable with a modified copy.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">if_else</span>(y <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> y <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="cn">NA</span>, y))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+</section>
+<section id="check-the-covariation" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="check-the-covariation"><span class="header-section-number">19.9</span> Check the Covariation</h2>
+<p>If variation describes the behavior within a variable, <strong>covariation</strong> describes the behavior between variables. Covariation is the tendency for the values of two or more variables to vary together in a related way.</p>
+<p>The best way to spot covariation is to <strong>visualize the relationship</strong> between two or more variables.</p>
+<section id="categorical-numerical-variable" class="level3" data-number="19.9.1">
+<h3 data-number="19.9.1" class="anchored" data-anchor-id="categorical-numerical-variable"><span class="header-section-number">19.9.1</span> Categorical &amp; numerical variable</h3>
+<p>For example, let’s explore how the price of a diamond varies with its quality (measured by <code>cut</code>) using <code>geom_freqpoly()</code>:</p>
+<pre><code>*Example:*
+
+``` R
+ggplot(diamonds, aes(x = price)) + 
+  geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
+```</code></pre>
+</section>
+<section id="two-categorical-variables" class="level3" data-number="19.9.2">
+<h3 data-number="19.9.2" class="anchored" data-anchor-id="two-categorical-variables"><span class="header-section-number">19.9.2</span> Two categorical variables</h3>
+<p>To visualize the covariation between categorical variables, you’ll need to count the number of observations for each combination of levels of these categorical variables. One way to do that is to rely on the built-in geom_count():</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> color)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="two-numerical-variables" class="level3" data-number="19.9.3">
+<h3 data-number="19.9.3" class="anchored" data-anchor-id="two-numerical-variables"><span class="header-section-number">19.9.3</span> Two numerical variables</h3>
+<p>You’ve already seen one great way to visualize the covariation between two numerical variables: draw a scatterplot with geom_point(). You can see covariation as a pattern in the points. For example, you can see a positive relationship between the carat size and price of a diamond: diamonds with more carats have a higher price. The relationship is exponential.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(smaller, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="challenge-your-solutionbootstrap-sample" class="level2" data-number="19.10">
+<h2 data-number="19.10" class="anchored" data-anchor-id="challenge-your-solutionbootstrap-sample"><span class="header-section-number">19.10</span> Challenge Your Solution/Bootstrap Sample</h2>
+<p>The easy solution is generally nice because it is easy, but you should never allow those results to hold the day. You should always be thinking of ways to <strong>challenge the results</strong>, especially if those results collide with your prior expectation.</p>
+<p>For example, How stable are the ozone rankings from year to year? We can imagine that from year to year, the ozone data are somewhat different randomly, but generally follow similar patterns across the country. So, the shuffling process could approximate the data changing from one year to the next. This not an ideal solution, but it could give us a sense of how stable the rankings are:</p>
 <ol type="1">
-<li><p>We use the resampled indices to create a new dataset, ozone2, that shares many of the same qualities as the original but is randomly perturbed.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10234</span>) </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(ozone) </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(N, N, <span class="at">replace =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ozone2 <span class="ot">&lt;-</span> ozone[idx, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>First, we set our random number generator and resample the indices of the rows of the data frame with replacement. The statistical jargon for this approach is a <strong>bootstrap sample</strong>:</p>
+<p>We use the resampled indices to create a new dataset, ozone2, that shares many of the same qualities as the original but is randomly perturbed.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10234</span>) </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(ozone) </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(N, N, <span class="at">replace =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ozone2 <span class="ot">&lt;-</span> ozone[idx, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>We reconstruct our rankings of the counties based on this resampled data:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ranking2 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(ozone2, State.Name, County.Name) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">ozone =</span> <span class="fu">mean</span>(Sample.Measurement)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ozone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ranking2 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(ozone2, State.Name, County.Name) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">ozone =</span> <span class="fu">mean</span>(Sample.Measurement)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  as.data.frame <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ozone))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>We can then compare the top 10 counties from our original ranking and the top 10 counties from our ranking based on the resampled data.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">head</span>(ranking, <span class="dv">10</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ranking2, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="fu">head</span>(ranking, <span class="dv">10</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ranking2, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>We can see that the rankings based on the resampled data are very close to the original, with the first 7 being identical. Numbers 8 and 9 get flipped in the resampled rankings but that’s about it. This might suggest that the original rankings are somewhat stable.</p></li>
 </ol>
 </section>
-<section id="follow-up" class="level3" data-number="19.1.10">
-<h3 data-number="19.1.10" class="anchored" data-anchor-id="follow-up"><span class="header-section-number">19.1.10</span> Follow up</h3>
+<section id="follow-up" class="level2" data-number="19.11">
+<h2 data-number="19.11" class="anchored" data-anchor-id="follow-up"><span class="header-section-number">19.11</span> Follow Up</h2>
 <p>At this point it’s useful to consider a few follow up questions:</p>
 <ol type="1">
 <li>Do you have the right data?</li>
@@ -507,10 +589,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Do you have the right question?</li>
 </ol>
 <p>The goal of exploratory data analysis is to get you thinking about your data and reasoning about your question. At this point, we can refine our question or collect new data, all in an iterative process to get at the truth.</p>
-</section>
-</section>
-<section id="hierarchical-clustering" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="hierarchical-clustering"><span class="header-section-number">19.2</span> Hierarchical Clustering</h2>
 
 
 </section>

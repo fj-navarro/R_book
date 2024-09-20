@@ -2,6 +2,32 @@
 
 The best place to continue learning about ggplot is the **ggplot2 book**: [ggplot2: Elegant graphics for data analysis](https://ggplot2-book.org/).
 
+## The Layered Grammar of Ggraphics
+
+The **grammar of graphics** is a template made of seven parameters (the bracketed words that appear in the template) for building plots. The grammar of graphics is based on the insight that you can uniquely describe any plot as a combination of a dataset, a geom, a set of mappings, a stat, a position adjustment, a coordinate system, a faceting scheme, and a theme.
+
+``` R
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>, 
+     position = <POSITION>
+  ) +
+  <COORDINATE_FUNCTION> +
+  <FACET_FUNCTION>
+```
+
+**To build a basic plot from scratch:** 
+
+-   You could start with a **dataset** and then **transform** it into the information that you want to display (with a stat). 
+-   Next, you could choose a **geometric object** to represent each observation in the transformed data. 
+-   You could then use the **aesthetic** properties of the geoms to represent variables in the data. You would map the values of each variable to the levels of an aesthetic. 
+-   You’d then select a **coordinate system** to place the geoms into, using the location of the objects (which is itself an aesthetic property) to display the values of the `x` and `y` variables.
+-   You could further adjust the positions of the geoms within the coordinate system (a position adjustment) or split the graph into subplots (**faceting**). 
+-   You could also extend the plot by adding one or more additional **layers**, where each additional layer uses a dataset, a geom, a set of mappings, a stat, and a position adjustment.
+
+To learn more about the **theoretical underpinnings** that describes the theory of ggplot2 in detail, click here: [The Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf). 
+
 ## Define a Plot Object
 
 With **ggplot2**, you begin a plot with the function `ggplot()`, defining a plot object that you then add layers to.
@@ -37,7 +63,7 @@ ggplot(
 
 Our empty canvas now has more structure – it’s clear where flipper lengths will be displayed (on the x-axis) and where body masses will be displayed (on the y-axis). But the penguins themselves are not yet on the plot. This is because we have not yet determine how to represent the observations from our dataframe on our plot.
 
-## Represent the Data
+## Represent the Data (geoms)
 
 To do so, we need to define a `geom`: the geometrical object that a plot uses to represent data. These geometric objects are made available in ggplot2 with functions that start with `geom_`.
 
@@ -137,7 +163,7 @@ You can specify different **data for each layer**. Here, we use red points as we
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(mpg, aes(x = displ, y = hwy)) + 
   geom_point() + 
   geom_point(
@@ -167,6 +193,152 @@ ggplot(
 
 You can learn more about all possible **aesthetic mappings** in the aesthetic specifications vignette at <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html>. Remember that the specific aesthetics you can use for a plot depend on the geom you use to represent the data.
 
+## Statistical Transformation
+
+Many graphs, like scatterplots, plot the raw values of a dataset. Other graphs, like bar charts, calculate new values to plot. The algorithm used to calculate **new values** for a graph is called a **stat**, short for statistical transformation.
+
+You can figure out which `stat` a geom uses by inspecting the default value for the `stat` argument. For example, `?geom_bar` shows that the default value for `stat` is “count”, which means that `geom_bar()` uses `stat_count()`. To find the **possible variables** that can be computed by the `stat`, look for the section titled “computed variables” in the `help` for `geom_bar()`.
+
+Every **geom** has a default `stat`; and every `stat` has a default geom. This means that you can typically use geoms without worrying about the underlying statistical transformation. However, there are three reasons why you might need to **use a stat explicitly**:
+
+-   You might want to **override** the default `stat`. In the following example we change the `stat` of `geom_bar()` from `count` (the default) to `identity`. This lets us map the height of the bars to the raw values of a `y` variable.
+
+    *Example:*
+    ``` {r}
+    diamonds |>
+      count(cut) |>
+      ggplot(aes(x = cut, y = n)) +
+      geom_bar(stat = "identity")
+    ```
+
+-   You might want to override the default mapping from transformed variables to **aesthetics**.
+
+    *Example:*
+    
+    ```{r}
+    # Display a bar chart of proportions, rather than counts
+    ggplot(diamonds, aes(x = cut, y = after_stat(prop), group = 1)) + 
+      geom_bar()
+    ```
+
+-   You might want to focus on the statistical transformation in your code. For example, you might use `stat_summary()`, which summarizes the `y` values for each unique `x` value, to draw attention to the summary that you’re computing:
+
+    *Example:*
+    
+    ```{r}
+    ggplot(diamonds) + 
+      stat_summary(
+        aes(x = cut, y = depth),
+        fun.min = min,
+        fun.max = max,
+        fun = median
+      )
+    ```
+    
+
+
+
+
+## Position Adjustments
+
+You can color a bar chart using either the **color aesthetic**, or, more usefully, the **fill aesthetic**:
+
+*Example:*
+
+``` {r}
+ggplot(mpg, aes(x = drv, color = drv)) + 
+  geom_bar()
+```
+
+*Example:*
+``` {r}
+ggplot(mpg, aes(x = drv, fill = drv)) + 
+  geom_bar()
+```
+
+Note that if you map the **fill aesthetic** to another variable, like `class`, the bars are automatically stacked. In our example, each colored rectangle represents a combination of `drv` and `class`.
+
+*Example:*
+
+``` {r}
+ggplot(mpg, aes(x = drv, fill = class)) + 
+  geom_bar()
+```
+
+The **stacking** is performed automatically using the position adjustment specified by the **position argument**. If you don’t want a stacked bar chart, you can use one of four other options: 
+
+-   `position = "identity"`: will place each object exactly where it falls in the context of the graph. See how bars overlap and why the `identity` position adjustment is more useful for 2d geoms, like points, where it is the default.
+
+    ``` {r}
+    ggplot(mpg, aes(x = drv, fill = class)) + 
+      geom_bar(alpha = 1/5, position = "identity")
+    ```
+  
+-   `position = "fill"`: works like stacking, but makes each set of stacked bars the same height. This makes it easier to compare proportions across groups.
+
+    *Example:*
+    
+    ``` {r}
+    ggplot(mpg, aes(x = drv, fill = class)) + 
+      geom_bar(position = "fill")
+    ```
+
+-   `position = "dodge"`: places overlapping objects directly beside one another. This makes it easier to compare individual values.
+
+    *Example:*
+    
+    ```{r}
+    ggplot(mpg, aes(x = drv, fill = class)) + 
+      geom_bar(position = "dodge")
+    ```
+    
+-   `position = "jitter"`: adds a small amount of random noise to each point in a scatterplot. This spreads the points out to solve the problem of overplotting, which makes it difficult to see the distribution of the data.
+
+    ``` {r}
+    ggplot(mpg, aes(x = displ, y = hwy)) + 
+      geom_point(position = "jitter")
+    ```
+    
+## Coordinate System
+
+The default coordinate system is the **Cartesian coordinate system** where the `x` and `y` positions act independently to determine the location of each point. 
+
+There are **two other** coordinate systems that are occasionally helpful.
+
+-   `coord_quickmap()`: sets the aspect ratio correctly for plotting spatial data with ggplot2. See more in the [Maps chapter](https://ggplot2-book.org/maps.html) of the **ggplot2 book**.
+
+    *Example:*
+    
+    ``` {r message = FALSE}
+    library(maps)
+    
+    nz <- map_data("nz")
+
+    ggplot(nz, aes(x = long, y = lat, group = group)) +
+      geom_polygon(fill = "white", color = "black")
+
+    ggplot(nz, aes(x = long, y = lat, group = group)) +
+      geom_polygon(fill = "white", color = "black") +
+      coord_quickmap()
+    ```
+
+-   `coord_polar()`: uses **polar coordinates**. Polar coordinates can reveal interesting connections between a bar chart and a Coxcomb chart.
+
+    *Example:*
+    
+    ``` {r}
+    bar <- ggplot(data = diamonds) + 
+      geom_bar(
+        mapping = aes(x = clarity, fill = clarity), 
+        show.legend = FALSE,
+        width = 1
+      ) + 
+      theme(aspect.ratio = 1)
+
+    bar + coord_flip()
+    bar + coord_polar()
+    ```
+    
 ## Facets
 
 **Facets** splits a plot into subplots that each display one subset of the data based on a **categorical variable**.
@@ -198,7 +370,7 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point() + 
   facet_grid(drv ~ cyl, scales = "free")
 ```
-  
+
 ## Improve Labels
 
 And finally, we can improve the **labels** of our plot using the `labs()` function in a new layer:
