@@ -291,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,11 +393,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#writing-a-dataframe" id="toc-writing-a-dataframe" class="nav-link active" data-scroll-target="#writing-a-dataframe"><span class="header-section-number">6.1</span> Writing a Dataframe</a></li>
-  <li><a href="#writing-matrices" id="toc-writing-matrices" class="nav-link" data-scroll-target="#writing-matrices"><span class="header-section-number">6.2</span> Writing Matrices</a></li>
-  <li><a href="#cat" id="toc-cat" class="nav-link" data-scroll-target="#cat"><span class="header-section-number">6.3</span> <code>cat()</code></a></li>
-  <li><a href="#tabular-data" id="toc-tabular-data" class="nav-link" data-scroll-target="#tabular-data"><span class="header-section-number">6.4</span> Tabular Data</a></li>
-  <li><a href="#dump" id="toc-dump" class="nav-link" data-scroll-target="#dump"><span class="header-section-number">6.5</span> <code>dump()</code></a></li>
+  <li><a href="#writing-to-excel" id="toc-writing-to-excel" class="nav-link active" data-scroll-target="#writing-to-excel"><span class="header-section-number">6.1</span> Writing to Excel</a></li>
+  <li><a href="#writing-to-google-sheets" id="toc-writing-to-google-sheets" class="nav-link" data-scroll-target="#writing-to-google-sheets"><span class="header-section-number">6.2</span> Writing to Google Sheets</a></li>
+  <li><a href="#writing-a-dataframe" id="toc-writing-a-dataframe" class="nav-link" data-scroll-target="#writing-a-dataframe"><span class="header-section-number">6.3</span> Writing a Dataframe</a></li>
+  <li><a href="#writing-matrices" id="toc-writing-matrices" class="nav-link" data-scroll-target="#writing-matrices"><span class="header-section-number">6.4</span> Writing Matrices</a></li>
+  <li><a href="#cat" id="toc-cat" class="nav-link" data-scroll-target="#cat"><span class="header-section-number">6.5</span> <code>cat()</code></a></li>
+  <li><a href="#tabular-data" id="toc-tabular-data" class="nav-link" data-scroll-target="#tabular-data"><span class="header-section-number">6.6</span> Tabular Data</a></li>
+  <li><a href="#dump" id="toc-dump" class="nav-link" data-scroll-target="#dump"><span class="header-section-number">6.7</span> <code>dump()</code></a></li>
   </ul>
 </nav>
     </div>
@@ -437,40 +439,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(students, <span class="st">"students.parquet"</span>)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">read_parquet</span>(<span class="st">"students.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These store data in R’s custom binary format called <strong>RDS</strong>. This means that when you reload the object, you are loading the exact same R object that you stored. <strong>Parquet</strong> tends to be much faster than <strong>RDS</strong> and is usable outside of R, but does require the <strong>arrow package</strong>.</p>
-<section id="writing-a-dataframe" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="writing-a-dataframe"><span class="header-section-number">6.1</span> Writing a Dataframe</h2>
+<section id="writing-to-excel" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="writing-to-excel"><span class="header-section-number">6.1</span> Writing to Excel</h2>
+<p>You can write data back to disk as an <strong>Excel file</strong> using the <code>write_xlsx()</code> from the <strong>writexl package</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(bake_sale, <span class="at">path =</span> <span class="st">"data/bake-sale.xlsx"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you’re interested in additional features like writing to sheets within a spreadsheet and styling, you will want to use the <strong>openxlsx package</strong>.</p>
+</section>
+<section id="writing-to-google-sheets" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="writing-to-google-sheets"><span class="header-section-number">6.2</span> Writing to Google Sheets</h2>
+<p>You can write from R to <strong>Google Sheets</strong> with <code>write_sheet()</code>. The first argument is the dataframe to write, and the second argument is the name (or other identifier) of the Google Sheet to write to:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sheet</span>(bake_sale, <span class="at">ss =</span> <span class="st">"bake-sale"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you’d like to write your data to a specific (work)sheet inside a Google Sheet, you can specify that with the sheet argument as well.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_sheet</span>(bake_sale, <span class="at">ss =</span> <span class="st">"bake-sale"</span>, <span class="at">sheet =</span> <span class="st">"Sales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="writing-a-dataframe" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="writing-a-dataframe"><span class="header-section-number">6.3</span> Writing a Dataframe</h2>
 <p>To write a <strong>dataframe</strong> to a file we use this:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(x, <span class="at">file =</span> <span class="st">""</span>, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(x, <span class="at">file =</span> <span class="st">""</span>, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">row.names =</span> <span class="cn">TRUE</span>, <span class="at">col.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here <code>x</code> is the vector to be written. If <code>x</code> is a <strong>matrix or array</strong> then it is converted to a vector (column by column) before being written. The other parameters are optional.</p>
 <p>We can identify the <strong>complete rows</strong> from a two-dimensional object such as a dataframe (that is, rows that have no missing values) via the <code>complete.cases</code> command. We can easily remove rows with missing values using the <code>na.omit</code> function.</p>
 </section>
-<section id="writing-matrices" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="writing-matrices"><span class="header-section-number">6.2</span> Writing Matrices</h2>
+<section id="writing-matrices" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="writing-matrices"><span class="header-section-number">6.4</span> Writing Matrices</h2>
 <p>Because <code>write()</code> converts matrices to vectors before writing them, using it to write a matrix to a file can cause unexpected results. Since R stores its matrices by column, you should pass the <strong>transpose of the matrix to write</strong> if you want the output to reflect the matrix structure.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">t</span>(x), <span class="at">file =</span> <span class="st">"../results/out.txt"</span>, <span class="at">ncolumns =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(<span class="fu">t</span>(x), <span class="at">file =</span> <span class="st">"../results/out.txt"</span>, <span class="at">ncolumns =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="cat" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="cat"><span class="header-section-number">6.3</span> <code>cat()</code></h2>
+<section id="cat" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="cat"><span class="header-section-number">6.5</span> <code>cat()</code></h2>
 <p>A more flexible command for writing to a file is <code>cat()</code>, which has the form:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(..., <span class="at">file =</span> <span class="st">""</span>, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">append =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(..., <span class="at">file =</span> <span class="st">""</span>, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">append =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that cat does not automatically write a newline after the expressions <em>….</em> If you want a newline you must explicitly include the string <code>\n</code>.</p>
 </section>
-<section id="tabular-data" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="tabular-data"><span class="header-section-number">6.4</span> Tabular Data</h2>
+<section id="tabular-data" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="tabular-data"><span class="header-section-number">6.6</span> Tabular Data</h2>
 <p>For <strong>writing tabular data</strong> to text files (i.e.&nbsp;CSV) or connections you may use <code>write.table()</code>, which has this format:</p>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="dump" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="dump"><span class="header-section-number">6.5</span> <code>dump()</code></h2>
+<section id="dump" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="dump"><span class="header-section-number">6.7</span> <code>dump()</code></h2>
 <p>There is also the very useful <code>dump()</code> function, which creates a text representation of almost any R object that can subsequently be read by source.</p>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dump</span>(<span class="st">"x"</span>, <span class="at">file =</span> <span class="st">"../results/x.txt"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../results/x.txt"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dump</span>(<span class="st">"x"</span>, <span class="at">file =</span> <span class="st">"../results/x.txt"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"../results/x.txt"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

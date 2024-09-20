@@ -6,7 +6,7 @@ The best place to continue learning about ggplot is the **ggplot2 book**: [ggplo
 
 The **grammar of graphics** is a template made of seven parameters (the bracketed words that appear in the template) for building plots. The grammar of graphics is based on the insight that you can uniquely describe any plot as a combination of a dataset, a geom, a set of mappings, a stat, a position adjustment, a coordinate system, a faceting scheme, and a theme.
 
-``` R
+``` r
 ggplot(data = <DATA>) + 
   <GEOM_FUNCTION>(
      mapping = aes(<MAPPINGS>),
@@ -17,16 +17,16 @@ ggplot(data = <DATA>) +
   <FACET_FUNCTION>
 ```
 
-**To build a basic plot from scratch:** 
+**To build a basic plot from scratch:**
 
--   You could start with a **dataset** and then **transform** it into the information that you want to display (with a stat). 
--   Next, you could choose a **geometric object** to represent each observation in the transformed data. 
--   You could then use the **aesthetic** properties of the geoms to represent variables in the data. You would map the values of each variable to the levels of an aesthetic. 
+-   You could start with a **dataset** and then **transform** it into the information that you want to display (with a stat).
+-   Next, you could choose a **geometric object** to represent each observation in the transformed data.
+-   You could then use the **aesthetic** properties of the geoms to represent variables in the data. You would map the values of each variable to the levels of an aesthetic.
 -   You’d then select a **coordinate system** to place the geoms into, using the location of the objects (which is itself an aesthetic property) to display the values of the `x` and `y` variables.
--   You could further adjust the positions of the geoms within the coordinate system (a position adjustment) or split the graph into subplots (**faceting**). 
+-   You could further adjust the positions of the geoms within the coordinate system (a position adjustment) or split the graph into subplots (**faceting**).
 -   You could also extend the plot by adding one or more additional **layers**, where each additional layer uses a dataset, a geom, a set of mappings, a stat, and a position adjustment.
 
-To learn more about the **theoretical underpinnings** that describes the theory of ggplot2 in detail, click here: [The Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf). 
+To learn more about the **theoretical underpinnings** that describes the theory of ggplot2 in detail, click here: [The Layered Grammar of Graphics](https://vita.had.co.nz/papers/layered-grammar.pdf).
 
 ## Define a Plot Object
 
@@ -204,7 +204,8 @@ Every **geom** has a default `stat`; and every `stat` has a default geom. This m
 -   You might want to **override** the default `stat`. In the following example we change the `stat` of `geom_bar()` from `count` (the default) to `identity`. This lets us map the height of the bars to the raw values of a `y` variable.
 
     *Example:*
-    ``` {r}
+
+    ```{r}
     diamonds |>
       count(cut) |>
       ggplot(aes(x = cut, y = n)) +
@@ -214,7 +215,7 @@ Every **geom** has a default `stat`; and every `stat` has a default geom. This m
 -   You might want to override the default mapping from transformed variables to **aesthetics**.
 
     *Example:*
-    
+
     ```{r}
     # Display a bar chart of proportions, rather than counts
     ggplot(diamonds, aes(x = cut, y = after_stat(prop), group = 1)) + 
@@ -224,7 +225,7 @@ Every **geom** has a default `stat`; and every `stat` has a default geom. This m
 -   You might want to focus on the statistical transformation in your code. For example, you might use `stat_summary()`, which summarizes the `y` values for each unique `x` value, to draw attention to the summary that you’re computing:
 
     *Example:*
-    
+
     ```{r}
     ggplot(diamonds) + 
       stat_summary(
@@ -234,10 +235,6 @@ Every **geom** has a default `stat`; and every `stat` has a default geom. This m
         fun = median
       )
     ```
-    
-
-
-
 
 ## Position Adjustments
 
@@ -245,13 +242,14 @@ You can color a bar chart using either the **color aesthetic**, or, more usefull
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(mpg, aes(x = drv, color = drv)) + 
   geom_bar()
 ```
 
 *Example:*
-``` {r}
+
+```{r}
 ggplot(mpg, aes(x = drv, fill = drv)) + 
   geom_bar()
 ```
@@ -260,25 +258,25 @@ Note that if you map the **fill aesthetic** to another variable, like `class`, t
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(mpg, aes(x = drv, fill = class)) + 
   geom_bar()
 ```
 
-The **stacking** is performed automatically using the position adjustment specified by the **position argument**. If you don’t want a stacked bar chart, you can use one of four other options: 
+The **stacking** is performed automatically using the position adjustment specified by the **position argument**. If you don’t want a stacked bar chart, you can use one of four other options:
 
 -   `position = "identity"`: will place each object exactly where it falls in the context of the graph. See how bars overlap and why the `identity` position adjustment is more useful for 2d geoms, like points, where it is the default.
 
-    ``` {r}
+    ```{r}
     ggplot(mpg, aes(x = drv, fill = class)) + 
       geom_bar(alpha = 1/5, position = "identity")
     ```
-  
+
 -   `position = "fill"`: works like stacking, but makes each set of stacked bars the same height. This makes it easier to compare proportions across groups.
 
     *Example:*
-    
-    ``` {r}
+
+    ```{r}
     ggplot(mpg, aes(x = drv, fill = class)) + 
       geom_bar(position = "fill")
     ```
@@ -286,32 +284,32 @@ The **stacking** is performed automatically using the position adjustment specif
 -   `position = "dodge"`: places overlapping objects directly beside one another. This makes it easier to compare individual values.
 
     *Example:*
-    
+
     ```{r}
     ggplot(mpg, aes(x = drv, fill = class)) + 
       geom_bar(position = "dodge")
     ```
-    
+
 -   `position = "jitter"`: adds a small amount of random noise to each point in a scatterplot. This spreads the points out to solve the problem of overplotting, which makes it difficult to see the distribution of the data.
 
-    ``` {r}
+    ```{r}
     ggplot(mpg, aes(x = displ, y = hwy)) + 
       geom_point(position = "jitter")
     ```
-    
+
 ## Coordinate System
 
-The default coordinate system is the **Cartesian coordinate system** where the `x` and `y` positions act independently to determine the location of each point. 
+The default coordinate system is the **Cartesian coordinate system** where the `x` and `y` positions act independently to determine the location of each point.
 
 There are **two other** coordinate systems that are occasionally helpful.
 
 -   `coord_quickmap()`: sets the aspect ratio correctly for plotting spatial data with ggplot2. See more in the [Maps chapter](https://ggplot2-book.org/maps.html) of the **ggplot2 book**.
 
     *Example:*
-    
-    ``` {r message = FALSE}
+
+    ```{r message = FALSE}
     library(maps)
-    
+
     nz <- map_data("nz")
 
     ggplot(nz, aes(x = long, y = lat, group = group)) +
@@ -325,8 +323,8 @@ There are **two other** coordinate systems that are occasionally helpful.
 -   `coord_polar()`: uses **polar coordinates**. Polar coordinates can reveal interesting connections between a bar chart and a Coxcomb chart.
 
     *Example:*
-    
-    ``` {r}
+
+    ```{r}
     bar <- ggplot(data = diamonds) + 
       geom_bar(
         mapping = aes(x = clarity, fill = clarity), 
@@ -338,7 +336,7 @@ There are **two other** coordinate systems that are occasionally helpful.
     bar + coord_flip()
     bar + coord_polar()
     ```
-    
+
 ## Facets
 
 **Facets** splits a plot into subplots that each display one subset of the data based on a **categorical variable**.
@@ -399,6 +397,80 @@ ggplot(
     color = "Species", shape = "Species"
   ) +
   scale_color_colorblind()
+```
+
+The purpose of a plot title is to summarize the **main finding**. Avoid titles that just describe what the plot is (e.g. "Fuel efficcieny generally decreases with engine size").
+
+### Mathematical labels
+
+It’s possible to use **mathematical** equations instead of text strings. Just switch " " out for quote() and read about the available options in ?plotmath:
+
+*Example:*
+
+```R
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  labs(
+    x = quote(x[i]),
+    y = quote(sum(x[i] ^ 2, i == 1, n))
+  )
+```
+
+## Themes
+
+gplot2 includes the **eight themes**, with `theme_gray()` as the default. Many more are included in add-on packages like `ggthemes` (https://jrnold.github.io/ggthemes). You can also create your own themes, if you are trying to match a particular corporate or journal style.
+
+*Example:*
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = class)) +
+  geom_smooth(se = FALSE) +
+  theme_bw()
+```
+
+It’s also possible to control individual components of each theme, like the size and color of the font used for the y axis.
+
+*Example:*
+
+``` R
+  ...
+  theme(
+    legend.position = c(0.6, 0.7),
+    legend.direction = "horizontal",
+    legend.box.background = element_rect(color = "black"),
+    plot.title = element_text(face = "bold"),
+    plot.title.position = "plot",
+    plot.caption.position = "plot",
+    plot.caption = element_text(hjust = 0)
+  )
+```
+For an overview of all `theme()` components, see help with `?theme`.
+
+## Layout
+
+What if you have **multiple plots** you want to lay out in a certain way? The **patchwork package** allows you to combine separate plots into the same graphic.
+
+To place two plots next to each other, you can simply add them to each other. Note that you first need to create the plots and save them as objects (in the following example they’re called p1 and p2). Then, you place them next to each other with `+`.
+
+``` {r}
+library(patchwork)
+p1 <- ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  labs(title = "Plot 1")
+p2 <- ggplot(mpg, aes(x = drv, y = hwy)) + 
+  geom_boxplot() + 
+  labs(title = "Plot 2")
+p1 + p2
+```
+
+You can also create **complex plot layouts** with patchwork. In the following, `|` places the `p1` and `p3` next to each other and `/` moves `p2` to the next line.
+
+```{r}
+p3 <- ggplot(mpg, aes(x = cty, y = hwy)) + 
+  geom_point() + 
+  labs(title = "Plot 3")
+(p1 | p3) / p2
 ```
 
 ## Save Your Plot

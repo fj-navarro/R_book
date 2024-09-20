@@ -17,7 +17,7 @@ Sometimes the data will come in a very messy format, and you’ll need to do som
 
 The **readr package** is a nice package for reading in flat files very fast, or at least much faster than R’s built-in functions
 
-## Check the Packaging
+## Check the "Packaging"
 
 Assuming you don’t get any warnings or errors when reading in the dataset, you should now have an **object** in your workspace, e.g. named “ozone”. It’s usually a good idea to poke at that object a little bit before we break open the wrapping paper. For example, you can check the number of rows and columns.
 
@@ -53,7 +53,9 @@ Every variable has its own pattern of variation, which can reveal interesting in
 
 *Example:*
 
-``` R
+```{r message = FALSE}
+library(tidyverse)
+library(ggplot2)
 # Visualizing the carat from the diamonds dataset
 ggplot(diamonds, aes(x = carat)) +
   geom_histogram(binwidth = 0.5)
@@ -74,7 +76,7 @@ Visualizations can also reveal **clusters**, which suggest that subgroups exist 
 
 ### Typical values
 
-In both **bar charts** and **histograms**, tall bars show the common values of a variable, and shorter bars show less-common values. Places that do not have bars reveal values that were not seen in your data. Now you can turn this information into useful questions: 
+In both **bar charts** and **histograms**, tall bars show the common values of a variable, and shorter bars show less-common values. Places that do not have bars reveal values that were not seen in your data. Now you can turn this information into useful questions:
 
 -   Which values are the most common? Why?
 
@@ -86,115 +88,199 @@ Let’s take a look at the distribution of `carat` for smaller diamonds.
 
 *Example:*
 
-```R
+```{r}
 smaller <- diamonds |> 
               filter(carat < 3)
 ggplot(smaller, aes(x = carat)) +
   geom_histogram(binwidth = 0.01)
 ```
 
+This **histogram** suggests several interesting questions:
+
+-   Why are there more diamonds at whole carats and common fractions of carats?
+-   Why are there more diamonds slightly to the right of each peak than there are slightly to the left of each peak?
+
+Visualizations can also reveal **clusters**, which suggest that subgroups exist in your data. To understand the subgroups, ask:
+
+-   How can you explain or describe the clusters?
+-   How are the observations within each subgroup similar to each other?
+-   How are the observations in separate clusters different from each other?
+
 ### Unusual values
 
-**Outliers** are observations that are unusual; data points that don’t seem to fit the pattern. Sometimes outliers are data entry errors, sometimes they are simply values at the extremes that happened to be observed in this data collection, and other times they suggest important new discoveries. 
+**Outliers** are observations that are unusual; data points that don’t seem to fit the pattern. Sometimes outliers are data entry errors, sometimes they are simply values at the extremes that happened to be observed in this data collection, and other times they suggest important new discoveries.
 
 When you have a lot of data, outliers are sometimes difficult to see in a histogram. For example, take the distribution of the y variable from the diamonds dataset. The only evidence of outliers is the unusually wide limits on the x-axis.
 
-*Example:**
+*Example:*
 
-```R
+``` {r}
 ggplot(diamonds, aes(x = y)) + 
   geom_histogram(binwidth = 0.5) 
+```
+
+To make it easy to **see unusual values**:
+
+``` R
+coord_cartesian(ylim = c(0, 50))
 ```
 
 If you’ve **encountered unusual values** in your dataset, and simply want to move on to the rest of your analysis, you have two options.
 
 -   Drop the entire row with the strange values:
 
-    *Example:**
-    
-    ```R
+    *Example:*
+
+    ``` {r}
     diamonds2 <- diamonds |> 
       filter(between(y, 3, 20))
     ```
-  
--   Instead, we recommend replacing the unusual values with missing values. The easiest way to do this is to use `mutate()` to replace the variable with a modified copy.  
+
+    This is not recommended because one invalid value doesn’t imply that all the other values for that observation are also invalid.
+    
+-   Instead, we recommend **replacing the unusual values** with missing values. The easiest way to do this is to use `mutate()` to replace the variable with a modified copy.
 
     *Example:*
 
-    ``` R
+    ``` {r}
     diamonds2 <- diamonds |> 
         mutate(y = if_else(y < 3 | y > 20, NA, y))
     ggplot(diamonds2, aes(x = x, y = y)) + 
         geom_point()
     ```
 
+To suppress that warning, set `na.rm = TRUE`.
+
 ## Check the Covariation
 
-If variation describes the behavior within a variable, **covariation** describes the behavior between variables. Covariation is the tendency for the values of two or more variables to vary together in a related way. 
+If variation describes the behavior within a variable, **covariation** describes the behavior between variables. Covariation is the tendency for the values of two or more variables to vary together in a related way.
 
 The best way to spot covariation is to **visualize the relationship** between two or more variables.
 
-### Categorical & numerical variable
+### Categorical and numerical variable
 
 For example, let’s explore how the price of a diamond varies with its quality (measured by `cut`) using `geom_freqpoly()`:
 
-    *Example:*
-    
-    ``` R
-    ggplot(diamonds, aes(x = price)) + 
-      geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
-    ```
+*Example:*
+
+``` {r}
+ggplot(diamonds, aes(x = price)) + 
+  geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
+```
+
+Note that ggplot2 uses an **ordered color** scale for `cut` because it’s defined as an ordered factor variable in the data.
+
+To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying `count`, we’ll display the `density`, which is the count standardized so that the area under each frequency polygon is one.
+
+*Example:*
+
+``` {r}
+ggplot(diamonds, aes(x = price, y = after_stat(density))) + 
+  geom_freqpoly(aes(color = cut), binwidth = 500, linewidth = 0.75)
+```
+
+There’s something rather surprising about this plot: it seems that fair diamonds (the lowest quality) have the highest average price!
+
 ### Two categorical variables
 
-To visualize the covariation between categorical variables, you’ll need to count the number of observations for each combination of levels of these categorical variables. One way to do that is to rely on the built-in geom_count():
+To visualize the **covariation between categorical variables**, you’ll need to count the number of observations for each combination of levels of these categorical variables. One way to do that is to rely on the built-in `geom_count()`:
 
-``` R
+``` {r}
 ggplot(diamonds, aes(x = cut, y = color)) +
   geom_count()
 ```
+
+The **size of each circle** in the plot displays how many observations occurred at each combination of values. Covariation will appear as a strong correlation between specific `x` values and specific `y` values.
+
+Another approach for exploring the relationship between these variables is computing the counts with `dplyr`:
+
+```{r}
+diamonds |> 
+  count(color, cut)
+```
+
+Then visualize with `geom_tile()` and the `fill` aesthetic:
+
+```{r}
+diamonds |> 
+  count(color, cut) |>  
+  ggplot(aes(x = color, y = cut)) +
+  geom_tile(aes(fill = n))
+```
+
+For larger plots, you might want to try the **heatmaply package**, which creates interactive plots.
+
 ### Two numerical variables
 
-You’ve already seen one great way to visualize the covariation between two numerical variables: draw a scatterplot with geom_point(). You can see covariation as a pattern in the points. For example, you can see a positive relationship between the carat size and price of a diamond: diamonds with more carats have a higher price. The relationship is exponential.
+Drawing a scatterplot with `geom_point()` is one great way to visualize the covariation between two numerical variables. For example, you can see a positive relationship between the `carat` size and `price` of a diamond (diamonds with more carats have a higher price):
 
-``` R
+*Example:* 
+
+``` {r}
 ggplot(smaller, aes(x = carat, y = price)) +
   geom_point()
 ```
-  
+
+Scatterplots become **less useful** as the size of your dataset grows, because points begin to overplot, and pile up into areas of uniform black, making it hard to judge differences in the density of the data across the 2-dimensional space as well as making it hard to spot the trend.
+
+Two possible solutions are:
+
+-   Using transparency:
+    ``` R
+    geom_point(alpha = 1 / 100)
+    ```
+-   Another solution is to use bin:
+
+*Example:*
+
+``` {r}
+# geom_bin2d() creates rectangular bins
+ggplot(smaller, aes(x = carat, y = price)) +
+  geom_bin2d()
+```
+
+``` R
+# geom_hex() creates hexagonal bins
+# You will need to install.packages("hexbin")
+ggplot(smaller, aes(x = carat, y = price)) +
+  geom_hex()
+```
+
+
 ## Challenge Your Solution/Bootstrap Sample
 
 The easy solution is generally nice because it is easy, but you should never allow those results to hold the day. You should always be thinking of ways to **challenge the results**, especially if those results collide with your prior expectation.
 
 For example, How stable are the ozone rankings from year to year? We can imagine that from year to year, the ozone data are somewhat different randomly, but generally follow similar patterns across the country. So, the shuffling process could approximate the data changing from one year to the next. This not an ideal solution, but it could give us a sense of how stable the rankings are:
 
-1.    First, we set our random number generator and resample the indices of the rows of the data frame with replacement. The statistical jargon for this approach is a **bootstrap sample**:
+1.  First, we set our random number generator and resample the indices of the rows of the data frame with replacement. The statistical jargon for this approach is a **bootstrap sample**:
 
-      We use the resampled indices to create a new dataset, ozone2, that shares many of the same qualities as the original but is randomly perturbed.
+    We use the resampled indices to create a new dataset, ozone2, that shares many of the same qualities as the original but is randomly perturbed.
 
-      ``` r
-      set.seed(10234) 
-      N <- nrow(ozone) 
-      idx <- sample(N, N, replace = TRUE) 
-      ozone2 <- ozone[idx, ]
-      ```
+    ``` r
+    set.seed(10234) 
+    N <- nrow(ozone) 
+    idx <- sample(N, N, replace = TRUE) 
+    ozone2 <- ozone[idx, ]
+    ```
 
-2.    We reconstruct our rankings of the counties based on this resampled data:
+2.  We reconstruct our rankings of the counties based on this resampled data:
 
-      ``` r
-      ranking2 <- group_by(ozone2, State.Name, County.Name) %>% 
-        summarize(ozone = mean(Sample.Measurement)) %>%
-        as.data.frame %>%
-        arrange(desc(ozone))
-      ```
+    ``` r
+    ranking2 <- group_by(ozone2, State.Name, County.Name) %>% 
+      summarize(ozone = mean(Sample.Measurement)) %>%
+      as.data.frame %>%
+      arrange(desc(ozone))
+    ```
 
-3.    We can then compare the top 10 counties from our original ranking and the top 10 counties from our ranking based on the resampled data.
+3.  We can then compare the top 10 counties from our original ranking and the top 10 counties from our ranking based on the resampled data.
 
-      ``` r
-      cbind(head(ranking, 10)
-      head(ranking2, 10))
-      ```
+    ``` r
+    cbind(head(ranking, 10)
+    head(ranking2, 10))
+    ```
 
-4.    We can see that the rankings based on the resampled data are very close to the original, with the first 7 being identical. Numbers 8 and 9 get flipped in the resampled rankings but that’s about it. This might suggest that the original rankings are somewhat stable.
+4.  We can see that the rankings based on the resampled data are very close to the original, with the first 7 being identical. Numbers 8 and 9 get flipped in the resampled rankings but that’s about it. This might suggest that the original rankings are somewhat stable.
 
 ## Follow Up
 

@@ -140,16 +140,100 @@ con <- url("http://www.jhsph.edu", "r") ## Read the web page
 x <- readLines(con) ## Print out the first few lines head(x)
 ```
 
-## xls Format
+## Reading Excel Spreadsheets
 
-If the dataset is stored in the ***.xls or*** **.xlsx format** you can use `read.xlsx2`:
+If the dataset is stored in the ***.xls or*** **.xlsx** format you can use the **readxl package**. This package is non-core tidyverse, so you need to load it explicitly, but it is installed automatically when you install the **tidyverse** package.
+
+Most of **readxl’s functions** allow you to load **Excel spreadsheets** into R:
+
+-   `read_xls()` reads Excel files with xls format.
+-   `read_xlsx()` read Excel files with xlsx format.
+-   `read_excel()` can read files with both xls and xlsx format. It guesses the file type based on the input.
 
 *Example:*
 
-``` r
-library(xlsx) 
-anscombe_xlsx <- read.xlsx2("xlsxanscombe.xlsx", sheetIndex=1)
+```{r message = FALSE}
+library(tidyverse)
+library(readxl)
+library(writexl)
+(students <- read_excel("data/students.xlsx"))
 ```
+
+An important feature that distinguishes spreadsheets from flat files is the notion of **multiple sheets**, called worksheets. You can read a single worksheet from a spreadsheet with the `sheet` argument in `read_excel()`. The default, which we’ve been relying on up until now, is the first sheet.
+
+``` r
+read_excel("data/penguins.xlsx", sheet = "Torgersen Island")
+```
+
+Alternatively, you can use `excel_sheets()` to get information on all worksheets in an Excel spreadsheet, and then read the one(s) you’re interested in.
+
+``` r
+excel_sheets("data/penguins.xlsx")
+
+# Read a worksheet individually
+penguins_biscoe <- read_excel("data/penguins.xlsx", sheet = "Biscoe Island", na = "NA") 
+```
+
+To know the number of columns and rows of each worksheet you can use the function `dim()`.
+
+``` r
+dim(penguins_torgersen)
+```
+
+When working with spreadsheet data, it’s important to keep in mind that the underlying data can be very different than what you see in the cell. For example, Excel has no notion of an integer. All numbers are stored as floating points, but you can choose to display the data with a customizable number of decimal points. Similarly, dates are actually stored as numbers, specifically the number of seconds since January 1, 1970. You can customize how you display the date by applying formatting in Excel. Confusingly, it’s also possible to have something that looks like a number but is actually a string (e.g., type '10 into a cell in Excel).
+
+### Reading part of a sheet
+
+It’s quite common to find cell entries in a spreadsheet that are not part of the data you want to read into R. You can use the `readxl_example()` function to locate the spreadsheet on your system [in the directory where the package is installed]{.underline}. This function returns the path to the spreadsheet, which you can use in `read_excel()`as usual.
+
+```R
+students_path <- readxl_example("students.xlsx")
+read_excel(students_path, range = "A1:C4")
+```
+
+## Reading Google Sheets
+
+For loading data from a **Google Sheet** you will be using the **googlesheets4 package**. This package is non-core tidyverse, so you need to load it explicitly.
+
+```{r}
+library(googlesheets4)
+library(tidyverse)
+```
+
+The main function of the **googlesheets4 package** is `read_sheet()`, which reads a Google Sheet from a URL or a file id. This function also goes by the name `range_read()`. You can also create a brand new sheet with `gs4_create()` or **write** to an existing sheet with `sheet_write()` and friends.
+
+The first argument to `read_sheet()`is the URL of the file to read, and it returns a tibble:
+
+*Example:*
+
+``` {r}
+gs4_deauth()
+students <- read_sheet('https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w')
+students
+```
+
+It’s also possible to read **individual sheets** from Google Sheets as well. Let’s read the “Torgersen Island” sheet from the penguins Google Sheet:
+
+```{r}
+penguins_sheet_id <- "1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"
+read_sheet(penguins_sheet_id, sheet = "Torgersen Island")
+```
+
+You can obtain a list of all sheets within a Google Sheet with `sheet_names()`:
+
+```{r}
+sheet_names(penguins_sheet_id)
+```
+
+Note that we’re also using the `gs4_example()` function below to locate an **example Google Sheet** that comes with the googlesheets4 package.
+
+``` {r}
+deaths_url <- gs4_example("deaths")
+deaths <- read_sheet(deaths_url, range = "A5:F15")
+deaths
+```
+
+When you attempt to read in a sheet that requires **authentication**, googlesheets4 will direct you to a web browser with a prompt to sign in to your Google account and grant permission to operate on your behalf with Google Sheets. However, if you want to specify a specific **Google account**, authentication scope, etc. you can do so with `gs4_auth()`, e.g., `gs4_auth(email = "mine@example.com")`, which will force the use of a token associated with a specific email.
 
 ## RData Format
 
@@ -202,15 +286,15 @@ To view the data variable, you can use the `view()`.
 
 ## Manual Data Entry
 
-Sometimes you’ll need to assemble a **tibble “by hand”** doing a little data entry in your R script. 
+Sometimes you’ll need to assemble a **tibble “by hand”** doing a little data entry in your R script.
 
-There are **two useful functions** to help you do this which differ in whether you layout the tibble by columns or by rows. 
+There are **two useful functions** to help you do this which differ in whether you layout the tibble by columns or by rows.
 
 -   `tibble()` works by column:
 
     *Example:*
-    
-    ``` {r}
+
+    ```{r}
     tidyr::tibble(
       x = c(1, 2, 5), 
       y = c("h", "m", "g"),
@@ -221,8 +305,8 @@ There are **two useful functions** to help you do this which differ in whether y
 -   `tribble()` (transposed tibble) lets you lay out your data row by row: column headings start with `~` and entries are separated by commas. This makes it possible to lay out small amounts of data in an easy to read form:
 
     *Example:*
-  
-    ``` {r}
+
+    ```{r}
     tidyr::tribble(
       ~x, ~y, ~z,
       1, "h", 0.08,

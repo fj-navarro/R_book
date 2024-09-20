@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -403,12 +403,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#reading-multiple-files" id="toc-reading-multiple-files" class="nav-link" data-scroll-target="#reading-multiple-files"><span class="header-section-number">5.2</span> Reading Multiple Files</a></li>
   <li><a href="#reading-line-by-line" id="toc-reading-line-by-line" class="nav-link" data-scroll-target="#reading-line-by-line"><span class="header-section-number">5.3</span> Reading Line by Line</a></li>
-  <li><a href="#xls-format" id="toc-xls-format" class="nav-link" data-scroll-target="#xls-format"><span class="header-section-number">5.4</span> xls Format</a></li>
-  <li><a href="#rdata-format" id="toc-rdata-format" class="nav-link" data-scroll-target="#rdata-format"><span class="header-section-number">5.5</span> RData Format</a></li>
-  <li><a href="#import-stataspss-file" id="toc-import-stataspss-file" class="nav-link" data-scroll-target="#import-stataspss-file"><span class="header-section-number">5.6</span> Import Stata/SPSS File</a></li>
-  <li><a href="#json-file" id="toc-json-file" class="nav-link" data-scroll-target="#json-file"><span class="header-section-number">5.7</span> JSON File</a></li>
-  <li><a href="#view" id="toc-view" class="nav-link" data-scroll-target="#view"><span class="header-section-number">5.8</span> <code>view()</code></a></li>
-  <li><a href="#manual-data-entry" id="toc-manual-data-entry" class="nav-link" data-scroll-target="#manual-data-entry"><span class="header-section-number">5.9</span> Manual Data Entry</a></li>
+  <li><a href="#reading-excel-spreadsheets" id="toc-reading-excel-spreadsheets" class="nav-link" data-scroll-target="#reading-excel-spreadsheets"><span class="header-section-number">5.4</span> Reading Excel Spreadsheets</a>
+  <ul class="collapse">
+  <li><a href="#reading-part-of-a-sheet" id="toc-reading-part-of-a-sheet" class="nav-link" data-scroll-target="#reading-part-of-a-sheet"><span class="header-section-number">5.4.1</span> Reading part of a sheet</a></li>
+  </ul></li>
+  <li><a href="#reading-google-sheets" id="toc-reading-google-sheets" class="nav-link" data-scroll-target="#reading-google-sheets"><span class="header-section-number">5.5</span> Reading Google Sheets</a></li>
+  <li><a href="#rdata-format" id="toc-rdata-format" class="nav-link" data-scroll-target="#rdata-format"><span class="header-section-number">5.6</span> RData Format</a></li>
+  <li><a href="#import-stataspss-file" id="toc-import-stataspss-file" class="nav-link" data-scroll-target="#import-stataspss-file"><span class="header-section-number">5.7</span> Import Stata/SPSS File</a></li>
+  <li><a href="#json-file" id="toc-json-file" class="nav-link" data-scroll-target="#json-file"><span class="header-section-number">5.8</span> JSON File</a></li>
+  <li><a href="#view" id="toc-view" class="nav-link" data-scroll-target="#view"><span class="header-section-number">5.9</span> <code>view()</code></a></li>
+  <li><a href="#manual-data-entry" id="toc-manual-data-entry" class="nav-link" data-scroll-target="#manual-data-entry"><span class="header-section-number">5.10</span> Manual Data Entry</a></li>
   </ul>
 </nav>
     </div>
@@ -512,58 +516,191 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">url</span>(<span class="st">"http://www.jhsph.edu"</span>, <span class="st">"r"</span>) <span class="do">## Read the web page </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">readLines</span>(con) <span class="do">## Print out the first few lines head(x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="xls-format" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="xls-format"><span class="header-section-number">5.4</span> xls Format</h2>
-<p>If the dataset is stored in the <strong><em>.xls or</em></strong> <strong>.xlsx format</strong> you can use <code>read.xlsx2</code>:</p>
+<section id="reading-excel-spreadsheets" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="reading-excel-spreadsheets"><span class="header-section-number">5.4</span> Reading Excel Spreadsheets</h2>
+<p>If the dataset is stored in the <strong><em>.xls or</em></strong> <strong>.xlsx</strong> format you can use the <strong>readxl package</strong>. This package is non-core tidyverse, so you need to load it explicitly, but it is installed automatically when you install the <strong>tidyverse</strong> package.</p>
+<p>Most of <strong>readxl’s functions</strong> allow you to load <strong>Excel spreadsheets</strong> into R:</p>
+<ul>
+<li><code>read_xls()</code> reads Excel files with xls format.</li>
+<li><code>read_xlsx()</code> read Excel files with xlsx format.</li>
+<li><code>read_excel()</code> can read files with both xls and xlsx format. It guesses the file type based on the input.</li>
+</ul>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xlsx) </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>anscombe_xlsx <span class="ot">&lt;-</span> <span class="fu">read.xlsx2</span>(<span class="st">"xlsxanscombe.xlsx"</span>, <span class="at">sheetIndex=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>(students <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/students.xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
+         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
+1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4.0  
+2            2 Barclay Lynn     French fries       Lunch only          5.0  
+3            3 Jayendra Lyne    N/A                Breakfast and lunch 7.0  
+4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
+5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+6            6 Güvenç Attila    Ice cream          Lunch only          6.0  </code></pre>
+</div>
+</div>
+<p>An important feature that distinguishes spreadsheets from flat files is the notion of <strong>multiple sheets</strong>, called worksheets. You can read a single worksheet from a spreadsheet with the <code>sheet</code> argument in <code>read_excel()</code>. The default, which we’ve been relying on up until now, is the first sheet.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"data/penguins.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, you can use <code>excel_sheets()</code> to get information on all worksheets in an Excel spreadsheet, and then read the one(s) you’re interested in.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"data/penguins.xlsx"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a worksheet individually</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>penguins_biscoe <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/penguins.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"Biscoe Island"</span>, <span class="at">na =</span> <span class="st">"NA"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To know the number of columns and rows of each worksheet you can use the function <code>dim()</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(penguins_torgersen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When working with spreadsheet data, it’s important to keep in mind that the underlying data can be very different than what you see in the cell. For example, Excel has no notion of an integer. All numbers are stored as floating points, but you can choose to display the data with a customizable number of decimal points. Similarly, dates are actually stored as numbers, specifically the number of seconds since January 1, 1970. You can customize how you display the date by applying formatting in Excel. Confusingly, it’s also possible to have something that looks like a number but is actually a string (e.g., type ’10 into a cell in Excel).</p>
+<section id="reading-part-of-a-sheet" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="reading-part-of-a-sheet"><span class="header-section-number">5.4.1</span> Reading part of a sheet</h3>
+<p>It’s quite common to find cell entries in a spreadsheet that are not part of the data you want to read into R. You can use the <code>readxl_example()</code> function to locate the spreadsheet on your system <u>in the directory where the package is installed</u>. This function returns the path to the spreadsheet, which you can use in <code>read_excel()</code>as usual.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>students_path <span class="ot">&lt;-</span> <span class="fu">readxl_example</span>(<span class="st">"students.xlsx"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(students_path, <span class="at">range =</span> <span class="st">"A1:C4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="rdata-format" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="rdata-format"><span class="header-section-number">5.5</span> RData Format</h2>
+</section>
+<section id="reading-google-sheets" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="reading-google-sheets"><span class="header-section-number">5.5</span> Reading Google Sheets</h2>
+<p>For loading data from a <strong>Google Sheet</strong> you will be using the <strong>googlesheets4 package</strong>. This package is non-core tidyverse, so you need to load it explicitly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The main function of the <strong>googlesheets4 package</strong> is <code>read_sheet()</code>, which reads a Google Sheet from a URL or a file id. This function also goes by the name <code>range_read()</code>. You can also create a brand new sheet with <code>gs4_create()</code> or <strong>write</strong> to an existing sheet with <code>sheet_write()</code> and friends.</p>
+<p>The first argument to <code>read_sheet()</code>is the URL of the file to read, and it returns a tibble:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="st">'https://docs.google.com/spreadsheets/d/1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Reading from "students".</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Range 'Sheet1'.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  `Student ID` `Full Name`      favourite.food     mealPlan            AGE      
+         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;list&gt;   
+1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          &lt;dbl [1]&gt;
+2            2 Barclay Lynn     French fries       Lunch only          &lt;dbl [1]&gt;
+3            3 Jayendra Lyne    N/A                Breakfast and lunch &lt;dbl [1]&gt;
+4            4 Leon Rossini     Anchovies          Lunch only          &lt;NULL&gt;   
+5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch &lt;chr [1]&gt;
+6            6 Güvenç Attila    Ice cream          Lunch only          &lt;dbl [1]&gt;</code></pre>
+</div>
+</div>
+<p>It’s also possible to read <strong>individual sheets</strong> from Google Sheets as well. Let’s read the “Torgersen Island” sheet from the penguins Google Sheet:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguins_sheet_id <span class="ot">&lt;-</span> <span class="st">"1aFu8lnD_g0yjF5O-K6SFgSEWiHPpgvFCF0NY9D6LXnY"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_sheet</span>(penguins_sheet_id, <span class="at">sheet =</span> <span class="st">"Torgersen Island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Reading from "penguins".</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Range ''Torgersen Island''.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 52 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;     &lt;list&gt;         &lt;list&gt;        &lt;list&gt;            &lt;list&gt;     
+ 1 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 2 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 3 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 4 Adelie  Torgersen &lt;chr [1]&gt;      &lt;chr [1]&gt;     &lt;chr [1]&gt;         &lt;chr [1]&gt;  
+ 5 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 6 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 7 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 8 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+ 9 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+10 Adelie  Torgersen &lt;dbl [1]&gt;      &lt;dbl [1]&gt;     &lt;dbl [1]&gt;         &lt;dbl [1]&gt;  
+# ℹ 42 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>You can obtain a list of all sheets within a Google Sheet with <code>sheet_names()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sheet_names</span>(penguins_sheet_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Torgersen Island" "Biscoe Island"    "Dream Island"    </code></pre>
+</div>
+</div>
+<p>Note that we’re also using the <code>gs4_example()</code> function below to locate an <strong>example Google Sheet</strong> that comes with the googlesheets4 package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>deaths_url <span class="ot">&lt;-</span> <span class="fu">gs4_example</span>(<span class="st">"deaths"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>deaths <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(deaths_url, <span class="at">range =</span> <span class="st">"A5:F15"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Reading from "deaths".</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ Range 'A5:F15'.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>deaths</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   Name      Profession   Age `Has kids` `Date of birth`     `Date of death`    
+   &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;      &lt;dttm&gt;              &lt;dttm&gt;             
+ 1 David Bo… musician      69 TRUE       1947-01-08 00:00:00 2016-01-10 00:00:00
+ 2 Carrie F… actor         60 TRUE       1956-10-21 00:00:00 2016-12-27 00:00:00
+ 3 Chuck Be… musician      90 TRUE       1926-10-18 00:00:00 2017-03-18 00:00:00
+ 4 Bill Pax… actor         61 TRUE       1955-05-17 00:00:00 2017-02-25 00:00:00
+ 5 Prince    musician      57 TRUE       1958-06-07 00:00:00 2016-04-21 00:00:00
+ 6 Alan Ric… actor         69 FALSE      1946-02-21 00:00:00 2016-01-14 00:00:00
+ 7 Florence… actor         82 TRUE       1934-02-14 00:00:00 2016-11-24 00:00:00
+ 8 Harper L… author        89 FALSE      1926-04-28 00:00:00 2016-02-19 00:00:00
+ 9 Zsa Zsa … actor         99 TRUE       1917-02-06 00:00:00 2016-12-18 00:00:00
+10 George M… musician      53 FALSE      1963-06-25 00:00:00 2016-12-25 00:00:00</code></pre>
+</div>
+</div>
+<p>When you attempt to read in a sheet that requires <strong>authentication</strong>, googlesheets4 will direct you to a web browser with a prompt to sign in to your Google account and grant permission to operate on your behalf with Google Sheets. However, if you want to specify a specific <strong>Google account</strong>, authentication scope, etc. you can do so with <code>gs4_auth()</code>, e.g., <code>gs4_auth(email = "mine@example.com")</code>, which will force the use of a token associated with a specific email.</p>
+</section>
+<section id="rdata-format" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="rdata-format"><span class="header-section-number">5.6</span> RData Format</h2>
 <p>If you need to store more than one dataset in a single file we can use the <strong>*.RData format</strong>:</p>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## example to load multiple datasets, and a vector of R objects from a single *.RData</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"robjects.RData"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## to check if objects have been loaded correctly</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## example to load multiple datasets, and a vector of R objects from a single *.RData</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"robjects.RData"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="do">## to check if objects have been loaded correctly</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="import-stataspss-file" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="import-stataspss-file"><span class="header-section-number">5.6</span> Import Stata/SPSS File</h2>
+<section id="import-stataspss-file" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="import-stataspss-file"><span class="header-section-number">5.7</span> Import Stata/SPSS File</h2>
 <p>To import a <strong>Stata/SPSS file</strong> into R:</p>
 <ul>
 <li><p>First you need to call the foreign library:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"foreign"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"foreign"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Then use <code>read.data()</code>/<code>read.spss()</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="at">file=</span><span class="st">"data.spss"</span>, <span class="at">to.data.frame=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.spss</span>(<span class="at">file=</span><span class="st">"data.spss"</span>, <span class="at">to.data.frame=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>The output will always be a data frame:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.foreign</span>(data, <span class="st">"mydata.txt"</span>, <span class="st">"mydata.sps"</span>, <span class="at">package=</span><span class="st">"SPSS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.foreign</span>(data, <span class="st">"mydata.txt"</span>, <span class="st">"mydata.sps"</span>, <span class="at">package=</span><span class="st">"SPSS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="json-file" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="json-file"><span class="header-section-number">5.7</span> JSON File</h2>
+<section id="json-file" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="json-file"><span class="header-section-number">5.8</span> JSON File</h2>
 <p>To read a <strong>JSON file</strong>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rjson"</span>) </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="at">file=</span><span class="st">"data.json"</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rjson"</span>) </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="at">file=</span><span class="st">"data.json"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="view" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="view"><span class="header-section-number">5.8</span> <code>view()</code></h2>
+<section id="view" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="view"><span class="header-section-number">5.9</span> <code>view()</code></h2>
 <p>To view the data variable, you can use the <code>view()</code>.</p>
 </section>
-<section id="manual-data-entry" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="manual-data-entry"><span class="header-section-number">5.9</span> Manual Data Entry</h2>
+<section id="manual-data-entry" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="manual-data-entry"><span class="header-section-number">5.10</span> Manual Data Entry</h2>
 <p>Sometimes you’ll need to assemble a <strong>tibble “by hand”</strong> doing a little data entry in your R script.</p>
 <p>There are <strong>two useful functions</strong> to help you do this which differ in whether you layout the tibble by columns or by rows.</p>
 <ul>
 <li><p><code>tibble()</code> works by column:</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>), </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"m"</span>, <span class="st">"g"</span>),</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.83</span>, <span class="fl">0.60</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>), </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"m"</span>, <span class="st">"g"</span>),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">c</span>(<span class="fl">0.08</span>, <span class="fl">0.83</span>, <span class="fl">0.60</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
       x y         z
@@ -576,12 +713,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>tribble()</code> (transposed tibble) lets you lay out your data row by row: column headings start with <code>~</code> and entries are separated by commas. This makes it possible to lay out small amounts of data in an easy to read form:</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>z,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="st">"h"</span>, <span class="fl">0.08</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="st">"m"</span>, <span class="fl">0.83</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span>, <span class="st">"g"</span>, <span class="fl">0.60</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>x, <span class="sc">~</span>y, <span class="sc">~</span>z,</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="st">"h"</span>, <span class="fl">0.08</span>,</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="st">"m"</span>, <span class="fl">0.83</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">5</span>, <span class="st">"g"</span>, <span class="fl">0.60</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
       x y         z
