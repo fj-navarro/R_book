@@ -1,31 +1,154 @@
-## R and Data Bases
--   R stores everything in RAM, and a typical personal computer consists of limited RAM. R is RAM intensive, and for that reason, the size of a dataset should be much smaller than its RAM.
--   There are two principal ways to connect to a database: 
-    -   the first uses the **ODBC facility** available on many computers and,
-    -   the second uses the **DBI package** of R along with a specialized package for the particular database needed to be accessed (if there is a specialized package available for a database).
+# R and Data Bases
 
-### R and Excel/MSAccess
--   An Excel file can be imported into R using ODBC. Remember Excel cannot deal with relational databases.
--   We will now create an ODBC connection with an MS Excel file with the **connection string xlopen**:
-    -   In our computer: To use the ODBC approach on an Excel file, we firstly need to create the connection string using the system administrator. We need to open the control panel of the operating system and then open Administrative Tools and then choose ODBC. A dialog box will now appear. Click on the Add button and select an appropriate ODBC driver and then locate the desired file and give a data source name. In our case, the data source name is xlopen.
-    -   In R:
+A large portion of data is stored in databases, so it's crucial to know how to access it. While you could ask someone to export a snapshot into a .csv file for you, this becomes inconvenient fast. Each time you need updates or changes, you'll have to rely on someone else. Instead, it’s much more efficient to be able to access the database yourself, so you can retrieve the data you need, whenever you need it, without the wait.
+
+In this chapter, we’ll introduce DBI and dbplyr. DBI is a low-level interface that connects to databases and executes SQL; dbplyr is a high-level interface that translates your dplyr code to SQL queries then executes them with DBI.
+
 ``` R
-# calling ODBC library into R 
-library(RODBC)
-# creating connection with the database using odbc package. 
-xldb <- odbcConnect("xlopen") / odbcConnect("accessdata")
-# Now that the connection is created, we will use this connection and import the data xldata<- sqlFetch(xldb, "CSVanscombe")
+library(DBI)
+library(dbplyr)
+library(tidyverse)
 ```
 
-### Relational databases in R
--   There are packages to interface between R and different database software packages that use relational database management systems, such as **MySQL (RMySQL)**, **PostgreSQL (RPgSQL)**, and **Oracle (ROracle)**.
--   One of the most popular packages is **RMySQL**. This package allows us to make connections between R and the MySQL server. In order to install this package properly, we need to download both the MySQL server and RMySQL.
--   There are several R packages available that allow direct interactions with large datasets within R, such as **filehash**, **ff**, and **bigmemory**. The idea is to avoid loading the whole dataset into memory.
+## Database Basics
 
-### filehash package
--   It is used for solving large-data problems. The idea behind the development of this package was to avoid loading the dataset into a computer's virtual memory. Instead, we dump the large dataset into the hard drive and then assign an environment name for the dumped objects.
+At the simplest level, you can think about a database as a collection of data frames, called tables in database terminology. Like a data frame, a database table is a collection of named columns, where every value in the column is the same type. There are three high level differences between data frames and database tables:
+
+-   R stores everything in **RAM**, and a typical personal computer consists of limited RAM. R is RAM intensive, and for that reason, the size of a dataset should be much smaller than its RAM. Database tables are stored on **disk** and can be arbitrarily large.
+
+-   Database tables almost always have **indexes**. Much like the index of a book, a database index makes it possible to quickly find rows of interest without having to look at every single row. Data frames and tibbles don’t have indexes, but data.tables do, which is one of the reasons that they’re so fast.
+
+-   Most classical databases are optimized for rapidly collecting data, not analyzing existing data. These databases are called **row-oriented** because the data is stored row-by-row, rather than column-by-column like R. More recently, there’s been much development of column-oriented databases that make analyzing the existing data much faster.
+
+Databases are run by database management systems (DBMS’s for short), which come in three basic forms:
+
+-   **Client-server DBMS’s** run on a powerful central server, which you connect from your computer (the client). They are great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.
+
+-   **Cloud DBMS’s**, like Snowflake, Amazon’s RedShift, and Google’s BigQuery, are similar to client server DBMS’s, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed.
+
+-   **In-process DBMS’s**, like SQLite or duckdb, run entirely on your computer. They’re great for working with large datasets where you’re the primary user.
+
+## Connecting to a Database
+
+To connect to the database from R, you’ll use a pair of packages:
+
+-   You’ll always use **DBI (database interface)** because it provides a set of generic functions that connect to the database, upload data, run SQL queries, etc.
+
+-   You’ll also use a package tailored for the **DBMS** you’re connecting to. This package translates the generic DBI commands into the specifics needed for a given DBMS. There’s usually one package for each DBMS, e.g. RPostgres for PostgreSQL and RMariaDB for MySQL.
+
+If you can’t find a specific package for your DBMS, you can usually use the **odbc package** instead. This uses the ODBC protocol supported by many DBMS. odbc requires a little more setup because you’ll also need to install an ODBC driver and tell the odbc package where to find it.
+
+You can create a database connection using `DBI::dbConnect()`. The first argument selects the DBMS, then the second and subsequent arguments describe how to connect to it (i.e. where it lives and the credentials that you need to access it). The following code shows a couple of typical examples:
+
+*Example:*
 
 ``` R
+con <- DBI::dbConnect(
+  RMariaDB::MariaDB(), 
+  username = "foo"
+)
+con <- DBI::dbConnect(
+  RPostgres::Postgres(), 
+  hostname = "databases.mycompany.com", 
+  port = 1234
+)
+```
+
+### In-process DBMS
+
+Setting up a client-server or cloud DBMS would be a pain for this book, so we’ll instead use an in-process DBMS that lives entirely in an R package: **duckdb**. The only difference between using duckdb and any other DBMS is how you’ll connect to the database. 
+
+**duckdb** is a high-performance database that’s designed very much for the needs of a data scientist. We use it here because it’s very easy to get started with, but it’s also capable of handling gigabytes of data with great speed. If you want to use duckdb for a real data analysis project, you’ll also need to supply the `dbdir` argument to make a persistent database and tell duckdb where to save it.
+
+Connecting to **duckdb** is particularly simple because the defaults create a temporary database that is deleted when you quit R. That’s great for learning because it guarantees that you’ll start from a clean slate every time you restart R:
+
+``` R
+con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "duckdb")
+```
+
+Since this is a new database, we need to start by adding some data. Here we’ll add `mpg` and diamonds datasets from `ggplot2` using `DBI::dbWriteTable()`. The simplest usage of `dbWriteTable()` needs three arguments: a database connection, the name of the table to create in the database, and a data frame of data.
+
+*Example:*
+
+``` R
+dbWriteTable(con, "mpg", ggplot2::mpg)
+dbWriteTable(con, "diamonds", ggplot2::diamonds)
+```
+You can check that the data is loaded correctly by using a couple of other DBI functions: `dbListTables()` lists all tables in the database and `dbReadTable()` retrieves the contents of a table.
+
+*Example:*
+
+``` R
+dbListTables(con)
+
+con |> 
+  dbReadTable("diamonds") |> 
+  as_tibble()
+```
+
+`dbReadTable()` returns a data.frame so we use `as_tibble()` to convert it into a tibble so that it prints nicely.
+
+Now you can use (SQL language) `dbGetQuery()` to get the results of running a query on the database:
+
+*Example:*
+``` R
+sql <- "
+  SELECT carat, cut, clarity, color, price 
+  FROM diamonds 
+  WHERE price > 15000
+"
+as_tibble(dbGetQuery(con, sql))
+```
+
+### Excel/MSAccess
+
+An Excel file can be imported into R using **ODBC**. Remember Excel cannot deal with relational databases.
+
+We will now create an ODBC connection with an MS Excel file with the **connection string xlopen**:
+
+-   In our computer: To use the ODBC approach on an Excel file, we firstly need to create the connection string using the system administrator. We need to open the control panel of the operating system and then open Administrative Tools and then choose ODBC. A dialog box will now appear. Click on the Add button and select an appropriate ODBC driver and then locate the desired file and give a data source name. In our case, the data source name is xlopen.
+    
+-   In R:
+
+    ``` r
+    # calling ODBC library into R 
+    library(RODBC)
+    # creating connection with the database using odbc package. 
+    xldb <- odbcConnect("xlopen") / odbcConnect("accessdata")
+    # Now that the connection is created, we will use this connection and import the data xldata<- sqlFetch(xldb, "CSVanscombe")
+    ```
+
+### Relational databases in R
+
+-   There are packages to interface between R and different database software packages that use relational database management systems, such as **MySQL (RMySQL)**, **PostgreSQL (RPgSQL)**, and **Oracle (ROracle)**.
+
+-   One of the most popular packages is **RMySQL**. This package allows us to make connections between R and the MySQL server. In order to install this package properly, we need to download both the MySQL server and RMySQL.
+
+-   There are several R packages available that allow direct interactions with large datasets within R, such as **filehash**, **ff**, and **bigmemory**. The idea is to avoid loading the whole dataset into memory.
+
+## dbplyr
+
+**dbplyr** is a dplyr backend, which means that you keep writing dplyr code but the backend executes it differently. In this, dbplyr translates to SQL; other backends include **dtplyr** which translates to data.table, and multidplyr which executes your code on multiple cores.
+
+To use dbplyr, you must first use `tbl()` to create an object that represents a database table:
+
+*Example:*
+``` R
+diamonds_db <- tbl(con, "diamonds")
+diamonds_db
+big_diamonds_db <- diamonds_db |> 
+  filter(price > 15000) |> 
+  select(carat:clarity, price)
+big_diamonds_db
+```
+
+## Packages
+
+### filehash package
+
+It is used for solving large-data problems. The idea behind the development of this package was to avoid loading the dataset into a computer's virtual memory. Instead, we dump the large dataset into the hard drive and then assign an environment name for the dumped objects.
+
+``` r
 library(filehash) 
 dbCreate("exampledb")
 filehash_db<- dbInit("exampledb")  ## db needs to be initialized before accessing
@@ -33,18 +156,19 @@ dbInsert(filehash_db, "xx", rnorm(50))
 value<- dbFetch(filehash_db, "xx")  ## to retrieve db values
 summary(value)
 ```
--   This file connection will remain open until the database is closed via dbDisconnect or the database object in R is removed.
+
+This file connection will remain open until the database is closed via dbDisconnect or the database object in R is removed.
 
 ### ff package
+
 This package extends the R system and stores data in the form of native binary flat files in persistent storage such as hard disks, CDs, or DVDs rather than in the RAM.
 
 This package enables users to work on several large datasets simultaneously. It also allows the allocation of vectors or arrays that are larger than the RAM.
 
 ### sqldf package
+
 The **sqldf package** is an R package that allows users to run SQL statements within R.
 
-We can perform any type of data manipulation to an R data frame either in memory or during import. 
+We can perform any type of data manipulation to an R data frame either in memory or during import.
 
 If the dataset is too large and cannot entirely be read into the R environment, we can import a portion of that dataset using sqldf.
-
-

@@ -4,7 +4,7 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "09/19/2024"
+  date: "09/22/2024"
   chapters:
     - index.qmd
     - part: "Introduction"

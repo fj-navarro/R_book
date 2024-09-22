@@ -1,5 +1,39 @@
 # Preface {.unnumbered}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisi porta, lobortis mi eget, laoreet sapien. Etiam sit amet tellus luctus, rhoncus dolor pharetra, faucibus sem. Nulla viverra risus et urna porttitor mattis. In et tortor a justo convallis ultricies. Praesent consectetur bibendum tellus eget malesuada. In fermentum sodales luctus. Curabitur in ornare eros. In pulvinar tempor odio et cursus. Aenean tristique vel leo vel congue. Pellentesque id metus mollis, tincidunt nibh a, dapibus elit. Etiam at augue et nisl volutpat ornare pulvinar vitae urna. Duis auctor urna quam, eget rhoncus diam fermentum at.
+Welcome to *R for Research in Action*, a guide designed to empower learners at all levels in mastering the R programming language for their research endeavors. Whether you are a beginner just starting with R or an advanced user seeking to refine your skills, this book will serve as a comprehensive companion to help you elevate the quality of your research, making it more **robust, in-depth, and reproducible**.
 
-Praesent scelerisque efficitur euismod. Aliquam neque augue, fermentum a magna vitae, interdum varius turpis. Fusce commodo maximus magna sit amet rutrum. Nulla sit amet sem a eros tempus finibus non ac leo. Donec sit amet gravida eros. Donec ut lacus eget velit aliquet luctus. Ut pellentesque tellus varius, gravida velit eu, finibus ante. Maecenas vehicula, elit non volutpat mollis, est augue placerat orci, nec condimentum neque nulla vulputate elit. Nunc hendrerit hendrerit cursus. Aenean elementum mi dolor, sed maximus ex rutrum convallis. Nulla lobortis faucibus justo, in elementum ligula semper non. Quisque sollicitudin pretium tortor vel sollicitudin. Curabitur quis luctus ante. Ut sit amet dui consequat, tristique diam a, suscipit lacus.
+Research today demands more than just data collection—it requires the ability to analyze, visualize, and interpret findings in ways that are reliable and transparent. R, with its powerful ecosystem of packages and its open-source nature, has become an essential tool across various fields for achieving these goals. From data wrangling to advanced statistical modeling, R offers unparalleled flexibility to researchers, allowing them to explore their data deeply and communicate results with precision.
+
+This book covers a broad range of topics, including **data manipulation, visualization, statistical analysis, programming, and reproducible research practices**. We begin with the basics, progressively introducing more advanced topics to ensure that users at every skill level can benefit. Along the way, you will find practical examples, real-world applications, and step-by-step guidance aimed at bridging the gap between theory and actionable results.
+
+By the end of this book, my hope is that you will not only be proficient in R but also more confident in using it to conduct meaningful, impactful research. May this journey enhance the quality of your work and inspire further exploration.
+
+# Learning Resources
+
+These are resources that provide a wide range of learning options, from interactive tutorials to advanced textbooks, making them valuable for R learners at any stage.
+
+-   **RWeekly**. A valuable resource for learning and mastering R programming with its curated, up-to-date content on R tutorials, new packages, and advanced topics every week. Its community-driven approach fosters engagement and offers real-world applications, making it easier for users to stay informed and actively participate in the broader R ecosystem. [Website](https://rweekly.org/)
+
+-   **The RStudio Education Resources**. Offers tutorials, webinars, and cheat sheets, particularly focusing on using R with the RStudio IDE. It’s great for learners who prefer structured courses. [Website](https://education.rstudio.com/)
+
+-   **Swirl**. An interactive R learning platform that teaches R directly within RStudio. It offers hands-on experience with guided lessons on various R topics. [Website](https://swirlstats.com/)
+
+-   **Tidyverse.org**. This website focuses on learning and using the **tidyverse**, a collection of R packages designed for data science. It offers excellent tutorials and documentation. [Website](https://www.tidyverse.org/)
+
+-   **Stack Overflow (R Tag)**. A large and active community where you can ask questions, browse solutions, and learn from real-world R programming issues faced by others. [Website](https://stackoverflow.com/questions/tagged/r)
+
+-   **R-bloggers**. A blog aggregator for R tutorials, tips, and news from various contributors. It covers a wide range of topics and helps you stay up-to-date with the latest trends. [Website](https://www.r-bloggers.com/)
+
+-   **RDocumentation**. A centralized source for searching through R packages and functions, providing detailed documentation and examples. [Website](https://www.rdocumentation.org/)
+
+# Online Books
+
+-   **R for Data Science (R4DS) by Hadley Wickham**. A highly recommended free book that covers the essentials of R, data manipulation, and visualization with the **tidyverse** packages. [Website](https://r4ds.had.co.nz/)
+
+-   **Advanced R by Hadley Wickham**. Great for those looking to deepen their understanding of R programming. [Website](https://adv-r.hadley.nz/) 
+
+-   **Hands on Programming with R by Garrett Grolemund**. An  introduction to R as a programming language and is a great place to start if R is your first programming language. [Website](https://rstudio-education.github.io/hopr/)
+
+-   **Tidy Modeling with R by Max Kuhn and Julia Silge**. This book is a guide to using a collection of software in the R programming language for model building called tidymodels. [Website](https://www.tmwr.org/)
+
+-   **R Packages**. Essential for learning how to build your own R packages. [Website](https://r-pkgs.org/)

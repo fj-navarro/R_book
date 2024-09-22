@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Good Programming Habits</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,11 +393,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#r-and-excelmsaccess" id="toc-r-and-excelmsaccess" class="nav-link active" data-scroll-target="#r-and-excelmsaccess"><span class="header-section-number">12.0.1</span> R and Excel/MSAccess</a></li>
-  <li><a href="#relational-databases-in-r" id="toc-relational-databases-in-r" class="nav-link" data-scroll-target="#relational-databases-in-r"><span class="header-section-number">12.0.2</span> Relational databases in R</a></li>
-  <li><a href="#filehash-package" id="toc-filehash-package" class="nav-link" data-scroll-target="#filehash-package"><span class="header-section-number">12.0.3</span> filehash package</a></li>
-  <li><a href="#ff-package" id="toc-ff-package" class="nav-link" data-scroll-target="#ff-package"><span class="header-section-number">12.0.4</span> ff package</a></li>
-  <li><a href="#sqldf-package" id="toc-sqldf-package" class="nav-link" data-scroll-target="#sqldf-package"><span class="header-section-number">12.0.5</span> sqldf package</a></li>
+  <li><a href="#database-basics" id="toc-database-basics" class="nav-link active" data-scroll-target="#database-basics"><span class="header-section-number">12.1</span> Database Basics</a></li>
+  <li><a href="#connecting-to-a-database" id="toc-connecting-to-a-database" class="nav-link" data-scroll-target="#connecting-to-a-database"><span class="header-section-number">12.2</span> Connecting to a Database</a>
+  <ul class="collapse">
+  <li><a href="#in-process-dbms" id="toc-in-process-dbms" class="nav-link" data-scroll-target="#in-process-dbms"><span class="header-section-number">12.2.1</span> In-process DBMS</a></li>
+  <li><a href="#excelmsaccess" id="toc-excelmsaccess" class="nav-link" data-scroll-target="#excelmsaccess"><span class="header-section-number">12.2.2</span> Excel/MSAccess</a></li>
+  <li><a href="#relational-databases-in-r" id="toc-relational-databases-in-r" class="nav-link" data-scroll-target="#relational-databases-in-r"><span class="header-section-number">12.2.3</span> Relational databases in R</a></li>
+  </ul></li>
+  <li><a href="#dbplyr" id="toc-dbplyr" class="nav-link" data-scroll-target="#dbplyr"><span class="header-section-number">12.3</span> dbplyr</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">12.4</span> Packages</a>
+  <ul class="collapse">
+  <li><a href="#filehash-package" id="toc-filehash-package" class="nav-link" data-scroll-target="#filehash-package"><span class="header-section-number">12.4.1</span> filehash package</a></li>
+  <li><a href="#ff-package" id="toc-ff-package" class="nav-link" data-scroll-target="#ff-package"><span class="header-section-number">12.4.2</span> ff package</a></li>
+  <li><a href="#sqldf-package" id="toc-sqldf-package" class="nav-link" data-scroll-target="#sqldf-package"><span class="header-section-number">12.4.3</span> sqldf package</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -421,65 +430,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>A large portion of data is stored in databases, so it’s crucial to know how to access it. While you could ask someone to export a snapshot into a .csv file for you, this becomes inconvenient fast. Each time you need updates or changes, you’ll have to rely on someone else. Instead, it’s much more efficient to be able to access the database yourself, so you can retrieve the data you need, whenever you need it, without the wait.</p>
+<p>In this chapter, we’ll introduce DBI and dbplyr. DBI is a low-level interface that connects to databases and executes SQL; dbplyr is a high-level interface that translates your dplyr code to SQL queries then executes them with DBI.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="database-basics" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="database-basics"><span class="header-section-number">12.1</span> Database Basics</h2>
+<p>At the simplest level, you can think about a database as a collection of data frames, called tables in database terminology. Like a data frame, a database table is a collection of named columns, where every value in the column is the same type. There are three high level differences between data frames and database tables:</p>
 <ul>
-<li>R stores everything in RAM, and a typical personal computer consists of limited RAM. R is RAM intensive, and for that reason, the size of a dataset should be much smaller than its RAM.</li>
-<li>There are two principal ways to connect to a database:
-<ul>
-<li>the first uses the <strong>ODBC facility</strong> available on many computers and,</li>
-<li>the second uses the <strong>DBI package</strong> of R along with a specialized package for the particular database needed to be accessed (if there is a specialized package available for a database).</li>
-</ul></li>
+<li><p>R stores everything in <strong>RAM</strong>, and a typical personal computer consists of limited RAM. R is RAM intensive, and for that reason, the size of a dataset should be much smaller than its RAM. Database tables are stored on <strong>disk</strong> and can be arbitrarily large.</p></li>
+<li><p>Database tables almost always have <strong>indexes</strong>. Much like the index of a book, a database index makes it possible to quickly find rows of interest without having to look at every single row. Data frames and tibbles don’t have indexes, but data.tables do, which is one of the reasons that they’re so fast.</p></li>
+<li><p>Most classical databases are optimized for rapidly collecting data, not analyzing existing data. These databases are called <strong>row-oriented</strong> because the data is stored row-by-row, rather than column-by-column like R. More recently, there’s been much development of column-oriented databases that make analyzing the existing data much faster.</p></li>
 </ul>
-<section id="r-and-excelmsaccess" class="level3" data-number="12.0.1">
-<h3 data-number="12.0.1" class="anchored" data-anchor-id="r-and-excelmsaccess"><span class="header-section-number">12.0.1</span> R and Excel/MSAccess</h3>
+<p>Databases are run by database management systems (DBMS’s for short), which come in three basic forms:</p>
 <ul>
-<li>An Excel file can be imported into R using ODBC. Remember Excel cannot deal with relational databases.</li>
-<li>We will now create an ODBC connection with an MS Excel file with the <strong>connection string xlopen</strong>:
-<ul>
-<li>In our computer: To use the ODBC approach on an Excel file, we firstly need to create the connection string using the system administrator. We need to open the control panel of the operating system and then open Administrative Tools and then choose ODBC. A dialog box will now appear. Click on the Add button and select an appropriate ODBC driver and then locate the desired file and give a data source name. In our case, the data source name is xlopen.</li>
-<li>In R:</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calling ODBC library into R </span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RODBC)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># creating connection with the database using odbc package. </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>xldb <span class="ot">&lt;-</span> <span class="fu">odbcConnect</span>(<span class="st">"xlopen"</span>) <span class="sc">/</span> <span class="fu">odbcConnect</span>(<span class="st">"accessdata"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now that the connection is created, we will use this connection and import the data xldata&lt;- sqlFetch(xldb, "CSVanscombe")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Client-server DBMS’s</strong> run on a powerful central server, which you connect from your computer (the client). They are great for sharing data with multiple people in an organization. Popular client-server DBMS’s include PostgreSQL, MariaDB, SQL Server, and Oracle.</p></li>
+<li><p><strong>Cloud DBMS’s</strong>, like Snowflake, Amazon’s RedShift, and Google’s BigQuery, are similar to client server DBMS’s, but they run in the cloud. This means that they can easily handle extremely large datasets and can automatically provide more compute resources as needed.</p></li>
+<li><p><strong>In-process DBMS’s</strong>, like SQLite or duckdb, run entirely on your computer. They’re great for working with large datasets where you’re the primary user.</p></li>
 </ul>
 </section>
-<section id="relational-databases-in-r" class="level3" data-number="12.0.2">
-<h3 data-number="12.0.2" class="anchored" data-anchor-id="relational-databases-in-r"><span class="header-section-number">12.0.2</span> Relational databases in R</h3>
+<section id="connecting-to-a-database" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="connecting-to-a-database"><span class="header-section-number">12.2</span> Connecting to a Database</h2>
+<p>To connect to the database from R, you’ll use a pair of packages:</p>
 <ul>
-<li>There are packages to interface between R and different database software packages that use relational database management systems, such as <strong>MySQL (RMySQL)</strong>, <strong>PostgreSQL (RPgSQL)</strong>, and <strong>Oracle (ROracle)</strong>.</li>
-<li>One of the most popular packages is <strong>RMySQL</strong>. This package allows us to make connections between R and the MySQL server. In order to install this package properly, we need to download both the MySQL server and RMySQL.</li>
-<li>There are several R packages available that allow direct interactions with large datasets within R, such as <strong>filehash</strong>, <strong>ff</strong>, and <strong>bigmemory</strong>. The idea is to avoid loading the whole dataset into memory.</li>
+<li><p>You’ll always use <strong>DBI (database interface)</strong> because it provides a set of generic functions that connect to the database, upload data, run SQL queries, etc.</p></li>
+<li><p>You’ll also use a package tailored for the <strong>DBMS</strong> you’re connecting to. This package translates the generic DBI commands into the specifics needed for a given DBMS. There’s usually one package for each DBMS, e.g.&nbsp;RPostgres for PostgreSQL and RMariaDB for MySQL.</p></li>
+</ul>
+<p>If you can’t find a specific package for your DBMS, you can usually use the <strong>odbc package</strong> instead. This uses the ODBC protocol supported by many DBMS. odbc requires a little more setup because you’ll also need to install an ODBC driver and tell the odbc package where to find it.</p>
+<p>You can create a database connection using <code>DBI::dbConnect()</code>. The first argument selects the DBMS, then the second and subsequent arguments describe how to connect to it (i.e.&nbsp;where it lives and the credentials that you need to access it). The following code shows a couple of typical examples:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  RMariaDB<span class="sc">::</span><span class="fu">MariaDB</span>(), </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">username =</span> <span class="st">"foo"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(), </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">hostname =</span> <span class="st">"databases.mycompany.com"</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">1234</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="in-process-dbms" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="in-process-dbms"><span class="header-section-number">12.2.1</span> In-process DBMS</h3>
+<p>Setting up a client-server or cloud DBMS would be a pain for this book, so we’ll instead use an in-process DBMS that lives entirely in an R package: <strong>duckdb</strong>. The only difference between using duckdb and any other DBMS is how you’ll connect to the database.</p>
+<p><strong>duckdb</strong> is a high-performance database that’s designed very much for the needs of a data scientist. We use it here because it’s very easy to get started with, but it’s also capable of handling gigabytes of data with great speed. If you want to use duckdb for a real data analysis project, you’ll also need to supply the <code>dbdir</code> argument to make a persistent database and tell duckdb where to save it.</p>
+<p>Connecting to <strong>duckdb</strong> is particularly simple because the defaults create a temporary database that is deleted when you quit R. That’s great for learning because it guarantees that you’ll start from a clean slate every time you restart R:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>(), <span class="at">dbdir =</span> <span class="st">"duckdb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Since this is a new database, we need to start by adding some data. Here we’ll add <code>mpg</code> and diamonds datasets from <code>ggplot2</code> using <code>DBI::dbWriteTable()</code>. The simplest usage of <code>dbWriteTable()</code> needs three arguments: a database connection, the name of the table to create in the database, and a data frame of data.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"mpg"</span>, ggplot2<span class="sc">::</span>mpg)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"diamonds"</span>, ggplot2<span class="sc">::</span>diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can check that the data is loaded correctly by using a couple of other DBI functions: <code>dbListTables()</code> lists all tables in the database and <code>dbReadTable()</code> retrieves the contents of a table.</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>con <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dbReadTable</span>(<span class="st">"diamonds"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>dbReadTable()</code> returns a data.frame so we use <code>as_tibble()</code> to convert it into a tibble so that it prints nicely.</p>
+<p>Now you can use (SQL language) <code>dbGetQuery()</code> to get the results of running a query on the database:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sql <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT carat, cut, clarity, color, price </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM diamonds </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE price &gt; 15000</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">as_tibble</span>(<span class="fu">dbGetQuery</span>(con, sql))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="excelmsaccess" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="excelmsaccess"><span class="header-section-number">12.2.2</span> Excel/MSAccess</h3>
+<p>An Excel file can be imported into R using <strong>ODBC</strong>. Remember Excel cannot deal with relational databases.</p>
+<p>We will now create an ODBC connection with an MS Excel file with the <strong>connection string xlopen</strong>:</p>
+<ul>
+<li><p>In our computer: To use the ODBC approach on an Excel file, we firstly need to create the connection string using the system administrator. We need to open the control panel of the operating system and then open Administrative Tools and then choose ODBC. A dialog box will now appear. Click on the Add button and select an appropriate ODBC driver and then locate the desired file and give a data source name. In our case, the data source name is xlopen.</p></li>
+<li><p>In R:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calling ODBC library into R </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RODBC)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># creating connection with the database using odbc package. </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>xldb <span class="ot">&lt;-</span> <span class="fu">odbcConnect</span>(<span class="st">"xlopen"</span>) <span class="sc">/</span> <span class="fu">odbcConnect</span>(<span class="st">"accessdata"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now that the connection is created, we will use this connection and import the data xldata&lt;- sqlFetch(xldb, "CSVanscombe")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="filehash-package" class="level3" data-number="12.0.3">
-<h3 data-number="12.0.3" class="anchored" data-anchor-id="filehash-package"><span class="header-section-number">12.0.3</span> filehash package</h3>
+<section id="relational-databases-in-r" class="level3" data-number="12.2.3">
+<h3 data-number="12.2.3" class="anchored" data-anchor-id="relational-databases-in-r"><span class="header-section-number">12.2.3</span> Relational databases in R</h3>
 <ul>
-<li>It is used for solving large-data problems. The idea behind the development of this package was to avoid loading the dataset into a computer’s virtual memory. Instead, we dump the large dataset into the hard drive and then assign an environment name for the dumped objects.</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(filehash) </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbCreate</span>(<span class="st">"exampledb"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>filehash_db<span class="ot">&lt;-</span> <span class="fu">dbInit</span>(<span class="st">"exampledb"</span>)  <span class="do">## db needs to be initialized before accessing</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbInsert</span>(filehash_db, <span class="st">"xx"</span>, <span class="fu">rnorm</span>(<span class="dv">50</span>)) </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>value<span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(filehash_db, <span class="st">"xx"</span>)  <span class="do">## to retrieve db values</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>This file connection will remain open until the database is closed via dbDisconnect or the database object in R is removed.</li>
+<li><p>There are packages to interface between R and different database software packages that use relational database management systems, such as <strong>MySQL (RMySQL)</strong>, <strong>PostgreSQL (RPgSQL)</strong>, and <strong>Oracle (ROracle)</strong>.</p></li>
+<li><p>One of the most popular packages is <strong>RMySQL</strong>. This package allows us to make connections between R and the MySQL server. In order to install this package properly, we need to download both the MySQL server and RMySQL.</p></li>
+<li><p>There are several R packages available that allow direct interactions with large datasets within R, such as <strong>filehash</strong>, <strong>ff</strong>, and <strong>bigmemory</strong>. The idea is to avoid loading the whole dataset into memory.</p></li>
 </ul>
 </section>
-<section id="ff-package" class="level3" data-number="12.0.4">
-<h3 data-number="12.0.4" class="anchored" data-anchor-id="ff-package"><span class="header-section-number">12.0.4</span> ff package</h3>
+</section>
+<section id="dbplyr" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="dbplyr"><span class="header-section-number">12.3</span> dbplyr</h2>
+<p><strong>dbplyr</strong> is a dplyr backend, which means that you keep writing dplyr code but the backend executes it differently. In this, dbplyr translates to SQL; other backends include <strong>dtplyr</strong> which translates to data.table, and multidplyr which executes your code on multiple cores.</p>
+<p>To use dbplyr, you must first use <code>tbl()</code> to create an object that represents a database table:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>diamonds_db <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"diamonds"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>diamonds_db</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>big_diamonds_db <span class="ot">&lt;-</span> diamonds_db <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(price <span class="sc">&gt;</span> <span class="dv">15000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carat<span class="sc">:</span>clarity, price)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>big_diamonds_db</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="packages" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="packages"><span class="header-section-number">12.4</span> Packages</h2>
+<section id="filehash-package" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="filehash-package"><span class="header-section-number">12.4.1</span> filehash package</h3>
+<p>It is used for solving large-data problems. The idea behind the development of this package was to avoid loading the dataset into a computer’s virtual memory. Instead, we dump the large dataset into the hard drive and then assign an environment name for the dumped objects.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(filehash) </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbCreate</span>(<span class="st">"exampledb"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>filehash_db<span class="ot">&lt;-</span> <span class="fu">dbInit</span>(<span class="st">"exampledb"</span>)  <span class="do">## db needs to be initialized before accessing</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dbInsert</span>(filehash_db, <span class="st">"xx"</span>, <span class="fu">rnorm</span>(<span class="dv">50</span>)) </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>value<span class="ot">&lt;-</span> <span class="fu">dbFetch</span>(filehash_db, <span class="st">"xx"</span>)  <span class="do">## to retrieve db values</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This file connection will remain open until the database is closed via dbDisconnect or the database object in R is removed.</p>
+</section>
+<section id="ff-package" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="ff-package"><span class="header-section-number">12.4.2</span> ff package</h3>
 <p>This package extends the R system and stores data in the form of native binary flat files in persistent storage such as hard disks, CDs, or DVDs rather than in the RAM.</p>
 <p>This package enables users to work on several large datasets simultaneously. It also allows the allocation of vectors or arrays that are larger than the RAM.</p>
 </section>
-<section id="sqldf-package" class="level3" data-number="12.0.5">
-<h3 data-number="12.0.5" class="anchored" data-anchor-id="sqldf-package"><span class="header-section-number">12.0.5</span> sqldf package</h3>
+<section id="sqldf-package" class="level3" data-number="12.4.3">
+<h3 data-number="12.4.3" class="anchored" data-anchor-id="sqldf-package"><span class="header-section-number">12.4.3</span> sqldf package</h3>
 <p>The <strong>sqldf package</strong> is an R package that allows users to run SQL statements within R.</p>
 <p>We can perform any type of data manipulation to an R data frame either in memory or during import.</p>
 <p>If the dataset is too large and cannot entirely be read into the R environment, we can import a portion of that dataset using sqldf.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -724,7 +801,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./habits.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Good Programming Habits</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
