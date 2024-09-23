@@ -1,4 +1,4 @@
-# Packages for Data Products
+# Building Data Products
 
 ## Manipulate
 
@@ -15,33 +15,6 @@ Note that it’s difficult to share a manipulate interactive graphic.
 
 This is a link on how **manipulate** actually works: [link](https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate)
 
-## Interactivity
-
-### htmlwidgets
-
-**HTML** is an interactive format, and you can take advantage of that interactivity with **htmlwidgets**, R functions that produce interactive HTML visualizations. For example, take the leaflet map below, where you can drag the map around, zoom in and out, etc. You obviously can’t do that in a book, so Quarto automatically inserts a static screenshot for you.
-
-``` {r}
-library(leaflet)
-leaflet() |>
-  setView(-3.7077, 40.4156, , zoom = 16) |> 
-  addTiles() |>
-  addMarkers(-3.7077, 40.4156, popup = "Plaza Mayor de Madrid") 
-```
-
-There are many **packages** that provide htmlwidgets, including:
-
--   **dygraphs** for interactive time series visualizations.
-
--   **DT** for interactive tables.
-
--   **threejs** for interactive 3d plots.
-
--   **DiagrammeR** for diagrams (like flow charts and simple node-link diagrams).
-
-To see a complete list of the packages that provide htmlwidgets visit <https://www.htmlwidgets.org>.
-
-
 ## Shiny
 
 It is described by RStudio as “A web application framework for R”. “Turn your analyses into interactive web applications No HTML, CSS, or JavaScript knowledge required”.
@@ -52,7 +25,7 @@ If on Windows, make sure that you have Rtools installed. Then, you can install s
 
 *Example:*
 
-``` {r}
+```{r}
 library(shiny)
 textInput("name", "What is your name?")
 numericInput("age", "How old are you?", NA, min = 0, max = 150)
@@ -164,6 +137,40 @@ For more information about R studio presenter, chek out this [link](https://supp
 
 ## Interactive Graphs
 
+### htmlwidgets
+
+**HTML** is an interactive format, and you can take advantage of that interactivity with **htmlwidgets**, R functions that produce interactive HTML visualizations. For example, take the **leaflet** map below, where you can drag the map around, zoom in and out, etc. You obviously can’t do that in a book, so Quarto automatically inserts a static screenshot for you.
+
+*Example:*
+
+```{r}
+library(leaflet)
+leaflet() |>
+  setView(-3.7077, 40.4156, , zoom = 16) |> 
+  addTiles() |>
+  addMarkers(-3.7077, 40.4156, popup = "Plaza Mayor de Madrid") 
+```
+
+There are many **packages** that provide htmlwidgets, including:
+
+-   **dygraphs** for interactive time series visualizations.
+
+-   **DT** for interactive tables.
+
+-   **threejs** for interactive 3d plots.
+
+-   **DiagrammeR** for diagrams (like flow charts and simple node-link diagrams).
+
+To see a complete list of the packages that provide htmlwidgets visit <https://www.htmlwidgets.org>.
+
+### leaflet
+
+[link to leaflet](https://rstudio.github.io/leaflet/)
+
+**leaflet** seems to be emerging as the most popular R package for creating **interactive maps**.
+
+The map widget (the `leaflet()` command) starts out a map and then you add elements or modify the map by passing it as arguments to mapping functions.
+
 ### rCharts
 
 [link to rCharts](https://ramnathv.github.io/rCharts/)
@@ -185,14 +192,6 @@ Google has some nice visualization tools built into their products (e.g. Google 
 install.packages("googleVis")
 library(googlevis)
 ```
-
-### leaflet
-
-[link to leaflet](https://rstudio.github.io/leaflet/)
-
-**leaflet** seems to be emerging as the most popular R package for creating **interactive maps**.
-
-The map widget (the `leaflet()` command) starts out a map and then you add elements or modify the map by passing it as arguments to mapping functions.
 
 ### plot.ly
 

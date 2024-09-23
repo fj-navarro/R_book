@@ -4,7 +4,7 @@ A large portion of data is stored in databases, so it's crucial to know how to a
 
 In this chapter, we’ll introduce DBI and dbplyr. DBI is a low-level interface that connects to databases and executes SQL; dbplyr is a high-level interface that translates your dplyr code to SQL queries then executes them with DBI.
 
-``` R
+``` r
 library(DBI)
 library(dbplyr)
 library(tidyverse)
@@ -42,7 +42,7 @@ You can create a database connection using `DBI::dbConnect()`. The first argumen
 
 *Example:*
 
-``` R
+``` r
 con <- DBI::dbConnect(
   RMariaDB::MariaDB(), 
   username = "foo"
@@ -56,13 +56,13 @@ con <- DBI::dbConnect(
 
 ### In-process DBMS
 
-Setting up a client-server or cloud DBMS would be a pain for this book, so we’ll instead use an in-process DBMS that lives entirely in an R package: **duckdb**. The only difference between using duckdb and any other DBMS is how you’ll connect to the database. 
+Setting up a client-server or cloud DBMS would be a pain for this book, so we’ll instead use an in-process DBMS that lives entirely in an R package: **duckdb**. The only difference between using duckdb and any other DBMS is how you’ll connect to the database.
 
 **duckdb** is a high-performance database that’s designed very much for the needs of a data scientist. We use it here because it’s very easy to get started with, but it’s also capable of handling gigabytes of data with great speed. If you want to use duckdb for a real data analysis project, you’ll also need to supply the `dbdir` argument to make a persistent database and tell duckdb where to save it.
 
 Connecting to **duckdb** is particularly simple because the defaults create a temporary database that is deleted when you quit R. That’s great for learning because it guarantees that you’ll start from a clean slate every time you restart R:
 
-``` R
+``` r
 con <- DBI::dbConnect(duckdb::duckdb(), dbdir = "duckdb")
 ```
 
@@ -70,15 +70,16 @@ Since this is a new database, we need to start by adding some data. Here we’ll
 
 *Example:*
 
-``` R
+``` r
 dbWriteTable(con, "mpg", ggplot2::mpg)
 dbWriteTable(con, "diamonds", ggplot2::diamonds)
 ```
+
 You can check that the data is loaded correctly by using a couple of other DBI functions: `dbListTables()` lists all tables in the database and `dbReadTable()` retrieves the contents of a table.
 
 *Example:*
 
-``` R
+``` r
 dbListTables(con)
 
 con |> 
@@ -91,7 +92,8 @@ con |>
 Now you can use (SQL language) `dbGetQuery()` to get the results of running a query on the database:
 
 *Example:*
-``` R
+
+``` r
 sql <- "
   SELECT carat, cut, clarity, color, price 
   FROM diamonds 
@@ -107,7 +109,7 @@ An Excel file can be imported into R using **ODBC**. Remember Excel cannot deal 
 We will now create an ODBC connection with an MS Excel file with the **connection string xlopen**:
 
 -   In our computer: To use the ODBC approach on an Excel file, we firstly need to create the connection string using the system administrator. We need to open the control panel of the operating system and then open Administrative Tools and then choose ODBC. A dialog box will now appear. Click on the Add button and select an appropriate ODBC driver and then locate the desired file and give a data source name. In our case, the data source name is xlopen.
-    
+
 -   In R:
 
     ``` r
@@ -133,7 +135,8 @@ We will now create an ODBC connection with an MS Excel file with the **connectio
 To use dbplyr, you must first use `tbl()` to create an object that represents a database table:
 
 *Example:*
-``` R
+
+``` r
 diamonds_db <- tbl(con, "diamonds")
 diamonds_db
 big_diamonds_db <- diamonds_db |> 

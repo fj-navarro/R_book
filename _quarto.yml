@@ -4,7 +4,7 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "09/22/2024"
+  date: "09/23/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -55,8 +55,7 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
-
+  #pdf:
+    #documentclass: scrreprt # problem w/ hmtlwidgets en products.qmd > Interactivity
 editor: visual
 
