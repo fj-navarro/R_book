@@ -297,7 +297,7 @@ The **stacking** is performed automatically using the position adjustment specif
       geom_point(position = "jitter")
     ```
 
-## Coordinate System
+## Coordinate Systems
 
 The default coordinate system is the **Cartesian coordinate system** where the `x` and `y` positions act independently to determine the location of each point.
 
@@ -407,7 +407,7 @@ It’s possible to use **mathematical** equations instead of text strings. Just 
 
 *Example:*
 
-```R
+``` r
 ggplot(df, aes(x, y)) +
   geom_point() +
   labs(
@@ -433,7 +433,7 @@ It’s also possible to control individual components of each theme, like the si
 
 *Example:*
 
-``` R
+``` r
   ...
   theme(
     legend.position = c(0.6, 0.7),
@@ -445,6 +445,7 @@ It’s also possible to control individual components of each theme, like the si
     plot.caption = element_text(hjust = 0)
   )
 ```
+
 For an overview of all `theme()` components, see help with `?theme`.
 
 ## Layout
@@ -453,7 +454,7 @@ What if you have **multiple plots** you want to lay out in a certain way? The **
 
 To place two plots next to each other, you can simply add them to each other. Note that you first need to create the plots and save them as objects (in the following example they’re called p1 and p2). Then, you place them next to each other with `+`.
 
-``` {r}
+```{r}
 library(patchwork)
 p1 <- ggplot(mpg, aes(x = displ, y = hwy)) + 
   geom_point() + 

@@ -1,6 +1,6 @@
 # Transforming Data
 
-## 'head()` and `tail()`
+## head()and tail()
 
 After reading the file, you can use the `head()` and `tail()` functions to examine the object:
 
@@ -17,7 +17,7 @@ A common task after reading in data is to consider **variable types**. For examp
 
 *Example:*
 
-``` R
+``` r
 students |>
   mutate(meal_plan = factor(meal_plan),
   age = parse_number(if_else(age == "five", "5", age))
@@ -27,28 +27,52 @@ After this, you will that the type of variable denoted underneath the variable n
 
 ## Changing Columns Names
 
-Note that you can assign your **own column names** after reading a dataframe using the `names()` function, or when you read it in, using the `col.names` argument, which should be assigned a character vector the same length as the number of columns. 
+Note that you can assign your **own column names** after reading a dataframe using the `names()` function, or when you read it in, using the `col.names` argument, which should be assigned a character vector the same length as the number of columns.
 
 If there is no header and no `col.names` argument, then R uses the names `V1`, `V2`, etc.
 
 ## Columns No-Syntatic Names
 
-Sometimes, you might also notice that the columns names are surrounded by **backticks**. That’s because they contain spaces, breaking R’s usual rules for variable names; they’re non-syntactic names. 
-    
-    *Example:*
-    
-    ``` R
-    students |> 
-      rename(
-        student_id = `Student ID`,
-        full_name = `Full Name`
-      )
-    ```
-    
-An alternative approach is to use `janitor::clean_names()` to use some heuristics to turn them all into snake case at once1.
+Sometimes, you might also notice that the columns names are surrounded by **backticks**. That's because they contain spaces, breaking R's usual rules for variable names; they're non-syntactic names.
+
+````         
+*Example:*
 
 ``` R
+students |> 
+  rename(
+    student_id = `Student ID`,
+    full_name = `Full Name`
+  )
+```
+````
+
+An alternative approach is to use `janitor::clean_names()` to use some heuristics to turn them all into snake case at once1.
+
+``` r
 students |> janitor::clean_names()
+```
+
+## Changing Numbers
+
+In most cases, numbers will be in one of R’s numeric types: **integer or double**. In some cases, however, you’ll encounter them as strings, possibly because you’ve created them by pivoting from column headers or because something has gone wrong in your data import process.
+
+**readr** provides two useful functions for **parsing strings into numbers**: `parse_double()` and `parse_number()`. 
+
+*Example* 
+
+``` {r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+*Example:*
+
+``` {r}
+x <- c("1.2", "5.6", "1e3")
+parse_double(x)
+
+x <- c("$1,234", "USD 3,513", "59%")
+parse_number(x)
 ```
 
 ## Removing Duplicates
@@ -62,7 +86,7 @@ data[!duplicated(data$x), ]
 
 ## Reshaping Datasets
 
-Statistical analysis sometimes requires wide data and sometimes long data. In such cases, we need to be able to fluently and fluidly **reshape** the data to meet the requirements of statistical analysis. The function `reshape()` reshapes a dataframe between ‘wide’ format (with repeated measurements in separate columns of the same row) and ‘long’ format (with the repeated measurements in separate rows).
+Statistical analysis sometimes requires wide data and sometimes long data. In such cases, we need to be able to fluently and fluidly **reshape** the data to meet the requirements of statistical analysis. The function `reshape()` reshapes a dataframe between 'wide' format (with repeated measurements in separate columns of the same row) and 'long' format (with the repeated measurements in separate rows).
 
 Data reshaping is just a rearrangement of the form of the data---it does not change the content of the dataset.
 

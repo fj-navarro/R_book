@@ -4,7 +4,7 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "09/23/2024"
+  date: "09/25/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -17,25 +17,26 @@ book:
       chapters: 
         - reading.qmd
         - writing.qmd
-        - transforming.qmd
         - tidydata.qmd
+        - transforming.qmd
         - subsetting.qmd
         - plyrdplyr.qmd
         - date.qmd
         - databases.qmd
-    - part: "Part 2: Programming in R"
-      chapters:
-        - habits.qmd
-        - logic.qmd
-        - functions.qmd
-        - debugging.qmd
-        - profiling.qmd
-    - part: "Part 3: Statistics in R"
+    - part: "Part 2: Statistics in R"
       chapters:
         - descriptive.qmd
         - exploratory.qmd
         - inferential.qmd
         - regression.qmd
+    - part: "Part 3: Programming in R"
+      chapters:
+        - habits.qmd
+        - logic.qmd
+        - functions.qmd
+        - iteration.qmd
+        - debugging.qmd
+        - profiling.qmd
     - part: "Part 4: Graphics"
       chapters: 
         - graphs.qmd

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 16&nbsp; Debugging</title>
+<title>R for Research in Action - 21&nbsp; Debugging</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./profiling.html" rel="next">
-<link href="./functions.html" rel="prev">
+<link href="./iteration.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./habits.html">Part 2: Programming in R</a></li><li class="breadcrumb-item"><a href="./debugging.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./habits.html">Part 3: Programming in R</a></li><li class="breadcrumb-item"><a href="./debugging.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Debugging</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Part 2: Programming in R</span></a>
+ <span class="menu-text">Part 2: Statistics in R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -243,32 +243,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+  <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debugging.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Part 3: Statistics in R</span></a>
+ <span class="menu-text">Part 3: Programming in R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -284,26 +278,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  <a href="./habits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
+  <a href="./logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Iteration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debugging.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./profiling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -320,19 +326,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./typesofgraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
   </div>
 </li>
       </ul>
@@ -349,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,13 +372,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -393,11 +399,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#show-values" id="toc-show-values" class="nav-link active" data-scroll-target="#show-values"><span class="header-section-number">16.1</span> Show values</a></li>
-  <li><a href="#message" id="toc-message" class="nav-link" data-scroll-target="#message"><span class="header-section-number">16.2</span> Message</a></li>
-  <li><a href="#traceback" id="toc-traceback" class="nav-link" data-scroll-target="#traceback"><span class="header-section-number">16.3</span> traceback()</a></li>
-  <li><a href="#debug" id="toc-debug" class="nav-link" data-scroll-target="#debug"><span class="header-section-number">16.4</span> debug()</a></li>
-  <li><a href="#recover" id="toc-recover" class="nav-link" data-scroll-target="#recover"><span class="header-section-number">16.5</span> recover()</a></li>
+  <li><a href="#show-values" id="toc-show-values" class="nav-link active" data-scroll-target="#show-values"><span class="header-section-number">21.1</span> Show values</a></li>
+  <li><a href="#message" id="toc-message" class="nav-link" data-scroll-target="#message"><span class="header-section-number">21.2</span> Message</a></li>
+  <li><a href="#traceback" id="toc-traceback" class="nav-link" data-scroll-target="#traceback"><span class="header-section-number">21.3</span> traceback()</a></li>
+  <li><a href="#debug" id="toc-debug" class="nav-link" data-scroll-target="#debug"><span class="header-section-number">21.4</span> debug()</a></li>
+  <li><a href="#recover" id="toc-recover" class="nav-link" data-scroll-target="#recover"><span class="header-section-number">21.5</span> recover()</a></li>
   </ul>
 </nav>
     </div>
@@ -406,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Debugging</span></h1>
 </div>
 
 
@@ -442,15 +448,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Finally, R may throw a <strong>warning</strong> upon the execution of some code, and this warning might point to an earlier error.</p>
 <p>To ask R to convert warnings into errors, and hence stop processing at the point of warning, type:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<section id="show-values" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="show-values"><span class="header-section-number">16.1</span> Show values</h2>
+<section id="show-values" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="show-values"><span class="header-section-number">21.1</span> Show values</h2>
 <p>You will spend a lot of time correcting errors in your programs. To find an error or bug, you need to be able to see how your variables change as you move through the branches and loops of your code.</p>
 <p>An effective and simple way of doing this is to include statements like <code>cat("var =", var, "\n")</code> throughout the program, to display the values of variables such as var as the program executes. Once you have the program working you can delete these or just comment them so they are not executed.</p>
 <p>It is also very helpful to make <strong>dry runs of your code</strong>, using simple starting conditions for which you know what the answer should be. These dry runs should ideally use short and simple versions of the final program, so that analysis of the output can be kept as simple as possible.</p>
 <p><strong>Graphs and summary statistics</strong> of intermediate outcomes can be very revealing, and the code to create them is easily commented out for production runs.</p>
 </section>
-<section id="message" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="message"><span class="header-section-number">16.2</span> Message</h2>
+<section id="message" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="message"><span class="header-section-number">21.2</span> Message</h2>
 <p>We can fix this problem by anticipating the possibility of NA values and checking to see if the input is NA with the <code>is.na()</code> function:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>printmessage3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">length</span>(x) <span class="sc">&gt;</span> 1L)</span>
@@ -464,8 +470,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">invisible</span>(x)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="traceback" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="traceback"><span class="header-section-number">16.3</span> traceback()</h2>
+<section id="traceback" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="traceback"><span class="header-section-number">21.3</span> traceback()</h2>
 <p>The <code>traceback()</code> command prints out the function call stack <strong>after an error</strong> has occurred. The function call stack is the sequence of functions that was called before the error occurred.</p>
 <p>The <code>traceback()</code> command must be called <strong>immediately after</strong> an error occurs. Once another function is called, you lose the traceback.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -480,8 +486,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="fu">lm</span>(y \<span class="sc">~</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Looking at the <strong>traceback</strong> is useful for figuring out roughly where an error occurred but it’s not useful for more detailed debugging. For that you might turn to the <code>debug()</code> function.</p>
 </section>
-<section id="debug" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="debug"><span class="header-section-number">16.4</span> debug()</h2>
+<section id="debug" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="debug"><span class="header-section-number">21.4</span> debug()</h2>
 <p>The <code>debug()</code> function takes a function as its first argument. Here is an example of debugging the <code>lm()</code> function.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">debug</span>(lm)   <span class="do">## Flag the 'lm()' function for interactive debugging</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x) debugging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -495,8 +501,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can turn off interactive debugging with the <code>undebug()</code> function like this:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">undebug</span>(lm)  <span class="do">## Unflag the 'lm()' function for debugging</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="recover" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="recover"><span class="header-section-number">16.5</span> recover()</h2>
+<section id="recover" class="level2" data-number="21.5">
+<h2 data-number="21.5" class="anchored" data-anchor-id="recover"><span class="header-section-number">21.5</span> recover()</h2>
 <p>The <code>recover()</code> function can be used to modify the error behavior of R when an error occurs. Normally, when an error occurs in a function, R will print out an error message, exit out of the function, and return you to your workspace to await further commands.</p>
 <p>With <code>recover()</code> you can tell R that when an error occurs, it should halt execution at the exact point at which the error occurred.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">error =</span> recover)  <span class="do">## Change default R error behavior</span></span>
@@ -741,13 +747,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./functions.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span>
+      <a href="./iteration.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Iteration</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./profiling.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

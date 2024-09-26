@@ -57,15 +57,27 @@ Special characters can be included in strings using the escape character `\`:
 -   `\b` for a backspace
 -   `\\` for `\`
 
+`str_c()` is very similar to the base `paste0()`, but is designed to be used with `mutate()` by obeying the usual tidyverse rules for recycling and propagating missing values:
+
+*Example:*
+``` {r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+```{r}
+df <- tibble(name = c("Flora", "David", "Terra", NA))
+df |> mutate(greeting = str_c("Hi ", name, "!"))
+```
+
 **Text data** can be used to retrieve information in sentiment analysis and even entity recognition.
 
-### Sources of Text data
+### Sources of text data
 
 Text data can be found on tweets from any individual, or from any company, Facebook status updates, RSS feeds from any news site, Blog articles, Journal articles, Newspapers, Verbatim transcripts of an in-depth interview.
 
 For example, t extract **Twitter data**, we can use `tweetR()` and, to extract data from **Facebook**, we could use `facebookR()`.
 
-### Getting Text Data
+### Getting text data
 
 The easiest way to get text data is to import from a .csv file where some of the variables contain character data. We have to protect automatic factor conversion by specifying the `stringsAsFactors = FALSE argument`
 

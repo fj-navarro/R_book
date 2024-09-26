@@ -2,13 +2,13 @@
 
 ## Visualizing Categorial Variables
 
-A variable is **categorical** if it can only take one of a small set of values. 
+A variable is **categorical** if it can only take one of a small set of values.
 
 ### Bar Chart
 
 To examine the distribution of a categorical variable, you can use a bar chart. The height of the bars displays how many observations occurred with each `x` value.
 
-```{r echo = FALSE}
+```{r message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 library(ggthemes)
@@ -16,7 +16,7 @@ library(ggthemes)
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = species)) +
   geom_bar()
 ```
@@ -27,7 +27,7 @@ In bar plots of categorical variables with non-ordered levels, like the penguin 
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = fct_infreq(species))) +
   geom_bar()
 ```
@@ -42,7 +42,7 @@ One commonly used visualization for distributions of **continuous variables** is
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = body_mass_g)) +
   geom_histogram(binwidth = 200)
 ```
@@ -53,18 +53,18 @@ You can set the width of the **intervals** in a histogram with the binwidth argu
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = body_mass_g)) +
   geom_histogram(binwidth = 20)
 ggplot(penguins, aes(x = body_mass_g)) +
   geom_histogram(binwidth = 2000)
 ```
 
-An alternative visualization for distributions of numerical variables is a **density plot**. A density plot is a smoothed-out version of a histogram and a practical alternative, particularly for continuous data that comes from an underlying smooth distribution. 
+An alternative visualization for distributions of numerical variables is a **density plot**. A density plot is a smoothed-out version of a histogram and a practical alternative, particularly for continuous data that comes from an underlying smooth distribution.
 
 *Example:*
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = body_mass_g)) +
   geom_density()
 ```
@@ -95,7 +95,7 @@ ggplot(penguins, aes(x = body_mass_g, color = species)) +
 
 Additionally, we can map species to both **color and fill** aesthetics and use the alpha aesthetic to add transparency to the filled density curves. This aesthetic takes values between 0 (completely transparent) and 1 (completely opaque). In the following plot it’s set to 0.5.
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = body_mass_g, color = species, fill = species)) +
   geom_density(alpha = 0.5)
 ```
@@ -113,7 +113,7 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 The following plot, a **relative frequency plot** created by setting `position = "fill"` in the `geom`, is more useful for comparing species distributions across islands since it’s not affected by the unequal numbers of penguins across the islands.
 
-``` {r}
+```{r}
 ggplot(penguins, aes(x = island, fill = species)) +
   geom_bar(position = "fill")
 ```
@@ -150,5 +150,47 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   facet_wrap(~island)
 ```
 
-
 If you don’t specify the `width` and `height` they will be taken from the dimensions of the current plotting device. For reproducible code, you’ll want to specify them.
+
+## Visualizing Maps
+
+### Coordinates on a Map
+
+*Example:*
+
+``` {r message=FALSE}
+library(tidyverse)
+library(sf)
+library(mapview)
+library(modeldata)
+
+data(ames)
+
+ames |>
+  select(Longitude, Latitude, Neighborhood) |>
+  # glimpse() |> 
+  mapview(map.types = "OpenStreetMap",
+          xcol = "Longitude", ycol = "Latitude", 
+          zcol = "Neighborhood", 
+          crs = 4269, 
+          grid = FALSE)
+```
+
+You can find more information [here](https://r-spatial.github.io/mapview/articles/mapview_01-basics.html)
+
+### Maps silhouettes
+
+*Example*
+
+```{r message = FALSE}
+library(maps)
+
+nz <- map_data("nz")
+
+ggplot(nz, aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill = "white", color = "black")
+
+ggplot(nz, aes(x = long, y = lat, group = group)) +
+      geom_polygon(fill = "white", color = "black") +
+      coord_quickmap()
+```

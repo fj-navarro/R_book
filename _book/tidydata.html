@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 8&nbsp; Tidy Data</title>
+<title>R for Research in Action - 7&nbsp; Tidy Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./subsetting.html" rel="next">
-<link href="./transforming.html" rel="prev">
+<link href="./transforming.html" rel="next">
+<link href="./writing.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reading.html">Part 1: Manipulating Data</a></li><li class="breadcrumb-item"><a href="./tidydata.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tidy Data</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reading.html">Part 1: Manipulating Data</a></li><li class="breadcrumb-item"><a href="./tidydata.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidy Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -196,14 +196,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./transforming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transforming Data</span></span></a>
+  <a href="./tidydata.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidydata.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
+  <a href="./transforming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Transforming Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Part 2: Programming in R</span></a>
+ <span class="menu-text">Part 2: Statistics in R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -243,32 +243,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+  <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Part 3: Statistics in R</span></a>
+ <span class="menu-text">Part 3: Programming in R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -284,26 +278,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+  <a href="./habits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
+  <a href="./logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inferential.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+  <a href="./functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+  <a href="./iteration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Iteration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./profiling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -320,19 +326,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./typesofgraphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
   </div>
 </li>
       </ul>
@@ -349,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -366,13 +372,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Packages for Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -393,20 +399,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">8.1</span> Installation</a></li>
-  <li><a href="#core-packages" id="toc-core-packages" class="nav-link" data-scroll-target="#core-packages"><span class="header-section-number">8.2</span> Core Packages</a></li>
-  <li><a href="#functionalities" id="toc-functionalities" class="nav-link" data-scroll-target="#functionalities"><span class="header-section-number">8.3</span> Functionalities</a>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">7.1</span> Installation</a></li>
+  <li><a href="#core-packages" id="toc-core-packages" class="nav-link" data-scroll-target="#core-packages"><span class="header-section-number">7.2</span> Core Packages</a></li>
+  <li><a href="#functionalities" id="toc-functionalities" class="nav-link" data-scroll-target="#functionalities"><span class="header-section-number">7.3</span> Functionalities</a>
   <ul class="collapse">
-  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import"><span class="header-section-number">8.3.1</span> Import</a></li>
-  <li><a href="#wrangle" id="toc-wrangle" class="nav-link" data-scroll-target="#wrangle"><span class="header-section-number">8.3.2</span> Wrangle</a></li>
-  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming"><span class="header-section-number">8.3.3</span> Programming</a></li>
-  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling"><span class="header-section-number">8.3.4</span> Modeling</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import"><span class="header-section-number">7.3.1</span> Import</a></li>
+  <li><a href="#wrangle" id="toc-wrangle" class="nav-link" data-scroll-target="#wrangle"><span class="header-section-number">7.3.2</span> Wrangle</a></li>
+  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming"><span class="header-section-number">7.3.3</span> Programming</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling"><span class="header-section-number">7.3.4</span> Modeling</a></li>
   </ul></li>
-  <li><a href="#tidying-data" id="toc-tidying-data" class="nav-link" data-scroll-target="#tidying-data"><span class="header-section-number">8.4</span> Tidying Data</a>
+  <li><a href="#tidying-data" id="toc-tidying-data" class="nav-link" data-scroll-target="#tidying-data"><span class="header-section-number">7.4</span> Tidying Data</a>
   <ul class="collapse">
-  <li><a href="#pivot-data" id="toc-pivot-data" class="nav-link" data-scroll-target="#pivot-data"><span class="header-section-number">8.4.1</span> Pivot Data</a></li>
-  <li><a href="#lengthening-data" id="toc-lengthening-data" class="nav-link" data-scroll-target="#lengthening-data"><span class="header-section-number">8.4.2</span> Lengthening Data</a></li>
-  <li><a href="#widening-data" id="toc-widening-data" class="nav-link" data-scroll-target="#widening-data"><span class="header-section-number">8.4.3</span> Widening data</a></li>
+  <li><a href="#pivot-data" id="toc-pivot-data" class="nav-link" data-scroll-target="#pivot-data"><span class="header-section-number">7.4.1</span> Pivot Data</a></li>
+  <li><a href="#lengthening-data" id="toc-lengthening-data" class="nav-link" data-scroll-target="#lengthening-data"><span class="header-section-number">7.4.2</span> Lengthening Data</a></li>
+  <li><a href="#widening-data" id="toc-widening-data" class="nav-link" data-scroll-target="#widening-data"><span class="header-section-number">7.4.3</span> Widening data</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -416,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tidy Data</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidy Data</span></h1>
 </div>
 
 
@@ -434,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <strong>tidyverse</strong> is a set of packages that work in harmony because they share common data representations and API design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command.</p>
 <p>If you’d like to learn how to use the tidyverse effectively, the best place to start is <a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>.</p>
 <p>To check that you’re using the <strong>latest version</strong> of each package the easiest way is to run <code>tidyverse_update()</code>.</p>
-<section id="installation" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">8.1</span> Installation</h2>
+<section id="installation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">7.1</span> Installation</h2>
 <ul>
 <li><p>Install all the packages in the tidyverse by running:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -444,8 +450,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Learn more about the tidyverse package <a href="https://tidyverse.tidyverse.org" class="uri">https://tidyverse.tidyverse.org</a></p></li>
 </ul>
 </section>
-<section id="core-packages" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="core-packages"><span class="header-section-number">8.2</span> Core Packages</h2>
+<section id="core-packages" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="core-packages"><span class="header-section-number">7.2</span> Core Packages</h2>
 <p><code>library(tidyverse)</code> will load the <strong>core tidyverse</strong> packages:</p>
 <ul>
 <li><strong>ggplot2</strong>, for data visualisation, <a href="https://ggplot2.tidyverse.org/">more info</a>.</li>
@@ -459,10 +465,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>lubridate</strong>, for date/times.</li>
 </ul>
 </section>
-<section id="functionalities" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="functionalities"><span class="header-section-number">8.3</span> Functionalities</h2>
-<section id="import" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="import"><span class="header-section-number">8.3.1</span> Import</h3>
+<section id="functionalities" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="functionalities"><span class="header-section-number">7.3</span> Functionalities</h2>
+<section id="import" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="import"><span class="header-section-number">7.3.1</span> Import</h3>
 <p>As well as <strong>readr</strong>, for reading flat files, the tidyverse package installs a number of other packages for reading data:</p>
 <ul>
 <li><strong>DBI</strong> for relational databases. You’ll need to pair DBI with a database specific backends like RSQLite, RMariaDB, RPostgres, or odbc. More info <a href="https://db.rstudio.com">here</a>.</li>
@@ -476,8 +482,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>xml2</strong> for XML.</li>
 </ul>
 </section>
-<section id="wrangle" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="wrangle"><span class="header-section-number">8.3.2</span> Wrangle</h3>
+<section id="wrangle" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="wrangle"><span class="header-section-number">7.3.2</span> Wrangle</h3>
 <p>In addition to <strong>tidyr</strong>, and <strong>dplyr</strong>, there are five packages (including <strong>stringr</strong> and <strong>forcats</strong>) which are designed to work with specific types of data:</p>
 <ul>
 <li><strong>lubridate</strong> for dates and date-times.</li>
@@ -490,22 +496,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>dtplyr</strong> provides a data.table backend by automatically translating to the equivalent, but usually much faster, data.table code. Program</li>
 </ul>
 </section>
-<section id="programming" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="programming"><span class="header-section-number">8.3.3</span> Programming</h3>
+<section id="programming" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="programming"><span class="header-section-number">7.3.3</span> Programming</h3>
 <p>In addition to <strong>purrr</strong>, which provides very consistent and natural methods for iterating on R objects, there are two additional tidyverse packages that help with general programming challenges:</p>
 <ul>
 <li><p><strong>magrittr</strong> provides the pipe, <code>%&gt;%</code> used throughout the tidyverse. It also provide a number of more specialised piping operators (like <code>%$%</code> and <code>%&lt;&gt;%</code>) that can be useful in other places.</p></li>
 <li><p><strong>glue</strong> provides an alternative to <code>paste()</code> that makes it easier to combine data and strings.</p></li>
 </ul>
 </section>
-<section id="modeling" class="level3" data-number="8.3.4">
-<h3 data-number="8.3.4" class="anchored" data-anchor-id="modeling"><span class="header-section-number">8.3.4</span> Modeling</h3>
+<section id="modeling" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="modeling"><span class="header-section-number">7.3.4</span> Modeling</h3>
 <p><strong>Modeling</strong> with the tidyverse uses the collection of <strong>tidymodels packages</strong>, which largely replace the modelr package used in R4DS.</p>
 <p>Visit the <a href="https://www.tidymodels.org/start/">Getting Started Guide</a> for more detailed examples, or go straight to the Learn page.</p>
 </section>
 </section>
-<section id="tidying-data" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="tidying-data"><span class="header-section-number">8.4</span> Tidying Data</h2>
+<section id="tidying-data" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="tidying-data"><span class="header-section-number">7.4</span> Tidying Data</h2>
 <p>We’ll focus on <strong>tidyr</strong>, a package that provides a bunch of tools to help tidy up messy datasets. <strong>tidyr</strong> is a member of the core tidyverse.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are two main <strong>advantages</strong> of tidy data:</p>
@@ -513,13 +519,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>There’s a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it’s easier to learn the tools that work with it because they have an underlying uniformity.</p></li>
 <li><p>There’s a specific advantage to placing variables in columns because it allows R’s vectorized nature to shine.</p></li>
 </ul>
-<section id="pivot-data" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="pivot-data"><span class="header-section-number">8.4.1</span> Pivot Data</h3>
+<section id="pivot-data" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="pivot-data"><span class="header-section-number">7.4.1</span> Pivot Data</h3>
 <p>You’ll begin by figuring out what the underlying <strong>variables and observations</strong> are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data. Next, you’ll <strong>pivot</strong> your data into a tidy form, with variables in the columns and observations in the rows.</p>
 <p><strong>tidyr</strong> provides two functions for pivoting data: <code>pivot_longer()</code> and <code>pivot_wider()</code>. We’ll first start with pivot_longer() because it’s the most common case. Let’s dive into some examples.</p>
 </section>
-<section id="lengthening-data" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="lengthening-data"><span class="header-section-number">8.4.2</span> Lengthening Data</h3>
+<section id="lengthening-data" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="lengthening-data"><span class="header-section-number">7.4.2</span> Lengthening Data</h3>
 <p><strong>Lengthening data</strong> means increasing the number of rows and decreasing the number of columns. The inverse transformation is <code>pivot_wider()</code>.</p>
 <p>In this dataset, each observation is a song. The first three columns (<code>artist</code>, <code>track</code> and <code>date.entered</code>) are variables that describe the song. Then we have 76 columns (<code>wk1-wk76</code>) that describe the rank of the song in each week1. Here, the column names are one variable (the <code>week</code>) and the cell values are another (the <code>rank</code>).</p>
 <div class="cell">
@@ -605,8 +611,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Other cases on how to deal with lenghtening data can be found <a href="https://r4ds.hadley.nz/data-tidy#sec-pivoting">here</a>.</p>
 </section>
-<section id="widening-data" class="level3" data-number="8.4.3">
-<h3 data-number="8.4.3" class="anchored" data-anchor-id="widening-data"><span class="header-section-number">8.4.3</span> Widening data</h3>
+<section id="widening-data" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="widening-data"><span class="header-section-number">7.4.3</span> Widening data</h3>
 <p><code>pivot_wider()</code> makes datasets wider by increasing columns and reducing rows and helps when one observation is spread across multiple rows.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -936,13 +942,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./transforming.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transforming Data</span></span>
+      <a href="./writing.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Writing Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./subsetting.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Subsetting R Objects</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./transforming.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Transforming Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

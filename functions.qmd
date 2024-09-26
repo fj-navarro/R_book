@@ -65,7 +65,7 @@ library(ggplot2)
 library(dplyr)
 ```
 
-``` {r}
+```{r}
 df <- tibble(
   a = rnorm(5),
   b = rnorm(5),
@@ -87,13 +87,13 @@ df |> mutate(
 
 To write a function you need to first analyse your **repeated code** to figure what parts are constant and what parts vary. If we take the code above and pull it outside of `mutate()`, it’s a little easier to see the pattern because each repetition is now one line:
 
-``` R
+``` r
 (█ - min(█, na.rm = TRUE)) / (max(█, na.rm = TRUE) - min(█, na.rm = TRUE))
 ```
 
 Then you create a function by following the **template**:
 
-``` R
+``` r
 name <- function(arguments) {
   body
 }
@@ -101,7 +101,7 @@ name <- function(arguments) {
 
 *Example:*
 
-``` {r}
+```{r}
 rescale01 <- function(x) {
   (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))
 }
@@ -109,7 +109,7 @@ rescale01 <- function(x) {
 
 You might **test** with a few simple inputs to make sure you’ve captured the logic correctly:
 
-``` {r}
+```{r}
 rescale01(c(-10, 0, 10))
 ```
 
@@ -132,7 +132,7 @@ When you start writing functions that use **dplyr verbs** you rapidly hit the pr
 
 *Example:*
 
-``` R
+``` r
 grouped_mean <- function(df, group_var, mean_var) {
   df |> 
     group_by(group_var) |> 
@@ -142,20 +142,21 @@ grouped_mean <- function(df, group_var, mean_var) {
 
 If we try and use it, we get an error:
 
-``` R
+``` r
 diamonds |> grouped_mean(cut, carat)
 
 #> Error in `group_by()`:
 #> ! Must group by variables found in `.data`.
 #> ✖ Column `group_var` is not found.
 ```
-Here we need some way to tell `group_by()` and `summarize()` not to treat `group_var` and `mean_var` as the name of the variables, but instead look inside them for the variable we actually want to use. 
+
+Here we need some way to tell `group_by()` and `summarize()` not to treat `group_var` and `mean_var` as the name of the variables, but instead look inside them for the variable we actually want to use.
 
 So to make `grouped_mean()` work, we need to surround `group_var` and `mean_var` with `{ }`. Embracing a variable tells **dplyr** to use the value stored inside the argument, not the argument as the literal variable name. One way to remember what’s happening is to think of { } as looking down a tunnel — { var } will make a dplyr function look inside of var rather than looking for a variable called var.
 
 *Example:*
 
-``` {r}
+```{r}
 grouped_mean <- function(df, group_var, mean_var) {
   df |> 
     group_by({{ group_var }}) |> 
@@ -163,7 +164,7 @@ grouped_mean <- function(df, group_var, mean_var) {
 }
 ```
 
-``` {r}
+```{r}
 diamonds |> grouped_mean(cut, carat)
 ```
 
