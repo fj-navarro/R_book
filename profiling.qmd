@@ -22,7 +22,7 @@ Here's an example of where the elapsed time is greater than the user time:
 
 ```{r}
 ## Elapsed time > user time 
-system.time(readLines("http://www.jhsph.edu")) 
+system.time(readLines("http://www.amazon.com")) 
 ```
 
 You can time longer expressions by wrapping them in curly braces within the call to `system.time()`.
@@ -58,7 +58,7 @@ summaryRprof()
 
 The `summaryRprof()` function tabulates the R profiler output and calculates how much time is spend in which function. There are two methods for normalizing the data:
 
--   **“by.total”**: divides the time spend in each function by the total run time. 
+-   **“by.total”**: divides the time spend in each function by the total run time.
 -   **“by.self”**: does the same as “by.total” but first subtracts out time spent in functions above the current function in the call stack.
 
 The final bit of output that `summaryRprof()` provides is the sampling interval and the total runtime.

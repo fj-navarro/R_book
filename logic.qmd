@@ -8,18 +8,18 @@ A **logical expression** is formed using:
 
 -   the **comparison operators** `<` , `>` , `<=`, `>=`, `==` (equal to), `!=` (not equal to), `&&`, `||` (sequentially evaluated versions of `&` and `|`, respectively).
 
--   the **logical operators** `&` (and), `|` (or), `!` (not), `xor()` is exclusive or (i.e  `xor(x, y)` is true if `x` is true, or `y` is true, but not both).
+-   the **logical operators** `&` (and), `|` (or), `!` (not), `xor()` is exclusive or (i.e `xor(x, y)` is true if `x` is true, or `y` is true, but not both).
 
 As well as `&` and `|`, R also has `&&` and `||`. Don’t use them in **dplyr** functions! These are called short-circuiting operators and only ever return a single TRUE or FALSE. They’re important for **programming**, not data science.
 
-Figure 10 shows the complete set of Boolean operations and how they work:
-![](/img/Picture10.png)
-Figure 10. The complete set of Boolean operations. x is the left-hand circle, y is the right-hand circle, and the shaded regions show which parts each operator selects
+Figure 10 shows the complete set of Boolean operations and how they work: ![](/img/Picture10.png) Figure 10. The complete set of Boolean operations. x is the left-hand circle, y is the right-hand circle, and the shaded regions show which parts each operator selects
 
 *Example:*
-```R
+
+``` R
 # Find all rows where x is not missing
 df |> filter(!is.na(x))
+
 # Find all rows where x is smaller than -10 or bigger than 0
 df |> filter(x < -10 | x > 0) 
 ```
@@ -33,6 +33,7 @@ The value of a logical expression is either **TRUE or FALSE** (the integers 1 an
 ```{r}
 ## Note that A|B is TRUE if A or B or both are TRUE
 c(0,0,1,1)|c(0,1,0,1)
+
 ## If you want exclusive disjunction, that is either A or B is TRUE but not both, then use xor(A,B)
 xor(c(0,0,1,1), c(0,1,0,1))
 ```
@@ -41,20 +42,21 @@ xor(c(0,0,1,1), c(0,1,0,1))
 
 Note that the order of operations doesn’t work like English. Take the following code that finds all flights that departed in November or December:
 
-``` R
+``` r
 flights |> 
    filter(month == 11 | month == 12)
 ```
 
 You might be tempted to write it like you’d say in English: “Find all flights that departed in November or December.”:
 
-``` R
+``` r
 flights |> 
    filter(month == 11 | 12)
 ```
+
 This code doesn’t error but it also doesn’t seem to have worked. What’s going on? Here, R first evaluates `month == 11` creating a logical vector, which we call nov. It computes `nov | 12`. When you use a number with a logical operator it converts everything apart from 0 to TRUE, so this is equivalent to `nov | TRUE` which will always be TRUE, so every row will be selected:
 
-``` R
+``` r
 flights |> 
   mutate(
     nov = month == 11,
@@ -73,14 +75,17 @@ An easy way to avoid the problem of getting your `==`s and `|`s in the right ord
 1:12 %in% c(1, 5, 11)
 letters[1:10] %in% c("a", "e", "i", "o", "u")
 ```
-  
+
 So to find all flights in November and December we could write:
 
-```R
+``` {r message=FALSE}
+library(nycflights13)
+library(dplyr)
+data(flights)
 flights |> 
   filter(month %in% c(11, 12))
-```  
-  
+```
+
 ### Sequential `&&` and `||`
 
 To evaluate `x & y`, R first evaluates `x` and `y`, then returns `TRUE` if `x` and `y` are both `TRUE`, `FALSE` otherwise.
@@ -143,13 +148,13 @@ if (logical_expression_1) {
 }
 ```
 
-###  case_when()
+### case_when()
 
-dplyr’s `case_when()` is inspired by SQL’s CASE statement and provides a flexible way of performing different computations for different conditions. It takes pairs that look like condition ~ output. condition must be a logical vector; when it’s TRUE, output will be used.
+dplyr’s `case_when()` is inspired by SQL’s CASE statement and provides a flexible way of performing different computations for different conditions. It takes pairs that look like condition \~ output. condition must be a logical vector; when it’s TRUE, output will be used.
 
 This means we could recreate our previous nested if_else() as follows:
 
-``` {r}
+```{r}
 x <- c(-3:3, NA)
 case_when(
   x == 0   ~ "0",
@@ -165,7 +170,7 @@ A very common way to create a logical vector is via a numeric comparison with `<
 
 *Example:*
 
-``` {r warning=FALSE}
+```{r warning=FALSE}
 library(nycflights13)
 flights |> 
   filter(dep_time > 600 & dep_time < 2000 & abs(arr_delay) < 20)
@@ -175,7 +180,7 @@ You can also use `mutate()` to explicitly create the underlying logical variable
 
 *Example:*
 
-``` {r}
+```{r}
 flights |> 
   mutate(
     daytime = dep_time > 600 & dep_time < 2000,
@@ -188,13 +193,13 @@ flights |>
 
 The following functions describe some useful techniques for summarizing logical vectors. There are two main logical summaries: `any()` and `all()`:
 
--   `any(x)` is the equivalent of `|`; it’ll return TRUE if there are any TRUE’s in `x`. 
+-   `any(x)` is the equivalent of `|`; it’ll return TRUE if there are any TRUE’s in `x`.
 
 -   `all(x)` is equivalent of `&`; it’ll return TRUE only if all values of `x` are TRUE’s. Like all summary functions, they’ll return NA if there are any missing values present, and as usual you can make the missing values go away with `na.rm = TRUE`.
 
 *Example:*
 
-``` R
+``` r
 flights |> 
   group_by(year, month, day) |> 
   summarize(

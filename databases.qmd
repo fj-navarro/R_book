@@ -2,7 +2,7 @@
 
 A large portion of data is stored in databases, so it's crucial to know how to access it. While you could ask someone to export a snapshot into a .csv file for you, this becomes inconvenient fast. Each time you need updates or changes, you'll have to rely on someone else. Instead, it’s much more efficient to be able to access the database yourself, so you can retrieve the data you need, whenever you need it, without the wait.
 
-In this chapter, we’ll introduce DBI and dbplyr. DBI is a low-level interface that connects to databases and executes SQL; dbplyr is a high-level interface that translates your dplyr code to SQL queries then executes them with DBI.
+In this chapter, we’ll introduce **DBI** and **dbplyr**. DBI is a low-level interface that connects to databases and executes SQL; dbplyr is a high-level interface that translates your dplyr code to SQL queries then executes them with DBI.
 
 ``` r
 library(DBI)

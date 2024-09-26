@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 11&nbsp; Date and Text Manipulation</title>
+<title>R for Research in Action - 26&nbsp; Spending Your Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./databases.html" rel="next">
-<link href="./plyrdplyr.html" rel="prev">
+<link href="./fitting.html" rel="next">
+<link href="./typesofgraphs.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./reading.html">Part 1: Manipulating Data</a></li><li class="breadcrumb-item"><a href="./date.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spending.html">Part 5: Modeling</a></li><li class="breadcrumb-item"><a href="./spending.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Spending Your Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./date.html" class="sidebar-item-text sidebar-link active">
+  <a href="./date.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
   </div>
 </li>
@@ -354,14 +354,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spenddata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">spenddata.html</span></span></a>
+  <a href="./spending.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Spending Your Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fitting Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,13 +384,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -405,11 +411,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#date-manipulation" id="toc-date-manipulation" class="nav-link active" data-scroll-target="#date-manipulation"><span class="header-section-number">11.1</span> Date Manipulation</a></li>
-  <li><a href="#text-manipulation" id="toc-text-manipulation" class="nav-link" data-scroll-target="#text-manipulation"><span class="header-section-number">11.2</span> Text Manipulation</a>
+  <li><a href="#splitting-data" id="toc-splitting-data" class="nav-link active" data-scroll-target="#splitting-data"><span class="header-section-number">26.1</span> Splitting Data</a>
   <ul class="collapse">
-  <li><a href="#sources-of-text-data" id="toc-sources-of-text-data" class="nav-link" data-scroll-target="#sources-of-text-data"><span class="header-section-number">11.2.1</span> Sources of text data</a></li>
-  <li><a href="#getting-text-data" id="toc-getting-text-data" class="nav-link" data-scroll-target="#getting-text-data"><span class="header-section-number">11.2.2</span> Getting text data</a></li>
+  <li><a href="#stratified-sampling" id="toc-stratified-sampling" class="nav-link" data-scroll-target="#stratified-sampling"><span class="header-section-number">26.1.1</span> Stratified sampling</a></li>
+  <li><a href="#time-series" id="toc-time-series" class="nav-link" data-scroll-target="#time-series"><span class="header-section-number">26.1.2</span> Time series</a></li>
+  <li><a href="#validation-set" id="toc-validation-set" class="nav-link" data-scroll-target="#validation-set"><span class="header-section-number">26.1.3</span> Validation set</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -419,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></h1>
+<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Spending Your Data</span></h1>
 </div>
 
 
@@ -434,95 +440,97 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="date-manipulation" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="date-manipulation"><span class="header-section-number">11.1</span> Date Manipulation</h2>
-<p>In R, <strong>dates</strong> are stored as the number of days elapsed since <strong>January 1, 1970</strong>. The built-in R function <code>as.Date()</code> can handle only dates but not time. So if we convert any date object to its internal number, it will show the number of days.</p>
-<p>We can reformat the number into a date using the date class.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"1970-01-01"</span>)) <span class="do">## We can also create a date object with other formats</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"Jan-01-1970"</span>, <span class="at">format =</span> <span class="st">"%b-%d-%Y"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-</div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## For the complete list of code that is used to specify date formats</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(strptime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <strong>chron package</strong> can handle both date and time. However, it cannot work with time zones.</p>
-<p>Using the <strong>POSIXct</strong> and <strong>POSIXlt</strong> class objects, we can work with time zones.</p>
-<p>The <strong>lubridate package</strong> has a much more user-friendly functionality to process date and time, with time zone support:</p>
+<p>At the start of a new modeling project, there is usually an initial finite pool of data available for all the tasks, which we can think of as an available <strong>data budget</strong>.</p>
+<p>When a project has a limited amount of appropriate data, wise spending of a project’s data is necessary. How should the data then be applied to different steps or tasks? The idea of <strong>data spending</strong> is an important first consideration when modeling, especially as it relates to empirical validation.</p>
+<section id="splitting-data" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="splitting-data"><span class="header-section-number">26.1</span> Splitting Data</h2>
+<p>The primary approach for empirical model validation is to <strong>split</strong> the existing pool of data into two distinct sets:</p>
 <ul>
-<li>It can process date variables in heterogeneous formats.</li>
-<li>Note that the default time zone in the mdy, dmy, or ymd function is Coordinated Universal Time (UTC)</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## creating a heterogeneous date object</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>hetero_date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"second chapter due on 2013, august, 24"</span>, <span class="st">"first chapter submitted on 2013, 08, 18"</span>, <span class="st">"2013 aug 23"</span>) </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(hetero_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p><strong>The training set</strong>. It is usually the majority of the data. These data are a sandbox for model building where different models can be fit, feature engineering strategies are investigated, and so on. As modeling practitioners, we spend the vast majority of the modeling process using the training set as the substrate to develop the model.</p></li>
+<li><p><strong>The test set</strong>. This is held in reserve until one or two models are chosen as the methods most likely to succeed. The test set is then used as the final arbiter to determine the efficacy of the model. More specifically, it is critical to:</p>
 <ul>
-<li>the sequence of year, month, and day should be similar across all values within the same object, otherwise during date extraction there will be a missing value that will be generated, along with a warning message.</li>
+<li>Look at the test set only once; otherwise, it becomes part of the modeling process.</li>
+<li>Quarantine the test set from any model building activities.</li>
+<li>Mirror what the model would encounter in the wild. In other words, the test set should always resemble new data that will be given to the model.</li>
+</ul></li>
 </ul>
-</section>
-<section id="text-manipulation" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="text-manipulation"><span class="header-section-number">11.2</span> Text Manipulation</h2>
-<p>Besides default R functionality (<code>paste()</code>, <code>nchar()</code>, <code>substr()</code> …) , there is one contributed package to deal with character data, which is more user friendly and intuitive: <strong>stringr package</strong>.</p>
-<p><strong>Strings</strong> can be arranged into <strong>vectors and matrices</strong> just like numbers. We can also paste strings together using <code>paste(..., sep)</code>. Here sep is an optional input, with default value ” “, that determines which padding character is to be placed between the strings (which are input where … appears).</p>
+<p>Note that the <strong>proportion of data</strong> that should be allocated for splitting is highly dependent on the context of the problem at hand. Too little data in the training set hampers the model’s ability to find appropriate parameter estimates. Conversely, too little data in the test set lowers the quality of the performance estimates. Bear in mind that keeping the training data in a <strong>separate data frame</strong> from the test set is one small check to make sure that information leakage does not occur by accident.</p>
+<p>Suppose we allocate <strong>80%</strong> of the data to the training set and the remaining <strong>20%</strong> for testing. The most common method is to use simple random sampling. The <strong>rsample package</strong> has tools for making data splits such as this; the function <code>initial_split()</code> was created for this purpose. It takes the data frame as an argument as well as the proportion to be placed into training.</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"Citroen SM"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"Jaguar XK150"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">"Ford Falcon GT-HO"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>(wish.list <span class="ot">&lt;-</span> <span class="fu">paste</span>(x, y, z, <span class="at">sep =</span> <span class="st">", "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidymodels_prefer</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the random number stream so that the results can be </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># reproduced later</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">501</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the split information for an 80/20 split of the data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ames_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Citroen SM, Jaguar XK150, Ford Falcon GT-HO"</code></pre>
+<pre><code>&lt;Training/Testing/Total&gt;
+&lt;2344/586/2930&gt;</code></pre>
 </div>
 </div>
-<p>Special characters can be included in strings using the escape character <code>\</code>:</p>
-<ul>
-<li><code>\"</code> for ”</li>
-<li><code>\n</code> for a newline</li>
-<li><code>\t</code> for a tab</li>
-<li><code>\b</code> for a backspace</li>
-<li><code>\\</code> for <code>\</code></li>
-</ul>
-<p><code>str_c()</code> is very similar to the base <code>paste0()</code>, but is designed to be used with <code>mutate()</code> by obeying the usual tidyverse rules for recycling and propagating missing values:</p>
+<p>The printed information denotes the amount of data in the <strong>training set (n=2,344)</strong>, the amount in the <strong>test set (n=586)</strong>, and the size of the original pool of samples (n=2,930).</p>
+<p>The object <code>ames_split</code> is an <strong>rsplit object</strong> and contains only the partitioning information; to get the resulting data sets, we apply two more functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span>  <span class="fu">testing</span>(ames_split)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ames_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2344   74</code></pre>
+</div>
+</div>
+<p>These objects are data frames with the same columns as the original data but only the appropriate rows for each set.</p>
+<section id="stratified-sampling" class="level3" data-number="26.1.1">
+<h3 data-number="26.1.1" class="anchored" data-anchor-id="stratified-sampling"><span class="header-section-number">26.1.1</span> Stratified sampling</h3>
+<p>Simple <strong>random sampling</strong> is appropriate in many cases but there are exceptions. When there is a dramatic class imbalance in classification problems, one class occurs much less frequently than another. Using a simple random sample may haphazardly allocate these infrequent samples disproportionately into the training or test set. To avoid this, <strong>stratified sampling</strong> can be used. The training/test split is conducted separately within each class and then these subsamples are combined into the overall training and test set.</p>
+<p>As an example, a stratified random sample would conduct the 80/20 split within each of these data subsets and then pool the results. In rsample, this is achieved using the strata argument:</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Flora"</span>, <span class="st">"David"</span>, <span class="st">"Terra"</span>, <span class="cn">NA</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">greeting =</span> <span class="fu">str_c</span>(<span class="st">"Hi "</span>, name, <span class="st">"!"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">502</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Only a single column can be used for stratification (e.g. Sale_Price)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ames_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">prop =</span> <span class="fl">0.80</span>, <span class="at">strata =</span> Sale_Price)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_split)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ames_test  <span class="ot">&lt;-</span>  <span class="fu">testing</span>(ames_split)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ames_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  name  greeting 
-  &lt;chr&gt; &lt;chr&gt;    
-1 Flora Hi Flora!
-2 David Hi David!
-3 Terra Hi Terra!
-4 &lt;NA&gt;  &lt;NA&gt;     </code></pre>
+<pre><code>[1] 2342   74</code></pre>
 </div>
 </div>
-<p><strong>Text data</strong> can be used to retrieve information in sentiment analysis and even entity recognition.</p>
-<section id="sources-of-text-data" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="sources-of-text-data"><span class="header-section-number">11.2.1</span> Sources of text data</h3>
-<p>Text data can be found on tweets from any individual, or from any company, Facebook status updates, RSS feeds from any news site, Blog articles, Journal articles, Newspapers, Verbatim transcripts of an in-depth interview.</p>
-<p>For example, t extract <strong>Twitter data</strong>, we can use <code>tweetR()</code> and, to extract data from <strong>Facebook</strong>, we could use <code>facebookR()</code>.</p>
 </section>
-<section id="getting-text-data" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="getting-text-data"><span class="header-section-number">11.2.2</span> Getting text data</h3>
-<p>The easiest way to get text data is to import from a .csv file where some of the variables contain character data. We have to protect automatic factor conversion by specifying the <code>stringsAsFactors = FALSE argument</code></p>
-<p><em>Example 1:</em> The tweets.txt file is the plain text file. We will import this file using the generic <code>readLines()</code> function. It is a vector of characters (not a data.frame).</p>
-<p><em>Example 2:</em> Html (this is also a character string):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>conURL <span class="ot">&lt;-</span> <span class="st">"http://en.wikipedia.org/wiki/R_%28programming_language%29"</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish the connection with the URL </span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>link2URL <span class="ot">&lt;-</span> <span class="fu">url</span>(conURL) </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading html code</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>htmlCode <span class="ot">&lt;-</span> <span class="fu">readLines</span>(link2URL)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Closing the connection</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(link2URL)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing the result </span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>htmlCode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <strong>tm</strong> text mining library has some other functions to import text data from various files such as PDF files, plain text files, and even from doc files.</p>
+<section id="time-series" class="level3" data-number="26.1.2">
+<h3 data-number="26.1.2" class="anchored" data-anchor-id="time-series"><span class="header-section-number">26.1.2</span> Time series</h3>
+<p>There is one situation when random sampling is not the best choice: when the data have a significant time component, such as time series data. Here, it is more common to use the <strong>most recent data</strong> as the test set.</p>
+<p>The <strong>rsample package</strong> contains a function called <code>initial_time_split()</code> that is very similar to <code>initial_split()</code>. Instead of using random sampling, the <code>prop</code> argument denotes what proportion of the first part of the data should be used as the training set; the function assumes that the data have been pre-sorted in an appropriate order.</p>
+</section>
+<section id="validation-set" class="level3" data-number="26.1.3">
+<h3 data-number="26.1.3" class="anchored" data-anchor-id="validation-set"><span class="header-section-number">26.1.3</span> Validation set</h3>
+<p>In the neural network and deep learning literature it is common to hear about validation sets as an answer to the question about how we can tell what is the best test set that should be used to properly evaluate a model performance on the final model(s), if we don’t measure performance until the test set?</p>
+<p>During the early days of neural networks, researchers realized that measuring performance by re-predicting the training set samples led to results that were overly optimistic (significantly, unrealistically so). This led to models that <strong>overfit</strong>, meaning that they performed very well on the training set but poorly on the test set.12 To combat this issue, a small validation set of data were held back and used to measure performance as the network was trained. Once the validation set error rate began to rise, the training would be halted. In other words, the validation set was a means to get a rough sense of how well the model performed prior to the test set.</p>
+<p><strong>Validation sets</strong> are a special case of resampling methods that are used on the training set.</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">52</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># To put 60% into training, 20% in validation, and 20% in testing:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ames_val_split <span class="ot">&lt;-</span> <span class="fu">initial_validation_split</span>(ames, <span class="at">prop =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.2</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ames_val_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;Training/Validation/Testing/Total&gt;
+&lt;1758/586/586/2930&gt;</code></pre>
+</div>
+</div>
+<p>To get the training, validation, and testing data, the same syntax is used:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(ames_val_split)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ames_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(ames_val_split)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ames_val <span class="ot">&lt;-</span> <span class="fu">validation</span>(ames_val_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
@@ -764,13 +772,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./plyrdplyr.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Plyr &amp; Dplyr</span></span>
+      <a href="./typesofgraphs.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./databases.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./fitting.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fitting Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

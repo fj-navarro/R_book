@@ -1,0 +1,188 @@
+# Fitting Models
+
+Once the data have been encoded in a format ready for a modeling algorithm, such as a numeric matrix, they can be used in the model building process.
+
+The **parsnip package** itself contains interfaces to a number of models. However, for ease of package installation and maintenance, there are other tidymodels packages that have parsnip model definitions for other sets of models. A **list of all of the models** that can be used with parsnip (across different packages that are on CRAN) can be found at (https://www.tidymodels.org/find/).
+
+The **parsnip package** includes an RStudio addin that can help to write the code to generate model specifications. Either choosing this addin from the Addins toolbar menu or running the code `parsnip_addin()` will open a window in the Viewer panel of the RStudio IDE with a list of possible models for each model mode. These can be written to the source code panel.
+
+## Linear Regression Model
+
+Suppose that a **linear regression model** was our initial choice. This is equivalent to specifying that the outcome data is numeric and that the predictors are related to the outcome in terms of simple slopes and intercepts:
+
+$$
+\begin{aligned}
+y_i = β_0 + β_1 {x_1}_i +...+ β_p {x_p}_i
+\end{aligned}
+$$
+
+A **variety of methods** can be used to estimate the model parameters:
+
+-   **Ordinary linear regression** uses the traditional method of least squares to solve for the model parameters.
+
+    In R, the **stats package** can be used for the first case. The syntax for linear regression using the function `lm()` is:
+
+    ``` r
+    model <- lm(formula, data, ...)
+    ```
+
+-   **Regularized linear regression** adds a penalty to the least squares method to encourage simplicity by removing predictors and/or shrinking their coefficients towards zero. This can be executed using Bayesian or non-Bayesian techniques.
+
+    A **Bayesian model** can be fit using the **rstanarm package**:
+
+    ``` r
+    model <- stan_glm(formula, data, family = "gaussian", ...)
+    ```
+
+    A popular **non-Bayesian** approach to regularized regression is the **glmnet model**. Its syntax is:
+
+    ``` r
+    model <- glmnet(x = matrix, y = vector, family = "gaussian", ...)
+    ```
+
+Note that to fit models across **different packages**, the data must be formatted in different ways. `lm()` and `stan_glm()` only have formula interfaces while `glmnet()` does not. For a person trying to do data analysis, these differences require the memorization of each package’s syntax and can be very **frustrating**.
+
+For **tidymodels**, the approach to specifying a model is intended to be more unified:
+
+-   Specify the **type of model** based on its mathematical structure (e.g., linear regression, random forest, KNN, etc).
+
+-   Specify the **engine for fitting** the model. Most often this reflects the software package that should be used, like Stan or glmnet. These are models in their own right, and **parsnip** provides consistent interfaces by using these as engines for modeling.
+
+-   When required, **declare the mode** of the model. The mode reflects the type of prediction outcome. For numeric outcomes, the mode is regression; for qualitative outcomes, it is classification. If a model algorithm can only address one type of prediction outcome, such as linear regression, the mode is already set. For example, for the three cases we outlined:
+
+```{r message=FALSE}
+library(tidymodels)
+tidymodels_prefer()
+
+linear_reg() |> set_engine("lm") |> translate()
+
+linear_reg(penalty = 1) |> set_engine("glmnet") |> translate()
+
+linear_reg() |> set_engine("stan") |> translate()
+```
+
+Note that `missing_arg()` is just a placeholder for the data that has yet to be provided.
+
+### Example
+
+Let’s walk through how to predict the sale price of houses in the Ames data as a function of only longitude and latitude:
+
+```{r message=FALSE}
+library(tidymodels)
+library(modeldata)
+data(ames)
+tidymodels_prefer()
+```
+
+```{r results='hide'}
+# Set the random number stream so that the results can be 
+# reproduced later
+set.seed(501)
+
+ames_log10 <- 
+  ames |>
+    mutate(Sale_Price = log10(Sale_Price))
+
+# Save the split information for an 80/20 split of the data
+ames_split <- initial_split(ames_log10, prop = 0.80)
+ames_train <- training(ames_split)
+ames_test  <- testing(ames_split)
+```
+
+```{r}
+lm_model <- 
+  linear_reg() %>% 
+  set_engine("lm")
+
+lm_form_fit <- 
+  lm_model %>% 
+  # Recall that Sale_Price has been pre-logged
+  fit(Sale_Price ~ Longitude + Latitude, data = ames_train)
+
+lm_xy_fit <- 
+  lm_model %>% 
+  fit_xy(
+    x = ames_train %>% select(Longitude, Latitude),
+    y = ames_train %>% pull(Sale_Price)
+  )
+
+lm_form_fit
+
+lm_xy_fit
+```
+
+## Using the Model Results
+
+Once the model is created and fit, we can **use the results** in a variety of ways; we might want to plot, print, or otherwise examine the model output. Several quantities are stored in a parsnip model object, including the fitted model. This can be found in an element called `fit`, which can be returned using the `extract_fit_engine()` function:
+
+*Example:*
+```{r}
+lm_form_fit %>% extract_fit_engine()
+```
+
+Normal methods can be applied to this object, such as printing and plotting:
+
+*Example:*
+
+```{r}
+lm_form_fit %>% extract_fit_engine() %>% vcov()
+```
+
+The `summary()` method for `lm` objects can be used to print the results of the model fit, including a table with parameter values, their uncertainty estimates, and p-values.
+
+```{r}
+model_res <- 
+  lm_form_fit %>% 
+  extract_fit_engine() %>% 
+  summary()
+```
+
+The model **coefficient table** is accessible via the `coef` method.
+
+*Example:*
+``` {r}
+param_est <- coef(model_res)
+param_est
+class(param_est)
+```
+
+A next step might be to create a **visualization of the parameter values**. To do this, it would be sensible to convert the parameter matrix to a data frame. We could add the row names as a column so that they can be used in a plot. However, notice that several of the existing matrix column names would not be valid R column names for ordinary data frames (e.g., "Pr(>|t|)").
+
+As a solution, the **broom package** can convert many types of model objects to a tidy structure. For example, using the `tidy()` method on the linear model produces:
+
+``` {r}
+tidy(lm_form_fit)
+```
+
+The column names are standardized across models and do not contain any additional data (such as the type of statistical test).
+
+## Make Predictions
+
+For predictions, **parsnip** always conforms to the following rules:
+
+-   The results are always a tibble.
+
+-   The column names of the tibble are always predictable.
+
+-   There are always as many rows in the tibble as there are in the input data set.
+
+For example, when **numeric data** are predicted:
+
+*Example:*
+```{r}
+ames_test_small <- ames_test %>% slice(1:5)
+predict(lm_form_fit, new_data = ames_test_small)
+```
+
+Note that some tidyverse and tidymodels arguments and return values contain **periods**. This is to protect against **merging** data with duplicate names. There are some data sets that contain predictors named "pred!".
+
+These three rules make it easier to **merge predictions** with the original data:
+
+``` {r}
+ames_test_small %>% 
+  select(Sale_Price) %>% 
+  bind_cols(predict(lm_form_fit, ames_test_small)) %>% 
+  # Add 95% prediction intervals to the results:
+  bind_cols(predict(lm_form_fit, ames_test_small, type = "pred_int")) 
+```
+
