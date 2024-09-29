@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 31&nbsp; Building Data Products</title>
+<title>R for Research in Action - 7&nbsp; Tidy Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./product_repro.html" rel="next">
-<link href="./time_flow.html" rel="prev">
+<link href="./manipu_transforming.html" rel="next">
+<link href="./manipu_writing.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -94,16 +94,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
-<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
 
 
 </head>
@@ -117,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./products.html">Part 7: Data Products</a></li><li class="breadcrumb-item"><a href="./products.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Data Products</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manipu_reading.html">Part 1: Manipulating Data</a></li><li class="breadcrumb-item"><a href="./manipu_tidydata.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidy Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -206,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manipu_tidydata.html" class="sidebar-item-text sidebar-link">
+  <a href="./manipu_tidydata.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidy Data</span></span></a>
   </div>
 </li>
@@ -416,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./products.html" class="sidebar-item-text sidebar-link active">
+  <a href="./products.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
@@ -444,27 +434,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#manipulate" id="toc-manipulate" class="nav-link active" data-scroll-target="#manipulate"><span class="header-section-number">31.1</span> Manipulate</a></li>
-  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny"><span class="header-section-number">31.2</span> Shiny</a>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">7.1</span> Installation</a></li>
+  <li><a href="#core-packages" id="toc-core-packages" class="nav-link" data-scroll-target="#core-packages"><span class="header-section-number">7.2</span> Core Packages</a></li>
+  <li><a href="#functionalities" id="toc-functionalities" class="nav-link" data-scroll-target="#functionalities"><span class="header-section-number">7.3</span> Functionalities</a>
   <ul class="collapse">
-  <li><a href="#create-ui.r-file" id="toc-create-ui.r-file" class="nav-link" data-scroll-target="#create-ui.r-file"><span class="header-section-number">31.2.1</span> Create ui.R file:</a></li>
-  <li><a href="#create-server.r-file" id="toc-create-server.r-file" class="nav-link" data-scroll-target="#create-server.r-file"><span class="header-section-number">31.2.2</span> Create server.R file:</a></li>
-  <li><a href="#types-of-inputs" id="toc-types-of-inputs" class="nav-link" data-scroll-target="#types-of-inputs"><span class="header-section-number">31.2.3</span> Types of inputs</a></li>
-  <li><a href="#sharing-your-app" id="toc-sharing-your-app" class="nav-link" data-scroll-target="#sharing-your-app"><span class="header-section-number">31.2.4</span> Sharing your app</a></li>
-  <li><a href="#build-a-gui-with-html" id="toc-build-a-gui-with-html" class="nav-link" data-scroll-target="#build-a-gui-with-html"><span class="header-section-number">31.2.5</span> Build a GUI with html</a></li>
+  <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import"><span class="header-section-number">7.3.1</span> Import</a></li>
+  <li><a href="#wrangle" id="toc-wrangle" class="nav-link" data-scroll-target="#wrangle"><span class="header-section-number">7.3.2</span> Wrangle</a></li>
+  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming"><span class="header-section-number">7.3.3</span> Programming</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling"><span class="header-section-number">7.3.4</span> Modeling</a></li>
   </ul></li>
-  <li><a href="#reproducible-presentations" id="toc-reproducible-presentations" class="nav-link" data-scroll-target="#reproducible-presentations"><span class="header-section-number">31.3</span> Reproducible presentations</a>
+  <li><a href="#tidying-data" id="toc-tidying-data" class="nav-link" data-scroll-target="#tidying-data"><span class="header-section-number">7.4</span> Tidying Data</a>
   <ul class="collapse">
-  <li><a href="#slidify" id="toc-slidify" class="nav-link" data-scroll-target="#slidify"><span class="header-section-number">31.3.1</span> Slidify</a></li>
-  <li><a href="#r-studio-presenter" id="toc-r-studio-presenter" class="nav-link" data-scroll-target="#r-studio-presenter"><span class="header-section-number">31.3.2</span> R studio presenter</a></li>
-  </ul></li>
-  <li><a href="#interactive-graphs" id="toc-interactive-graphs" class="nav-link" data-scroll-target="#interactive-graphs"><span class="header-section-number">31.4</span> Interactive Graphs</a>
-  <ul class="collapse">
-  <li><a href="#htmlwidgets" id="toc-htmlwidgets" class="nav-link" data-scroll-target="#htmlwidgets"><span class="header-section-number">31.4.1</span> htmlwidgets</a></li>
-  <li><a href="#leaflet" id="toc-leaflet" class="nav-link" data-scroll-target="#leaflet"><span class="header-section-number">31.4.2</span> leaflet</a></li>
-  <li><a href="#rcharts" id="toc-rcharts" class="nav-link" data-scroll-target="#rcharts"><span class="header-section-number">31.4.3</span> rCharts</a></li>
-  <li><a href="#googlevis" id="toc-googlevis" class="nav-link" data-scroll-target="#googlevis"><span class="header-section-number">31.4.4</span> googleVis</a></li>
-  <li><a href="#plot.ly" id="toc-plot.ly" class="nav-link" data-scroll-target="#plot.ly"><span class="header-section-number">31.4.5</span> plot.ly</a></li>
+  <li><a href="#pivot-data" id="toc-pivot-data" class="nav-link" data-scroll-target="#pivot-data"><span class="header-section-number">7.4.1</span> Pivot Data</a></li>
+  <li><a href="#lengthening-data" id="toc-lengthening-data" class="nav-link" data-scroll-target="#lengthening-data"><span class="header-section-number">7.4.2</span> Lengthening Data</a></li>
+  <li><a href="#widening-data" id="toc-widening-data" class="nav-link" data-scroll-target="#widening-data"><span class="header-section-number">7.4.3</span> Widening data</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -474,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Data Products</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tidy Data</span></h1>
 </div>
 
 
@@ -489,168 +472,270 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="manipulate" class="level2" data-number="31.1">
-<h2 data-number="31.1" class="anchored" data-anchor-id="manipulate"><span class="header-section-number">31.1</span> Manipulate</h2>
-<p>The <strong>manipulate package</strong> creates a quick interactive graphic that offers simple controls, including sliders, pickers and checkboxes.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(manipulate) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">manipulate</span>(<span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>x), <span class="at">x =</span> <span class="fu">slider</span>(<span class="dv">1</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>With <strong>manipulate</strong> you can have more than one set of controls by simply adding more arguments to the manipulate function.</p>
-<p>Note that it’s difficult to share a manipulate interactive graphic.</p>
-<p>This is a link on how <strong>manipulate</strong> actually works: <a href="https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate">link</a></p>
+<p>The <strong>tidyverse</strong> is a set of packages that work in harmony because they share common data representations and API design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command.</p>
+<p>If you’d like to learn how to use the tidyverse effectively, the best place to start is <a href="https://r4ds.hadley.nz/">R for Data Science (2e)</a>.</p>
+<p>To check that you’re using the <strong>latest version</strong> of each package the easiest way is to run <code>tidyverse_update()</code>.</p>
+<section id="installation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">7.1</span> Installation</h2>
+<ul>
+<li><p>Install all the packages in the tidyverse by running:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Run <code>library(tidyverse)</code> to load the core tidyverse and make it available in your current R session.</p>
+<p>Note the conflicts message that’s printed when you load the tidyverse. It tells you that dplyr overwrites some functions in base R. If you want to use the base version of these functions after loading dplyr, you’ll need to use their full names: <code>stats::filter()</code> and <code>stats::lag()</code>.</p></li>
+<li><p>Learn more about the tidyverse package <a href="https://tidyverse.tidyverse.org" class="uri">https://tidyverse.tidyverse.org</a></p></li>
+</ul>
 </section>
-<section id="shiny" class="level2" data-number="31.2">
-<h2 data-number="31.2" class="anchored" data-anchor-id="shiny"><span class="header-section-number">31.2</span> Shiny</h2>
-<p>It is described by RStudio as “A web application framework for R”. “Turn your analyses into interactive web applications No HTML, CSS, or JavaScript knowledge required”.</p>
-<p>Only those who have <strong>shiny</strong> installed and have access to your code could run your web page. However, RStudio offers a service for hosting shiny apps (their servers) on a platform called <strong>shinyapps.io</strong>.</p>
-<p>If on Windows, make sure that you have Rtools installed. Then, you can install shiny with <code>library(shiny)</code>:</p>
+<section id="core-packages" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="core-packages"><span class="header-section-number">7.2</span> Core Packages</h2>
+<p><code>library(tidyverse)</code> will load the <strong>core tidyverse</strong> packages:</p>
+<ul>
+<li><strong>ggplot2</strong>, for data visualisation, <a href="https://ggplot2.tidyverse.org/">more info</a>.</li>
+<li><strong>dplyr</strong>, for data manipulation, <a href="https://dplyr.tidyverse.org/">more info</a>.</li>
+<li><strong>tidyr</strong>, for data tidying, <a href="https://tidyr.tidyverse.org/https://tidyr.tidyverse.org/">more info</a></li>
+<li><strong>readr</strong>, for data import, <a href="https://readr.tidyverse.org/">more info</a></li>
+<li><strong>purrr</strong>, for functional programming, <a href="https://purrr.tidyverse.org/">more info</a>.</li>
+<li><strong>tibble</strong>, for tibbles, a modern re-imagining of data frames, <a href="https://tibble.tidyverse.org/">more info</a>.</li>
+<li><strong>stringr</strong>, for strings, <a href="https://stringr.tidyverse.org/">more info</a></li>
+<li><strong>forcats</strong>, for factors, [more info] (https://forcats.tidyverse.org/)</li>
+<li><strong>lubridate</strong>, for date/times.</li>
+</ul>
+</section>
+<section id="functionalities" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="functionalities"><span class="header-section-number">7.3</span> Functionalities</h2>
+<section id="import" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="import"><span class="header-section-number">7.3.1</span> Import</h3>
+<p>As well as <strong>readr</strong>, for reading flat files, the tidyverse package installs a number of other packages for reading data:</p>
+<ul>
+<li><strong>DBI</strong> for relational databases. You’ll need to pair DBI with a database specific backends like RSQLite, RMariaDB, RPostgres, or odbc. More info <a href="https://db.rstudio.com">here</a>.</li>
+<li><strong>haven</strong> for SPSS, Stata, and SAS data.</li>
+<li><strong>httr</strong> for web APIs.</li>
+<li><strong>readxl</strong> for .xls and .xlsx sheets.</li>
+<li><strong>googlesheets4</strong> for Google Sheets via the Sheets API v4.</li>
+<li><strong>googledrive</strong> for Google Drive files.</li>
+<li><strong>rvest</strong> for web scraping.</li>
+<li><strong>jsonlite</strong> for JSON. (Maintained by Jeroen Ooms.)</li>
+<li><strong>xml2</strong> for XML.</li>
+</ul>
+</section>
+<section id="wrangle" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="wrangle"><span class="header-section-number">7.3.2</span> Wrangle</h3>
+<p>In addition to <strong>tidyr</strong>, and <strong>dplyr</strong>, there are five packages (including <strong>stringr</strong> and <strong>forcats</strong>) which are designed to work with specific types of data:</p>
+<ul>
+<li><strong>lubridate</strong> for dates and date-times.</li>
+<li><strong>hms</strong> for time-of-day values.</li>
+<li><strong>blob</strong> for storing blob (binary) data.</li>
+</ul>
+<p>There are also two packages that allow you to interface with different backends using the same dplyr syntax:</p>
+<ul>
+<li><strong>dbplyr</strong> allows you to use remote database tables by converting dplyr code into SQL.</li>
+<li><strong>dtplyr</strong> provides a data.table backend by automatically translating to the equivalent, but usually much faster, data.table code. Program</li>
+</ul>
+</section>
+<section id="programming" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="programming"><span class="header-section-number">7.3.3</span> Programming</h3>
+<p>In addition to <strong>purrr</strong>, which provides very consistent and natural methods for iterating on R objects, there are two additional tidyverse packages that help with general programming challenges:</p>
+<ul>
+<li><p><strong>magrittr</strong> provides the pipe, <code>%&gt;%</code> used throughout the tidyverse. It also provide a number of more specialised piping operators (like <code>%$%</code> and <code>%&lt;&gt;%</code>) that can be useful in other places.</p></li>
+<li><p><strong>glue</strong> provides an alternative to <code>paste()</code> that makes it easier to combine data and strings.</p></li>
+</ul>
+</section>
+<section id="modeling" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="modeling"><span class="header-section-number">7.3.4</span> Modeling</h3>
+<p><strong>Modeling</strong> with the tidyverse uses the collection of <strong>tidymodels packages</strong>, which largely replace the modelr package used in R4DS.</p>
+<p>Visit the <a href="https://www.tidymodels.org/start/">Getting Started Guide</a> for more detailed examples, or go straight to the Learn page.</p>
+</section>
+</section>
+<section id="tidying-data" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="tidying-data"><span class="header-section-number">7.4</span> Tidying Data</h2>
+<p>We’ll focus on <strong>tidyr</strong>, a package that provides a bunch of tools to help tidy up messy datasets. <strong>tidyr</strong> is a member of the core tidyverse.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are two main <strong>advantages</strong> of tidy data:</p>
+<ul>
+<li><p>There’s a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it’s easier to learn the tools that work with it because they have an underlying uniformity.</p></li>
+<li><p>There’s a specific advantage to placing variables in columns because it allows R’s vectorized nature to shine.</p></li>
+</ul>
+<section id="pivot-data" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="pivot-data"><span class="header-section-number">7.4.1</span> Pivot Data</h3>
+<p>You’ll begin by figuring out what the underlying <strong>variables and observations</strong> are. Sometimes this is easy; other times you’ll need to consult with the people who originally generated the data. Next, you’ll <strong>pivot</strong> your data into a tidy form, with variables in the columns and observations in the rows.</p>
+<p><strong>tidyr</strong> provides two functions for pivoting data: <code>pivot_longer()</code> and <code>pivot_wider()</code>. We’ll first start with pivot_longer() because it’s the most common case. Let’s dive into some examples.</p>
+</section>
+<section id="lengthening-data" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="lengthening-data"><span class="header-section-number">7.4.2</span> Lengthening Data</h3>
+<p><strong>Lengthening data</strong> means increasing the number of rows and decreasing the number of columns. The inverse transformation is <code>pivot_wider()</code>.</p>
+<p>In this dataset, each observation is a song. The first three columns (<code>artist</code>, <code>track</code> and <code>date.entered</code>) are variables that describe the song. Then we have 76 columns (<code>wk1-wk76</code>) that describe the rank of the song in each week1. Here, the column names are one variable (the <code>week</code>) and the cell values are another (the <code>rank</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span>billboard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 317 × 79
+   artist     track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
+   &lt;chr&gt;      &lt;chr&gt; &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 2 Pac      Baby… 2000-02-26      87    82    72    77    87    94    99    NA
+ 2 2Ge+her    The … 2000-09-02      91    87    92    NA    NA    NA    NA    NA
+ 3 3 Doors D… Kryp… 2000-04-08      81    70    68    67    66    57    54    53
+ 4 3 Doors D… Loser 2000-10-21      76    76    72    69    67    65    55    59
+ 5 504 Boyz   Wobb… 2000-04-15      57    34    25    17    17    31    36    49
+ 6 98^0       Give… 2000-08-19      51    39    34    26    26    19     2     2
+ 7 A*Teens    Danc… 2000-07-08      97    97    96    95   100    NA    NA    NA
+ 8 Aaliyah    I Do… 2000-01-29      84    62    51    41    38    35    35    38
+ 9 Aaliyah    Try … 2000-03-18      59    53    38    28    21    18    16    14
+10 Adams, Yo… Open… 2000-08-26      76    76    74    69    68    67    61    58
+# ℹ 307 more rows
+# ℹ 68 more variables: wk9 &lt;dbl&gt;, wk10 &lt;dbl&gt;, wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;,
+#   wk13 &lt;dbl&gt;, wk14 &lt;dbl&gt;, wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;, wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;,
+#   wk19 &lt;dbl&gt;, wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;, wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;,
+#   wk25 &lt;dbl&gt;, wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;, wk29 &lt;dbl&gt;, wk30 &lt;dbl&gt;,
+#   wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;, wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;,
+#   wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>To tidy this data, we’ll use <code>pivot_longer()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span>billboard <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span> <span class="co"># to get rid of NAs</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,307 × 5
+   artist  track                   date.entered week   rank
+   &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;chr&gt; &lt;dbl&gt;
+ 1 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk1      87
+ 2 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk2      82
+ 3 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk3      72
+ 4 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk4      77
+ 5 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk5      87
+ 6 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk6      94
+ 7 2 Pac   Baby Don't Cry (Keep... 2000-02-26   wk7      99
+ 8 2Ge+her The Hardest Part Of ... 2000-09-02   wk1      91
+ 9 2Ge+her The Hardest Part Of ... 2000-09-02   wk2      87
+10 2Ge+her The Hardest Part Of ... 2000-09-02   wk3      92
+# ℹ 5,297 more rows</code></pre>
+</div>
+</div>
+<p>This data is now tidy, but we could make future computation a bit easier by converting values of week from character strings to numbers using <code>mutate()</code> and <code>readr::parse_number()</code>. <code>parse_number()</code> is a handy function that will extract the first number from a string, ignoring all other text.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>billboard_longer <span class="ot">&lt;-</span> tidyr<span class="sc">::</span>billboard <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">week =</span> readr<span class="sc">::</span><span class="fu">parse_number</span>(week)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>billboard_longer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5,307 × 5
+   artist  track                   date.entered  week  rank
+   &lt;chr&gt;   &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 2 Pac   Baby Don't Cry (Keep... 2000-02-26       1    87
+ 2 2 Pac   Baby Don't Cry (Keep... 2000-02-26       2    82
+ 3 2 Pac   Baby Don't Cry (Keep... 2000-02-26       3    72
+ 4 2 Pac   Baby Don't Cry (Keep... 2000-02-26       4    77
+ 5 2 Pac   Baby Don't Cry (Keep... 2000-02-26       5    87
+ 6 2 Pac   Baby Don't Cry (Keep... 2000-02-26       6    94
+ 7 2 Pac   Baby Don't Cry (Keep... 2000-02-26       7    99
+ 8 2Ge+her The Hardest Part Of ... 2000-09-02       1    91
+ 9 2Ge+her The Hardest Part Of ... 2000-09-02       2    87
+10 2Ge+her The Hardest Part Of ... 2000-09-02       3    92
+# ℹ 5,297 more rows</code></pre>
+</div>
+</div>
+<p>Other cases on how to deal with lenghtening data can be found <a href="https://r4ds.hadley.nz/data-tidy#sec-pivoting">here</a>.</p>
+</section>
+<section id="widening-data" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="widening-data"><span class="header-section-number">7.4.3</span> Widening data</h3>
+<p><code>pivot_wider()</code> makes datasets wider by increasing columns and reducing rows and helps when one observation is spread across multiple rows.</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">textInput</span>(<span class="st">"name"</span>, <span class="st">"What is your name?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="name-label" for="name">What is your name?</label>
-<input id="name" type="text" class="shiny-input-text form-control" value="">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span>cms_patient_experience</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 5
+   org_pac_id org_nm                           measure_cd measure_title prf_rate
+   &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;
+ 1 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       63
+ 2 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       87
+ 3 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       86
+ 4 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       57
+ 5 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       85
+ 6 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       24
+ 7 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       59
+ 8 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       85
+ 9 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       83
+10 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       63
+# ℹ 490 more rows</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">numericInput</span>(<span class="st">"age"</span>, <span class="st">"How old are you?"</span>, <span class="cn">NA</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">150</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="form-group shiny-input-container">
-<label class="control-label" id="age-label" for="age">How old are you?</label>
-<input id="age" type="number" class="shiny-input-number form-control" value="NA" min="0" max="150">
-</div>
-</div>
-</div>
-<p>A <strong>shiny app</strong> consists of two files. First, a file called <strong>ui.R</strong> that controls the User Interface (hence the ui in the filename) and secondly, a file <strong>server.R</strong> that controls the shiny server (hence the server in the filename).</p>
-<section id="create-ui.r-file" class="level3" data-number="31.2.1">
-<h3 data-number="31.2.1" class="anchored" data-anchor-id="create-ui.r-file"><span class="header-section-number">31.2.1</span> Create ui.R file:</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyUI</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pageWithSidebar</span>( </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">headerPanel</span>(<span class="st">"Hello Shiny!"</span>), </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>( </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">h3</span>(<span class="st">'Sidebar text'</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>( </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">h3</span>(<span class="st">'Main Panel text'</span>)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="create-server.r-file" class="level3" data-number="31.2.2">
-<h3 data-number="31.2.2" class="anchored" data-anchor-id="create-server.r-file"><span class="header-section-number">31.2.2</span> Create server.R file:</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny) </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyServer</span>( </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(input, output) {</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The current version of Rstudio has a <strong>“Run app” button</strong> in the upper right hand corner of the editor if a ui.R or server.R file is open.</p>
-<p>To get used to programming shiny apps, you need to throw away a little of your thinking about R; it’s a different style of programming.</p>
-</section>
-<section id="types-of-inputs" class="level3" data-number="31.2.3">
-<h3 data-number="31.2.3" class="anchored" data-anchor-id="types-of-inputs"><span class="header-section-number">31.2.3</span> Types of inputs</h3>
-<ul>
-<li><p>Numeric input:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">numericInput</span>(<span class="st">'id1'</span>, <span class="st">'Numeric input, labeled id1'</span>, <span class="dv">0</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">10</span>, <span class="at">step=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Checkbox input:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">checkboxGroupInput</span>(<span class="st">"id2"</span>, <span class="st">"Checkbox"</span>, <span class="fu">c</span>(<span class="st">"Value 1"</span> <span class="ot">=</span> <span class="st">"1"</span>, <span class="st">"Value 2"</span> <span class="ot">=</span> <span class="st">"2"</span>, <span class="st">"Value 3"</span> <span class="ot">=</span> <span class="st">"3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Date input:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dateInput</span>(<span class="st">"date"</span>, <span class="st">"Date:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-</section>
-<section id="sharing-your-app" class="level3" data-number="31.2.4">
-<h3 data-number="31.2.4" class="anchored" data-anchor-id="sharing-your-app"><span class="header-section-number">31.2.4</span> Sharing your app</h3>
-<p>Now that we have a working app we’d like to share it with the world. It’s much nicer to have it display as a standalone web application.</p>
-<p>This requires running a shiny server to host the app. Instead of creating and deploying our own shiny server, we’ll rely on RStudio’s service: <a href="https://www.shinyapps.io/">link</a></p>
-<ul>
-<li><p>After login in shinyapps:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shinyapps"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Run code:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>shinyapps<span class="sc">::</span><span class="fu">setAccountInfo</span>(<span class="at">name=</span><span class="st">'&lt;ACCOUNT NAME&gt;'</span>, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">token=</span><span class="st">'&lt;TOKEN&gt;'</span>, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">secret=</span><span class="st">'&lt;SECRET&gt;'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Submit code:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">deployApp</span>(<span class="at">appName =</span> <span class="st">"myFirstApp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-</section>
-<section id="build-a-gui-with-html" class="level3" data-number="31.2.5">
-<h3 data-number="31.2.5" class="anchored" data-anchor-id="build-a-gui-with-html"><span class="header-section-number">31.2.5</span> Build a GUI with html</h3>
-<p>Check out this <a href="https://shiny.rstudio.com/articles/html-ui.html">link</a></p>
-</section>
-</section>
-<section id="reproducible-presentations" class="level2" data-number="31.3">
-<h2 data-number="31.3" class="anchored" data-anchor-id="reproducible-presentations"><span class="header-section-number">31.3</span> Reproducible presentations</h2>
-<section id="slidify" class="level3" data-number="31.3.1">
-<h3 data-number="31.3.1" class="anchored" data-anchor-id="slidify"><span class="header-section-number">31.3.1</span> Slidify</h3>
-<p><strong>Slidify</strong> is for building reproducible presentations.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>) </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)<span class="sc">/</span> <span class="fu">require</span>(devtools)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">'ramnathv/slidify'</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">'ramnathv'</span><span class="sc">/</span><span class="st">'slidifyLibraries'</span>) o devtools<span class="sc">::</span><span class="fu">install_github</span>(pkgs, <span class="at">force =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(slidify)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="r-studio-presenter" class="level3" data-number="31.3.2">
-<h3 data-number="31.3.2" class="anchored" data-anchor-id="r-studio-presenter"><span class="header-section-number">31.3.2</span> R studio presenter</h3>
-<p>For more information about R studio presenter, chek out this <a href="https://suppor.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations">link</a></p>
-<p><strong>Tip</strong>: if you’re sort of a hacker type and you like to tinker with things, use slidify. If you just want to get it done and not worry about it, use RPres. Either way, you really can’t go wrong.</p>
-</section>
-</section>
-<section id="interactive-graphs" class="level2" data-number="31.4">
-<h2 data-number="31.4" class="anchored" data-anchor-id="interactive-graphs"><span class="header-section-number">31.4</span> Interactive Graphs</h2>
-<section id="htmlwidgets" class="level3" data-number="31.4.1">
-<h3 data-number="31.4.1" class="anchored" data-anchor-id="htmlwidgets"><span class="header-section-number">31.4.1</span> htmlwidgets</h3>
-<p><strong>HTML</strong> is an interactive format, and you can take advantage of that interactivity with <strong>htmlwidgets</strong>, R functions that produce interactive HTML visualizations. For example, take the <strong>leaflet</strong> map below, where you can drag the map around, zoom in and out, etc. You obviously can’t do that in a book, so Quarto automatically inserts a static screenshot for you.</p>
-<p><em>Example:</em></p>
+<p>The core unit being studied is an organization, but each organization is spread across six rows, with one row for each measurement taken in the survey organization. We can see the complete set of values for <code>measure_cd</code> and <code>measure_title</code> by using <code>distinct()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setView</span>(<span class="sc">-</span><span class="fl">3.7077</span>, <span class="fl">40.4156</span>, , <span class="at">zoom =</span> <span class="dv">16</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="sc">-</span><span class="fl">3.7077</span>, <span class="fl">40.4156</span>, <span class="at">popup =</span> <span class="st">"Plaza Mayor de Madrid"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-eb7dea9614835a1f1da2" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-eb7dea9614835a1f1da2">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[40.4156,-3.7077],16,[]],"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[40.4156,-3.7077,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Plaza Mayor de Madrid",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.4156,40.4156],"lng":[-3.7077,-3.7077]}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span>cms_patient_experience <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">distinct</span>(measure_cd, measure_title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  measure_cd   measure_title                                                    
+  &lt;chr&gt;        &lt;chr&gt;                                                            
+1 CAHPS_GRP_1  CAHPS for MIPS SSM: Getting Timely Care, Appointments, and Infor…
+2 CAHPS_GRP_2  CAHPS for MIPS SSM: How Well Providers Communicate               
+3 CAHPS_GRP_3  CAHPS for MIPS SSM: Patient's Rating of Provider                 
+4 CAHPS_GRP_5  CAHPS for MIPS SSM: Health Promotion and Education               
+5 CAHPS_GRP_8  CAHPS for MIPS SSM: Courteous and Helpful Office Staff           
+6 CAHPS_GRP_12 CAHPS for MIPS SSM: Stewardship of Patient Resources             </code></pre>
 </div>
 </div>
-<p>There are many <strong>packages</strong> that provide htmlwidgets, including:</p>
-<ul>
-<li><p><strong>dygraphs</strong> for interactive time series visualizations.</p></li>
-<li><p><strong>DT</strong> for interactive tables.</p></li>
-<li><p><strong>threejs</strong> for interactive 3d plots.</p></li>
-<li><p><strong>DiagrammeR</strong> for diagrams (like flow charts and simple node-link diagrams).</p></li>
-</ul>
-<p>To see a complete list of the packages that provide htmlwidgets visit <a href="https://www.htmlwidgets.org" class="uri">https://www.htmlwidgets.org</a>.</p>
-</section>
-<section id="leaflet" class="level3" data-number="31.4.2">
-<h3 data-number="31.4.2" class="anchored" data-anchor-id="leaflet"><span class="header-section-number">31.4.2</span> leaflet</h3>
-<p><a href="https://rstudio.github.io/leaflet/">link to leaflet</a></p>
-<p><strong>leaflet</strong> seems to be emerging as the most popular R package for creating <strong>interactive maps</strong>.</p>
-<p>The map widget (the <code>leaflet()</code> command) starts out a map and then you add elements or modify the map by passing it as arguments to mapping functions.</p>
-</section>
-<section id="rcharts" class="level3" data-number="31.4.3">
-<h3 data-number="31.4.3" class="anchored" data-anchor-id="rcharts"><span class="header-section-number">31.4.3</span> rCharts</h3>
-<p><a href="https://ramnathv.github.io/rCharts/">link to rCharts</a></p>
-<p><strong>rCharts</strong> is a way to create interactive javascript visualizations using R.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(devtools) </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">'rCharts'</span>, <span class="st">'ramnathv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="googlevis" class="level3" data-number="31.4.4">
-<h3 data-number="31.4.4" class="anchored" data-anchor-id="googlevis"><span class="header-section-number">31.4.4</span> googleVis</h3>
-<p><a href="https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html">link to googlevis</a></p>
-<p>Google has some nice visualization tools built into their products (e.g.&nbsp;Google Maps). These include maps and interactive graphs.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"googleVis"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlevis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="plot.ly" class="level3" data-number="31.4.5">
-<h3 data-number="31.4.5" class="anchored" data-anchor-id="plot.ly"><span class="header-section-number">31.4.5</span> plot.ly</h3>
-<p><a href="https://plot.ly">link to plot.ly</a></p>
-<p><strong>plotly</strong> relies on the platform/website plot.ly for creating interactive graphics.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(devtools) </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">"ropensci/plotly"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Plotly</strong> will give you the json data and gives a tremendous number of options for publishing the graph.</p>
-<p>Notably, <strong>plotly</strong> allows for integration with <strong>ggplot2</strong>.</p>
-<p>For interactive graphics, learning some javascript and following that up with D3 would be the logical next step</p>
+<p>We’ll use <code>measure_cd</code> as the source for our new column names for now. Instead of choosing new column names, we need to provide the existing columns that define the values (<code>values_from</code>) and the column name (<code>names_from</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span>cms_patient_experience <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 9
+   org_pac_id org_nm           measure_title CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3
+   &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1 0446157747 USC CARE MEDICA… CAHPS for MI…          63          NA          NA
+ 2 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          87          NA
+ 3 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          86
+ 4 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          NA
+ 5 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          NA
+ 6 0446157747 USC CARE MEDICA… CAHPS for MI…          NA          NA          NA
+ 7 0446162697 ASSOCIATION OF … CAHPS for MI…          59          NA          NA
+ 8 0446162697 ASSOCIATION OF … CAHPS for MI…          NA          85          NA
+ 9 0446162697 ASSOCIATION OF … CAHPS for MI…          NA          NA          83
+10 0446162697 ASSOCIATION OF … CAHPS for MI…          NA          NA          NA
+# ℹ 490 more rows
+# ℹ 3 more variables: CAHPS_GRP_5 &lt;dbl&gt;, CAHPS_GRP_8 &lt;dbl&gt;, CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The output doesn’t look quite right; we still seem to have multiple rows for each organization. That’s because, we also need to tell <code>pivot_wider()</code> which column or columns have values that uniquely identify each row; in this case those are the variables starting with “org”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span>cms_patient_experience <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 95 × 8
+   org_pac_id org_nm CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
+   &lt;chr&gt;      &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+ 1 0446157747 USC C…          63          87          86          57          85
+ 2 0446162697 ASSOC…          59          85          83          63          88
+ 3 0547164295 BEAVE…          49          NA          75          44          73
+ 4 0749333730 CAPE …          67          84          85          65          82
+ 5 0840104360 ALLIA…          66          87          87          64          87
+ 6 0840109864 REX H…          73          87          84          67          91
+ 7 0840513552 SCL H…          58          83          76          58          78
+ 8 0941545784 GRITM…          46          86          81          54          NA
+ 9 1052612785 COMMU…          65          84          80          58          87
+10 1254237779 OUR L…          61          NA          NA          65          NA
+# ℹ 85 more rows
+# ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -892,13 +977,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./time_flow.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></span>
+      <a href="./manipu_writing.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Writing Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./product_repro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./manipu_transforming.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Transforming Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -4,57 +4,57 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "09/26/2024"
+  date: "09/29/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
       chapters:
-        - objects.qmd
-        - types.qmd   
-        - packages.qmd
-        - style.qmd
+        - intro_objects.qmd
+        - intro_types.qmd   
+        - intro_packages.qmd
+        - intro_style.qmd
     - part: "Part 1: Manipulating Data"
       chapters: 
-        - reading.qmd
-        - writing.qmd
-        - tidydata.qmd
-        - transforming.qmd
-        - subsetting.qmd
-        - plyrdplyr.qmd
-        - date.qmd
-        - databases.qmd
+        - manipu_reading.qmd
+        - manipu_writing.qmd
+        - manipu_tidydata.qmd
+        - manipu_transforming.qmd
+        - manipu_subsetting.qmd
+        - manipu_plyrdplyr.qmd
+        - manipu_date.qmd
+        - manipu_databases.qmd
     - part: "Part 2: Statistics in R"
       chapters:
-        - descriptive.qmd
-        - exploratory.qmd
-        - inferential.qmd
-        - regression.qmd
+        - stats_descriptive.qmd
+        - stats_exploratory.qmd
+        - stats_inferential.qmd
+        - stats_regression.qmd
     - part: "Part 3: Programming in R"
       chapters:
-        - habits.qmd
-        - logic.qmd
-        - functions.qmd
-        - iteration.qmd
-        - debugging.qmd
-        - profiling.qmd
+        - program_habits.qmd
+        - program_logic.qmd
+        - program_functions.qmd
+        - program_iteration.qmd
+        - program_debugging.qmd
+        - program_profiling.qmd
     - part: "Part 4: Graphics"
       chapters: 
         - graphs.qmd
-        - ggplot.qmd
-        - typesofgraphs.qmd
+        - graph_ggplot.qmd
+        - graph_types.qmd
     - part: "Part 5: Modeling"
       chapters: 
-        - modelworkflow.qmd
-        - spending.qmd
-        - fitting.qmd
-        - random.qmd
+        - model_flow.qmd
+        - model_spend.qmd
+        - model_fit.qmd
+        - model_random.qmd
     - part: "Part 6: Time Series"
       chapters: 
-        - timeflow.qmd
+        - time_flow.qmd
     - part: "Part 7: Data Products"
       chapters: 
         - products.qmd
-        - reproducible.qmd
+        - product_repro.qmd
     - references.qmd
 
 bibliography: references.bib

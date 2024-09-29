@@ -153,19 +153,13 @@ The **list of devices** supported by your installation of R is found in `?Device
 -   The `jpeg`, `png`, and `bmp` graphics are all **raster-style** graphics, which may translate poorly when included in a document.
 -   In contrast, the `pdf`, `postscript`, and `windows metafile` (win.metafile, available on Windows) formats allow for **vector-style** graphics, which are scaleable, and better suited to integration in documents.
 
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| Vector                                                                             | Bitmap                                                                          |
-+====================================================================================+=================================================================================+
+| Vector | Bitmap |
+|----|----|
 | Good for line drawings and plots with solid colors using a modest number of points | good for plots with a large number of points, natural scenes or web-based plots |
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| pdf (line-type graphics, resizes well, usually portable)                           | png (good for line drawings or images with solid colors)                        |
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| svg (XML-based scalable vector graphics; supports animation and interactivity)     | jpeg (good for plotting many many many points, does not resize well)            |
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| win.metafile                                                                       | tiff                                                                            |
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| postscript                                                                         | bmp                                                                             |
-+------------------------------------------------------------------------------------+---------------------------------------------------------------------------------+
+| pdf (line-type graphics, resizes well, usually portable) | png (good for line drawings or images with solid colors) |
+| svg (XML-based scalable vector graphics; supports animation and interactivity) | jpeg (good for plotting many many many points, does not resize well) |
+| win.metafile | tiff |
+| postscript | bmp |
 
 It is possible to **open multiple graphics devices** (screen, file, or both), for example when viewing multiple plots at once. Plotting can only occur on one graphics device at a time, though.
 
