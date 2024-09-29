@@ -1,0 +1,11 @@
+# Time Series Analysis Workflow
+
+Time series analysis is the process of **extracting meaningful insights from time series data** with the use of data visualization tools, statistical applications, and mathematical models. Those insights can be used to learn and explore past events and to forecast future events. The analysis process can be divided into the following steps:
+
+1.    **Data collection**: This step includes extracting data from different data sources, such as flat files (such as CSV, TXT, and XLMS), databases (for example, SQL Server, and Teradata), or other internet sources (such as academic resources and the Bureau of Statistics datasets).
+
+2.    **Data preparation**: In most cases, raw data is unstructured and may require cleaning, transformation, aggregation, and reformatting.
+
+3.    **Descriptive analysis**: This is used in summary statistics and data visualization tools to extract insights from the data, such as patterns, distributions, cycles, and relationships with other drivers to learn more about past events.
+
+4.    **Predictive analysis**: We use this to apply statistical methods in order to forecast future events, including forecasting strategies, forecasting with linear regression, forecasting with exponential smoothing models, forecasting with ARIMA models, and forecasting with machine learning models.

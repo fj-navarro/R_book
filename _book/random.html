@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 27&nbsp; Random Numbers</title>
+<title>R for Research in Action - 28&nbsp; Random Numbers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./products.html" rel="next">
-<link href="./spenddata.html" rel="prev">
+<link href="./fitting.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spenddata.html">Part 5: Modeling</a></li><li class="breadcrumb-item"><a href="./random.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Random Numbers</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spending.html">Part 5: Modeling</a></li><li class="breadcrumb-item"><a href="./random.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Random Numbers</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -356,14 +356,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spenddata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">spenddata.html</span></span></a>
+  <a href="./spending.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Spending Your Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fitting Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./random.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -380,13 +386,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -407,8 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#always-remember-to-set-your-seed" id="toc-always-remember-to-set-your-seed" class="nav-link active" data-scroll-target="#always-remember-to-set-your-seed"><span class="header-section-number">27.1</span> Always Remember to Set Your Seed!</a></li>
-  <li><a href="#random-sampling" id="toc-random-sampling" class="nav-link" data-scroll-target="#random-sampling"><span class="header-section-number">27.2</span> Random Sampling</a></li>
+  <li><a href="#always-remember-to-set-your-seed" id="toc-always-remember-to-set-your-seed" class="nav-link active" data-scroll-target="#always-remember-to-set-your-seed"><span class="header-section-number">28.1</span> Always Remember to Set Your Seed!</a></li>
+  <li><a href="#random-sampling" id="toc-random-sampling" class="nav-link" data-scroll-target="#random-sampling"><span class="header-section-number">28.2</span> Random Sampling</a></li>
   </ul>
 </nav>
     </div>
@@ -417,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Random Numbers</span></h1>
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Random Numbers</span></h1>
 </div>
 
 
@@ -446,11 +452,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  18.15   20.29   21.12   21.20   22.41   23.79 </code></pre>
+  16.56   18.76   19.38   20.07   22.09   23.40 </code></pre>
 </div>
 </div>
-<section id="always-remember-to-set-your-seed" class="level2" data-number="27.1">
-<h2 data-number="27.1" class="anchored" data-anchor-id="always-remember-to-set-your-seed"><span class="header-section-number">27.1</span> Always Remember to Set Your Seed!</h2>
+<section id="always-remember-to-set-your-seed" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="always-remember-to-set-your-seed"><span class="header-section-number">28.1</span> Always Remember to Set Your Seed!</h2>
 <p>When simulating any random numbers it is essential to set the <strong>random number seed</strong>. Setting the random number seed with <code>set.seed()</code> ensures reproducibility of the sequence of random numbers.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -484,8 +490,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="random-sampling" class="level2" data-number="27.2">
-<h2 data-number="27.2" class="anchored" data-anchor-id="random-sampling"><span class="header-section-number">27.2</span> Random Sampling</h2>
+<section id="random-sampling" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="random-sampling"><span class="header-section-number">28.2</span> Random Sampling</h2>
 <p>The <code>sample()</code> function draws randomly from a specified set of (scalar) objects allowing you to sample from arbitrary distributions of numbers.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -756,13 +762,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./spenddata.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">spenddata.html</span></span>
+      <a href="./fitting.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Fitting Models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./products.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Building Data Products</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Building Data Products</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

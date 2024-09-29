@@ -354,14 +354,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spenddata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">spenddata.html</span></span></a>
+  <a href="./modelworkflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Model Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spending.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Spending Your Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fitting Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -369,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Part 6: Data Products</span></a>
+ <span class="menu-text">Part 6: Time Series</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -377,14 +389,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./timeflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Part 7: Data Products</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./reproducible.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -426,9 +455,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A <strong>package</strong> is an archive of files that conforms to a certain format and structure and that provides extra functionality, usually extending R in a particular direction. The R community has produced many high-quality R packages for performing specific tasks,</p>
 <p>Any package is in one of <strong>three states</strong>:</p>
 <ul>
-<li><strong>Installed and loaded</strong>. A package that is loaded is directly available to your R session. Find out which packages are loaded using <code>sessionInfo()</code>.</li>
-<li><strong>Installed but not loaded</strong>. A package that is installed is available for loading but its contents are not available until it is loaded. The function <code>help.start()</code> gives details of the packages that are installed on your computer.</li>
-<li><strong>Not installed</strong>. These packages cannot be loaded. If a package is <strong>not installed</strong> then the <code>library()</code> function produces an error. If the install status is uncertain at the time of calling library (for example if you are writing a function that requires the package), then use the <code>require()</code> function, which returns FALSE if the package is not installed, rather than an error.</li>
+<li><p><strong>Installed and loaded</strong>. A package that is loaded is directly available to your R session. Find out which packages are loaded using <code>sessionInfo()</code>.</p></li>
+<li><p><strong>Installed but not loaded</strong>. A package that is installed is available for loading but its contents are not available until it is loaded. The function <code>help.start()</code> gives details of the packages that are installed on your computer.</p></li>
+<li><p><strong>Not installed</strong>. These packages cannot be loaded. If a package is <strong>not installed</strong> then the <code>library()</code> function produces an error. If the install status is uncertain at the time of calling library (for example if you are writing a function that requires the package), then use the <code>require()</code> function, which returns FALSE if the package is not installed, rather than an error.</p></li>
 </ul>
 <p>Installing all available packages would be a waste of space and time, as you would never use most of them. Similarly, loading all installed packages every time you start R would take some time, so by default R only loads the <strong>base packages</strong> when it starts and requires the user to load any others as and when they are needed.</p>
 <p>Packages are divided into <strong>three groups</strong>:</p>
@@ -447,12 +476,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>All the packages that are available at a repository, and whose requirements are matched by the currently running version of R, can be listed using the command <code>available.packages()</code>. A package that is available in the repository but has not yet been installed may be installed using the <code>install.packages()</code> function. If we include the argument <code>dependencies = TRUE</code>, then the function will also install packages that are necessary to run the package or packages of interest; such packages are called dependencies.</p>
+<p>Most of the packages frequently get updates. This includes new features, improvements, and error fixing. The <code>packageVersion</code> function returns the version details of the input package:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '2.0.0'</code></pre>
+</div>
+</div>
 <p>The status of the packages that are installed can be compared with the repository using the <code>old.packages()</code> function, and easily updated using the <code>update.packages()</code> function.</p>
 <p>R can be easily updated with <strong>installr package</strong>. To update R on MacOS, you need to use <strong>updateR” package</strong> instead.</p>
 <p><em>Example:</em></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"installr"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(installr)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">updateR</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"installr"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(installr)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">updateR</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
