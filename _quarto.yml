@@ -4,7 +4,7 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "09/29/2024"
+  date: "09/30/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -22,6 +22,7 @@ book:
         - manipu_subsetting.qmd
         - manipu_plyrdplyr.qmd
         - manipu_date.qmd
+        - manipu_text.qmd
         - manipu_databases.qmd
     - part: "Part 2: Statistics in R"
       chapters:
@@ -51,6 +52,8 @@ book:
     - part: "Part 6: Time Series"
       chapters: 
         - time_flow.qmd
+        - time_objects.qmd
+        - time_analysis.qmd
     - part: "Part 7: Data Products"
       chapters: 
         - products.qmd

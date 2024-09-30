@@ -1,0 +1,65 @@
+# Text Manipulation
+
+Besides default R functionality (`paste()`, `nchar()`, `substr()` ...) , there is one contributed package to deal with character data, which is more user friendly and intuitive: **stringr package**.
+
+**Strings** can be arranged into **vectors and matrices** just like numbers. We can also paste strings together using `paste(..., sep)`. Here sep is an optional input, with default value " ", that determines which padding character is to be placed between the strings (which are input where ... appears).
+
+*Example:*
+
+```{r}
+x <- "Citroen SM"
+y <- "Jaguar XK150"
+z <- "Ford Falcon GT-HO"
+(wish.list <- paste(x, y, z, sep = ", "))
+```
+
+Special characters can be included in strings using the escape character `\`:
+
+-   `\"` for "
+-   `\n` for a newline
+-   `\t` for a tab
+-   `\b` for a backspace
+-   `\\` for `\`
+
+`str_c()` is very similar to the base `paste0()`, but is designed to be used with `mutate()` by obeying the usual tidyverse rules for recycling and propagating missing values:
+
+*Example:*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+```{r}
+df <- tibble(name = c("Flora", "David", "Terra", NA))
+df |> mutate(greeting = str_c("Hi ", name, "!"))
+```
+
+**Text data** can be used to retrieve information in sentiment analysis and even entity recognition.
+
+## Sources of Text Data
+
+Text data can be found on tweets from any individual, or from any company, Facebook status updates, RSS feeds from any news site, Blog articles, Journal articles, Newspapers, Verbatim transcripts of an in-depth interview.
+
+For example, t extract **Twitter data**, we can use `tweetR()` and, to extract data from **Facebook**, we could use `facebookR()`.
+
+## Getting Text Data
+
+The easiest way to get text data is to import from a .csv file where some of the variables contain character data. We have to protect automatic factor conversion by specifying the `stringsAsFactors = FALSE argument`
+
+*Example 1:* The tweets.txt file is the plain text file. We will import this file using the generic `readLines()` function. It is a vector of characters (not a data.frame).
+
+*Example 2:* Html (this is also a character string):
+
+``` r
+conURL <- "http://en.wikipedia.org/wiki/R_%28programming_language%29"
+# Establish the connection with the URL 
+link2URL <- url(conURL) 
+# Reading html code
+htmlCode <- readLines(link2URL)
+# Closing the connection
+close(link2URL)
+# Printing the result 
+htmlCode
+```
+
+The **tm** text mining library has some other functions to import text data from various files such as PDF files, plain text files, and even from doc files.

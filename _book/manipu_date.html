@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 11&nbsp; Date and Text Manipulation</title>
+<title>R for Research in Action - 11&nbsp; Date Manipulation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./manipu_databases.html" rel="next">
+<link href="./manipu_text.html" rel="next">
 <link href="./manipu_plyrdplyr.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manipu_reading.html">Part 1: Manipulating Data</a></li><li class="breadcrumb-item"><a href="./manipu_date.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manipu_reading.html">Part 1: Manipulating Data</a></li><li class="breadcrumb-item"><a href="./manipu_date.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date Manipulation</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -221,13 +221,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manipu_date.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date Manipulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manipu_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manipu_databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,25 +250,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_inferential.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,37 +285,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_iteration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Iteration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Iteration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -326,19 +332,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graph_ggplot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graph_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
   </div>
 </li>
       </ul>
@@ -355,25 +361,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Modeling Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Modeling Workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_spend.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Spending Your Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Spending Your Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fitting Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Fitting Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -390,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./time_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></span></a>
   </div>
 </li>
       </ul>
@@ -407,13 +413,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./product_repro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -434,11 +440,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#date-manipulation" id="toc-date-manipulation" class="nav-link active" data-scroll-target="#date-manipulation"><span class="header-section-number">11.1</span> Date Manipulation</a></li>
-  <li><a href="#text-manipulation" id="toc-text-manipulation" class="nav-link" data-scroll-target="#text-manipulation"><span class="header-section-number">11.2</span> Text Manipulation</a>
+  <li><a href="#date-and-time-classes" id="toc-date-and-time-classes" class="nav-link active" data-scroll-target="#date-and-time-classes"><span class="header-section-number">11.1</span> Date and Time Classes</a></li>
+  <li><a href="#creating-date-and-time-objects" id="toc-creating-date-and-time-objects" class="nav-link" data-scroll-target="#creating-date-and-time-objects"><span class="header-section-number">11.2</span> Creating Date and Time Objects</a></li>
+  <li><a href="#reformatting-and-converting-date-objects" id="toc-reformatting-and-converting-date-objects" class="nav-link" data-scroll-target="#reformatting-and-converting-date-objects"><span class="header-section-number">11.3</span> Reformatting and Converting Date Objects</a></li>
+  <li><a href="#reformatting-and-converting-time-objects" id="toc-reformatting-and-converting-time-objects" class="nav-link" data-scroll-target="#reformatting-and-converting-time-objects"><span class="header-section-number">11.4</span> Reformatting and Converting Time Objects</a></li>
+  <li><a href="#time-zone-setting" id="toc-time-zone-setting" class="nav-link" data-scroll-target="#time-zone-setting"><span class="header-section-number">11.5</span> Time Zone Setting</a></li>
+  <li><a href="#creating-a-date-or-time-index-vector" id="toc-creating-a-date-or-time-index-vector" class="nav-link" data-scroll-target="#creating-a-date-or-time-index-vector"><span class="header-section-number">11.6</span> Creating a Date or Time Index Vector</a></li>
+  <li><a href="#lubridate-package" id="toc-lubridate-package" class="nav-link" data-scroll-target="#lubridate-package"><span class="header-section-number">11.7</span> lubridate Package</a>
   <ul class="collapse">
-  <li><a href="#sources-of-text-data" id="toc-sources-of-text-data" class="nav-link" data-scroll-target="#sources-of-text-data"><span class="header-section-number">11.2.1</span> Sources of text data</a></li>
-  <li><a href="#getting-text-data" id="toc-getting-text-data" class="nav-link" data-scroll-target="#getting-text-data"><span class="header-section-number">11.2.2</span> Getting text data</a></li>
+  <li><a href="#reformatting-date-and-time-objects" id="toc-reformatting-date-and-time-objects" class="nav-link" data-scroll-target="#reformatting-date-and-time-objects"><span class="header-section-number">11.7.1</span> Reformatting date and time objects</a></li>
+  <li><a href="#extraction-functionality" id="toc-extraction-functionality" class="nav-link" data-scroll-target="#extraction-functionality"><span class="header-section-number">11.7.2</span> Extraction functionality</a></li>
+  <li><a href="#modification-functionality" id="toc-modification-functionality" class="nav-link" data-scroll-target="#modification-functionality"><span class="header-section-number">11.7.3</span> Modification functionality</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -448,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date Manipulation</span></h1>
 </div>
 
 
@@ -463,95 +475,396 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="date-manipulation" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="date-manipulation"><span class="header-section-number">11.1</span> Date Manipulation</h2>
-<p>In R, <strong>dates</strong> are stored as the number of days elapsed since <strong>January 1, 1970</strong>. The built-in R function <code>as.Date()</code> can handle only dates but not time. So if we convert any date object to its internal number, it will show the number of days.</p>
-<p>We can reformat the number into a date using the date class.</p>
+<p>The base package, one of R’s core packages, provides two types of date and time classes:</p>
+<ol type="1">
+<li><p><strong>Date</strong>: This is a simple representation of a calendar date following the ISO 8601 international standard format (or the Gregorian calendar format) using the <strong>YYYY-m-d</strong> date format. Each date object has a numeric value of the number of days since the origin point (the default setting is 1970-01-01). It will make sense to use this format <strong>when the frequency of the data is daily or lower</strong> (for example, monthly, quarterly, and so on) and the time of the day doesn’t matter.</p></li>
+<li><p><strong>POSIXct/POSIXlt</strong>: Also known as the DateTime classes as they represent both date and time, these are two POSIX date/time classes that represent the calendar date, the time of the day, and the time zone using the ISO 8601 international standard format of <strong>YYYY-m-d H:M:S</strong>. The main difference between the two is the form in which the values are stored internally. The <strong>POSIXct class</strong>, similar to the Date class, represents the (signed) number of seconds since the origin point (1970-01-01, UTC time zone) as a numeric vector. On the other hand, the <strong>POSIXlt class</strong> stores each one of the date and time elements as a list.</p>
+<p>It makes sense to use a time object (either POSIXct or POSIXlt objects) only if the series <strong>frequency is higher than daily</strong> (such as hourly, half-hourly, by minute, or by second). Otherwise, for simplicity reasons, it is recommended that you use the date object. Let’s review the differences between date and time objects.</p></li>
+</ol>
+<section id="date-and-time-classes" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="date-and-time-classes"><span class="header-section-number">11.1</span> Date and Time Classes</h2>
+<p>You can use the <code>Sys.Date</code> and <code>Sys.time</code> functions to pull date and time objects respectively:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"1970-01-01"</span>)) <span class="do">## We can also create a date object with other formats</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(date <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
+<pre><code>[1] "2024-09-30"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"Jan-01-1970"</span>, <span class="at">format =</span> <span class="st">"%b-%d-%Y"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(time_ct <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2024-09-30 13:12:52 CEST"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+</div>
+<p>By default, the <code>Sys.time</code> function returns an object of the POSIXct, POSIXt, or POSIXct class. We can use the <code>as.POSIXlt</code> function to convert the object to a POSIXlt object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(time_lt <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(time_ct))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2024-09-30 13:12:52 CEST"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_lt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXlt" "POSIXt" </code></pre>
+</div>
+</div>
+<p>While both the <strong>POSIXct</strong> and <strong>POSIXlt</strong> objects have the same representation, the key difference between the two is in the method in which each object is stored internally in the time details. The <strong>POSIXct</strong> object stored the numeric distance of the time object from the origin point. On the other hand, <strong>POSIXlt</strong> returned a detailed list with the different time components:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(time_ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1727694772</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(time_lt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$sec
+[1] 52.05495
+
+$min
+[1] 12
+
+$hour
+[1] 13
+
+$mday
+[1] 30
+
+$mon
+[1] 8
+
+$year
+[1] 124
+
+$wday
+[1] 1
+
+$yday
+[1] 273
+
+$isdst
+[1] 1
+
+$zone
+[1] "CEST"
+
+$gmtoff
+[1] 7200
+
+attr(,"tzone")
+[1] ""     "CET"  "CEST"
+attr(,"balanced")
+[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can pull the day of the year</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(time_lt)<span class="sc">$</span>yday</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 273</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-date-and-time-objects" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="creating-date-and-time-objects"><span class="header-section-number">11.2</span> Creating Date and Time Objects</h2>
+<p>Creating a <strong>new object or converting</strong> the existing object to Date, POSIXlt, or POSIXct can be done with <code>as.Date</code>, <code>as.POSIXlt</code>, or <code>as.POSIXct</code> respectively.</p>
+<p>The built-in R function <code>as.Date()</code> can handle only dates but not time. For instance, we can convert the “2014-5-12” string into a Date object using the <code>as.Date</code> function:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="st">"2014-5-12"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.Date</span>(<span class="st">"1970-01-01"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can convert the Date object into a number</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.numeric</span>(<span class="fu">as.Date</span>(<span class="st">"1970-01-01"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>Note that if the format of the input object is <strong>different from the ISO 8601 standard</strong>, using the <code>as.Date</code> function without declaring the object format structure would return incorrect results (and, in some instances, an error). For example, let’s try to convert the 31-01-2018 date to Date format without reformatting it:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"31-01-2018"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0031-01-20"</code></pre>
+</div>
+</div>
+<p>One way to solve this issue is by adding the <code>format</code> argument in the <code>as.Date</code> function in order to map the different components of the input object to the structure of the Date object. The mapping should be according to the date components order of the input object:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.Date</span>(<span class="st">"31-01-2018"</span>, <span class="at">format =</span> <span class="st">"%d-%m-%Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2018-01-31"</code></pre>
+</div>
+</div>
+<p>You can find a summary of the <strong>main arguments</strong> for date objects using <code>?strptime</code>.</p>
+<p>The <code>as.POSIXct</code> or <code>as.POSIXlt</code> function works in a similar way:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(time_ct <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2014-5-12 20:05:35"</span>, <span class="at">tz =</span> <span class="st">"EST"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2014-05-12 20:05:35 EST"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+</div>
+</section>
+<section id="reformatting-and-converting-date-objects" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="reformatting-and-converting-date-objects"><span class="header-section-number">11.3</span> Reformatting and Converting Date Objects</h2>
+<p>Reformatting or converting date objects is the process of transforming a <strong>non-date</strong> (or POSIXct/lt) object such as character or numeric <strong>to a Date</strong> format (or POSIXct/lt).</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://github.com/PacktPublishing/Hands-On-Time-Series-Analysis-with-R/raw/refs/heads/master/Chapter02/dates_formats.csv"</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>dates_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(url, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dates_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   22 obs. of  7 variables:
+ $ Japanese_format     : chr  "2017/1/20" "2017/1/21" "2017/1/22" "2017/1/23" ...
+ $ US_format           : chr  "1/20/2017" "1/21/2017" "1/22/2017" "1/23/2017" ...
+ $ US_long_format      : chr  "Friday, January 20, 2017" "Saturday, January 21, 2017" "Sunday, January 22, 2017" "Monday, January 23, 2017" ...
+ $ CA_mix_format       : chr  "January 20, 2017" "January 21, 2017" "January 22, 2017" "January 23, 2017" ...
+ $ SA_mix_format       : chr  "20 January 2017" "21 January 2017" "22 January 2017" "23 January 2017" ...
+ $ NZ_format           : chr  "20/01/2017" "21/01/2017" "22/01/2017" "23/01/2017" ...
+ $ Excel_Numeric_Format: int  42755 42756 42757 42758 42759 42760 42761 42762 42763 42764 ...</code></pre>
+</div>
+</div>
+<p>The first six columns are character objects and the seventh object is numeric. Let’s convert each one of the columns to a date object by identifying the date structure and reformat it accordingly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 1st column to Date format (ISO 8601 format)</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>Japanese_format_new <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dates_df<span class="sc">$</span>Japanese_format)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dates_df<span class="sc">$</span>Japanese_format)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dates_df<span class="sc">$</span>Japanese_format_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the 2nd column (no ISO 8601 format)</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>US_format_new <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dates_df<span class="sc">$</span>US_format, <span class="at">format =</span> <span class="st">"%m/%d/%Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The same logic applies to the remaining columns:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the 3rd column</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>US_long_format_new <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dates_df<span class="sc">$</span>US_long_format, <span class="at">format =</span> <span class="st">"%A, %B %d, %Y"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the 4th column</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>CA_mix_format_new <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dates_df<span class="sc">$</span>CA_mix_format, <span class="at">format =</span> <span class="st">"%B %d, %Y"</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the 5th column</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>SA_mix_format_new <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dates_df<span class="sc">$</span>SA_mix_format, <span class="at">format =</span> <span class="st">"%d %B %Y"</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the 6th column</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>NZ_format_new <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dates_df<span class="sc">$</span>NZ_format, <span class="at">format =</span> <span class="st">"%d/%m/%Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>In Excel</strong>, the numeric value of the origin point (that is January 1st, 1900) set to 1, as opposed to other programming languages such as R which define the origin point as 0. Therefore, when importing a date or time objects from Excel, in order to align to R origin point definition, the origin point should be set as December 31st, 1899 (which equivalent to 0 numeric value). Therefore, since Excel is using a different origin point than R (December 30, 1899 versus January 1, 1970), we will have to add the origin argument and specify the original date that is used to generate the data:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dates_df<span class="sc">$</span>Excel_Numeric_Format)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 42755 42756 42757 42758 42759 42760</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>Excel_Numeric_Format_new <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(dates_df<span class="sc">$</span>Excel_Numeric_Format, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">"1899-12-30"</span>))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dates_df<span class="sc">$</span>Excel_Numeric_Format_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2017-01-20" "2017-01-21" "2017-01-22" "2017-01-23" "2017-01-24"
+[6] "2017-01-25"</code></pre>
+</div>
+</div>
+</section>
+<section id="reformatting-and-converting-time-objects" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="reformatting-and-converting-time-objects"><span class="header-section-number">11.4</span> Reformatting and Converting Time Objects</h2>
+<p>Similar to the <code>as.Date</code> function, the <code>as.POSIXct</code> or <code>as.POSIXlt</code> functions are the base package applications for reformatting and conversion of any time input to a POSIXct or POSIXlt objects, respectively.</p>
+<p>The <strong>POSIX classes</strong> are an extension of the Date class, with the addition of four elements (in addition to the date elements): hours, minutes, seconds, and time zone. The mapping will now include seven elements instead of four elements, as was the case with Date class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input follows the ISO 8601 standard</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>time_str <span class="ot">&lt;-</span> <span class="st">"2018-12-31 23:59:59"</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>time_posix_ct1 <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(time_str)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_posix_ct1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+</div>
+<p>Let’s convert now the number 1546318799 to a time object using the <code>as.POSIXct</code> function with the origin argument:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>time_numeric <span class="ot">&lt;-</span> <span class="dv">1546318799</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_numeric)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>time_posix_ct2 <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(time_numeric, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(time_posix_ct1, time_posix_ct2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2018-12-31 23:59:59 CET" "2019-01-01 05:59:59 CET"</code></pre>
+</div>
+</div>
+<p>However, whenever the format of the input object <strong>does not follow a YYYY-m-d H:M:S</strong> structure, you will have to use the <code>format</code> argument to map the object’s elements.</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monday, December 31, 2018 11:59:59 PM.</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>time_US_str <span class="ot">&lt;-</span> <span class="st">"Monday, December 31, 2018 11:59:59 PM"</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>(time_posix_ct3 <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(time_US_str, <span class="at">format =</span> <span class="st">"%A, %B %d, %Y %I:%M:%S %p"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## For the complete list of code that is used to specify date formats</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(strptime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <strong>chron package</strong> can handle both date and time. However, it cannot work with time zones.</p>
-<p>Using the <strong>POSIXct</strong> and <strong>POSIXlt</strong> class objects, we can work with time zones.</p>
-<p>The <strong>lubridate package</strong> has a much more user-friendly functionality to process date and time, with time zone support:</p>
-<ul>
-<li>It can process date variables in heterogeneous formats.</li>
-<li>Note that the default time zone in the mdy, dmy, or ymd function is Coordinated Universal Time (UTC)</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## creating a heterogeneous date object</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>hetero_date <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"second chapter due on 2013, august, 24"</span>, <span class="st">"first chapter submitted on 2013, 08, 18"</span>, <span class="st">"2013 aug 23"</span>) </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(hetero_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>the sequence of year, month, and day should be similar across all values within the same object, otherwise during date extraction there will be a missing value that will be generated, along with a warning message.</li>
-</ul>
+<p>The full <strong>arguments list</strong> can also be found using <code>?strptime</code>.</p>
 </section>
-<section id="text-manipulation" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="text-manipulation"><span class="header-section-number">11.2</span> Text Manipulation</h2>
-<p>Besides default R functionality (<code>paste()</code>, <code>nchar()</code>, <code>substr()</code> …) , there is one contributed package to deal with character data, which is more user friendly and intuitive: <strong>stringr package</strong>.</p>
-<p><strong>Strings</strong> can be arranged into <strong>vectors and matrices</strong> just like numbers. We can also paste strings together using <code>paste(..., sep)</code>. Here sep is an optional input, with default value ” “, that determines which padding character is to be placed between the strings (which are input where … appears).</p>
+<section id="time-zone-setting" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="time-zone-setting"><span class="header-section-number">11.5</span> Time Zone Setting</h2>
+<p>The time zone is the seventh element of the POSIX classes and can be set by either the <code>tz</code> argument of the <code>as.POSIXct</code>/<code>as.POSIXlt</code> functions or by the format argument.</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"Citroen SM"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"Jaguar XK150"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">"Ford Falcon GT-HO"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>(wish.list <span class="ot">&lt;-</span> <span class="fu">paste</span>(x, y, z, <span class="at">sep =</span> <span class="st">", "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.timezone</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Citroen SM, Jaguar XK150, Ford Falcon GT-HO"</code></pre>
+<pre><code>[1] "Europe/Madrid"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>time_str <span class="ot">&lt;-</span> <span class="st">"2024-09-30 11:25:49"</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>time_default_tz <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(time_str)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a date object from different time zone</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>time_assign_tz <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(time_str, <span class="at">tz =</span> <span class="st">"GMT"</span>)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(time_default_tz, time_assign_tz))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2024-09-30 11:25:49 CEST" "2024-09-30 13:25:49 CEST"</code></pre>
 </div>
 </div>
-<p>Special characters can be included in strings using the escape character <code>\</code>:</p>
-<ul>
-<li><code>\"</code> for ”</li>
-<li><code>\n</code> for a newline</li>
-<li><code>\t</code> for a tab</li>
-<li><code>\b</code> for a backspace</li>
-<li><code>\\</code> for <code>\</code></li>
-</ul>
-<p><code>str_c()</code> is very similar to the base <code>paste0()</code>, but is designed to be used with <code>mutate()</code> by obeying the usual tidyverse rules for recycling and propagating missing values:</p>
+<p>A full list of the 592 time zones available in R (both location and abbreviation formats) can be found in the <strong>OlsonNames</strong> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">OlsonNames</span>(), <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Africa/Abidjan"       "Africa/Accra"         "Africa/Addis_Ababa"  
+ [4] "Africa/Algiers"       "Africa/Asmara"        "Africa/Asmera"       
+ [7] "Africa/Bamako"        "Africa/Bangui"        "Africa/Banjul"       
+[10] "Africa/Bissau"        "Africa/Blantyre"      "Africa/Brazzaville"  
+[13] "Africa/Bujumbura"     "Africa/Cairo"         "Africa/Casablanca"   
+[16] "Africa/Ceuta"         "Africa/Conakry"       "Africa/Dakar"        
+[19] "Africa/Dar_es_Salaam" "Africa/Djibouti"     </code></pre>
+</div>
+</div>
+</section>
+<section id="creating-a-date-or-time-index-vector" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="creating-a-date-or-time-index-vector"><span class="header-section-number">11.6</span> Creating a Date or Time Index Vector</h2>
+<p>The base package provides two pairs of functions, <code>seq.Date</code> and <code>seq.POSIXt</code>, to create a <strong>time index vector</strong> with Date or POSIX objects respectively. The main difference between the two functions (besides the class of the output) is the units of the time interval.</p>
+<p>It will make sense to use the <code>seq.Date</code> function to generate a time sequence with <strong>daily frequency or lower</strong> (for example, weekly, monthly, and so on) and <code>as.POSIXt</code> in other instances (for <strong>higher frequencies than daily</strong>, such as hourly, half-hourly, or by minutes).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>daily_index <span class="ot">&lt;-</span> <span class="fu">seq.Date</span>(<span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">"2016-01-01"</span>),</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">to =</span> <span class="fu">as.Date</span>(<span class="st">"2018-12-31"</span>), </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">by =</span> <span class="st">"day"</span>)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(daily_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2016-01-01" "2016-01-02" "2016-01-03" "2016-01-04" "2016-01-05"
+[6] "2016-01-06"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>daily_3_index <span class="ot">&lt;-</span> <span class="fu">seq.Date</span>(<span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">"2016-01-01"</span>),</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">to =</span> <span class="fu">as.Date</span>(<span class="st">"2018-12-31"</span>),</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">by =</span> <span class="st">"3 days"</span>)</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(daily_3_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2016-01-01" "2016-01-04" "2016-01-07" "2016-01-10" "2016-01-13"
+[6] "2016-01-16"</code></pre>
+</div>
+</div>
+<p>For example, let’s create an hourly sequence with a length of 48 hours, using the <code>seq.POSIXt</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>hourly_index <span class="ot">&lt;-</span> <span class="fu">seq.POSIXt</span>(<span class="at">from =</span> <span class="fu">as.POSIXct</span>(<span class="st">"2018-06-01"</span>), </span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">by =</span> <span class="st">"hours"</span>,</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">length.out =</span> <span class="dv">48</span>)</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(hourly_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> POSIXct[1:48], format: "2018-06-01 00:00:00" "2018-06-01 01:00:00" "2018-06-01 02:00:00" ...</code></pre>
+</div>
+</div>
+</section>
+<section id="lubridate-package" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="lubridate-package"><span class="header-section-number">11.7</span> lubridate Package</h2>
+<p>The lubridate package offers alternative tools and applications for reformatting, converting, and handling date and time objects.</p>
+<section id="reformatting-date-and-time-objects" class="level3" data-number="11.7.1">
+<h3 data-number="11.7.1" class="anchored" data-anchor-id="reformatting-date-and-time-objects"><span class="header-section-number">11.7.1</span> Reformatting date and time objects</h3>
+<p>To see how simple it is to reformat date and time objects with the <strong>lubridate package</strong>,let’s go back to the complex time object (Monday, December 31, 2018 11:59:59 PM) we converted earlier to a POSIXct class:</p>
 <p><em>Example:</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Flora"</span>, <span class="st">"David"</span>, <span class="st">"Terra"</span>, <span class="cn">NA</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">greeting =</span> <span class="fu">str_c</span>(<span class="st">"Hi "</span>, name, <span class="st">"!"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>time_US_str <span class="ot">&lt;-</span> <span class="st">"Monday, December 31, 2018 11:59:59 PM"</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_US_str)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  name  greeting 
-  &lt;chr&gt; &lt;chr&gt;    
-1 Flora Hi Flora!
-2 David Hi David!
-3 Terra Hi Terra!
-4 &lt;NA&gt;  &lt;NA&gt;     </code></pre>
+<pre><code>[1] "character"</code></pre>
 </div>
 </div>
-<p><strong>Text data</strong> can be used to retrieve information in sentiment analysis and even entity recognition.</p>
-<section id="sources-of-text-data" class="level3" data-number="11.2.1">
-<h3 data-number="11.2.1" class="anchored" data-anchor-id="sources-of-text-data"><span class="header-section-number">11.2.1</span> Sources of text data</h3>
-<p>Text data can be found on tweets from any individual, or from any company, Facebook status updates, RSS feeds from any news site, Blog articles, Journal articles, Newspapers, Verbatim transcripts of an in-depth interview.</p>
-<p>For example, t extract <strong>Twitter data</strong>, we can use <code>tweetR()</code> and, to extract data from <strong>Facebook</strong>, we could use <code>facebookR()</code>.</p>
+<p>Now let’s use the <code>ymd_hms</code> (which stands for a year, month, day, hour, minute, and second) family of conversion functions from the <strong>lubridate package</strong> to convert the object to a POSIXct object:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>time_lubridate <span class="ot">&lt;-</span> <span class="fu">mdy_hms</span>(time_US_str, <span class="at">tz =</span> <span class="st">"EST"</span>)</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(time_lubridate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "POSIXct" "POSIXt" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>time_lubridate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2018-12-31 23:59:59 EST"</code></pre>
+</div>
+</div>
+<p>This is much simpler than the <code>as.POSIXct</code> conversion. The <code>ymd_hms</code> function is able to automatically map the different time components of the input object, even when some components are redundant (such as the full weekday name in the example previously).</p>
+<p>The conversion with <code>ymd</code> functions of the previous <strong>date_df</strong> example (<a href="https://github.com/PacktPublishing/Hands-On-Time-Series-Analysis-with-R/raw/refs/heads/master/Chapter02/dates_formats.csv" class="uri">https://github.com/PacktPublishing/Hands-On-Time-Series-Analysis-with-R/raw/refs/heads/master/Chapter02/dates_formats.csv</a>) is as follows:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>Japanese_format_new <span class="ot">&lt;-</span> <span class="fu">ymd</span>(dates_df<span class="sc">$</span>Japanese_format)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>US_format_new <span class="ot">&lt;-</span> <span class="fu">mdy</span>(dates_df<span class="sc">$</span>US_format)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>US_long_format_new <span class="ot">&lt;-</span> <span class="fu">mdy</span>(dates_df<span class="sc">$</span>US_long_format)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>CA_mix_format_new <span class="ot">&lt;-</span> <span class="fu">mdy</span>(dates_df<span class="sc">$</span>CA_mix_format)</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>SA_mix_format_new <span class="ot">&lt;-</span> <span class="fu">dmy</span>(dates_df<span class="sc">$</span>SA_mix_format)</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>NZ_format_new <span class="ot">&lt;-</span> <span class="fu">dmy</span>(dates_df<span class="sc">$</span>NZ_format)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>ymd</code> function easily handles the different types of date formats; however, it is not designed to convert <strong>numeric values</strong> of date objects. This type of conversion can be done with the <code>as_date</code> function for date objects (or <code>as_datetime</code> for time objects), which works in the same manner as <code>as.Date</code> (or the <code>as.POSIXct</code>/<code>as.POSIXlt</code> functions) works with date numeric values:</p>
+<p><em>Example:</em></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>dates_df<span class="sc">$</span>Excel_Numeric_Format_new <span class="ot">&lt;-</span> <span class="fu">as_date</span>(dates_df<span class="sc">$</span>Excel_Numeric_Format,</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">origin =</span> <span class="fu">ymd</span>(<span class="st">"1899-12-30"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that you will get the same results with the <code>ymd</code> and the <code>as_date</code> functions as the results with <code>as.Date</code>.</p>
+<p>However, those functions (both <code>ymd</code> and <code>ymd_hms</code>) are not able to handle rare or extreme cases where one of the separators is a double string (such as a double apostrophe, ““) or some of the formats are not written well in a specific format of year, month, and day, such as 201811-01, 201811-1, or 111-2018 (as opposed to 2018-11-01 or 01-11-2018).</p>
 </section>
-<section id="getting-text-data" class="level3" data-number="11.2.2">
-<h3 data-number="11.2.2" class="anchored" data-anchor-id="getting-text-data"><span class="header-section-number">11.2.2</span> Getting text data</h3>
-<p>The easiest way to get text data is to import from a .csv file where some of the variables contain character data. We have to protect automatic factor conversion by specifying the <code>stringsAsFactors = FALSE argument</code></p>
-<p><em>Example 1:</em> The tweets.txt file is the plain text file. We will import this file using the generic <code>readLines()</code> function. It is a vector of characters (not a data.frame).</p>
-<p><em>Example 2:</em> Html (this is also a character string):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>conURL <span class="ot">&lt;-</span> <span class="st">"http://en.wikipedia.org/wiki/R_%28programming_language%29"</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish the connection with the URL </span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>link2URL <span class="ot">&lt;-</span> <span class="fu">url</span>(conURL) </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading html code</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>htmlCode <span class="ot">&lt;-</span> <span class="fu">readLines</span>(link2URL)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Closing the connection</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(link2URL)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing the result </span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>htmlCode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <strong>tm</strong> text mining library has some other functions to import text data from various files such as PDF files, plain text files, and even from doc files.</p>
+<section id="extraction-functionality" class="level3" data-number="11.7.2">
+<h3 data-number="11.7.2" class="anchored" data-anchor-id="extraction-functionality"><span class="header-section-number">11.7.2</span> Extraction functionality</h3>
+<ul>
+<li><p>This extracts the day of the year:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">yday</span>(time_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>This extracts the day of the quarter:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qday</span>(time_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>This extracts the day of the month:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">day</span>(time_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>This extracts the day of the week:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(time_obj, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="modification-functionality" class="level3" data-number="11.7.3">
+<h3 data-number="11.7.3" class="anchored" data-anchor-id="modification-functionality"><span class="header-section-number">11.7.3</span> Modification functionality</h3>
+<ul>
+<li><p>This modifies the hour of the time object:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(time_obj) <span class="ot">&lt;-</span> <span class="dv">11</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>This rounds the time object by the minute, hour, and day:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Origin: 2018-12-31 23:59:59 CET</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round_date</span>(<span class="fu">as.POSIXct</span>(<span class="st">"2018-12-31 23:59:59 CET"</span>), <span class="at">unit =</span> <span class="st">"minute"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-01-01 CET"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor_date</span>(<span class="fu">as.POSIXct</span>(<span class="st">"2018-12-31 23:59:59 CET"</span>), <span class="at">unit =</span> <span class="st">"hour"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2018-12-31 23:00:00 CET"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling_date</span>(<span class="fu">as.POSIXct</span>(<span class="st">"2018-12-31 23:59:59 CET"</span>), <span class="at">unit =</span> <span class="st">"day"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2019-01-01 CET"</code></pre>
+</div>
+</div></li>
+</ul>
+<p>Those sets of functions are very useful when extracting mainly time objects from a different type of format.</p>
 
 
 </section>
@@ -798,8 +1111,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./manipu_databases.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./manipu_text.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Manipulation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,100 +1,309 @@
-# Date and Text Manipulation
+# Date Manipulation
 
-## Date Manipulation
+The base package, one of R's core packages, provides two types of date and time classes:
 
-In R, **dates** are stored as the number of days elapsed since **January 1, 1970**. The built-in R function `as.Date()` can handle only dates but not time. So if we convert any date object to its internal number, it will show the number of days.
+1.  **Date**: This is a simple representation of a calendar date following the ISO 8601 international standard format (or the Gregorian calendar format) using the **YYYY-m-d** date format. Each date object has a numeric value of the number of days since the origin point (the default setting is 1970-01-01). It will make sense to use this format **when the frequency of the data is daily or lower** (for example, monthly, quarterly, and so on) and the time of the day doesn't matter.
 
-We can reformat the number into a date using the date class.
+2.  **POSIXct/POSIXlt**: Also known as the DateTime classes as they represent both date and time, these are two POSIX date/time classes that represent the calendar date, the time of the day, and the time zone using the ISO 8601 international standard format of **YYYY-m-d H:M:S**. The main difference between the two is the form in which the values are stored internally. The **POSIXct class**, similar to the Date class, represents the (signed) number of seconds since the origin point (1970-01-01, UTC time zone) as a numeric vector. On the other hand, the **POSIXlt class** stores each one of the date and time elements as a list.
 
-```{r 8}
-as.numeric(as.Date("1970-01-01")) ## We can also create a date object with other formats
-as.numeric(as.Date("Jan-01-1970", format = "%b-%d-%Y"))
+    It makes sense to use a time object (either POSIXct or POSIXlt objects) only if the series **frequency is higher than daily** (such as hourly, half-hourly, by minute, or by second). Otherwise, for simplicity reasons, it is recommended that you use the date object. Let's review the differences between date and time objects.
+
+## Date and Time Classes
+
+You can use the `Sys.Date` and `Sys.time` functions to pull date and time objects respectively:
+
+```{r}
+(date <- Sys.Date())
+class(date)
+(time_ct <- Sys.time())
+class(time_ct)
 ```
 
-``` r
-## For the complete list of code that is used to specify date formats
-help(strptime)
+By default, the `Sys.time` function returns an object of the POSIXct, POSIXt, or POSIXct class. We can use the `as.POSIXlt` function to convert the object to a POSIXlt object:
+
+```{r}
+(time_lt <- as.POSIXlt(time_ct))
+class(time_lt)
 ```
 
-The **chron package** can handle both date and time. However, it cannot work with time zones.
+While both the **POSIXct** and **POSIXlt** objects have the same representation, the key difference between the two is in the method in which each object is stored internally in the time details. The **POSIXct** object stored the numeric distance of the time object from the origin point. On the other hand, **POSIXlt** returned a detailed list with the different time components:
 
-Using the **POSIXct** and **POSIXlt** class objects, we can work with time zones.
+```{r}
+unclass(time_ct)
+unclass(time_lt)
+# You can pull the day of the year
+unclass(time_lt)$yday
+```
 
-The **lubridate package** has a much more user-friendly functionality to process date and time, with time zone support:
+## Creating Date and Time Objects
 
--   It can process date variables in heterogeneous formats.
--   Note that the default time zone in the mdy, dmy, or ymd function is Coordinated Universal Time (UTC)
+Creating a **new object or converting** the existing object to Date, POSIXlt, or POSIXct can be done with `as.Date`, `as.POSIXlt`, or `as.POSIXct` respectively.
+
+The built-in R function `as.Date()` can handle only dates but not time. For instance, we can convert the "2014-5-12" string into a Date object using the `as.Date` function:
+
+*Example:*
+
+```{r}
+class("2014-5-12")
+class(as.Date("1970-01-01"))
+
+# You can convert the Date object into a number
+class(as.numeric(as.Date("1970-01-01")))
+```
+
+Note that if the format of the input object is **different from the ISO 8601 standard**, using the `as.Date` function without declaring the object format structure would return incorrect results (and, in some instances, an error). For example, let's try to convert the 31-01-2018 date to Date format without reformatting it:
+
+*Example:*
+
+```{r}
+as.Date("31-01-2018")
+```
+
+One way to solve this issue is by adding the `format` argument in the `as.Date` function in order to map the different components of the input object to the structure of the Date object. The mapping should be according to the date components order of the input object:
+
+```{r}
+as.Date("31-01-2018", format = "%d-%m-%Y")
+```
+
+You can find a summary of the **main arguments** for date objects using `?strptime`.
+
+The `as.POSIXct` or `as.POSIXlt` function works in a similar way:
+
+```{r}
+(time_ct <- as.POSIXct("2014-5-12 20:05:35", tz = "EST"))
+class(time_ct)
+```
+
+## Reformatting and Converting Date Objects
+
+Reformatting or converting date objects is the process of transforming a **non-date** (or POSIXct/lt) object such as character or numeric **to a Date** format (or POSIXct/lt).
+
+*Example:*
+
+```{r}
+url <- "https://github.com/PacktPublishing/Hands-On-Time-Series-Analysis-with-R/raw/refs/heads/master/Chapter02/dates_formats.csv"
+dates_df <- read.csv(url, stringsAsFactors = FALSE)
+str(dates_df)
+```
+
+The first six columns are character objects and the seventh object is numeric. Let's convert each one of the columns to a date object by identifying the date structure and reformat it accordingly.
+
+```{r}
+# Convert 1st column to Date format (ISO 8601 format)
+dates_df$Japanese_format_new <- as.Date(dates_df$Japanese_format)
+class(dates_df$Japanese_format)
+class(dates_df$Japanese_format_new)
+```
+
+```{r}
+# Convert the 2nd column (no ISO 8601 format)
+dates_df$US_format_new <- as.Date(dates_df$US_format, format = "%m/%d/%Y")
+```
+
+The same logic applies to the remaining columns:
 
 ``` r
-## creating a heterogeneous date object
+# Convert the 3rd column
+dates_df$US_long_format_new <- as.Date(dates_df$US_long_format, format = "%A, %B %d, %Y")
+# Convert the 4th column
+dates_df$CA_mix_format_new <- as.Date(dates_df$CA_mix_format, format = "%B %d, %Y")
+# Convert the 5th column
+dates_df$SA_mix_format_new <- as.Date(dates_df$SA_mix_format, format = "%d %B %Y")
+# Convert the 6th column
+dates_df$NZ_format_new <- as.Date(dates_df$NZ_format, format = "%d/%m/%Y")
+```
+
+**In Excel**, the numeric value of the origin point (that is January 1st, 1900) set to 1, as opposed to other programming languages such as R which define the origin point as 0. Therefore, when importing a date or time objects from Excel, in order to align to R origin point definition, the origin point should be set as December 31st, 1899 (which equivalent to 0 numeric value). Therefore, since Excel is using a different origin point than R (December 30, 1899 versus January 1, 1970), we will have to add the origin argument and specify the original date that is used to generate the data:
+
+*Example:*
+
+```{r}
+head(dates_df$Excel_Numeric_Format)
+dates_df$Excel_Numeric_Format_new <- as.Date(dates_df$Excel_Numeric_Format, origin = as.Date("1899-12-30"))
+head(dates_df$Excel_Numeric_Format_new)
+```
+
+## Reformatting and Converting Time Objects
+
+Similar to the `as.Date` function, the `as.POSIXct` or `as.POSIXlt` functions are the base package applications for reformatting and conversion of any time input to a POSIXct or POSIXlt objects, respectively.
+
+The **POSIX classes** are an extension of the Date class, with the addition of four elements (in addition to the date elements): hours, minutes, seconds, and time zone. The mapping will now include seven elements instead of four elements, as was the case with Date class.
+
+```{r}
+# Input follows the ISO 8601 standard
+time_str <- "2018-12-31 23:59:59"
+class(time_str)
+time_posix_ct1 <- as.POSIXct(time_str)
+class(time_posix_ct1)
+```
+
+Let's convert now the number 1546318799 to a time object using the `as.POSIXct` function with the origin argument:
+
+*Example:*
+
+```{r}
+time_numeric <- 1546318799
+class(time_numeric)
+time_posix_ct2 <- as.POSIXct(time_numeric, origin = "1970-01-01")
+print(c(time_posix_ct1, time_posix_ct2))
+```
+
+However, whenever the format of the input object **does not follow a YYYY-m-d H:M:S** structure, you will have to use the `format` argument to map the object's elements.
+
+*Example:*
+
+```{r}
+# Monday, December 31, 2018 11:59:59 PM.
+time_US_str <- "Monday, December 31, 2018 11:59:59 PM"
+(time_posix_ct3 <- as.POSIXct(time_US_str, format = "%A, %B %d, %Y %I:%M:%S %p"))
+```
+
+The full **arguments list** can also be found using `?strptime`.
+
+## Time Zone Setting
+
+The time zone is the seventh element of the POSIX classes and can be set by either the `tz` argument of the `as.POSIXct`/`as.POSIXlt` functions or by the format argument.
+
+*Example:*
+
+```{r}
+Sys.timezone()
+time_str <- "2024-09-30 11:25:49"
+time_default_tz <- as.POSIXct(time_str)
+
+# Load a date object from different time zone
+time_assign_tz <- as.POSIXct(time_str, tz = "GMT")
+
+print(c(time_default_tz, time_assign_tz))
+```
+
+A full list of the 592 time zones available in R (both location and abbreviation formats) can be found in the **OlsonNames** function:
+
+```{r}
+head(OlsonNames(), 20)
+```
+
+## Creating a Date or Time Index Vector
+
+The base package provides two pairs of functions, `seq.Date` and `seq.POSIXt`, to create a **time index vector** with Date or POSIX objects respectively. The main difference between the two functions (besides the class of the output) is the units of the time interval. 
+
+It will make sense to use the `seq.Date` function to generate a time sequence with **daily frequency or lower** (for example, weekly, monthly, and so on) and `as.POSIXt` in other instances (for **higher frequencies than daily**, such as hourly, half-hourly, or by minutes).
+
+```{r}
+daily_index <- seq.Date(from = as.Date("2016-01-01"),
+                        to = as.Date("2018-12-31"), 
+                        by = "day")
+head(daily_index)
+daily_3_index <- seq.Date(from = as.Date("2016-01-01"),
+                          to = as.Date("2018-12-31"),
+                          by = "3 days")
+head(daily_3_index)
+```
+
+For example, let's create an hourly sequence with a length of 48
+hours, using the `seq.POSIXt` function:
+
+```{r}
+hourly_index <- seq.POSIXt(from = as.POSIXct("2018-06-01"), 
+                           by = "hours",
+                           length.out = 48)
+str(hourly_index)
+```
+
+## lubridate Package
+
+The lubridate package offers alternative tools and applications for reformatting, converting, and handling date and time objects.
+
+### Reformatting date and time objects
+
+To see how simple it is to reformat date and time objects with the **lubridate package**,let's go back to the complex time object (Monday, December 31, 2018 11:59:59 PM) we converted earlier to a POSIXct class:
+
+*Example:*
+
+```{r}
+time_US_str <- "Monday, December 31, 2018 11:59:59 PM"
+class(time_US_str)
+```
+
+Now let's use the `ymd_hms` (which stands for a year, month, day, hour, minute, and second) family of conversion functions from the **lubridate package** to convert the object to a POSIXct object:
+
+*Example:*
+
+``` {r message=FALSE}
 library(lubridate)
-hetero_date <- c("second chapter due on 2013, august, 24", "first chapter submitted on 2013, 08, 18", "2013 aug 23") 
-ymd(hetero_date)
+time_lubridate <- mdy_hms(time_US_str, tz = "EST")
+class(time_lubridate)
+time_lubridate
 ```
 
--   the sequence of year, month, and day should be similar across all values within the same object, otherwise during date extraction there will be a missing value that will be generated, along with a warning message.
+This is much simpler than the `as.POSIXct` conversion. The `ymd_hms` function is able to automatically map the different time components of the input object, even when some components are redundant (such as the full weekday name in the example previously).
 
-## Text Manipulation
-
-Besides default R functionality (`paste()`, `nchar()`, `substr()` ...) , there is one contributed package to deal with character data, which is more user friendly and intuitive: **stringr package**.
-
-**Strings** can be arranged into **vectors and matrices** just like numbers. We can also paste strings together using `paste(..., sep)`. Here sep is an optional input, with default value " ", that determines which padding character is to be placed between the strings (which are input where ... appears).
+The conversion with `ymd` functions of the previous **date_df** example (<https://github.com/PacktPublishing/Hands-On-Time-Series-Analysis-with-R/raw/refs/heads/master/Chapter02/dates_formats.csv>) is as follows:
 
 *Example:*
 
-```{r}
-x <- "Citroen SM"
-y <- "Jaguar XK150"
-z <- "Ford Falcon GT-HO"
-(wish.list <- paste(x, y, z, sep = ", "))
+``` R
+dates_df$Japanese_format_new <- ymd(dates_df$Japanese_format)
+dates_df$US_format_new <- mdy(dates_df$US_format)
+dates_df$US_long_format_new <- mdy(dates_df$US_long_format)
+dates_df$CA_mix_format_new <- mdy(dates_df$CA_mix_format)
+dates_df$SA_mix_format_new <- dmy(dates_df$SA_mix_format)
+dates_df$NZ_format_new <- dmy(dates_df$NZ_format)
 ```
 
-Special characters can be included in strings using the escape character `\`:
-
--   `\"` for "
--   `\n` for a newline
--   `\t` for a tab
--   `\b` for a backspace
--   `\\` for `\`
-
-`str_c()` is very similar to the base `paste0()`, but is designed to be used with `mutate()` by obeying the usual tidyverse rules for recycling and propagating missing values:
+The `ymd` function easily handles the different types of date formats; however, it is not designed to convert **numeric values** of date objects. This type of conversion can be done
+with the `as_date` function for date objects (or `as_datetime` for time objects), which works in the same manner as `as.Date` (or the `as.POSIXct`/`as.POSIXlt` functions) works with date numeric values:
 
 *Example:*
-``` {r echo=FALSE, message=FALSE, warning=FALSE}
-library(tidyverse)
+
+```R
+dates_df$Excel_Numeric_Format_new <- as_date(dates_df$Excel_Numeric_Format,
+        origin = ymd("1899-12-30"))
 ```
+Note that you will get the same results with the `ymd` and the `as_date` functions as the results with `as.Date`.
 
-```{r}
-df <- tibble(name = c("Flora", "David", "Terra", NA))
-df |> mutate(greeting = str_c("Hi ", name, "!"))
-```
+However, those functions (both `ymd` and `ymd_hms`) are not able to handle rare or extreme cases where one of the separators is a double string (such as a double apostrophe, "") or some of the formats are not written well in a specific format of year, month, and day, such as 201811-01, 201811-1, or 111-2018 (as opposed to 2018-11-01 or 01-11-2018).
 
-**Text data** can be used to retrieve information in sentiment analysis and even entity recognition.
+### Extraction functionality
 
-### Sources of text data
+-   This extracts the day of the year:
 
-Text data can be found on tweets from any individual, or from any company, Facebook status updates, RSS feeds from any news site, Blog articles, Journal articles, Newspapers, Verbatim transcripts of an in-depth interview.
+    ``` R
+    yday(time_obj)
+    ```
+-   This extracts the day of the quarter:
 
-For example, t extract **Twitter data**, we can use `tweetR()` and, to extract data from **Facebook**, we could use `facebookR()`.
+    ``` R
+    qday(time_obj)
+    ```
+-   This extracts the day of the month:
 
-### Getting text data
+    ``` R
+    day(time_obj)
+    ```
+-   This extracts the day of the week:
 
-The easiest way to get text data is to import from a .csv file where some of the variables contain character data. We have to protect automatic factor conversion by specifying the `stringsAsFactors = FALSE argument`
+    ``` R
+    wday(time_obj, label = TRUE)
+    ```
 
-*Example 1:* The tweets.txt file is the plain text file. We will import this file using the generic `readLines()` function. It is a vector of characters (not a data.frame).
+### Modification functionality
 
-*Example 2:* Html (this is also a character string):
+-   This modifies the hour of the time object:
 
-``` r
-conURL <- "http://en.wikipedia.org/wiki/R_%28programming_language%29"
-# Establish the connection with the URL 
-link2URL <- url(conURL) 
-# Reading html code
-htmlCode <- readLines(link2URL)
-# Closing the connection
-close(link2URL)
-# Printing the result 
-htmlCode
-```
+    ``` R
+    hour(time_obj) <- 11
+    ```
+-   This rounds the time object by the minute, hour, and day:
 
-The **tm** text mining library has some other functions to import text data from various files such as PDF files, plain text files, and even from doc files.
+    ``` {r}
+    # Origin: 2018-12-31 23:59:59 CET
+    
+    round_date(as.POSIXct("2018-12-31 23:59:59 CET"), unit = "minute")
+    
+    floor_date(as.POSIXct("2018-12-31 23:59:59 CET"), unit = "hour")
+    
+    ceiling_date(as.POSIXct("2018-12-31 23:59:59 CET"), unit = "day")
+    ```
+    
+Those sets of functions are very useful when extracting mainly time objects from a different type of format.

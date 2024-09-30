@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 31&nbsp; Time Series Analysis Workflow</title>
+<title>R for Research in Action - 12&nbsp; Text Manipulation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./time_objects.html" rel="next">
-<link href="./model_random.html" rel="prev">
+<link href="./manipu_databases.html" rel="next">
+<link href="./manipu_date.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./time_flow.html">Part 6: Time Series</a></li><li class="breadcrumb-item"><a href="./time_flow.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./manipu_reading.html">Part 1: Manipulating Data</a></li><li class="breadcrumb-item"><a href="./manipu_text.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Manipulation</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -187,12 +221,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manipu_date.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./manipu_text.html" class="sidebar-item-text sidebar-link">
+  <a href="./manipu_text.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Manipulation</span></span></a>
   </div>
 </li>
@@ -361,14 +395,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_flow.html" class="sidebar-item-text sidebar-link active">
+  <a href="./time_flow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./time_objects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Time Series Objects</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,13 +413,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./product_repro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -408,14 +436,21 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sources-of-text-data" id="toc-sources-of-text-data" class="nav-link active" data-scroll-target="#sources-of-text-data"><span class="header-section-number">12.1</span> Sources of Text Data</a></li>
+  <li><a href="#getting-text-data" id="toc-getting-text-data" class="nav-link" data-scroll-target="#getting-text-data"><span class="header-section-number">12.2</span> Getting Text Data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Manipulation</span></h1>
 </div>
 
 
@@ -430,15 +465,65 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Time series analysis is the process of <strong>extracting meaningful insights from time series data</strong> with the use of data visualization tools, statistical applications, and mathematical models. Those insights can be used to learn and explore past events and to forecast future events. The analysis process can be divided into the following steps:</p>
-<ol type="1">
-<li><p><strong>Data collection</strong>: This step includes extracting data from different data sources, such as flat files (such as CSV, TXT, and XLMS), databases (for example, SQL Server, and Teradata), or other internet sources (such as academic resources and the Bureau of Statistics datasets).</p></li>
-<li><p><strong>Data preparation</strong>: In most cases, raw data is unstructured and may require cleaning, transformation, aggregation, and reformatting.</p></li>
-<li><p><strong>Descriptive analysis</strong>: This is used in summary statistics and data visualization tools to extract insights from the data, such as patterns, distributions, cycles, and relationships with other drivers to learn more about past events.</p></li>
-<li><p><strong>Predictive analysis</strong>: We use this to apply statistical methods in order to forecast future events, including forecasting strategies, forecasting with linear regression, forecasting with exponential smoothing models, forecasting with ARIMA models, and forecasting with machine learning models.</p></li>
-</ol>
+<p>Besides default R functionality (<code>paste()</code>, <code>nchar()</code>, <code>substr()</code> …) , there is one contributed package to deal with character data, which is more user friendly and intuitive: <strong>stringr package</strong>.</p>
+<p><strong>Strings</strong> can be arranged into <strong>vectors and matrices</strong> just like numbers. We can also paste strings together using <code>paste(..., sep)</code>. Here sep is an optional input, with default value ” “, that determines which padding character is to be placed between the strings (which are input where … appears).</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"Citroen SM"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="st">"Jaguar XK150"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="st">"Ford Falcon GT-HO"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>(wish.list <span class="ot">&lt;-</span> <span class="fu">paste</span>(x, y, z, <span class="at">sep =</span> <span class="st">", "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Citroen SM, Jaguar XK150, Ford Falcon GT-HO"</code></pre>
+</div>
+</div>
+<p>Special characters can be included in strings using the escape character <code>\</code>:</p>
+<ul>
+<li><code>\"</code> for ”</li>
+<li><code>\n</code> for a newline</li>
+<li><code>\t</code> for a tab</li>
+<li><code>\b</code> for a backspace</li>
+<li><code>\\</code> for <code>\</code></li>
+</ul>
+<p><code>str_c()</code> is very similar to the base <code>paste0()</code>, but is designed to be used with <code>mutate()</code> by obeying the usual tidyverse rules for recycling and propagating missing values:</p>
+<p><em>Example:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Flora"</span>, <span class="st">"David"</span>, <span class="st">"Terra"</span>, <span class="cn">NA</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">greeting =</span> <span class="fu">str_c</span>(<span class="st">"Hi "</span>, name, <span class="st">"!"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  name  greeting 
+  &lt;chr&gt; &lt;chr&gt;    
+1 Flora Hi Flora!
+2 David Hi David!
+3 Terra Hi Terra!
+4 &lt;NA&gt;  &lt;NA&gt;     </code></pre>
+</div>
+</div>
+<p><strong>Text data</strong> can be used to retrieve information in sentiment analysis and even entity recognition.</p>
+<section id="sources-of-text-data" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="sources-of-text-data"><span class="header-section-number">12.1</span> Sources of Text Data</h2>
+<p>Text data can be found on tweets from any individual, or from any company, Facebook status updates, RSS feeds from any news site, Blog articles, Journal articles, Newspapers, Verbatim transcripts of an in-depth interview.</p>
+<p>For example, t extract <strong>Twitter data</strong>, we can use <code>tweetR()</code> and, to extract data from <strong>Facebook</strong>, we could use <code>facebookR()</code>.</p>
+</section>
+<section id="getting-text-data" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="getting-text-data"><span class="header-section-number">12.2</span> Getting Text Data</h2>
+<p>The easiest way to get text data is to import from a .csv file where some of the variables contain character data. We have to protect automatic factor conversion by specifying the <code>stringsAsFactors = FALSE argument</code></p>
+<p><em>Example 1:</em> The tweets.txt file is the plain text file. We will import this file using the generic <code>readLines()</code> function. It is a vector of characters (not a data.frame).</p>
+<p><em>Example 2:</em> Html (this is also a character string):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>conURL <span class="ot">&lt;-</span> <span class="st">"http://en.wikipedia.org/wiki/R_%28programming_language%29"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish the connection with the URL </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>link2URL <span class="ot">&lt;-</span> <span class="fu">url</span>(conURL) </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading html code</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>htmlCode <span class="ot">&lt;-</span> <span class="fu">readLines</span>(link2URL)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Closing the connection</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(link2URL)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing the result </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>htmlCode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <strong>tm</strong> text mining library has some other functions to import text data from various files such as PDF files, plain text files, and even from doc files.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -676,13 +761,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./model_random.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Random Numbers</span></span>
+      <a href="./manipu_date.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./time_objects.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Time Series Objects</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./manipu_databases.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
