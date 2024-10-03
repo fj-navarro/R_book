@@ -1,0 +1,29 @@
+# Correlation Analysis
+
+Due to the continuous and chronologically ordered nature of time series data, there is a likelihood that there will be some degree of **correlation between the series observations**. For instance, the temperature in the next hour is not a random event since, in most cases, it has a strong relationship with the current temperature or the temperatures that have occurred during the past 24 hours. In many cases, the series of past observations contains predictive information about future events, which can be utilized to forecast the series' future observations.
+
+## Correlation Between Two Variables
+
+One of the main goals of correlation analysis is to **identify and quantify** the relationship between two variables. This relationship could vary from having a full dependency or linear relationship between the two, to complete independence.
+
+One of the most popular methods for measuring the level of correlation between two variables is the **Pearson correlation coefficient**. Although this method is not necessarily the most appropriate one for time series data, it is a simple and intuitive representative of the statistical logic beyond most of the methods for measuring correlation. This method, also known as the population correlation coefficient, is a ratio between the covariance of two variables and the multiplication of their standard deviation:
+
+\begin{align*}
+\rho_{x,y}=\frac {COV(X,Y)}{\sigma_x \sigma_y} {, where -1\leq\rho_{x,y}\leq 1}
+\end{align*}
+
+The values of the correlation coefficient segment the level of correlation into three main groups:
+
+-   **Positively correlated**: This is where the value of the coefficient is greater than 0. This indicates some degree of a positive linear relationship between the variables, depending on the value of the coefficient. As the value of $\rho_{x,y}$ (correlation coefficient) grows closer to 1, the linear relationship between the two variables grows stronger; 1 indicates a perfect linear dependency.
+
+-   **Negatively correlated**: This is where the value of the coefficient is lower than 0. This is the reflection of the positive correlation, and it is an indication for an inverse linear relationship. In this case, as the value of $\rho_{x,y}$ is closer to -1, the negative linear relationship of the two variables (for example, when one variable goes up the other goes down); -1 represents a perfect inverse linear dependency between the two variables.
+
+-   **Not correlated**: This is where the value of the coefficient is equal to 0, which indicates that the two variables are independent.
+
+Typically, we would consider the correlation between two variables to be strong if the value of the correlation coefficient is **higher than 0.75 or lower than -0.75** (but this, of course, could change according to the field of research).
+
+**Measuring and analyzing the correlation** between two variables, in the context of time series analysis, can be categorized in the following two categories:
+
+-   **Analyzing the correlation between a series and its lags**, as some of the past lags may contain predictive information, which can be utilized to forecast future events of the series. One of the most popular methods for measuring the level of correlation between a series and its lags is the [autocorrelation function]{.underline}.
+
+-   **Analyzing the correlation between two series** in order to identify exogenous factors or predictors, which can explain the variation of the series over time (for example, the effect of weather patterns such as rainfall or temperature on taxi rides in New York City). In this case, the measurement of correlation is typically done with the [cross-correlation function]{.underline}.
