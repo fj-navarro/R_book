@@ -30,9 +30,9 @@ These are resources that provide a wide range of learning options, from interact
 
 -   **R for Data Science (R4DS) by Hadley Wickham**. A highly recommended free book that covers the essentials of R, data manipulation, and visualization with the **tidyverse** packages. [Website](https://r4ds.had.co.nz/)
 
--   **Advanced R by Hadley Wickham**. Great for those looking to deepen their understanding of R programming. [Website](https://adv-r.hadley.nz/) 
+-   **Advanced R by Hadley Wickham**. Great for those looking to deepen their understanding of R programming. [Website](https://adv-r.hadley.nz/)
 
--   **Hands on Programming with R by Garrett Grolemund**. An  introduction to R as a programming language and is a great place to start if R is your first programming language. [Website](https://rstudio-education.github.io/hopr/)
+-   **Hands on Programming with R by Garrett Grolemund**. An introduction to R as a programming language and is a great place to start if R is your first programming language. [Website](https://rstudio-education.github.io/hopr/)
 
 -   **Tidy Modeling with R by Max Kuhn and Julia Silge**. This book is a guide to using a collection of software in the R programming language for model building called tidymodels. [Website](https://www.tmwr.org/)
 

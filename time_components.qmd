@@ -1,0 +1,284 @@
+# TS Components
+
+As with other fields of statistics and, in particular, the field of machine learning, one of the primary goals of time series analysis is to **identify patterns in data**. Those patterns can then be utilized to provide meaningful insights about both past and future events such as seasonal, outliers, or unique events.
+
+**Patterns** in time series analysis can be categorized into one of the following:
+
+-   **Structural patterns**: These are also known as series components, which represent the core structure of the series. There are three types:
+
+    -   Structural patterns—trend.
+    -   Cycle.
+    -   Seasonal.
+
+    You can think about those patterns as binary events, which may or may not exist in the data. This helps to classify the series characteristics and identify the best approach to analyze the series.
+
+-   **Non-structural**: This is also known as the irregular component, and refers to any other types of patterns in the data that are not related to the structural patterns.
+
+We can use these two groups of patterns (structural and non-structural) to express time series data using the following equation, when the series has an **additive structure**:
+
+\begin{align*}
+Y_{t}=T_{t}+S_{t}+C_{t}+I_{t}
+\end{align*}
+
+And when the series has a **multiplicative structure**:
+
+\begin{align*}
+Y_{t}=T_{t} \times S_{t} \times C_{t} \times I_{t}
+\end{align*}
+
+Where $Y_{t}$ represents the series observation at time $t$ and $T_{t}$, $S_{t}$, $C_{t}$, and $I_{t}$ represent the value of the trend, seasonal, cycle, and irregular components of the series at time $t$, respectively.
+
+## The Cycle Component
+
+A cycle can be described as a sequence of repeatable events over time, where the starting point of a cycle is at a local minimum of the series and the ending point is at the next one, and the ending point of one cycle is the starting point of the following cycle. Unlike the seasonal pattern, cycles do not necessarily occur at equally spaced time intervals, and their length could change from cycle to cycle.
+
+*Example:*
+
+```{r}
+library(TSstudio)
+data(USUnRate)
+ts_info(USUnRate)
+unemployment <- window(USUnRate, start = c(1990,1))
+ts_plot(unemployment,
+    title = "US Monthly Unemployment Rate",
+    Ytitle = "Unemployment Rate (%)",
+    Xtitle = "Year",
+    Xgrid = TRUE,
+    Ygrid = TRUE)
+```
+
+Looking at the preceding series plot, you can observe that the series has had **three cycles since 1990** of different length:
+
+-   The **first cycle** occurred between 1990 and 2000, which was close to an 11-year cycle.
+
+-   The **second cycle** started in 2000 and ended in 2007, which was a 7-year cycle.
+
+-   A **third cycle**, which began in 2007 and as of May 2019 has not been completed yet, which means that this has continued for more than 12 years.
+
+## The Trend Component
+
+A trend, if it exists in time series data, represents the **general direction of the series**, either up or down, over time. Furthermore, a trend could have either linear or exponential growth (or close to either one), depending on the series characteristics. To demonstrate this let's start creating a **non-trend series** as our baseline data.
+
+*Example:*
+
+```{r echo=FALSE, message=FALSE}
+# Use the runif function to generate a monthly series with 200 uniform observations 
+# distributed between 5 and 5.2
+set.seed(1234)
+ts_non_trend <- ts(runif(200, 5,5.2),
+                  start = c(2000,1),
+                  frequency = 12)
+# A **non-trending series** will be used as a baseline for the following series
+
+# ts_linear_trend_p: This is a series with a positive linear trend, which adds an
+# increasing arithmetic progression sequence as a function of time
+
+ts_linear_trend_p <- ts_non_trend + 1:length(ts_non_trend) / (0.5 *
+length(ts_non_trend))
+
+# ts_linear_trend_n: This is a series with a negative linear trend, which adds a
+# decreasing arithmetic progression sequence as a function of time
+
+ts_linear_trend_n <- ts_non_trend - 1:length(ts_non_trend) / (0.5 *
+length(ts_non_trend))
+
+# ts_exp_trend: This is a series with an exponential trend, which adds an
+# increasing geometric progression sequence as a function of time
+
+ts_exp_trend <- ts_non_trend + exp((1:length(ts_non_trend) -1 ) / (0.5 *
+length(ts_non_trend))) - 1
+
+# Now we plot the series and review the different types of trends. For convenience, we will first merge the four series to multiple time series objects with the xts package
+
+library(xts)
+merged_series <- merge(Baseline_No_Trend = as.xts(ts_non_trend),
+                    Positive_Linear_Trend = as.xts(ts_linear_trend_p),
+                    Negative_Linear_Trend = as.xts(ts_linear_trend_n),
+                    Exponential_Trend = as.xts(ts_exp_trend))
+```
+
+```{r echo=FALSE, message=FALSE}
+# Next, we will plot the output with the TSstudio and plotly packages
+library(TSstudio)
+library(plotly)
+ts_plot(merged_series,
+        type = "single",
+        Xgrid = TRUE,
+        Ygrid = TRUE,
+        title = "Different Types of Trends",
+        Ytitle = "The Values of the Series",
+        Xtitle = "Year") %>%
+    layout(legend = list(x = 0.1, y = 0.9))
+```
+
+These examples represent time series data with a clear trend component, and it is therefore simple to identify the trend and classify its growth type.
+
+## The Seasonal Component
+
+The **seasonal component** (or seasonality) is another common pattern in time series data. If it exists, it represents a repeated variation in the series, which is related to the frequency units of the series (for example, the months of the year for a monthly series).
+
+A common examples for a series with a strong seasonality pattern is the **demand for electricity or natural gas**. In those cases, the seasonal pattern is derived from a variety of seasonal events, such as weather patterns, the season of the year, and sunlight hours.
+
+*Example:*
+
+```{r echo=FALSE}
+seasonal_pattern <- sin(2*pi * (1:length(ts_non_trend)) /
+                frequency(ts_non_trend))
+ts_seasonal <- ts_non_trend + seasonal_pattern
+ts_plot(ts_seasonal,
+          title = "Seasonal Pattern without Trend",
+          Xgrid = TRUE,
+          Ygrid = TRUE,
+          Ytitle = "The Values of the Series",
+          Xtitle = "Year")
+```
+
+The **seasonal and cycle components** both describe cyclic events over time, where the length of their cycle distinguish the two. The seasonal component has a constant cycle, which is derived and tied to the series frequency. On the other hand, the cycle length of the cycle component is not necessarily constant and can typically vary from one cycle to the next one. A simplistic way to identify whether a cycle pattern exists in a series is with the use of a **heatmap** for the time series data.
+
+*Example:*
+
+```{r}
+ts_heatmap(USgas,
+    title = "Heatmap - the US Natural Gas Consumption")
+```
+
+## White Noise
+
+A series is defined as **white noise** when there is no correlation between the series observations or patterns. In other words, the relationship between different observations is random. Typically, unless mentioned otherwise, we assume that white noise is an independent and identically distributed random.
+
+*Example:*
+
+```{r echo=FALSE}
+# We can simulate white noise with the rnorm function and generate random numbers with # a normal distribution of mean of 0 and variance of 1:
+set.seed(1234)
+white_noise <- ts(rnorm(12*10, mean = 0, sd = 1),
+                    start = c(2008, 1),
+                    frequency = 12)
+
+ts_plot(white_noise, title = "White Noise ~ N(0, 1)",
+                    line.mode = "lines+markers",
+                    Xgrid = TRUE,
+                    Ygrid = TRUE,
+                    Ytitle = "The Values of the Series")
+```
+
+There are a few **methods for testing** whether a time series is white noise:
+
+-   The **basic method** is carried out by plotting and eyeballing the series to identify whether the variation of the series appears to be random or not.
+
+-   We can measure the **correlation between the series and its lags** with the autocorrelation function (ACF). A series is considered to be white noise whenever there is no correlation between the series and its lag. The `acf` function from the stats package calculates the level of correlation between a series and its lags.
+
+-   The **Ljung-Box test** is another statistical test to evaluate whether the series is correlated with its lags. In this case, the null hypothesis assumes that the lags are not correlated. Therefore, lags with lower p-values (with respect to the level of significance of the test) would be considered as being correlated with the series. The `Box.test`function, another stats package function, performs a Ljung-Box test on a series and a specific lag.
+
+    *Example:*
+
+    ```{r message=FALSE}
+    library(dplyr)
+    x <- lapply(1:24, function(i){
+              p <- Box.test(white_noise, lag = i, type = "Ljung-Box")
+              output <- data.frame(lag = i, p_value = p$p.value)
+              return(output) }) %>% bind_rows
+    plot(x = x$lag,
+        y = x$p_value, ylim = c(0,1),
+        main = "Series white_noise - Ljung-Box Test",
+        xlab = "Lag", ylab = "P-Value")
+    abline(h = 0.05, col="red", lwd=3, lty=2)
+    ```
+
+    You can see in the preceding **Ljung-Box test summary** that the p-value of all the lags is above the red dotted line, which indicates that we failed to reject the null hypothesis for a level of significance of 0.05. This indicates that the series is not correlated with its first 24 lags and is, therefore, a white noise series.
+
+## The Irregular Component
+
+This component is the remainder between the series and structural components, and provides an indication of irregular events in the series. This includes non-systematic patterns or events in the data, which cause **irregular fluctuation**. In addition, the irregular component could provide some indication of the appropriate fit of the other components when using a decomposing method. A **high correlation** in this component is an indication that some patterns related to one of the other components were leftover due to an inaccurate estimate. On the other hand, if the irregular component is **not correlated** with its lags (that is, a white noise), we can assume (depending on the series structure) that the estimation of the trend and seasonal components captured the majority of the information about the series structure.
+
+## The Additive versus the Multiplicative Model
+
+These terms describe the model structure. A model is defined as **additive** whenever we add together its components, namely, whenever there is a growth in the trend (with respect to the previous period), or if the amplitude of the seasonal component roughly remains the same over time:
+
+\begin{align*}
+Y_{t}=T_{t}+S_{t}+C_{t}+I_{t}
+\end{align*}
+
+*Example:*
+
+The **US monthly natural gas consumption series** is an example of an additive series. You can easily notice that the amplitude of the seasonal component remains the same (or close to the same) over time:
+
+```{r echo=FALSE}
+ts_plot(USgas,
+      title = "US Monthly Natural Gas consumption",
+      Ytitle = "Billion Cubic Feet",
+      Xtitle = "Year",
+      Xgrid = TRUE,
+      Ygrid = TRUE)
+```
+
+As you can see, the amplitude of the USgas series seasonal component over the past 20 years did not change by much (apart from some years, which may be related to some unusual weather patterns). In addition, the series trend seems to be linear, with some structural breaks during 2010.
+
+Similarly, a model is defined as **multiplicative** whenever we multiply its components, namely, whenever the growth of the trend or the magnitude of the seasonal component increases or decreases by some multiplicity from period to period over time:
+
+\begin{align*}
+Y_{t}=T_{t} \times S_{t} \times C_{t} \times I_{t}
+\end{align*}
+
+*Example:*
+
+The **AirPassengers dataset** (available in the dataset package), which describes the total monthly international airline passengers between the years 1949 and 1960, is an example for **multiplicative series**. During those years, right after World War II, the improvement in aviation technology contributed to the fast growth in the airline industry. As you can see in the following data, the amplitude of the seasonal component increases from year to year:
+
+```{r echo=FALSE}
+data(AirPassengers)
+ts_plot(AirPassengers,
+        title = "Monthly Airline Passenger Numbers 1949-1960",
+        Ytitle = "Thousands of Passengers",
+        Xtitle = "Years",
+        Xgrid = TRUE,
+        Ygrid = TRUE)
+```
+
+The typical approach for **handling a series with a multiplicative structure** is by applying a data transformation on the input series. The most common data transformation approaches for time series data are the following:
+
+-   **Log transformation**: This applies a `log` on both sides of the series equation. The new structure of the series allows us to treat it as a normal additive series:
+
+\begin{align*}
+log(Y_{t})=log(T_{t}) + log(S_{t}) + log(C_{t}) + log(I_{t})
+\end{align*}
+
+-   **Box-Cox transformation**: This is based on applying power on the input series using the following formula:
+
+\begin{align*}
+Y^{'}_{t}|\lambda = 
+  \begin{cases}
+      \frac{Y^{\lambda}_{t} -1}{\lambda} & \lambda \neq0 \\
+      log(Y_{t})& \lambda=0
+  \end{cases} 
+\end{align*}
+
+As you can see from the preceding Box-Cox equation, for $\lambda=0$, the transformation is a log transformation.
+
+The **forecast package** provides several tools for applying a **Box-Cox transformation** on time series data. The `BoxCox.lambda` function estimates the value of $\lambda$, which minimizes the coefficient variation of the input series.
+
+*Example:*
+
+We will use `BoxCox.lambda` to identify the $\lambda$ value for the AirPassenger series:
+
+```{r message=FALSE}
+library(forecast)
+AirPassenger_lambda <- BoxCox.lambda(AirPassengers)
+AirPassenger_lambda
+```
+
+We can then use this $\lambda$ value to transform the input series with the BoxCox function and lot it with the ts_plot function:
+
+*Example:*
+
+```{r}
+AirPassenger_transform <- BoxCox(AirPassengers, lambda =
+                      AirPassenger_lambda)
+ts_plot(AirPassenger_transform,
+      title = "Monthly Airline Passenger Numbers 1949-1960 with Box-Cox Transformation",
+      Ytitle = "Number of Passengers - Scaled",
+      Xtitle = "Years",
+      Xgrid = TRUE,
+      Ygrid = TRUE)
+```
+
+As you can see from the transformation plot of the AirPassenger series, the values of the series are **scaled**. Most of the forecasting models in the forecast package automatically transform the series before applying the model, and then **re-transform** the forecast output back to the original scale.

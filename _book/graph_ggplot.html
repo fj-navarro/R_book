@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 24&nbsp; Creating a ggplot</title>
+<title>R for Research in Action - 25&nbsp; Creating a ggplot</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphs.html">Part 4: Graphics</a></li><li class="breadcrumb-item"><a href="./graph_ggplot.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graphs.html">Part 4: Graphics</a></li><li class="breadcrumb-item"><a href="./graph_ggplot.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -221,13 +221,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manipu_date.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date and Text Manipulation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Date Manipulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manipu_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Manipulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./manipu_databases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">R and Data Bases</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,25 +250,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Descriptive Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_exploratory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Exploratory Analysis Pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_inferential.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Inferential Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stats_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,37 +285,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_habits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Programming Habits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_iteration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Iteration</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Iteration</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./program_profiling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Profiling R Code</span></span></a>
   </div>
 </li>
       </ul>
@@ -326,19 +332,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graphs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graph_ggplot.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./graph_types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span></a>
   </div>
 </li>
       </ul>
@@ -355,25 +361,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Modeling Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Modeling Workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_spend.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Spending Your Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Spending Your Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_fit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Fitting Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Fitting Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./model_random.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Random Numbers</span></span></a>
   </div>
 </li>
       </ul>
@@ -390,7 +396,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./time_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Time Series Analysis Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Time Series Objects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Decomposition of Time Series</span></span></a>
   </div>
 </li>
       </ul>
@@ -407,13 +425,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./product_repro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -434,28 +452,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-layered-grammar-of-graphics" id="toc-the-layered-grammar-of-graphics" class="nav-link active" data-scroll-target="#the-layered-grammar-of-graphics"><span class="header-section-number">24.1</span> The Layered Grammar of Graphics</a></li>
-  <li><a href="#define-a-plot-object" id="toc-define-a-plot-object" class="nav-link" data-scroll-target="#define-a-plot-object"><span class="header-section-number">24.2</span> Define a Plot Object</a></li>
-  <li><a href="#map-the-data" id="toc-map-the-data" class="nav-link" data-scroll-target="#map-the-data"><span class="header-section-number">24.3</span> Map the Data</a></li>
-  <li><a href="#represent-the-data-geoms" id="toc-represent-the-data-geoms" class="nav-link" data-scroll-target="#represent-the-data-geoms"><span class="header-section-number">24.4</span> Represent the Data (geoms)</a>
+  <li><a href="#the-layered-grammar-of-graphics" id="toc-the-layered-grammar-of-graphics" class="nav-link active" data-scroll-target="#the-layered-grammar-of-graphics"><span class="header-section-number">25.1</span> The Layered Grammar of Graphics</a></li>
+  <li><a href="#define-a-plot-object" id="toc-define-a-plot-object" class="nav-link" data-scroll-target="#define-a-plot-object"><span class="header-section-number">25.2</span> Define a Plot Object</a></li>
+  <li><a href="#map-the-data" id="toc-map-the-data" class="nav-link" data-scroll-target="#map-the-data"><span class="header-section-number">25.3</span> Map the Data</a></li>
+  <li><a href="#represent-the-data-geoms" id="toc-represent-the-data-geoms" class="nav-link" data-scroll-target="#represent-the-data-geoms"><span class="header-section-number">25.4</span> Represent the Data (geoms)</a>
   <ul class="collapse">
-  <li><a href="#help-with-geoms" id="toc-help-with-geoms" class="nav-link" data-scroll-target="#help-with-geoms"><span class="header-section-number">24.4.1</span> Help with geoms</a></li>
+  <li><a href="#help-with-geoms" id="toc-help-with-geoms" class="nav-link" data-scroll-target="#help-with-geoms"><span class="header-section-number">25.4.1</span> Help with geoms</a></li>
   </ul></li>
-  <li><a href="#add-aesthetics-and-layers" id="toc-add-aesthetics-and-layers" class="nav-link" data-scroll-target="#add-aesthetics-and-layers"><span class="header-section-number">24.5</span> Add Aesthetics and Layers</a>
+  <li><a href="#add-aesthetics-and-layers" id="toc-add-aesthetics-and-layers" class="nav-link" data-scroll-target="#add-aesthetics-and-layers"><span class="header-section-number">25.5</span> Add Aesthetics and Layers</a>
   <ul class="collapse">
-  <li><a href="#help-with-aes" id="toc-help-with-aes" class="nav-link" data-scroll-target="#help-with-aes"><span class="header-section-number">24.5.1</span> Help with aes</a></li>
+  <li><a href="#help-with-aes" id="toc-help-with-aes" class="nav-link" data-scroll-target="#help-with-aes"><span class="header-section-number">25.5.1</span> Help with aes</a></li>
   </ul></li>
-  <li><a href="#statistical-transformation" id="toc-statistical-transformation" class="nav-link" data-scroll-target="#statistical-transformation"><span class="header-section-number">24.6</span> Statistical Transformation</a></li>
-  <li><a href="#position-adjustments" id="toc-position-adjustments" class="nav-link" data-scroll-target="#position-adjustments"><span class="header-section-number">24.7</span> Position Adjustments</a></li>
-  <li><a href="#coordinate-systems" id="toc-coordinate-systems" class="nav-link" data-scroll-target="#coordinate-systems"><span class="header-section-number">24.8</span> Coordinate Systems</a></li>
-  <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets"><span class="header-section-number">24.9</span> Facets</a></li>
-  <li><a href="#improve-labels" id="toc-improve-labels" class="nav-link" data-scroll-target="#improve-labels"><span class="header-section-number">24.10</span> Improve Labels</a>
+  <li><a href="#statistical-transformation" id="toc-statistical-transformation" class="nav-link" data-scroll-target="#statistical-transformation"><span class="header-section-number">25.6</span> Statistical Transformation</a></li>
+  <li><a href="#position-adjustments" id="toc-position-adjustments" class="nav-link" data-scroll-target="#position-adjustments"><span class="header-section-number">25.7</span> Position Adjustments</a></li>
+  <li><a href="#coordinate-systems" id="toc-coordinate-systems" class="nav-link" data-scroll-target="#coordinate-systems"><span class="header-section-number">25.8</span> Coordinate Systems</a></li>
+  <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets"><span class="header-section-number">25.9</span> Facets</a></li>
+  <li><a href="#improve-labels" id="toc-improve-labels" class="nav-link" data-scroll-target="#improve-labels"><span class="header-section-number">25.10</span> Improve Labels</a>
   <ul class="collapse">
-  <li><a href="#mathematical-labels" id="toc-mathematical-labels" class="nav-link" data-scroll-target="#mathematical-labels"><span class="header-section-number">24.10.1</span> Mathematical labels</a></li>
+  <li><a href="#mathematical-labels" id="toc-mathematical-labels" class="nav-link" data-scroll-target="#mathematical-labels"><span class="header-section-number">25.10.1</span> Mathematical labels</a></li>
   </ul></li>
-  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="header-section-number">24.11</span> Themes</a></li>
-  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">24.12</span> Layout</a></li>
-  <li><a href="#save-your-plot" id="toc-save-your-plot" class="nav-link" data-scroll-target="#save-your-plot"><span class="header-section-number">24.13</span> Save Your Plot</a></li>
+  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="header-section-number">25.11</span> Themes</a></li>
+  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">25.12</span> Layout</a></li>
+  <li><a href="#save-your-plot" id="toc-save-your-plot" class="nav-link" data-scroll-target="#save-your-plot"><span class="header-section-number">25.13</span> Save Your Plot</a></li>
   </ul>
 </nav>
     </div>
@@ -464,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></h1>
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Creating a ggplot</span></h1>
 </div>
 
 
@@ -480,8 +498,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>The best place to continue learning about ggplot is the <strong>ggplot2 book</strong>: <a href="https://ggplot2-book.org/">ggplot2: Elegant graphics for data analysis</a>.</p>
-<section id="the-layered-grammar-of-graphics" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="the-layered-grammar-of-graphics"><span class="header-section-number">24.1</span> The Layered Grammar of Graphics</h2>
+<section id="the-layered-grammar-of-graphics" class="level2" data-number="25.1">
+<h2 data-number="25.1" class="anchored" data-anchor-id="the-layered-grammar-of-graphics"><span class="header-section-number">25.1</span> The Layered Grammar of Graphics</h2>
 <p>The <strong>grammar of graphics</strong> is a template made of seven parameters (the bracketed words that appear in the template) for building plots. The grammar of graphics is based on the insight that you can uniquely describe any plot as a combination of a dataset, a geom, a set of mappings, a stat, a position adjustment, a coordinate system, a faceting scheme, and a theme.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(</span>
@@ -502,8 +520,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>To learn more about the <strong>theoretical underpinnings</strong> that describes the theory of ggplot2 in detail, click here: <a href="https://vita.had.co.nz/papers/layered-grammar.pdf">The Layered Grammar of Graphics</a>.</p>
 </section>
-<section id="define-a-plot-object" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="define-a-plot-object"><span class="header-section-number">24.2</span> Define a Plot Object</h2>
+<section id="define-a-plot-object" class="level2" data-number="25.2">
+<h2 data-number="25.2" class="anchored" data-anchor-id="define-a-plot-object"><span class="header-section-number">25.2</span> Define a Plot Object</h2>
 <p>With <strong>ggplot2</strong>, you begin a plot with the function <code>ggplot()</code>, defining a plot object that you then add layers to.</p>
 <p>The first argument of <code>ggplot()</code> is the <strong>dataset</strong> to use in the graph and so <code>ggplot(data = penguins)</code> creates an empty graph that is primed to display the penguins data, but since we haven’t told it how to visualize it yet, for now it’s empty (it’s like an empty canvas you’ll paint the remaining layers of your plot onto).</p>
 <p><em>Example:</em></p>
@@ -514,8 +532,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="map-the-data" class="level2" data-number="24.3">
-<h2 data-number="24.3" class="anchored" data-anchor-id="map-the-data"><span class="header-section-number">24.3</span> Map the Data</h2>
+<section id="map-the-data" class="level2" data-number="25.3">
+<h2 data-number="25.3" class="anchored" data-anchor-id="map-the-data"><span class="header-section-number">25.3</span> Map the Data</h2>
 <p>Next, we need to tell <code>ggplot()</code> how the information from our data will be visually represented. The <code>mapping</code> argument of the <code>ggplot()</code> function defines how variables in your dataset are mapped to visual properties (aesthetics) of your plot.</p>
 <p>The <code>mapping</code> argument is always defined in the <code>aes()</code> function, and the <code>x</code> and <code>y</code>arguments of <code>aes()</code> specify which variables to map to the x and y axes.</p>
 <p><em>Example:</em></p>
@@ -530,8 +548,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Our empty canvas now has more structure – it’s clear where flipper lengths will be displayed (on the x-axis) and where body masses will be displayed (on the y-axis). But the penguins themselves are not yet on the plot. This is because we have not yet determine how to represent the observations from our dataframe on our plot.</p>
 </section>
-<section id="represent-the-data-geoms" class="level2" data-number="24.4">
-<h2 data-number="24.4" class="anchored" data-anchor-id="represent-the-data-geoms"><span class="header-section-number">24.4</span> Represent the Data (geoms)</h2>
+<section id="represent-the-data-geoms" class="level2" data-number="25.4">
+<h2 data-number="25.4" class="anchored" data-anchor-id="represent-the-data-geoms"><span class="header-section-number">25.4</span> Represent the Data (geoms)</h2>
 <p>To do so, we need to define a <code>geom</code>: the geometrical object that a plot uses to represent data. These geometric objects are made available in ggplot2 with functions that start with <code>geom_</code>.</p>
 <p>For example, bar charts use <code>geom_bar()</code>, line charts use <code>geom_line()</code>, boxplots use <code>geom_boxplot()</code>, scatterplots use <code>geom_point()</code>, and so on.</p>
 <p><em>Example:</em></p>
@@ -584,15 +602,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="graph_ggplot_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="help-with-geoms" class="level3" data-number="24.4.1">
-<h3 data-number="24.4.1" class="anchored" data-anchor-id="help-with-geoms"><span class="header-section-number">24.4.1</span> Help with geoms</h3>
+<section id="help-with-geoms" class="level3" data-number="25.4.1">
+<h3 data-number="25.4.1" class="anchored" data-anchor-id="help-with-geoms"><span class="header-section-number">25.4.1</span> Help with geoms</h3>
 <p>The best place to get a comprehensive <strong>overview of all of the geoms</strong> ggplot2 offers, as well as all functions in the package, is this page: <a href="https://ggplot2.tidyverse.org/reference" class="uri">https://ggplot2.tidyverse.org/reference</a>.</p>
 <p>To learn more about any single geom, use the help (e.g., <code>?geom_smooth</code>).</p>
 <p>See also <a href="https://exts.ggplot2.tidyverse.org/gallery/" class="uri">https://exts.ggplot2.tidyverse.org/gallery/</a> for a sampling of community made geoms.</p>
 </section>
 </section>
-<section id="add-aesthetics-and-layers" class="level2" data-number="24.5">
-<h2 data-number="24.5" class="anchored" data-anchor-id="add-aesthetics-and-layers"><span class="header-section-number">24.5</span> Add Aesthetics and Layers</h2>
+<section id="add-aesthetics-and-layers" class="level2" data-number="25.5">
+<h2 data-number="25.5" class="anchored" data-anchor-id="add-aesthetics-and-layers"><span class="header-section-number">25.5</span> Add Aesthetics and Layers</h2>
 <p>You will we need to modify the aesthetic mapping, inside of <code>aes()</code>.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -701,13 +719,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="graph_ggplot_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="help-with-aes" class="level3" data-number="24.5.1">
-<h3 data-number="24.5.1" class="anchored" data-anchor-id="help-with-aes"><span class="header-section-number">24.5.1</span> Help with aes</h3>
+<section id="help-with-aes" class="level3" data-number="25.5.1">
+<h3 data-number="25.5.1" class="anchored" data-anchor-id="help-with-aes"><span class="header-section-number">25.5.1</span> Help with aes</h3>
 <p>You can learn more about all possible <strong>aesthetic mappings</strong> in the aesthetic specifications vignette at <a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html" class="uri">https://ggplot2.tidyverse.org/articles/ggplot2-specs.html</a>. Remember that the specific aesthetics you can use for a plot depend on the geom you use to represent the data.</p>
 </section>
 </section>
-<section id="statistical-transformation" class="level2" data-number="24.6">
-<h2 data-number="24.6" class="anchored" data-anchor-id="statistical-transformation"><span class="header-section-number">24.6</span> Statistical Transformation</h2>
+<section id="statistical-transformation" class="level2" data-number="25.6">
+<h2 data-number="25.6" class="anchored" data-anchor-id="statistical-transformation"><span class="header-section-number">25.6</span> Statistical Transformation</h2>
 <p>Many graphs, like scatterplots, plot the raw values of a dataset. Other graphs, like bar charts, calculate new values to plot. The algorithm used to calculate <strong>new values</strong> for a graph is called a <strong>stat</strong>, short for statistical transformation.</p>
 <p>You can figure out which <code>stat</code> a geom uses by inspecting the default value for the <code>stat</code> argument. For example, <code>?geom_bar</code> shows that the default value for <code>stat</code> is “count”, which means that <code>geom_bar()</code> uses <code>stat_count()</code>. To find the <strong>possible variables</strong> that can be computed by the <code>stat</code>, look for the section titled “computed variables” in the <code>help</code> for <code>geom_bar()</code>.</p>
 <p>Every <strong>geom</strong> has a default <code>stat</code>; and every <code>stat</code> has a default geom. This means that you can typically use geoms without worrying about the underlying statistical transformation. However, there are three reasons why you might need to <strong>use a stat explicitly</strong>:</p>
@@ -749,8 +767,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div></li>
 </ul>
 </section>
-<section id="position-adjustments" class="level2" data-number="24.7">
-<h2 data-number="24.7" class="anchored" data-anchor-id="position-adjustments"><span class="header-section-number">24.7</span> Position Adjustments</h2>
+<section id="position-adjustments" class="level2" data-number="25.7">
+<h2 data-number="25.7" class="anchored" data-anchor-id="position-adjustments"><span class="header-section-number">25.7</span> Position Adjustments</h2>
 <p>You can color a bar chart using either the <strong>color aesthetic</strong>, or, more usefully, the <strong>fill aesthetic</strong>:</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -815,8 +833,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div></li>
 </ul>
 </section>
-<section id="coordinate-systems" class="level2" data-number="24.8">
-<h2 data-number="24.8" class="anchored" data-anchor-id="coordinate-systems"><span class="header-section-number">24.8</span> Coordinate Systems</h2>
+<section id="coordinate-systems" class="level2" data-number="25.8">
+<h2 data-number="25.8" class="anchored" data-anchor-id="coordinate-systems"><span class="header-section-number">25.8</span> Coordinate Systems</h2>
 <p>The default coordinate system is the <strong>Cartesian coordinate system</strong> where the <code>x</code> and <code>y</code> positions act independently to determine the location of each point.</p>
 <p>There are <strong>two other</strong> coordinate systems that are occasionally helpful.</p>
 <ul>
@@ -861,8 +879,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div></li>
 </ul>
 </section>
-<section id="facets" class="level2" data-number="24.9">
-<h2 data-number="24.9" class="anchored" data-anchor-id="facets"><span class="header-section-number">24.9</span> Facets</h2>
+<section id="facets" class="level2" data-number="25.9">
+<h2 data-number="25.9" class="anchored" data-anchor-id="facets"><span class="header-section-number">25.9</span> Facets</h2>
 <p><strong>Facets</strong> splits a plot into subplots that each display one subset of the data based on a <strong>categorical variable</strong>.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -894,8 +912,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="improve-labels" class="level2" data-number="24.10">
-<h2 data-number="24.10" class="anchored" data-anchor-id="improve-labels"><span class="header-section-number">24.10</span> Improve Labels</h2>
+<section id="improve-labels" class="level2" data-number="25.10">
+<h2 data-number="25.10" class="anchored" data-anchor-id="improve-labels"><span class="header-section-number">25.10</span> Improve Labels</h2>
 <p>And finally, we can improve the <strong>labels</strong> of our plot using the <code>labs()</code> function in a new layer:</p>
 <ul>
 <li><code>title</code>, adds a title.</li>
@@ -936,8 +954,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The purpose of a plot title is to summarize the <strong>main finding</strong>. Avoid titles that just describe what the plot is (e.g.&nbsp;“Fuel efficcieny generally decreases with engine size”).</p>
-<section id="mathematical-labels" class="level3" data-number="24.10.1">
-<h3 data-number="24.10.1" class="anchored" data-anchor-id="mathematical-labels"><span class="header-section-number">24.10.1</span> Mathematical labels</h3>
+<section id="mathematical-labels" class="level3" data-number="25.10.1">
+<h3 data-number="25.10.1" class="anchored" data-anchor-id="mathematical-labels"><span class="header-section-number">25.10.1</span> Mathematical labels</h3>
 <p>It’s possible to use <strong>mathematical</strong> equations instead of text strings. Just switch ” ” out for quote() and read about the available options in ?plotmath:</p>
 <p><em>Example:</em></p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
@@ -948,8 +966,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="themes" class="level2" data-number="24.11">
-<h2 data-number="24.11" class="anchored" data-anchor-id="themes"><span class="header-section-number">24.11</span> Themes</h2>
+<section id="themes" class="level2" data-number="25.11">
+<h2 data-number="25.11" class="anchored" data-anchor-id="themes"><span class="header-section-number">25.11</span> Themes</h2>
 <p>gplot2 includes the <strong>eight themes</strong>, with <code>theme_gray()</code> as the default. Many more are included in add-on packages like <code>ggthemes</code> (https://jrnold.github.io/ggthemes). You can also create your own themes, if you are trying to match a particular corporate or journal style.</p>
 <p><em>Example:</em></p>
 <div class="cell">
@@ -978,8 +996,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For an overview of all <code>theme()</code> components, see help with <code>?theme</code>.</p>
 </section>
-<section id="layout" class="level2" data-number="24.12">
-<h2 data-number="24.12" class="anchored" data-anchor-id="layout"><span class="header-section-number">24.12</span> Layout</h2>
+<section id="layout" class="level2" data-number="25.12">
+<h2 data-number="25.12" class="anchored" data-anchor-id="layout"><span class="header-section-number">25.12</span> Layout</h2>
 <p>What if you have <strong>multiple plots</strong> you want to lay out in a certain way? The <strong>patchwork package</strong> allows you to combine separate plots into the same graphic.</p>
 <p>To place two plots next to each other, you can simply add them to each other. Note that you first need to create the plots and save them as objects (in the following example they’re called p1 and p2). Then, you place them next to each other with <code>+</code>.</p>
 <div class="cell">
@@ -1006,8 +1024,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="save-your-plot" class="level2" data-number="24.13">
-<h2 data-number="24.13" class="anchored" data-anchor-id="save-your-plot"><span class="header-section-number">24.13</span> Save Your Plot</h2>
+<section id="save-your-plot" class="level2" data-number="25.13">
+<h2 data-number="25.13" class="anchored" data-anchor-id="save-your-plot"><span class="header-section-number">25.13</span> Save Your Plot</h2>
 <p>Once you’ve made a plot, you might want to get it out of R by saving it as an <strong>image</strong> that you can use elsewhere. That’s the job of <code>ggsave()</code>, which will save the plot most recently created to disk:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
@@ -1270,12 +1288,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./graphs.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Graphs</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Graphs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./graph_types.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Types of Graphs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

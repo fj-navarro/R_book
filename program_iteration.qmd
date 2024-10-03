@@ -358,11 +358,11 @@ df |> summarize(
 )
 ```
 
-There are two additional selection techniques that are particularly useful for `across()`: 
+There are two additional selection techniques that are particularly useful for `across()`:
 
 -   `everything()`: selects every (non-grouping) column:
 
-``` R
+``` r
 df |> 
   group_by(grp) |> 
   summarize(across(everything(), median))
@@ -370,10 +370,12 @@ df |>
 
 -   `where()`: allows you to select columns based on their type:
 
-        -   `where(is.numeric)` selects all numeric columns.
-        -   `where(is.character)` selects all string columns.
-        -   `where(is.Date)` selects all date columns.
-        -   `where(is.POSIXct)` selects all date-time columns.
-        -   `where(is.logical)` selects all logical columns.
+    ```         
+    -   `where(is.numeric)` selects all numeric columns.
+    -   `where(is.character)` selects all string columns.
+    -   `where(is.Date)` selects all date columns.
+    -   `where(is.POSIXct)` selects all date-time columns.
+    -   `where(is.logical)` selects all logical columns.
+    ```
 
     Just like other selectors, you can combine these with Boolean algebra. For example, `!where(is.numeric)` selects all non-numeric columns.

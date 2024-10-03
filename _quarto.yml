@@ -4,7 +4,7 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "09/30/2024"
+  date: "10/03/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -53,7 +53,9 @@ book:
       chapters: 
         - time_flow.qmd
         - time_objects.qmd
-        - time_analysis.qmd
+        - time_components.qmd
+        - time_decomposition.qmd
+        - time_seasonality.qmd
     - part: "Part 7: Data Products"
       chapters: 
         - products.qmd

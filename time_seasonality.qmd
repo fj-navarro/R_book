@@ -1,0 +1,150 @@
+# Seasonality Analysis
+
+**Seasonality** is one of the main components of time series data. Furthermore, this component, when existing in a series, plays a pivotal role in the **forecasting** process of the future values of the series, since it contains structural patterns.
+
+A seasonal pattern exists in a time series whenever we can tie a repeated event in the series to a specific frequency unit, for example, the average temperature in New York during the month of January, or the average number of passengers in the London underground between 8 a.m. and 9 a.m. Hence, there is a strong **relationship between seasonal pattern and the frequency** of the series.
+
+## Type of Seasonality
+
+When seasonality exists in the time series data, we can classify it into one of the following **categories**:
+
+-   **Single seasonal pattern**: Whenever there is only one dominant seasonal pattern in the series. As the frequency of the series is lower (for example, monthly, quarterly, and so on), it is more likely to have only one dominant seasonal pattern as opposed to a high-frequency series, as there are fewer aggregation options for another type of frequencies.
+
+-   **Multiple seasonal patterns**: If more than one dominant seasonal pattern exists in the series. This type of patterns are more likely to occur whenever the series has a high frequency (for example, daily, hourly, half-hourly, and so on), as there are more options to aggregate the series to a lower frequency. A typical example of multiple seasonality is the hourly demand for electricity, which could have multiple seasonal patterns, as the demand is derived from the hour of the day, the day of the week, or the yearly patterns, such as weather or the amount of daylight throughout the day.
+
+*Example:*
+
+```{r}
+# USgas dataset represents the total monthly consumptions of naturalgas in the US since # January 2000
+library(TSstudio)
+data(USgas)
+ts_info(USgas)
+ts_plot(USgas,
+            title = "US Monthly Natural Gas consumption",
+            Ytitle = "Billion Cubic Feet",
+            Xtitle = "Year",
+            Xgrid = TRUE,
+            Ygrid = TRUE)
+```
+
+## Seasonal Analysis with Descriptive Statistics
+
+**Descriptive statistics** are a simple yet powerful method to describe the key statistical characteristics of the data. This method is based on the use of summary statistics tables and is a summary of the key statistical indicators, such as the mean, median, quantile, and standard deviation, and data visualization tools, such as box plots and bar charts.
+
+Descriptive statistics can be used to describe the characteristics of the **frequency units** of a series. This allows us to identify whether we can segment each period of the series by some statistical criteria, for example, the mean, the quantile range, and so on.
+
+*Example:*
+
+```{r message=FALSE}
+# We group the USgas series by its frequency units and then summarize the mean and 
+# standard deviation of each frequency unit
+
+# Transform the ts object to data.frame object
+USgas_df <- data.frame(year = floor(time(USgas)), month = cycle(USgas),
+                      USgas = as.numeric(USgas))
+
+# Set the month abbreviation and transforming it to a factor
+USgas_df$month <- factor(month.abb[USgas_df$month], levels = month.abb)
+head(USgas_df)
+
+# Summarize the series by its frequency units
+library(dplyr)
+USgas_summary <- USgas_df %>%
+                  group_by(month) %>%
+                  summarise(mean = mean(USgas), sd = sd(USgas))
+USgas_summary
+# Now we plot the summary
+library(plotly)
+plot_ly (data = USgas_summary, x = ~ month, y = ~ mean, type = "bar", name = "Mean") %>%
+            layout (title = "USgas - Monthly Average", yaxis = list(title = "Mean",
+            range = c(1500, 2700)))
+```
+
+From the summary statistic table of the series you can see that, on average, each month is different from the next consecutive month by its standard deviation with the exception of the two pairs May/June and July/August, which are relatively close to each other. This allows us to characterize some months with a **distinct behavior** from the rest, such as January, February, March, and November.
+
+The first indication for the potential existence of **multiple seasonal patterns** in the series is a high frequency, such as daily, hourly, and minutely. In those cases, there is more than one way to set the frequency of the series.
+
+*Example:*
+
+```{r message=FALSE}
+# UKgrid is an hourly time series, which marks it automatically as a suspect of
+# having multiple seasonal patterns
+library(xts)
+library(UKgrid)
+
+# Transform the series from a half-hourly frequency to hourly and will use an xts 
+# format
+UKgrid_xts <- extract_grid(type = "xts", 
+                           columns = "ND", 
+                           aggregate = "hourly", 
+                           na.rm = TRUE)
+```
+
+The national demand of the UK high-voltage electric power transmission network (or the UKgrid series) has a **strong seasonal pattern**.
+
+```{r message=FALSE}
+# Transform the UKgrid series into data.frame format
+UKgrid_df <- data.frame(time = index(UKgrid_xts), UKgrid = as.numeric(UKgrid_xts))
+str(UKgrid_df)
+
+# Create seasonal features based on the periods we wish to check
+library(lubridate)
+UKgrid_df$hour <- hour(UKgrid_df$time)
+UKgrid_df$weekday <- wday(UKgrid_df$time, label = TRUE, abbr = TRUE)
+UKgrid_df$month <- factor(month.abb[month(UKgrid_df$time)], levels = month.abb)
+head(UKgrid_df)
+
+# Summarize the series by its hourly cycle
+UKgrid_hourly <- UKgrid_df %>%
+                dplyr::group_by(hour) %>%
+                dplyr::summarise(mean = mean(UKgrid, na.rm = TRUE), sd = sd(UKgrid, na.rm = TRUE))
+
+# Use the summary statistics table to plot both the hourly mean and its standard
+# deviation
+plot_ly(UKgrid_hourly) %>%
+      add_lines(x = ~ hour, y = ~ mean, name = "Mean") %>%
+      add_lines(x = ~ hour, y = ~ sd, name = "Standard Deviation", yaxis = "y2",
+          line = list(color = "red", dash = "dash", width = 3)) %>%
+      layout(title = "The UK Grid National Demand - Hourly Average vs. Standard
+Deviation",
+      yaxis = list(title = "Mean"),
+      yaxis2 = list(overlaying = "y",
+      side = "right",
+      title = "Standard Deviation"),
+      xaxis = list(title="Hour of the day"),
+      legend = list(x = 0.05, y = 0.9),
+      margin = list(l = 50, r = 50)
+      )
+```
+
+Looking at the plot of the preceding summary statistic table, we can see the following **behavior of the series**:
+
+-   There is low demand during the nighttime (between midnight and 6 a.m.) and high demand between the morning hours and early evening.
+
+-   There is a strong correlation between the average demand and its standard deviation.
+
+-   The relatively low standard deviation of the demand average during the nighttime could indicate that there is strong sub-seasonal effect during those hours beside the hourly seasonality. This should make sense, as those are normal sleep hours, and therefore, on average, the demand is reasonably the same throughout the weekdays.
+
+-   On the other hand, the high standard deviation throughout the high-demand hours could indicate that the demand is distributed differently on different periodicity views (such as weekday or month of the year).
+
+To examine the last point, we will subset the series into two groups representing the demand in the middle of the night and the demand throughout the day (3 a.m. and 9 a.m., respectively), and then we will group them by the weekday:
+
+*Example:*
+
+```{r message=FALSE, warning=FALSE}
+UKgrid_weekday <- UKgrid_df %>%
+                    dplyr::filter(hour == 3 | hour == 9) %>%
+                    dplyr::group_by(hour, weekday) %>%
+                    dplyr::summarise(mean = mean(UKgrid, na.rm = TRUE), sd = sd(UKgrid, na.rm = TRUE))
+UKgrid_weekday$hour <- factor(UKgrid_weekday$hour)
+plot_ly(data = UKgrid_weekday, 
+        x = ~ weekday, 
+        y = ~ mean, 
+        type = "bar",
+        color = ~ hour) %>%
+            layout(title = "The Hourly Average Demand by Weekday", 
+                   yaxis = list(title = "Mean", range = c(30000, 75000)), 
+                   xaxis = list(title = "Weekday"))
+```
+
+You will see in the preceding bar chart that the demand for electricity at **3 a.m.** is relatively stable throughout all the days of the week, with a slight difference between the average during the weekdays and the days in the weekend (about 2% different). On the other hand, there is a significant difference between the weekday and weekend demand at **9 a.m.** (that is, the demand on Monday is higher on average by 28% from the one on Sunday). 
