@@ -423,6 +423,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Seasonality Analysis</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Correlation Analysis</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -437,13 +443,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./product_repro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -636,7 +642,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1] 3
 
 $b
-[1] 0.4572321</code></pre>
+[1] 0.3396277</code></pre>
 </div>
 </div>
 <p>Note that when you pass a function to another function, you do not need to include the open and <strong>closed parentheses ()</strong> like you do when you are calling a function.</p>
@@ -690,8 +696,8 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the mean of each column</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>(k <span class="ot">&lt;-</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.05938881 -0.24055359  0.32956534  0.02577634  0.13883195 -0.11218336
- [7] -0.20378586  0.06071024 -0.17228000  0.36683874</code></pre>
+<pre><code> [1]  0.50016172  0.06116606  0.30665152  0.60949151  0.36360865 -0.15826727
+ [7]  0.08536427 -0.19309249  0.16021292  0.02520796</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -700,10 +706,10 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Take the mean of each row</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(x, <span class="dv">1</span>, sum) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]   2.15703070   1.27263904   1.29779529   1.29715669   1.49621917
- [6]   1.33343747   2.44394933   3.71492428  -0.56898098   6.29751472
-[11]   7.34239213  -2.21308997  -4.32448739   1.35777570  -5.83297458
-[16]  -0.81682138 -10.03349474   0.01487238   2.69442298  -3.88410854</code></pre>
+<pre><code> [1]  5.7658023  3.6726859  4.8708014  0.9584484 -2.3263966  4.4741182
+ [7] -0.1334143 -1.7260433  2.3601455  0.1051523 -2.3426465  0.8939666
+[13]  5.0445635  2.5202559  0.7963379  4.5578193  4.5511974  4.5797757
+[19] -0.2256776 -3.1867946</code></pre>
 </div>
 </div>
 <p>For the special case of <strong>column/row sums</strong> and <strong>column/row means</strong> of matrices, there are some useful <strong>shortcuts</strong>:</p>
@@ -725,11 +731,11 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">runif</span>(<span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.59665084 -1.26710014  0.90919670 -0.69913835 -1.00374783  0.70520168
- [7] -0.42923070 -0.92443168 -0.24375201 -1.08556276  0.62255817  0.47979451
-[13]  0.40500364  0.04848928  0.49826330  0.42044837  0.75220357  0.99421051
-[19]  0.38628532  0.66730196  1.20901368  3.00797041  0.27780192  1.51200084
-[25]  0.48925023  1.66781085  0.21853421  0.44496030  1.13461667  0.54672348</code></pre>
+<pre><code> [1]  0.46622297  1.02747121 -0.11321788  1.20458495 -0.21036478  1.14485922
+ [7]  0.99281363  0.19185864  1.51214003  2.02678193  0.11005921  0.71023724
+[13]  0.24485310  0.03569420  0.04984722  0.37895620  0.85536148  0.46924401
+[19]  0.72096538  0.84156072 -0.89062932  1.51539821  1.19412378  0.44070531
+[25]  2.93912859  0.25600659  1.05899309 -0.01153573  0.30416272  0.73827616</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define some groups with a factor variable</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">3</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -739,14 +745,14 @@ Levels: 1 2 3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(x, f, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         1          2          3 
--0.3441914  0.5274559  1.0508683 </code></pre>
+<pre><code>        1         2         3 
+0.8243150 0.4416779 0.7544629 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can reduce the noise as follows:</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">tapply</span>(x, f, mean), <span class="at">digits=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   1    2    3 
--0.3  0.5  1.1 </code></pre>
+<pre><code>  1   2   3 
+0.8 0.4 0.8 </code></pre>
 </div>
 </div>
 </section>
@@ -785,19 +791,19 @@ Levels: 1 2 3</code></pre>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mapply</span>(noise, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] 1.662742
+[1] 3.926509
 
 [[2]]
-[1] 1.146282 5.606750
+[1] 1.7496381 0.7718679
 
 [[3]]
-[1] 3.149089 4.214871 2.179816
+[1] 3.972851 1.902449 5.001302
 
 [[4]]
-[1] 3.4017295 2.9578367 4.4004507 0.6526001
+[1] 4.758598 1.688262 7.036698 3.646510
 
 [[5]]
-[1] -1.601964  5.930907  5.252802  9.039838  3.961885</code></pre>
+[1] 4.585234 3.174657 6.540511 3.421103 7.268059</code></pre>
 </div>
 </div>
 <p>The <code>mapply()</code> function can be used to automatically “vectorize” a function. What this means is that it can be used to take a function that typically only takes single arguments and create a new function that can take vector arguments. This is often needed when you want to plot functions.</p>
@@ -832,16 +838,16 @@ Levels: 1 2 3</code></pre>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>(j <span class="ot">&lt;-</span> <span class="fu">split</span>(x, f))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`1`
- [1]  0.98012219  0.19794547  1.04743463  0.05140228  1.62027864 -0.41776094
- [7] -0.22458129 -1.60216572 -1.44218936 -2.74426371
+ [1]  0.9365654 -1.1634050 -1.2064322  0.1142824 -0.4226125  1.2254365
+ [7] -0.2735128 -0.3228865 -1.1758117 -1.9186787
 
 $`2`
- [1] 0.4630190 0.2184248 0.9886305 0.9689036 0.0725184 0.4226700 0.2181303
- [8] 0.4278384 0.5454561 0.1677652
+ [1] 0.2856632 0.7621456 0.9041407 0.4318256 0.2477760 0.8318504 0.7032384
+ [8] 0.3042752 0.5239851 0.9325197
 
 $`3`
- [1]  1.5816121 -0.5805698  1.3709174  0.1984418  1.6180271  0.6671169
- [7]  1.5592832  3.0597079  1.0800674  2.9603674</code></pre>
+ [1]  0.28527802  1.30997580  1.36846536  1.73439107  0.86450931  1.41671447
+ [7] -1.43163495  0.08439896  1.38098229  0.64701372</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -882,9 +888,9 @@ $`3`
 <span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
-      n      a      b        c      d
-  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1    10 -0.424 0.0722 -0.00280 -0.600</code></pre>
+      n     a       b       c     d
+  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1    10 0.196 -0.0667 -0.0183 0.430</code></pre>
 </div>
 </div>
 <p>But you can imagine that this will get very tedious if you have tens or even hundreds of columns. Instead, you can use <code>across()</code>:</p>
@@ -896,9 +902,9 @@ $`3`
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
-      n      a      b        c      d
-  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
-1    10 -0.424 0.0722 -0.00280 -0.600</code></pre>
+      n     a       b       c     d
+  &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1    10 0.196 -0.0667 -0.0183 0.430</code></pre>
 </div>
 </div>
 <p>There are two additional selection techniques that are particularly useful for <code>across()</code>:</p>

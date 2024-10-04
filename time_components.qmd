@@ -26,7 +26,7 @@ And when the series has a **multiplicative structure**:
 Y_{t}=T_{t} \times S_{t} \times C_{t} \times I_{t}
 \end{align*}
 
-Where $Y_{t}$ represents the series observation at time $t$ and $T_{t}$, $S_{t}$, $C_{t}$, and $I_{t}$ represent the value of the trend, seasonal, cycle, and irregular components of the series at time $t$, respectively.
+Where $Y_{t}$ represents the series observation at time $t$ and $T_{t}$, $S_{t}$, $C_{t}$, and $I_{t}$ represent the value of the trend, seasonal, cycle, and irregular components of the series at time $t$, respectively. You can learn more in this [section](#additive).
 
 ## The Cycle Component
 
@@ -191,7 +191,7 @@ There are a few **methods for testing** whether a time series is white noise:
 
 This component is the remainder between the series and structural components, and provides an indication of irregular events in the series. This includes non-systematic patterns or events in the data, which cause **irregular fluctuation**. In addition, the irregular component could provide some indication of the appropriate fit of the other components when using a decomposing method. A **high correlation** in this component is an indication that some patterns related to one of the other components were leftover due to an inaccurate estimate. On the other hand, if the irregular component is **not correlated** with its lags (that is, a white noise), we can assume (depending on the series structure) that the estimation of the trend and seasonal components captured the majority of the information about the series structure.
 
-## The Additive versus the Multiplicative Model
+## The Additive versus the Multiplicative Model {#additive}
 
 These terms describe the model structure. A model is defined as **additive** whenever we add together its components, namely, whenever there is a growth in the trend (with respect to the previous period), or if the amplitude of the seasonal component roughly remains the same over time:
 

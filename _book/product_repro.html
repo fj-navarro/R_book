@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 37&nbsp; Reproducible Reporting</title>
+<title>R for Research in Action - 38&nbsp; Reproducible Reporting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./products.html">Part 7: Data Products</a></li><li class="breadcrumb-item"><a href="./product_repro.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./products.html">Part 7: Data Products</a></li><li class="breadcrumb-item"><a href="./product_repro.html"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -423,6 +423,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Seasonality Analysis</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Correlation Analysis</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -437,13 +443,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./product_repro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -464,12 +470,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal"><span class="header-section-number">37.1</span> Goal</a></li>
-  <li><a href="#the-data-science-pipeline" id="toc-the-data-science-pipeline" class="nav-link" data-scroll-target="#the-data-science-pipeline"><span class="header-section-number">37.2</span> The Data Science Pipeline</a></li>
-  <li><a href="#organizing-a-data-analysis" id="toc-organizing-a-data-analysis" class="nav-link" data-scroll-target="#organizing-a-data-analysis"><span class="header-section-number">37.3</span> Organizing a Data Analysis</a></li>
-  <li><a href="#structure-of-a-data-analysis" id="toc-structure-of-a-data-analysis" class="nav-link" data-scroll-target="#structure-of-a-data-analysis"><span class="header-section-number">37.4</span> Structure of a Data Analysis</a></li>
-  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">37.5</span> R Markdown</a></li>
-  <li><a href="#knitr" id="toc-knitr" class="nav-link" data-scroll-target="#knitr"><span class="header-section-number">37.6</span> Knitr</a></li>
+  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal"><span class="header-section-number">38.1</span> Goal</a></li>
+  <li><a href="#the-data-science-pipeline" id="toc-the-data-science-pipeline" class="nav-link" data-scroll-target="#the-data-science-pipeline"><span class="header-section-number">38.2</span> The Data Science Pipeline</a></li>
+  <li><a href="#organizing-a-data-analysis" id="toc-organizing-a-data-analysis" class="nav-link" data-scroll-target="#organizing-a-data-analysis"><span class="header-section-number">38.3</span> Organizing a Data Analysis</a></li>
+  <li><a href="#structure-of-a-data-analysis" id="toc-structure-of-a-data-analysis" class="nav-link" data-scroll-target="#structure-of-a-data-analysis"><span class="header-section-number">38.4</span> Structure of a Data Analysis</a></li>
+  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">38.5</span> R Markdown</a></li>
+  <li><a href="#knitr" id="toc-knitr" class="nav-link" data-scroll-target="#knitr"><span class="header-section-number">38.6</span> Knitr</a></li>
   </ul>
 </nav>
     </div>
@@ -478,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></h1>
+<h1 class="title"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></h1>
 </div>
 
 
@@ -494,15 +500,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><strong>Reproducibility of computational research</strong> is very important, primarily to increase transparency and to improve knowledge sharing.</p>
-<section id="goal" class="level2" data-number="37.1">
-<h2 data-number="37.1" class="anchored" data-anchor-id="goal"><span class="header-section-number">37.1</span> Goal</h2>
+<section id="goal" class="level2" data-number="38.1">
+<h2 data-number="38.1" class="anchored" data-anchor-id="goal"><span class="header-section-number">38.1</span> Goal</h2>
 <p>The goal is to have independent people to do independent things with different data, different methods, and different laboratories and see if you get the same result. But the problem is that it’s becoming more and more challenging to do replication or to replicate other studies. Part of the reason is because studies are getting bigger and bigger.</p>
 <p>The idea behind a <strong>reproducible reporting</strong> is to create a kind of minimum standard or a middle ground where we won’t be replicating a study, but maybe we can do something in between.</p>
 <p>You need to make the data available for the original study and the computational methods available so that other people can look at your data and run the kind of analysis that you’ve run, and come to the same findings that you found. If you can take someone’s data and reproduce their findings, then you can, in some sense, validate the data analysis.</p>
 <p>Understanding what someone did in a data analysis now requires looking at code and scrutinizing the computer programs that people used.</p>
 </section>
-<section id="the-data-science-pipeline" class="level2" data-number="37.2">
-<h2 data-number="37.2" class="anchored" data-anchor-id="the-data-science-pipeline"><span class="header-section-number">37.2</span> The Data Science Pipeline</h2>
+<section id="the-data-science-pipeline" class="level2" data-number="38.2">
+<h2 data-number="38.2" class="anchored" data-anchor-id="the-data-science-pipeline"><span class="header-section-number">38.2</span> The Data Science Pipeline</h2>
 <p>The basic idea behind <strong>reproducibility</strong> is to focus on the elements in the blue blox: the <strong>analytic data</strong> and the <strong>computational results</strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -512,8 +518,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>With <strong>reproducibility</strong> the goal is to allow the author of a report and the reader of that report to “meet in the middle”.</p>
 </section>
-<section id="organizing-a-data-analysis" class="level2" data-number="37.3">
-<h2 data-number="37.3" class="anchored" data-anchor-id="organizing-a-data-analysis"><span class="header-section-number">37.3</span> Organizing a Data Analysis</h2>
+<section id="organizing-a-data-analysis" class="level2" data-number="38.3">
+<h2 data-number="38.3" class="anchored" data-anchor-id="organizing-a-data-analysis"><span class="header-section-number">38.3</span> Organizing a Data Analysis</h2>
 <ul>
 <li><strong>Raw Data:</strong>
 <ul>
@@ -548,8 +554,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="structure-of-a-data-analysis" class="level2" data-number="37.4">
-<h2 data-number="37.4" class="anchored" data-anchor-id="structure-of-a-data-analysis"><span class="header-section-number">37.4</span> Structure of a Data Analysis</h2>
+<section id="structure-of-a-data-analysis" class="level2" data-number="38.4">
+<h2 data-number="38.4" class="anchored" data-anchor-id="structure-of-a-data-analysis"><span class="header-section-number">38.4</span> Structure of a Data Analysis</h2>
 <p><strong>1. Defining the question:</strong></p>
 <ul>
 <li><p>A proper data analysis has a scientific context, and at least some general question that we’re trying to investigate which will narrow down the kind of dimensionality of the problem. Then we’ll apply the appropriate statistical methods to the appropriate data.</p></li>
@@ -628,15 +634,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>If someone cannot reproduce your data analysis then the conclusions that you draw will be not as worthy as an analysis where the results are reproducible.</p></li>
 </ul>
 </section>
-<section id="r-markdown" class="level2" data-number="37.5">
-<h2 data-number="37.5" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">37.5</span> R Markdown</h2>
+<section id="r-markdown" class="level2" data-number="38.5">
+<h2 data-number="38.5" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">38.5</span> R Markdown</h2>
 <p><a href="https://daringfireball.net/projects/markdown/syntax">link to R Markdown guide</a></p>
 <p>The benefit of <strong>Markdown</strong> for writers is that it allows one to focus on writing as opposed to formatting. It has simple and minimal yet intuitive formatting elements and can be easily converted to valid HTML (and other formats) using existing tools.</p>
 <p><strong>R markdown</strong> is the integration of R code with Markdown. Documents written in R Markdown have R coded nested inside of them, which allows one to create documents containing “live” R code.</p>
 <p><strong>R markdown</strong> can be converted to standard markdown using the <strong>knitr package</strong> in R. Markdown can subsequently be converted to HTML using the markdown package in R.</p>
 </section>
-<section id="knitr" class="level2" data-number="37.6">
-<h2 data-number="37.6" class="anchored" data-anchor-id="knitr"><span class="header-section-number">37.6</span> Knitr</h2>
+<section id="knitr" class="level2" data-number="38.6">
+<h2 data-number="38.6" class="anchored" data-anchor-id="knitr"><span class="header-section-number">38.6</span> Knitr</h2>
 <p>For literate statistical programming, the idea is that a report is viewed as a stream of text and code.</p>
 <p>Analysis code is divided into code chunks with text surrounding the code chunks explaining what is going on: - In general, literate programs are weaved to produce human-readable documents - and tangled to produce machine- readable documents</p>
 <p>The requirements for writing literate programs are a documentation language (<strong>Markdown</strong>) and a programming language (<strong>R</strong>).</p>
@@ -903,7 +909,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./products.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Building Data Products</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Building Data Products</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

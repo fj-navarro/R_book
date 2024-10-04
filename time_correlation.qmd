@@ -6,13 +6,13 @@ Due to the continuous and chronologically ordered nature of time series data, th
 
 One of the main goals of correlation analysis is to **identify and quantify** the relationship between two variables. This relationship could vary from having a full dependency or linear relationship between the two, to complete independence.
 
-One of the most popular methods for measuring the level of correlation between two variables is the **Pearson correlation coefficient**. Although this method is not necessarily the most appropriate one for time series data, it is a simple and intuitive representative of the statistical logic beyond most of the methods for measuring correlation. This method, also known as the population correlation coefficient, is a ratio between the covariance of two variables and the multiplication of their standard deviation:
+One of the most popular methods for measuring the level of correlation between two variables is the **Pearson correlation coefficient**. Although this method is not necessarily the most appropriate one for time series data, it is a simple and intuitive method for measuring correlation. This method, also known as the population correlation coefficient, is a ratio between the covariance of two variables and the multiplication of their standard deviation:
 
 \begin{align*}
 \rho_{x,y}=\frac {COV(X,Y)}{\sigma_x \sigma_y} {, where -1\leq\rho_{x,y}\leq 1}
 \end{align*}
 
-The values of the correlation coefficient segment the level of correlation into three main groups:
+The values of the correlation coefficient segment the level of correlation into **three main groups**:
 
 -   **Positively correlated**: This is where the value of the coefficient is greater than 0. This indicates some degree of a positive linear relationship between the variables, depending on the value of the coefficient. As the value of $\rho_{x,y}$ (correlation coefficient) grows closer to 1, the linear relationship between the two variables grows stronger; 1 indicates a perfect linear dependency.
 
@@ -26,4 +26,130 @@ Typically, we would consider the correlation between two variables to be strong 
 
 -   **Analyzing the correlation between a series and its lags**, as some of the past lags may contain predictive information, which can be utilized to forecast future events of the series. One of the most popular methods for measuring the level of correlation between a series and its lags is the [autocorrelation function]{.underline}.
 
--   **Analyzing the correlation between two series** in order to identify exogenous factors or predictors, which can explain the variation of the series over time (for example, the effect of weather patterns such as rainfall or temperature on taxi rides in New York City). In this case, the measurement of correlation is typically done with the [cross-correlation function]{.underline}.
+-   **Analyzing the correlation between two series** (or causality analysis) in order to identify exogenous factors or predictors, which can explain the variation of the series over time (for example, the effect of weather patterns such as rainfall or temperature on taxi rides in New York City). In this case, the measurement of correlation is typically done with the [cross-correlation function]{.underline}.
+
+Note that while in **lags analysis** we extract the required data (the series lags) from the series itself, **causality analysis** requires additional effort, such as identifying and extracting external variables, which may not always available.
+
+## Lags Analysis
+
+The goal of **lags analysis** is to identify and quantify the relationship between a series and its lags. This relationship is typically measured by calculating the correlation between the two and with the use of data visualization tools. 
+
+*Example 1:*
+
+```{r}
+library(TSstudio)
+data(USgas)
+ts_plot(USgas,
+        title = "US Monthly Natural Gas consumption",
+        Ytitle = "Billion Cubic Feet",
+        Xtitle = "Year")
+```
+
+Note that one of the main characteristic of the USgas series is the **strong seasonal pattern**.
+
+*Example 2:*
+
+```{r}
+data(EURO_Brent)
+ts_plot(EURO_Brent,
+        title = "Brent Crude Oil Prices",
+        Ytitle = "US Dollars per Barrel",
+        Xtitle = "Year")
+```
+
+As you can see the EURO_Brent series plot, which represents the monthly prices of the Brent crude oil in USD, the price of the oil **does not have seasonal patterns** or general trends.
+
+*Example 3:*
+
+```{r}
+data(USVSales)
+ts_plot(USVSales,
+        title = "US Monthly Total Vehicle Sales",
+        Ytitle = "Thousands of units",
+        Xtitle = "Year")
+```
+
+The plot of USVSales, the US monthly total vehicle sales, is an example of a series with both **seasonal and cycle patterns**.
+
+### The autocorrelation function
+
+The **autocorrelation function (ACF)** is the main method in time series analysis for
+quantifying the level of correlation between a series and its lags. The `acf` function from the stats package is R's built-in ACF, which, by default, visualizes the results using a bar plot.
+
+*Example 1:*
+
+Use the `acf` function to plot the correlation of the USgas series and its first 60 lags (by setting the lag.max argument to 60)
+
+```{r}
+acf(USgas, lag.max = 60)
+```
+
+Each **bar** in the ACF plot represents the level of correlation between the series and its lags in chronological order. Note that according to the x-axis notation lags 1 and 2 represent the 12 and 24 lags. The **blue dotted lines** indicate whether the level of correlation between the series and each lag is significant or not. By testing the **null hypothesis** that the correlation of the lag with the series is equal to zero, we can reject it whenever the level of correlation is either above or below the upper and lower dotted lines, respectively, with a level of significance of 5%. Otherwise, whenever the correlation is between the upper and lower dotted lines, we fail to reject the null hypothesis, and we can therefore ignore those lags (or assume that there is no significant correlation between the two).
+
+As you can see from the **USgas ACF plot**, the series has a strong positive correlation with the seasonal lags (which decay over time) along with negative correlation with the mid-seasonal lags (for example, lags 6, 18, and 30).
+
+*Example 2:*
+
+```{r}
+acf(EURO_Brent, lag.max = 60)
+```
+
+You can see that the correlation of the series with its **lags is decaying over time**, whereas the closer the lag is, chronologically to the series, the stronger the relationship with the series. This type of correlation is also an indication that the series is not stationary and a differencing of the series is required.
+
+*Example 3:*
+ 
+```{r}
+acf(USVSales, lag.max = 60)
+```
+
+The correlation plot has a **cyclic shape** as a result of the seasonal pattern of the series. On the other hand, the decay rate of USVSales is faster compared to the rate of USgas due to the cycle pattern of the series, which shifts the series direction over time. As a result, the series is mainly correlated with the first seasonal lag. That being said, if we remove the series cycle (or detrend it) we will probably have a similar correlation pattern as USgas.
+
+### Lag plots
+
+A **lag plot** is a simplistic and non-statistical approach for analyzing the relationship between a series and its lags. This method is based on data visualization tools, with the use of **two-dimensional scatter plots** for visualizing the series (typically on the y-axis) against the k lag of the series. Hence, each pair of points represents a combination of the series observations and their corresponding lagged values. As more points on the lag plot are closer to the 45 degree line, the higher the correlation will be between the series and the corresponding lag.
+
+*Example 1:*
+
+```{r}
+ts_lags(USgas)
+```
+
+You can see that, moving along from the first lag up to the sixth lag, the relationship between the series and its lags become **less linear**. This process starts to reverse from the seventh lag as the relationship gradually becomes **more linear**, where the seasonal lag (or lag 12) has the strongest relationship with the series. Those results are aligned with the ones we saw earlier with the ACF plot.
+
+```{r}
+# Plot the most recent seasonal lags (that is, lags 12, 24, 36, and 48)
+ts_lags(USgas, lags = c(12, 24, 36, 48))
+```
+
+*Example 2:*
+
+```{r}
+ts_lags(EURO_Brent)
+```
+
+As you can see, the results are aligned with the ones we received before with the ACF. The EURO_Brent series has a strong linear relationship with the first lag, where the
+strength of that relationship decays as the distance of the lag from the series is higher.
+
+*Example 3:*
+
+```{r}
+ts_lags(USVSales)
+```
+
+In the case of USVSales, the 12 lag has the closest linear relationship with the series (as we observed before with the ACF plot).
+
+## Causality Analysis
+
+The goal of **causality analysis**, in the context of time series analysis, is to identify whether a causality relationship exists between the series we wish to forecast and other potential exogenous factors. The use of those external factors as drivers of the forecasting model (whenever exists) could potentially provide accurate and robust forecast (as oppose of using only the past observation of the series). 
+
+### Causality vs correlation
+
+Two variables will have a **causality relationship** whenever the change of one variable triggers a direct change of the second variable. This is also known as a cause-and-effect. For instance, the temperatures in Chicago have a direct impact on the comsumption of natural gas throughout the year (as most of the heating systems operate with natural gas) and we can therefore assume that there is a causality relationship between the two. One of the main characteristics of causality is a high correlation between the two variables.
+
+However, this could be **misleading in some cases**, as high **correlation** by itself between two variables should not instantly imply the existence of a causality relationship, as the two may have a high dependency on a third variable. For example, you should expect to have a high correlation between the sales of ice cream and bathing suits (high demand during the summer and low throughout the winter), but there is no causal relationship between the two besides the fact that both are highly correlated with the same factor —the season of the year (or weather patterns).
+
+The following diagram describes this type of relationship:
+
+<center>
+![Figure 13. Relationships of causality and correlation](/img/Picture13.png)
+</center>

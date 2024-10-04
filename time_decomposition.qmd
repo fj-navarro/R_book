@@ -167,10 +167,10 @@ This is a **three-step process**, where each step is dedicated to the estimation
 
 2.  **Seasonal component estimation**: A two-step process, starting with de-trending the series by subtracting the trend estimation from the previous step from the series, where:
 
-      - You can use $Y_t - {\hat T_t}$ when using the additive model, and $\frac {Y_t}{\hat T_t}$ when the model is multiplicative. Here, $Y_t$ is the original series observation at time $t$ and $\hat {T_t}$ is the corresponding trend estimation.
-      
-      - After the series is detrended, the next step is to estimate the corresponding seasonal component for each frequency unit (for example, for a monthly series, the seasonal component for January, February, and so on). This calculation is done by grouping the observations by their frequency unit and then averaging each group. The output of this process is a new series with a length that is equal to the series frequency and is ordered accordingly. This series represents the seasonal component of each frequency unit, so this estimation is one-to-many (one estimation for multiple observations).
-      
+    -   You can use $Y_t - {\hat T_t}$ when using the additive model, and $\frac {Y_t}{\hat T_t}$ when the model is multiplicative. Here, $Y_t$ is the original series observation at time $t$ and $\hat {T_t}$ is the corresponding trend estimation.
+
+    -   After the series is detrended, the next step is to estimate the corresponding seasonal component for each frequency unit (for example, for a monthly series, the seasonal component for January, February, and so on). This calculation is done by grouping the observations by their frequency unit and then averaging each group. The output of this process is a new series with a length that is equal to the series frequency and is ordered accordingly. This series represents the seasonal component of each frequency unit, so this estimation is one-to-many (one estimation for multiple observations).
+
 3.  **Irregular component estimation**: This is about subtracting the estimation of the trend and seasonal components from the original series. This is $\hat{I_t} = {Y_t} - \hat{T_t} - \hat{S_t}$ for an additive series, and $\hat{I_t} = \frac {Y_t}{({\hat T_t} \times {\hat S_t})}$ for a multiplicative series. Here, $Y_t$ represents the original series at time $t$, and $\hat{T_t}$, $\hat{S_t}$, and $\hat{I_t}$ represent the corresponding trend and seasonal and irregular components estimate.
 
 The `decompose` function from the **stats package** implements this method. By default, this function is set to an additive model.
@@ -201,6 +201,7 @@ From the preceding output you can see that the function returns a list of six ob
 Now we can plot the output of the `decompose` function as `plot`supports the `decomposed.ts` class.
 
 *Example:*
+
 ```{r}
 plot(usv_decompose)
 ```
@@ -208,6 +209,7 @@ plot(usv_decompose)
 Similarly, if the series has **multiplicative** growth, like the **AirPassengers series**, you can set the decomposition process with a multiplicative model:
 
 *Example:*
+
 ```{r}
 air_decompose <- decompose(AirPassengers, type = "multiplicative")
 plot(air_decompose)
