@@ -1,0 +1,217 @@
+# Forecasting with Moving Average Models
+
+The **moving average functions** (i.e. the simple and weighted moving average) can be used as a forecasting model with a small tweak. These models are the foundation for the exponential smoothing forecasting models.
+
+## The Simple Moving Average
+
+The **simple moving average (SMA)** function for smooth time series data can be utilized, with some simple steps, as a forecasting model.
+
+[Forecasting with the SMA function is recommended when the **input series has no structural patterns**]{.underline}, such as trend and seasonal components. In this case, it is reasonable to assume that the forecasted values are relatively close to the last observations of the series.
+
+In the following example, we will create a customized SMA function and use it to forecast the monthly prices of the **Robusta coffee prices** in the next 12 months. The Robusta coffee prices (USD per kg) are an example of time series data that has no specific trend or seasonal patterns. Rather, this series has a cycle component, where the magnitude and length of the cycle keep changing from cycle to cycle.
+
+*Example*
+
+```{r}
+library(TSstudio)
+data(Coffee_Prices)
+ts_info(Coffee_Prices)
+# Extract the monthly prices of the Robusta coffee
+robusta <- Coffee_Prices[,1]
+# Review the series
+ts_plot(robusta,
+        title = "The Robusta Coffee Monthly Prices",
+        Ytitle = "Price in USD",
+        Xtitle = "Year")
+```
+
+Next, we will create a **basic SMA function** using some of the functionality of the tidyr package:
+
+*Example:*
+
+```{r}
+library(tidyr)
+sma_forecast <- function(df, h, m, w = NULL){
+  # Error handling
+  if(h > nrow(df)){
+    stop("The length of the forecast horizon must be shorter than the 
+         length of the series")}
+  if(m > nrow(df)){
+    stop("The length of the rolling window must be shorter than the length
+         of the series")}
+  if(!is.null(w)){
+    if(length(w) != m){
+      stop("The weight argument is not aligned with the length of the
+           rolling window")
+      } else if(sum(w) !=1){
+        stop("The sum of the average weight is different than 1")
+  }}
+  
+# Setting the average weigths
+  if(is.null(w)){
+    w <- rep(1/m, m)
+  }
+### Setting the data frame ###
+# Changing the Date object column name
+  names(df)[1] <- "date"
+
+# Setting the training and testing partition
+# according to the forecast horizon
+  df$type <- c(rep("train", nrow(df) - h), rep("test", h))
+# Spreading the table by the partition type
+  df1 <- df %>% spread(key = type, value = y)
+# Create the target variable
+  df1$yhat <- df1$train
+# Simple moving average function
+  for(i in (nrow(df1) - h + 1):nrow(df1)){
+    r <- (i-m):(i-1)
+  df1$yhat[i] <- sum(df1$yhat[r] * w)
+  }
+# dropping from the yhat variable the actual values
+# that were used for the rolling window
+  df1$yhat <- ifelse(is.na(df1$test), NA, df1$yhat)
+  df1$y <- ifelse(is.na(df1$test), df1$train, df1$test)
+  return(df1)
+}
+```
+
+The **function arguments** are as follows:
+
+-   **df**: The input series in a two-column data frame format, where the first column is a Date object and the second one is the actual values of the series.
+
+-   **h**: The horizon of the forecast. For the purpose of the following example, the function set the last h observations as a testing set. This allows us to compare model performance.
+
+-   **m**: The length of the rolling window.
+
+-   **w**: The weights of the average, by default, using equal weights (or arithmetic average).
+
+The `sma_forecast` function has the following components:
+
+-   **Error handling**: Test and verify whether the input arguments of the function are valid. If one of the defined tests isn't true, it will stop the function from running and trigger an error message.
+
+-   **Data preparation**: This defines the data.frame object based on the window length and the forecast horizon.
+
+-   **Data calculation**: Calculates the simple moving average and return the results.
+
+Now, let's utilize the `sma_forecast` function to demonstrate the **performance of the SMA function**. We will forecast the last 24 months of the Robusta series using a rolling window of 3, 6, 12, 24, and 36 months:
+
+*Example:*
+
+```{r}
+robusta_df <- ts_to_prophet(robusta)
+robusta_fc_m1 <- sma_forecast(robusta_df, h = 24, m = 1)
+robusta_fc_m6 <- sma_forecast(robusta_df, h = 24, m = 6)
+robusta_fc_m12 <- sma_forecast(robusta_df, h = 24, m = 12)
+robusta_fc_m24 <- sma_forecast(robusta_df, h = 24, m = 24)
+robusta_fc_m36 <- sma_forecast(robusta_df, h = 24, m = 36)
+```
+
+We will use the plotly package to **plot the results** of the different moving average functions:
+
+*Example:*
+
+```{r message=FALSE}
+library(plotly)
+plot_ly(data = robusta_df[650:nrow(robusta_df),], x = ~ ds, y = ~ y,
+        type = "scatter", mode = "lines",
+        name = "Actual") %>%
+  add_lines(x = robusta_fc_m1$date, y = robusta_fc_m1$yhat,
+            name = "SMA - 1", line = list(dash = "dash")) %>%
+  add_lines(x = robusta_fc_m6$date, y = robusta_fc_m6$yhat,
+            name = "SMA - 6", line = list(dash = "dash")) %>%
+  add_lines(x = robusta_fc_m12$date, y = robusta_fc_m12$yhat,
+            name = "SMA - 12", line = list(dash = "dash")) %>%
+  add_lines(x = robusta_fc_m24$date, y = robusta_fc_m24$yhat,
+            name = "SMA - 24", line = list(dash = "dash")) %>%
+  add_lines(x = robusta_fc_m36$date, y = robusta_fc_m36$yhat,
+            name = "SMA - 36", line = list(dash = "dash")) %>%
+  layout(title = "Forecasting the Robusta Coffee Monthly Prices",
+         xaxis = list(title = ""),
+         yaxis = list(title = "USD per Kg."))
+```
+
+The **main observations** from the preceding plot are as follows:
+
+-   If the length of the rolling window is shorter:
+    -   The range of the forecast is fairly close to the most recent observations of the series.
+    -   The faster the forecast converges to some constant value.
+-   If the window length is longer:
+    -   The longer it takes until the forecast converges to some constant value
+    -   It can handle better shocks and outliers.
+-   An SMA forecasting model with a rolling window of a length of 1 is equivalent to the Naïve forecasting model.
+
+Note that While the **`SMA` function** is fairly simple to use and cheap on compute power, it has **some limitations**:
+
+-   The forecasting power of the SMA function is limited to a short horizon and may have poor performance in the long run.
+
+-   This method is limited for time series data, with no trend or seasonal patterns. This mainly effects the arithmetic average that smooths the seasonal pattern and becomes flat in the long run.
+
+## Weighted Moving Average
+
+The **weighted moving average (WMA)** is an extended version of the SMA function, and it is based on the use of the weighted average (as opposed to arithmetic average).
+
+The **main advantage** of the WMA function, with respect to the SMA function, is that it allows you to distribute the weight of the lags on the rolling window. This can be useful when the series has a **high correlation with some of its lags**. The use of the WMA provides more flexibility as it can handle series with a seasonal pattern.
+
+In the **following example**, we will use the `sma_forecast` function we created previously to forecast the last 24 months of the **USgas** dataset. In this case, we will utilize the w argument to set the average weight and therefore transform the function from SMA to WMA. Like we did previously, we will first transform the series into `data.frame` format with the `ts_to_prophet` function:
+
+*Example:*
+
+```{r}
+data(USgas)
+USgas_df <- ts_to_prophet(USgas)
+```
+
+For this example, we will use the following **two strategies**:
+
+-   The WMA model for applying all the weight on the seasonal lag (lag 12):
+
+*Example:*
+
+```{r}
+USgas_fc_m12a <- sma_forecast(USgas_df,
+                              h = 24,
+                              m = 12,
+                              w = c(1, rep(0,11)))
+```
+
+-   The WMA model for weighting the first lag with $0.2$ and the seasonal lag (lag 12) with $0.8$:
+
+*Example:*
+
+```{r}
+USgas_fc_m12b <- sma_forecast(USgas_df,
+                              h = 24,
+                              m = 12,
+                              w = c(0.8, rep(0,10), 0.2))
+```
+
+Let's utilize the plotly package to **plot the output** of both of the WMA models:
+
+*Example:*
+
+```{r}
+plot_ly(data = USgas_df[190:nrow(USgas_df),],
+        x = ~ ds,
+        y = ~ y,
+        type = "scatter",
+        mode = "lines",
+        name = "Actual") %>%
+  add_lines(x = USgas_fc_m12a$date,
+            y = USgas_fc_m12a$yhat,
+            name = "WMA - Seasonal Lag",
+            line = list(dash = "dash")) %>%
+  add_lines(x = USgas_fc_m12b$date,
+            y = USgas_fc_m12b$yhat,
+            name = "WMA - 12 (0.2/0.8)",
+            line = list(dash = "dash")) %>%
+  layout(title = "Forecasting the Monthly Consumption of Natural 
+         Gas in the US",
+         xaxis = list(title = ""),
+         yaxis = list(title = "Billion Cubic Feet"))
+```
+
+As you can see in the preceding plot, both models captured the **seasonal oscillation** of the series to some extent. Setting the full weight on the seasonal lag is equivalent to the seasonal Naïve model. This strategy could be useful for a series with a dominant seasonal pattern, such as **USgas**.
+
+In the second example, we weighted the average between the most recent lag and the seasonal lag. It would make sense to distribute the weights between the different lags when the series has a **high correlation with those lags**.
+
+While**WMA** can capture the **seasonal component** of a series, it cannot capture the series **trend** (due to the average effect). Therefore, this method will start to lose its effectiveness once the forecast horizon crosses the length of the series frequency (for example, more than a year for monthly series).

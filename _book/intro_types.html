@@ -429,6 +429,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Correlation Analysis</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_forecast_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Forecasting Workflow</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -443,13 +449,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./product_repro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -689,27 +695,27 @@ Levels: yes &lt; no</code></pre>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>num2factor <span class="ot">&lt;-</span> <span class="fu">cut</span>(numvar, <span class="at">breaks=</span><span class="dv">5</span>) <span class="do">## the levels are produced using the actual range of values</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>num2factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] (0.104,1.11]   (-0.902,0.104] (0.104,1.11]   (0.104,1.11]   (-0.902,0.104]
-  [6] (-1.91,-0.902] (0.104,1.11]   (1.11,2.12]    (-0.902,0.104] (-1.91,-0.902]
- [11] (1.11,2.12]    (0.104,1.11]   (-0.902,0.104] (-0.902,0.104] (-0.902,0.104]
- [16] (1.11,2.12]    (0.104,1.11]   (-0.902,0.104] (1.11,2.12]    (-0.902,0.104]
- [21] (1.11,2.12]    (-0.902,0.104] (-1.91,-0.902] (-0.902,0.104] (-0.902,0.104]
- [26] (-0.902,0.104] (1.11,2.12]    (-0.902,0.104] (1.11,2.12]    (-0.902,0.104]
- [31] (-0.902,0.104] (-1.91,-0.902] (0.104,1.11]   (-0.902,0.104] (0.104,1.11]  
- [36] (0.104,1.11]   (0.104,1.11]   (0.104,1.11]   (0.104,1.11]   (-1.91,-0.902]
- [41] (-0.902,0.104] (-0.902,0.104] (0.104,1.11]   (-1.91,-0.902] (-1.91,-0.902]
- [46] (2.12,3.13]    (-0.902,0.104] (-0.902,0.104] (0.104,1.11]   (0.104,1.11]  
- [51] (-1.91,-0.902] (-1.91,-0.902] (0.104,1.11]   (0.104,1.11]   (-0.902,0.104]
- [56] (0.104,1.11]   (0.104,1.11]   (0.104,1.11]   (0.104,1.11]   (-0.902,0.104]
- [61] (-0.902,0.104] (-0.902,0.104] (-1.91,-0.902] (0.104,1.11]   (0.104,1.11]  
- [66] (0.104,1.11]   (-0.902,0.104] (-0.902,0.104] (0.104,1.11]   (-0.902,0.104]
- [71] (1.11,2.12]    (0.104,1.11]   (-0.902,0.104] (-1.91,-0.902] (-0.902,0.104]
- [76] (-1.91,-0.902] (-0.902,0.104] (-1.91,-0.902] (0.104,1.11]   (-0.902,0.104]
- [81] (-0.902,0.104] (1.11,2.12]    (-0.902,0.104] (0.104,1.11]   (1.11,2.12]   
- [86] (0.104,1.11]   (-0.902,0.104] (-1.91,-0.902] (-1.91,-0.902] (-0.902,0.104]
- [91] (-0.902,0.104] (-1.91,-0.902] (1.11,2.12]    (0.104,1.11]   (0.104,1.11]  
- [96] (-0.902,0.104] (0.104,1.11]   (0.104,1.11]   (0.104,1.11]   (-0.902,0.104]
-5 Levels: (-1.91,-0.902] (-0.902,0.104] (0.104,1.11] ... (2.12,3.13]</code></pre>
+<pre><code>  [1] (-1,-0.222]   (-1.79,-1]    (-1,-0.222]   (0.56,1.34]   (-0.222,0.56]
+  [6] (-1.79,-1]    (-0.222,0.56] (-1,-0.222]   (-1,-0.222]   (-1,-0.222]  
+ [11] (-1.79,-1]    (-1.79,-1]    (-1,-0.222]   (-1.79,-1]    (-0.222,0.56]
+ [16] (1.34,2.13]   (0.56,1.34]   (-0.222,0.56] (0.56,1.34]   (-0.222,0.56]
+ [21] (-0.222,0.56] (-1.79,-1]    (-1.79,-1]    (-1,-0.222]   (0.56,1.34]  
+ [26] (0.56,1.34]   (-0.222,0.56] (-0.222,0.56] (0.56,1.34]   (-0.222,0.56]
+ [31] (0.56,1.34]   (-0.222,0.56] (0.56,1.34]   (-1.79,-1]    (-0.222,0.56]
+ [36] (-1,-0.222]   (-1,-0.222]   (-1.79,-1]    (-0.222,0.56] (-1.79,-1]   
+ [41] (0.56,1.34]   (0.56,1.34]   (0.56,1.34]   (-1,-0.222]   (-0.222,0.56]
+ [46] (1.34,2.13]   (-1,-0.222]   (0.56,1.34]   (-1,-0.222]   (-0.222,0.56]
+ [51] (-0.222,0.56] (-0.222,0.56] (-1,-0.222]   (-1,-0.222]   (-1,-0.222]  
+ [56] (0.56,1.34]   (-1,-0.222]   (-0.222,0.56] (0.56,1.34]   (-1.79,-1]   
+ [61] (1.34,2.13]   (-0.222,0.56] (0.56,1.34]   (-0.222,0.56] (-0.222,0.56]
+ [66] (0.56,1.34]   (-1,-0.222]   (-0.222,0.56] (-0.222,0.56] (-0.222,0.56]
+ [71] (-1.79,-1]    (-1,-0.222]   (-1.79,-1]    (0.56,1.34]   (0.56,1.34]  
+ [76] (1.34,2.13]   (-0.222,0.56] (0.56,1.34]   (0.56,1.34]   (-0.222,0.56]
+ [81] (-1,-0.222]   (0.56,1.34]   (-1.79,-1]    (-1.79,-1]    (-0.222,0.56]
+ [86] (-0.222,0.56] (-0.222,0.56] (-0.222,0.56] (-1,-0.222]   (0.56,1.34]  
+ [91] (-1,-0.222]   (0.56,1.34]   (0.56,1.34]   (0.56,1.34]   (-0.222,0.56]
+ [96] (-1,-0.222]   (-0.222,0.56] (-0.222,0.56] (-1,-0.222]   (-1,-0.222]  
+Levels: (-1.79,-1] (-1,-0.222] (-0.222,0.56] (0.56,1.34] (1.34,2.13]</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -717,11 +723,11 @@ Levels: yes &lt; no</code></pre>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">table</span>(num2factor)) <span class="do">## displaying the data in tabular form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          num2factor Freq
-1       lowest group   16
-2 lower middle group   38
-3       middle group   34
-4       upper middle   11
-5      highest group    1</code></pre>
+1       lowest group   15
+2 lower middle group   24
+3       middle group   32
+4       upper middle   25
+5      highest group    4</code></pre>
 </div>
 </div>
 </section>
@@ -1044,19 +1050,19 @@ NULL</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4732892 0.6325546 0.6830059 0.6176955</code></pre>
+<pre><code>[1]  0.2690442 -0.8401297 -0.7759700 -0.7695272</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.9859524  1.1132528  1.9484950 -2.0129807</code></pre>
+<pre><code>[1]  0.6432013 -0.6695799 -1.4563940  1.2614854</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.7011391 -0.7920906 -0.5630344  1.5787060</code></pre>
+<pre><code>[1]  0.51173455 -0.19286320 -0.54425836 -0.03167354</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.1377908 0.4397289 0.2826828 1.3787368</code></pre>
+<pre><code>[1]  0.2903090 -1.2248043 -0.7932260 -0.9390761</code></pre>
 </div>
 </div>
 

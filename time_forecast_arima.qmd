@@ -1,0 +1,449 @@
+# Forecasting with ARIMA Models
+
+The **Autoregressive Integrated Moving Average (ARIMA)** model is the generic name for a family of forecasting models that are based on the Autoregressive (AR) and Moving Average (MA) processes. Among the traditional forecasting models (e.g., linear regression, exponential smoothing, and so on), the ARIMA model is considered as **the most advanced and robust approach**.
+
+## The Stationary Process
+
+One of the **main assumptions of the ARIMA** family of models is that the input series follows the stationary process structure. This assumption is based on the **Wold representation theorem**, which states that any stationary process can be represented as a linear combination of white noise.
+
+Time series data is stationary if the following **conditions** take place:
+
+-   The **mean and variance** of the series do not change over time.
+
+-   The **correlation** structure of the series, along with its lags, remains the same over time.
+
+The `arima.sim` function from the **stats package** enables us to simulate a stationary and non-stationary time series data and plot it with the `ts_plot` function from the **TSstudio package**.
+
+The `arima.sim` function allows us to simulate time series data based on the **ARIMA model's components** and main characteristics:
+
+-   **An Autoregressive (AR) process**: Establish a relationship between the series and its past $p$ lags with the use of a regression model (between the series and its $p$ lags).
+
+-   **A Moving Average (MA) process**: Similar to the AR process, the MA process establishes the relationship with the error term at time $t$ and the past error terms, with the use of regression between the two components (error at time $t$ and the past error terms).
+
+-   **Integrated (I) process**: The process of differencing the series with its $d$ lags to transform the series into a stationary state.
+
+Here, the model argument of the function defines $p$, $q$, and $d$, as well as the order of the AR, MA, and I processes of the model.
+
+### Stationary series
+
+In the following example, we will **simulate an AR process** with one lag (that is, $p = 1$) and 500 observations with the `arima.sim` function. Before running the simulation, we will set the seed value to $12345$:
+
+*Example:*
+
+```{r}
+set.seed(12345) 
+stationary_ts <- arima.sim(
+  model = list(order = c(1,0,0), 
+               ar = 0.5 ), 
+  n = 500)
+```
+
+Now let's **plot** the simulate time series with the `ts_plot` function:
+
+*Example:*
+
+```{r}
+library(TSstudio)
+ts_plot(stationary_ts,
+        title = "Stationary Time Series",
+        Ytitle = "Value",
+        Xtitle = "Index")
+```
+
+In this case, overall, **the mean** of the series, over time, remains around the zero line. In addition, the series' **variance** does not change over time.
+
+### Non-stationary series
+
+Let's utilize the `arima.sim` function to create an example for **non-stationary series**:
+
+*Example:*
+
+```{r}
+set.seed(12345)
+non_stationary_ts <- arima.sim(
+  model = list(order = c(1,1,0),
+               ar = 0.3),
+  n = 500)
+ts_plot(non_stationary_ts,
+        title = "Non-Stationary Time Series",
+        Ytitle = "Value",
+        Xtitle = "Index")
+```
+
+As you can see this example **violates the stationary condition** as it is trending over time, which means it is changing over time. Common examples of a series with a **non-stationary structure** are as follows:
+
+-   A series with a **dominant trend**: The series' mean changes over time as a function of the change in the series trend, and therefore the series is non-stationary.
+
+-   A series with a **multiplicative seasonal component**: In this case, the variance of the series is a function of the seasonal oscillation over time, which either increases or decreases over time.
+
+The **AirPassenger series** (the monthly airline passenger numbers between 1949 and 1960) from the datasets package is a good example of a series that **violates the two conditions of the stationary process**. Since the series has both a strong linear trend and a multiplicative seasonal component, the mean and variance are both changing over time:
+
+*Example:*
+
+```{r}
+data(AirPassengers)
+ts_plot(AirPassengers,
+        title = "Monthly Airline Passenger Numbers 1949-1960",
+        Ytitle = "Thousands of Passengers",
+        Xtitle = "Year")
+```
+
+### Transforming a non-stationary series into a stationary series
+
+In most cases, unless you are very lucky, your **raw data** would probably come with a trend or other form of oscillation that violates the assumptions of the stationary process. To handle this, you will have to **apply some transformation steps** in order to bring the series into a stationary state.
+
+**Common transformations methods** are differencing the series (or de-trending) and log transformation (or both).
+
+[**DIFFERENCING TIME SERIES**]{.underline}
+
+The **most common approach** to transforming a non-stationary time series data into a stationary state is by differencing the series with its lags. The main effect of differencing a series is the **removal of the series trend** (or detrending the series), which help to stabilize the mean of the series.
+
+It is common to use **seasonal differencing** when a series has a seasonal component. The `diff` function from the **base package** differences the input series with a specific lag by setting the `lag` argument of the function to the relevant lag.
+
+*Example:*
+
+```{r}
+# First order difference
+ts_plot(diff(AirPassengers, lag = 1),
+        title = "AirPassengers Series - First Differencing",
+        Xtitle = "Year",
+        Ytitle = "Differencing of Thousands of Passengers")
+```
+
+You can see that the **first difference** of the AirPassenger series removed the series trend and that the **mean** of the series is, overall, constant over time. On the other hand, there is clear evidence that the **variation** of the series is increasing over time, and therefore the series is **not stationary** yet.
+
+In addition to the first order difference, taking the seasonal difference of the series could solve this issue. Let's **add the seasonal difference** to the first order difference and plot it again:
+
+*Example:*
+
+```{r}
+ts_plot(diff(diff(AirPassengers, lag = 1), 12),
+        title = "AirPassengers Series - First and Seasonal Differencing",
+        Xtitle = "Year",
+        Ytitle = "Differencing of Thousands of Passengers")
+```
+
+The **seasonal difference** did a good job of stabilizing the series variation, as the series now seems to be **stationary**.
+
+[**LOG TRANSFORMATION**]{.underline}
+
+We can utilize the **log transformation** approach to stabilize a **multiplicative** seasonal oscillation, if it exists. This approach is not a replacement for differencing, but an addition.
+
+For instance, in the example of the AirPassenger in the preceding section, we saw that the first differencing is doing a great job in stabilizing the mean of the series, but is not sufficient enough to stabilize the variance of the series. Therefore, we can apply a log transformation to transform the seasonal structure from \*+multiplicative to additive\*\* and then apply the first-order difference to stationarize the series:
+
+*Example:*
+
+```{r}
+ts_plot(diff(log(AirPassengers), lag = 1),
+    title = "AirPassengers Series - First Differencing with Log
+    Transformation",
+    Xtitle = "Year",
+    Ytitle = "Differencing/Log of Thousands of Passengers")
+```
+
+The log transformation with the first-order differencing is doing a **better job** of transforming the series into a stationary state **with respect to the double differencing** (first-order with seasonal differencing) approach we used prior.
+
+### The random walk process
+
+The **random walk**, in the context of time series, describes a stochastic process of an object over time, where the main characteristics of this process are as follows:
+
+-   The starting point of this process at time $0 - Y_0$ is known
+
+-   The movement (or the walk) of the series with random walk process from time $t-1$ to time $t$ are defined with the following equation:
+
+<center>$Y_t = Y_t-1 + \epsilon_t$</center>
+
+The following example demonstrates the simulation of **20 different random walk paths of 500 steps**, all starting at point 0 at time 0. We will create two plots: one for the random walk paths and another for their first-order difference.
+
+*Example:*
+
+```{r message=FALSE}
+library(plotly)
+set.seed(12345)
+p1 <- plot_ly()
+p2 <- plot_ly()
+for(i in 1:20){
+  rm <- NULL
+  rw <- arima.sim(model = list(order = c(0, 1, 0)), n = 500)
+  p1 <- p1 %>% add_lines(x = time(rw), y = as.numeric(rw))
+  p2 <- p2 %>% add_lines(x = time(diff(rw)), y = as.numeric(diff(rw)))
+  }
+```
+
+Here, $p1$ represents the **plot of the random walk simulation**:
+
+```{r}
+p1 %>% layout(title = "Simulate Random Walk",
+              yaxis = list(title = "Value"),
+              xaxis = list(title = "Index")) %>%
+  hide_legend()
+```
+
+Here, $p2$ represents the corresponding **plot of the first-order differencing** of the random walk simulation:
+
+```{r}
+p2 %>% layout(title = "Simulate Random Walk with First-Order Differencing",
+              yaxis = list(title = "Value"),
+              xaxis = list(title = "Index")) %>%
+  hide_legend()
+```
+
+## The AR Process
+
+The **AR process** defines the current value of the series, $Y_t$, as a **linear combination** of the previous $p$ lags of the series, and can be formalized with the following equation:
+
+$$AR(p): Y_t = c + \sum^{p}_{i=1} \phi_i Y_{t-i} + \epsilon_t$$
+
+Where:
+
+-   $AR(p)$ is the notation for an AR process with p-order.
+
+-   $c$ represents a constant (or drift).
+
+-   $p$ defines the number of lags to regress against $Y_t$.
+
+-   $\phi_i$ is the coefficient of the $i$ lag of the series (here, must be between -1 and 1, otherwise, the series would be trending up or down and therefore cannot be stationary over time).
+
+-   $Y_{t-i}$ is the $i$ lag of the series.
+
+-   $\epsilon_t$ represents the error term, which is white noise.
+
+An **AR process can be used on time series data if, and only if, the series is stationary**. Therefore, before applying an AR process on a series, you will have to verify that the series is stationary. Otherwise, you will have to apply some transformation method (such as differencing, log transformation, and so on) to transform the series into a stationary state.
+
+In the following example, we will utilize the `arima.sim` function again to simulate an **AR(2) process structure time series data with 500 observations**, and then use it to fit an AR model. We will use the model argument to set the AR order to $2$ and set the lags coefficients $\phi_1 = 0.9$ and $\phi_2 = -0.3$:
+
+*Example:*
+
+```{r}
+set.seed(12345)
+ar2 <- arima.sim(model = list(order = c(2,0,0),
+                              ar = c(0.9, -0.3)),
+                 n = 500)
+```
+
+Let's review the simulate time series:
+
+```{r}
+ts_plot(ar2,
+        title = "Simulate AR(2) Series",
+        Ytitle = "Value",
+        Xtitle = "Index")
+```
+
+The `ar` function from the **stats package** allows us to fit an AR model on time series data and then forecast its future values. This function identifies the AR order automatically based on the **Akaike Information Criterion (AIC)**. The `method` argument allows you to define the coefficients estimation method, such as the ordinary least squares (OLS), maximum likelihood estimation (MLE), and Yule-Walker (default). 
+
+Let's apply the `ar` function to identify the **AR order** and estimate its coefficients accordingly:
+
+*Example:*
+
+```{r}
+md_ar <- ar(ar2)
+md_ar
+```
+
+As you can see the `ar` function was able to identify that the input series is a **second order AR process**, and provided a fairly close estimate for the value of the actual coefficients, $\hat\phi_1 = 0.88$, $\hat\phi_2 = -0.29$ (as opposed to the actual coefficients' values, $\phi_1 = 0.9$, $\phi_2 = -0.3$).
+
+### Identifying the AR process and its characteristics
+
+In the preceding example, we simulated an AR(2) series, and it was clear that we need to apply an AR model on the data. However, when **working with real-time series data**, you will have to identify the structure of the series before modeling it. 
+
+In the world of the **non-seasonal ARIMA family of models**, a series could have one of the following structures:
+
+-   AR.
+
+-   MA.
+
+-   Random walk.
+
+-   A combination of the preceding three (for example, AR and MA processes).
+
+Identifying the series structure includes the following **two steps**:
+
+-   Categorizing **the type** of process (for example, AR, MA, and so on).
+
+-   Once we have classified the process type, we need to identify **the order** of the process (for example, AR(1), AR(2), and so on).
+
+Utilizing the **autocorrelation function (ACF) and partial autocorrelation function (PACF)**, allows us to classify the process type and identify its order. 
+
+If the **ACF output tails off** and the **PACF output cuts off** at lag $p$, this indicates that the series is an **AR(p) process**. 
+
+*Exxample:*
+
+```{r}
+# Use the `par` function to plot the two plots side by side
+par(mfrow=c(1,2))
+# Generate the plots with the acf and pacf functions
+acf(ar2)
+pacf(ar2)
+```
+
+In the case of the `ar2` series, you can see that the **ACF plot** is tailing off and that the **PACF plot** is cut off at the second lag. Therefore, we can conclude that the series has a **second order AR process**.
+
+## The MA Process
+
+In some cases, the forecasting model is unable to capture all the series patterns, and therefore some information is left over in model residuals (or forecasting error). The goal of the **moving average process is to capture patterns in the residuals**, if they exist, by modeling the relationship between $Y_t$, the error term, $\epsilon_t$, and the past $q$ error terms of the models (for example, $\epsilon_{t-1}$, $\epsilon_{t-2}$, $\epsilon_{t-q}$). 
+
+The **structure of the MA process** is fairly similar to the ones of the AR. The following equation defines an MA process with a $q$ order:
+
+$$MA(q): Y_t = \mu + \epsilon_t +  \sum^{q}_{i=1} \theta_i \epsilon_{t-i}$$
+Where:
+
+-   $MA(q)$ is the notation for an MA process with q-order.
+
+-   $\mu$ represents the mean of the series.
+
+-   $\epsilon_{t-q}$,..., $\epsilon_t$ are white noise error terms.
+
+-   $\theta_i$ is the corresponding coefficient of $\epsilon_{t-i}$
+
+-   $q$ defines the number of past error terms to be used in the equation.
+
+Like the AR process, the **MA equation holds only if the series is a stationary process**; otherwise, a transformation must be used on the series before applying the MA process.
+
+We will utilize the arima.sim function to simulate a series with an MA(2) structure. In this case, we will set the q parameter in the order argument to 2 and set the MA coefficients to and :
+
+*Example:*
+
+```{r}
+set.seed(12345)
+ma2 <- arima.sim(model = list(order = c(0, 0, 2),
+                              ma = c(0.5, -0.3)),
+                 n = 500)
+# Use the ts_plot function to plot the simulated series
+ts_plot(ma2,
+        title = "Simulate MA(2) Series",
+        Ytitle = "Value",
+        Xtitle = "Index")
+```
+
+**Modeling the MA process** can be done with the `arima` function from the stats package. This function, when setting the order of the AR and the differencing components of the model to $0$ with the order argument (that is, $p = 0$ and $d = 0$), is modeling only on the MA component. 
+
+*Example:*
+
+```{r}
+# Apply a second-order MA model with the arima function
+# on the simulated MA(2) series
+md_ma <- arima(ma2, order = c(0,0,2), method = "ML")
+```
+
+Similar to the `ar` function, you can select the **coefficients estimation** approach. In this case, there are three methods: maximum likelihood (ML), minimize conditional sum-of-squares (CSS), and the combination of the two, which is known as CSS-ML. 
+
+The **output of the arima function** is more detailed than the ones of the ar function, as it also provides the level of significance of each coefficient (the s.e.):
+
+```{r}
+md_ma
+```
+
+### Identifying the MA process and its characteristics
+
+Similar to the AR process, we can **identify an MA process and its order** with the ACF and PACF functions. **If the ACF is cut off at lag $q$ and the PACF function tails off**, we can conclude that the process is an **MA(q)**. Let's repeat the process we applied on the `ar2` series with the `ma2` series:
+
+*Example:*
+
+```{r}
+par(mfrow=c(1,2))
+acf(ma2)
+pacf(ma2)
+```
+
+In the case of the `ma2` series, the **ACF plot is cut off on the second lag** (note that lag $0$ is the correlation of the series with itself, and therefore it is equal to $1$ and we can ignore it), and so the **PACF tails off**. Therefore, we can conclude that the `ma2` series is an **MA(2) process**.
+
+## The ARMA model
+
+Up until now, we have seen how the applications of AR and MA are processed separately. However, in some cases, combining the two allows us to handle more complex time series data. The ARMA model is a **combination of the AR(p) and MA(q) processes** and can be written as follows:
+
+$$ARMA(p,q): Y_t = c + \sum^{p}_{i=1} \phi_i Y_{t-i} + \sum^{q}_{i=1} \theta_i \epsilon_{t-i} + \epsilon_t$$
+For instance, an **ARMA(3,2) model** is defined by the following equation:
+
+$$Y_t = c + \phi_1 Y_{t-i} + \phi_2 Y_{t-2} + \phi_3 Y_{t-3} + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \epsilon_t$$
+Let's **simulate a time series data with an ARMA(1,2) structure** with the `arima.sim` function and review the characteristics of the ARMA model. We will set the p and q parameters of the order argument to 1 and 2, respectively, and set the AR coefficient as , and the MA coefficients as and :
+
+*Example:*
+
+```{r}
+set.seed(12345)
+arma <- arima.sim(model = list(order(1,0,2),
+                               ar = c(0.7),
+                               ma = c(0.5,-0.3)),
+                  n = 500)
+# Plot and review the series structure
+ts_plot(arma,
+        title = "Simulate ARMA(1,2) Series",
+        Ytitle = "Value",
+        Xtitle = "Index")
+```
+
+**Fitting an ARMA model** is straightforward with the `arima` function. In this case, we have to set the p and q parameters on the order argument: 
+
+```{r}
+arma_md <- arima(arma, order = c(1,0,2))
+arma_md
+```
+
+You can observe from the following output of the fitted model that the values of the model coefficients are fairly close to the one we simulated.
+
+Here, as the coefficient's name implies, `ar1`, `ma1`, and `ma2` represent the estimation of the $\phi_1$, $\theta_1$, and $\theta_2$ coefficients, respectively. You can note that the intercept parameter is not statistically significant, which should make sense as we didn't add an intercept to the simulated data.
+
+### Identifying an ARMA process
+
+Identifying the ARMA process follows the same approach that we used previously with the AR and MA processes. An **ARMA process exists in time series data if both the ACF and PACF plots tail off**, as we can see in the following example:
+
+*Example:*
+
+```{r}
+par(mfrow=c(1,2))
+acf(arma)
+pacf(arma)
+```
+
+On the other hand, unlike the AR and MA processes, **we cannot conclude the order of the ARMA process**. There are several approaches for tuning the ARMA $p$ and $q$ parameters:
+
+-   **Manual tuning**: By starting with a combination of $p$ and $q$ and using some error criteria for identifying the model parameters.
+
+-   **Grid search**: By trying different combinations of the $p$ and $q$ parameters based on the grid matrix. Likewise, manual tuning and the selection of a specific combination of $p$ and $q$ parameters should be based on error criterion.
+
+-   **Algorithm-based search**: By using a function or algorithm for tuning the model parameters.
+
+## Forecasting AR, MA, and ARMA models
+
+Forecasting any of the models we saw until now was straightforward: we used the `forecast` function from the **forecast package**. The following code demonstrates the **forecast of the next 100 observations of the AR model** we trained previously in "The AR Process" section with the `ar` function:
+
+*Example:** 
+
+```{r message=FALSE}
+library(forecast)
+ar_fc <- forecast(md_ar, h = 100)
+# Use `plot_forecast to plot the forecast output:
+plot_forecast(ar_fc,
+              title = "Forecast AR(2) Model",
+              Ytitle = "Value",
+              Xtitle = "Year")
+```
+
+## The ARIMA model
+
+One of the limitations of the AR, MA, and ARMA models is that **they cannot handle non-stationary time series data**. Therefore, if the input series is non-stationary, a pre-processing step is required to transform the series from a non-stationary state into a stationary state. 
+
+The ARIMA model provides a solution for this issue by adding the integrated process for the ARMA model. The **Integrated (I) process** is simply differencing the series with its lags, where the degree of the differencing is represented by the $d$ parameter. 
+
+The **differencing process** is one of the ways you can transform the methods of a series from non-stationary to stationary. For instance, $Y_t - Y_{t-1}$ represents the **first differencing** of the series, while $(Y_t - Y_{t-1}) - (Y_{t-1} - Y_{t-2})$ represents the **second differencing**. 
+
+We can **generalize the differencing process** with the following equation:
+
+$$Y_d = (Y_t - Y_{t-1}) - ... - (Y_{t-d+1} - Y_{t-d})$$
+
+Where, $Y_d$ is the **$d$ differencing of the series**. 
+
+Let's add the differencing component to the ARMA model and formalize **the $ARIMA(p,d,q)$ process** with a p-order AR process, d-degree of differencing, and q-order MA process:
+
+$$ARIMA(p,q,d): Y_d = c + \sum^{p}_{i=1} \phi_i Y_{d-i} + \sum^{q}_{i=1} \theta_i \epsilon_{t-i} + \epsilon_t$$
+Note that both the AR and MA models can be represented with the ARMA model,
+and that you can also represent the AR, MA, or ARMA models with the ARIMA model, for example:
+
+-   The ARIMA(0, 0, 0) model is equivalent to white noise.
+-   The ARIMA(0, 1, 0) model is equivalent to a random walk.
+-   The ARIMA(1, 0, 0) model is equivalent to an AR(1) process.
+-   The ARIMA(0, 0, 1) model is equivalent to an MA(1) process.
+-   The ARIMA(1, 0, 1) model is equivalent to an ARMA(1,1) process.
+
+## Identifying an ARIMA process
