@@ -4,7 +4,7 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "10/06/2024"
+  date: "10/08/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -62,6 +62,7 @@ book:
         - time_forecast_ma.qmd
         - time_forecast_smooth.qmd
         - time_forecast_arima.qmd
+        - time_forecast_ml.qmd
     - part: "Part 7: Data Products"
       chapters: 
         - products.qmd

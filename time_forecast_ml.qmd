@@ -1,0 +1,543 @@
+# Forecasting with Machine Learning Models
+
+In recent years, the use of **machine learning (ML) models** has become popular and accessible due to significant improvement in standard computation power. This led to a **new world of methods** and approaches for regression and classifications models.
+
+The **main advantage of the ML models** is their predictive power (when quality inputs are available), which, in many cases, is worth the effort and time involved in the process. In the context of time series forecasting, it will be **beneficial to forecast with ML models** in the following cases:
+
+-   **Structural patterns**: Exits in the series, as those can produce new, predictive features.
+
+-   **Multiple seasonality**: As a special case for structural patterns since, typically, the traditional time series models are struggling to capture those patterns when they exist.
+
+## Exploratory Analysis
+
+In this section, we will focus on exploring and learning about the main characteristics of the **USVSales series**. These insights will be used to build new features as inputs for the ML model. The exploratory analysis of the USVSales series will focus on the following topics:
+
+-   View the time series structure (frequency, start and end of the series, and so on).
+-   Explore the series components (seasonal, cycle, trend, and random components).
+-   Seasonality analysis.
+-   Correlation analysis.
+
+### Series structure
+
+Let's start with ts_info and review the structure of the USVSales series:
+
+*Example*
+
+```{r}
+library(TSstudio)
+ts_info(USVSales)
+```
+
+The **USVSales series** is a monthly `ts` object which represents the total vehicle sales in the US between 1976 and 2018 in thousands of units. Let's plot the series and review its structure with the `ts_plot` function:
+
+```{r}
+ts_plot(USVSales,
+        title = "US Total Monthly Vehicle Sales",
+        Ytitle = "Thousands of Units",
+        Xtitle = "Year")
+```
+
+As you can see in the preceding plot, the series has **cycle patterns**, which is common for a macro economy indicator. In this case, it is a macro indicator of the US economy.
+
+### Series components
+
+We can get a deeper view of the series components by **decomposing the series** into its components and plotting them with the `ts_decompose` function:
+
+```{r}
+ts_decompose(USVSales)
+```
+
+Beside the cycle-trend component, we can observe that the plot has a **strong seasonal pattern**, which we will explore next.
+
+### Seasonal analysis
+
+To get a closer look at the **seasonal component** of the series, we will subtract from the series, decompose the trend we discussed previously, and use the `ts_seasonal` function to plot the box **plot of the seasonal component** of the detrend series:
+
+```{r warning=FALSE}
+USVSales_detrend <- USVSales - decompose(USVSales)$trend
+ts_seasonal(USVSales_detrend, type = "box")
+```
+
+We can see from the preceding **seasonal plot** that, typically, the peak of the year occurred during the months of March, May, and June. In addition, you can see that the sales decay from the summer months and peak again in December during the holiday seasons. On the other hand, the month of January is typically the lowest month of the year in terms of sales.
+
+### Correlation analysis
+
+The **USVSales series** has a **high correlation** with its first seasonal lag. We can review this assessment with the use of the `ts_acf` function from the **TSstudio package** for reviewing the autocorrelation of the series:
+
+```{r}
+# `ts_cor`substitutes ts_acf
+ts_cor(USVSales)
+```
+
+We can **zoom in** on the relationship of the series with the last **three seasonal lags** using the `ts_lags` function:
+
+```{r}
+ts_lags(USVSales, lags = c(12, 24, 36))
+```
+
+The relationship of the series with the first and also second seasonal lags has a **strong linear relationship**, as shown in the preceding lags plot.
+
+### Key findings
+
+We can conclude our **exploratory analysis of the USVSales series** with the following observations:
+
+-   The USVSales series is a monthly series with a clear **monthly seasonality**.
+
+-   The series trend has a **cyclic shape**, and so the series has a cycle component embedded in the trend.
+
+-   The series' most **recent cycle** starts right after the end of the 2008 economic crisis, between 2009 and 2010.
+
+-   It seems that the current cycle reached its **peak** as the trend starts to flatten out.
+
+-   The series has a **strong correlation** with its first seasonal lag.
+
+Moreover, as we intend to have a **short-term forecast (of 12 months)**, there is no point in using the full series, as it may enter some noise into the model due to the change of the trend direction every couple of years. (If you were trying to create a long-term forecast, then it may be a good idea to use all or most of the series.)
+
+Therefore, we will use the model **training observations from 2010 and onward**. We will use the `ts_to_prophet` function from the TSstudio package to transform the series from a `ts` object into a `data.frame`, and the window function to subset the series observations since January 2010:
+
+```{r}
+df <- ts_to_prophet(window(USVSales, start = c(2010,1)))
+names(df) <- c("date", "y")
+head(df)
+```
+
+Before we move forward and start with the **feature engineering stage**, let's **plot and review** the subset series of USVSales with the ts_plot function:
+
+```{r}
+ts_plot(df, title = "US Total Monthly Vehicle Sales (Subset)",
+        Ytitle = "Thousands of Units",
+        Xtitle = "Year")
+```
+
+## Feature Engineering
+
+**Feature engineering** plays a pivotal role when modeling with ML algorithms. Our next step, based on the preceding observations, is to **create new features** that can be used as informative input for the model. In the context of time series forecasting, these are some examples of possible new features that can be created from the series itself:
+
+-   **The series trend**: This uses a numeric index. In addition, as the series trend isn't linear, we will use a second polynomial of the index to capture the overall curvature of the series trend.
+
+-   **Seasonal component**: This creates a categorical variable for the month of the year to capture the series' seasonality.
+
+-   **Series correlation**: This utilizes the strong correlation of the series with its seasonal lag and uses the seasonal lag (lag12) as an input to the model.
+
+*Example:*
+
+```{r message=FALSE}
+library(dplyr)
+library(lubridate)
+df <- df %>% mutate(month = factor(month(date, label = TRUE), 
+                                   ordered = FALSE),
+                    lag12 = lag(y, n = 12)) %>%
+  filter(!is.na(lag12))
+# Add the trend component and its second polynomial (trend squared)
+df$trend <- 1:nrow(df)
+df$trend_sqr <- df$trend ^ 2
+# View the structure of the df object after adding the new features
+str(df)
+```
+
+There are **additional feature engineering steps**, which in the case of the USVSales series are not required, but may be required in other cases, i.e. scaling, hot encoding.
+
+## Training, Testing, and Model Evaluation
+
+In order to **compare the different models** that we will be testing in this chapter, we will use the same inputs that we used previously. This includes executing **same training and testing partitions** throughout this chapter. Since our forecast horizon is for 12 months, we will leave the last 12 months of the series as testing partitions and use the rest of the series as a training partition:
+
+```{r}
+h <- 12
+train_df <- df[1:(nrow(df) - h), ]
+test_df <- df[(nrow(df) - h + 1):nrow(df), ]
+```
+
+Previously, the $h$ variable represented the forecast horizon, which, in this case, is also equal to the length of the testing partition. We will evaluate the model's performance based on the `MAPE` score on the testing partition.
+
+Be aware that One of the main characteristics of ML models is the **tendency to overfit** on the training set. Therefore, you should expect that the ratio between the error score on the testing and training partition will be relatively larger than the corresponding results of traditional time series models, such as ARIMA, Holt-Winters, and time series linear regression. In addition to the training and testing partitions, we need to **create the inputs** for the forecast itself. We will create a data.frame with the dates of the following 12 months and build the rest of the features:
+
+```{r}
+forecast_df <- data.frame(date = seq.Date(from = max(df$date) + month(1),
+                                          length.out = h, by = "month"),
+                          trend = seq(from = max(df$trend) + 1, 
+                                      length.out = h, by = 1))
+forecast_df$trend_sqr <- forecast_df$trend ^ 2
+forecast_df$month <- factor(month(forecast_df$date, label = TRUE), 
+                            ordered = FALSE)
+```
+
+Last but not least, we will **extract the last 12 observations of the series** from the `df` object and assign them as the future lags of the series:
+
+```{r}
+forecast_df$lag12 <- tail(df$y, 12)
+```
+
+## Model Benchmark
+
+The performance of a forecasting model should be measured by the error rate, mainly on the testing partition, but also on the training partition. You should **evaluate the performance of the model** with respect to some baseline model. Since we are using a family of ML regression models, it makes more sense to use a **regression model** as a benchmark for the ML models.
+
+We will **train** a time series linear regression model using the training and testing partitions we created previously, and **evaluate its performance** with the testing partitions:
+
+```{r}
+lr <- lm(y ~ month + lag12 + trend + trend_sqr, data = train_df)
+summary(lr)
+```
+
+Next, we will **predict** the corresponding values of the series on the testing partition with the `predict` function by using `test_df` as input:
+
+```{r}
+test_df$yhat <- predict(lr, newdata = test_df)
+```
+
+Now, we can **evaluate the model's performance** on the testing partition:
+
+```{r}
+mape_lr <- mean(abs(test_df$y - test_df$yhat) / test_df$y)
+mape_lr
+```
+
+Hence, the `MAPE` score of the linear regression forecasting model is 3.5%. We will use this to **benchmark the performance of the ML models**.
+
+## Building a ML Model
+
+### Starting a `h2o` Cluster
+
+We will start loading the package and then set the in-memory cluster with the h2o.init function:
+
+```{r message=FALSE, warning=FALSE}
+library(h2o)
+h2o.init(max_mem_size = "16G")
+```
+
+`h2o.init` allows you to set the **memory size of the cluster** with the `max_mem_size` argument. The output of the function, as shown in the preceding code, provides information about the cluster's setup.
+
+Any data that is used throughout the training and testing process of the models by the **h2o package** must load to the cluster itself. The `as.h2o` function allows us to transform any `data.frame` object into a **h2o cluster**:
+
+*Example:*
+
+```{r results="hide"}
+train_h <- as.h2o(train_df)
+test_h <- as.h2o(test_df)
+```
+
+In addition, we will transform the `forecast_df` object (the future values of the series inputs) into an **h2o object**, which will be used to generate the final forecast:
+
+```{r results="hide"}
+forecast_h <- as.h2o(forecast_df)
+```
+
+For our convenience, we will **label the names of the dependent and independent variables**:
+
+```{r}
+x <- c("month", "lag12", "trend", "trend_sqr")
+y <- "y"
+```
+
+### Training an ML model
+
+The h2o package provides a set of tools for training and testing ML models. The most common model training approaches are as follows:
+
+-   **Training/testing**: This is based on splitting the input data into training and testing partitions by allocating most of the input data to the training partition and leaving the rest to the testing partition. As the names of the partitions imply, the training set is used to train the model, while the testing partition is used to test its performance on new data. Typical allocations are **70/30** (that is, 70% of the data to the training partition and 30% to the testing partition), or roughly close to that ratio, where the data allocation between the two partitions must be random.
+
+-   **Training/testing/validation**: This is relatively similar to the previous approach, except with added validation partitions. The validation partition is used during the training process to evaluate the tuning of the model parameters. The tuned models are then tested on the testing partition.
+
+-   **Cross-validation**: This is one of the **most popular training methods for ML models** as it reduces the chance of overfitting of the model. This method is based on the following steps:
+
+    1.  Splitting the training set, randomly, into $K$ folders.
+    2.  Training the model $K$ times, each time leaving a different folder out as a testing partition, and training the model with the remaining $K-1$ folders.
+    3.  Throughout the training process, the model tunes the model's parameters.
+    4.  The final model is tested on the testing partition.
+
+we will use the **cross-validation (CV)** approach to train these models.
+
+### Forecasting with the Random Forest model
+
+Now that we have prepared the data, created new features, and launched a h2o cluster, we are ready to build our first forecasting model with the **Random Forest (RF) algorithm**. The RF algorithm is one of the most popular ML models, and it can be used for both classification and regression problems. In a nutshell, the RF algorithm is based on an ensemble of multiple tree models.
+
+As its name implies, it has two main components:
+
+-   **Random**: The input for each tree model is based on a random sample, along with the replacement of both the columns and rows of the input data. This method is also known as bagging.
+
+-   **Forest**: The collection of tree-based models, which eventually creates the forest.
+
+We will start with a simplistic **RF model by using 500 trees and 5 folder CV training**. In addition, we will add a stop criteria to prevent the model from fitting the model while there is no significant change in the model's performance. In this case, we will set the stopping metric as `RMSE`, the stopping tolerance as 0.0001, and the stopping rounds to 10:
+
+*Example:*
+
+```{r results="hide"}
+rf_md <- h2o.randomForest(training_frame = train_h, 
+                          nfolds = 5,
+                          x = x,
+                          y = y,
+                          ntrees = 500,
+                          stopping_rounds = 10,
+                          stopping_metric = "RMSE",
+                          score_each_iteration = TRUE,
+                          stopping_tolerance = 0.0001,
+                          seed = 1234)
+```
+
+The `h2o.randomForest` function returns an object with information about the **parameter settings of the model and its performance on the training set** (and validation, if used). We can view the contribution of the model inputs with the `h2o.varimp_plot` function. This function returns a plot with the ranking of the input variables' contribution to the model performance using a scale between 0 and 1, as shown in the following code:
+
+```{r}
+h2o.varimp_plot(rf_md)
+```
+
+As we can see from the preceding **variable importance plot**, the lag variable, `lag12`, is the most important to the model. This shouldn't be a surprise as we saw the strong relationship between the series and its seasonal lag in the correlation analysis. Right after this, the most important variables are `trend_sqr`, `month`, and `trend`. The output of the model contains (besides the model itself) information about the model's performance and parameters.
+
+Let's **review the model summary**:
+
+```{r}
+rf_md@model$model_summary
+```
+
+We can see that we utilized only **41 trees out of the 500** that were set by the `ntrees` argument. This is as a result of the stopping parameters that were used on the model. The following plot demonstrates the **learning process of the model** as a function of the number of trees:
+
+```{r message=FALSE, warning=FALSE}
+library(plotly)
+tree_score <- rf_md@model$scoring_history$training_rmse
+plot_ly(x = seq_along(tree_score), y = tree_score,
+        type = "scatter", mode = "line") %>%
+  layout(title = "The Trained Model Score History",
+         yaxis = list(title = "RMSE"),
+         xaxis = list(title = "Num. of Trees"))
+```
+
+Last but not least, let's **measure the model's performance** on the testing partition. We will use the `h2o.predict` function to predict the corresponding values of the series on the testing partition:
+
+```{r One, results="hide"}
+# test_h <- as.h2o(test_df)
+test_h$pred_rf <- h2o.predict(rf_md, test_h)
+h2o.shutdown()
+```
+
+Next, we will transfer the **h2o data frame to a data.frame object** with the `as.data.frame` function:
+
+```{r Two}
+test_1 <- as.data.frame(test_h)
+```
+
+Now, we can **calculate the `MAPE` score** of the RF model on the test partition:
+
+```{r Three}
+mape_rf <- mean(abs(test_1$y - test_1$pred_rf) / test_1$y)
+mape_rf
+```
+
+As you can see from the model error score, the **RF model** with its default settings was able to **achieve a lower error rate** than our benchmark model, that is, the linear regression model, with a **MAPE score of 4.6%** as opposed to 3.6%.
+
+### Model optimization
+
+Generally, when using the default option for the model's parameters, the model may perform well, but there might be **some room left for additional optimization and improvement** in regards to the performance of the model. There are a variety of techniques for **model optimization and tuning parameters**, such as manual tuning, grid search, and algorithm-based tuning.
+
+[**GRID SEARCH APPROACH**]{.underline}
+
+The `h2o.grid` function allows you to **set a set of values** for some selected parameters and test their performance on the model in order to identify the **tuning parameters** that optimize the model's performance.
+
+*Example:*
+
+```{r Four}
+# Start by setting the search parameters
+hyper_params_rf <- list(mtries = c(2, 3, 4), 
+                        sample_rate = c(0.632, 0.8, 0.95),
+                        col_sample_rate_per_tree = c(0.5, 0.9, 1.0),
+                        max_depth = c(seq(1, 30, 3)),
+                        min_rows = c(1, 2, 5, 10))
+```
+
+The more parameters you add or define for a wide range of values, the larger the possible **search combination**. For efficiency reasons, we will set a **random search** and restrict the search time to 20 minutes with `max_runtime_sec`. We will use the same stopping metric that we used previously:
+
+```R
+#{r Five}
+search_criteria_rf <- list(strategy = "RandomDiscrete",
+                           stopping_metric = "rmse",
+                           stopping_tolerance = 0.0001,
+                           stopping_rounds = 10,
+                           max_runtime_secs = 60 * 5)
+```
+
+After we set the search arguments for the `h2o.grid` function, **we can start the search**:
+
+```R
+#{r Six}
+rf2 <- h2o.grid(algorithm = "randomForest", 
+                search_criteria = search_criteria_rf,
+                hyper_params = hyper_params_rf,
+                x = x,
+                y = y,
+                training_frame = train_h,
+                ntrees = 5000,
+                nfolds = 5,
+                grid_id = "rf_grid",
+                parallelism = 1,
+                seed = 1234)
+```
+
+Note that setting a large number of trees with a tree-based model such as RF or GBM, along with a stopping metric, will ensure that the model will keep building additional trees until it meets the stopping criteria. Therefore, setting the **stopping criteria plays a critical roll** in both the efficiency of the model and its results.
+
+We will now **extract the grid results**, sort the models by their RMSE score, and pull the lead model:
+
+```R
+rf2_grid_search <- h2o.getGrid(grid_id = "rf_grid",
+                               sort_by = "rmse",
+                               decreasing = FALSE)
+rf_grid_model <- h2o.getModel(rf2_grid_search@model_ids[[1]])
+```
+
+Let's **test** the model on the testing partition and **evaluate its performance**:
+
+```R
+test_h$rf_grid <- h2o.predict(rf_grid_model, test_h)
+mape_rf2 <- mean(abs(test_1$y - test_1$rf_grid) / test_1$y)
+mape_rf2
+```
+
+The **additional optimization step** contributed to the **lift in the model's accuracy**, with a MAPE score of 3.33% compared to 3.7% and 4% for the first RF model we trained, and the linear regression model, respectively.
+
+The following plot provides an **additional view of the model's performance**:
+
+```R
+plot_ly(data = test_1) %>%
+  add_lines(x = ~ date, y = ~y, name = "Actual") %>%
+  add_lines(x = ~ date, y = ~ yhat, name = "Linear Regression", 
+            line = list(dash = "dot")) %>% 
+  add_lines(x = ~ date, y = ~ pred_rf, name = "Random Forest", 
+            line = list(dash = "dash")) %>%
+  add_lines(x = ~ date, y = ~ rf_grid, name = "Random Forest (grid)", 
+            line = list(dash = "dash")) %>%
+  layout(title = "Total Vehicle Sales - Actual vs. Prediction (Random Forest)",
+         yaxis = list(title = "Thousands of Units"),
+         xaxis = list(title = "Month"))
+```
+
+### Forecasting with the GBM model
+
+The **GBM algorithm** is another ensemble and tree-based model. It uses the **boosting approach** in order to train different subsets of the data, and repeats the training of subsets that the model had with a high error rate. This allows the model to learn from past mistakes and improve the predictive power of the model.
+
+The following example demonstrates the use of the `h2o.gbm` function for **training the GBM model** with the same input data we used previously:
+
+*Example:*
+
+```{r results="hide"}
+gbm_md <- h2o.gbm(training_frame = train_h,
+                  nfolds = 5,
+                  x = x, 
+                  y = y, 
+                  max_depth = 20,
+                  distribution = "gaussian",
+                  ntrees = 500,
+                  learn_rate = 0.1,
+                  score_each_iteration = TRUE
+)
+```
+
+We can review the **rank of the importance** of the model's variables with the `h2o.varimp_plot` function:
+
+```{r}
+h2o.varimp_plot(gbm_md)
+```
+
+For RF, the GBM model ranks the **lag12 variable as the most important** to the model. Let's test the **model's performance** on the testing set:
+
+```{r results="hide"}
+test_h$pred_gbm <- h2o.predict(gbm_md, test_h)
+test_1 <- as.data.frame(test_h)
+mape_gbm <- mean(abs(test_1$y - test_1$pred_gbm) / test_1$y)
+mape_gbm
+```
+
+The GBM model scored the **lowest MAPE (is not!)** among the models we've tested so far with a 3.8% error rate, compared to the RF model (with grid search) and linear regression model. It would be a great exercise to apply a grid search on the GBM model and test whether any additional improvements can be achieved.
+
+Let's **visualize the results and compare the prediction** with the actual and baseline prediction:
+
+```{r}
+plot_ly(data = test_1) %>%
+  add_lines(x = ~ date, y = ~y, name = "Actual") %>%
+  add_lines(x = ~ date, y = ~ yhat, 
+            name = "Linear Regression", 
+            line = list(dash = "dot")) %>%
+  add_lines(x = ~ date, y = ~ pred_gbm, 
+            name = "Gradient Boosting Machine", line = list(dash = "dash"))%>%
+  layout(title = "Total Vehicle Sales - Actual vs. Prediction (Gradient Boosting Machine)",
+         yaxis = list(title = "Thousands of Units"),
+         xaxis = list(title = "Month"))
+```
+
+### Forecasting with the AutoML model
+
+Let's take a look at a third approach to tuning ML models. Here, we will use the `h2o.automl` function that provides an **automated approach to training, tuning, and testing multiple ML algorithms** before selecting the model that performed best based on the model's evaluation. It utilizes algorithms such as **RF**, **GBM**, **DL**, and others using different tuning approaches.
+
+Similarly, the `h2o.grid` function can apply any of the training approaches (CV, training with validation, and so on) during the training process of the models. Let's use the same input as before, and train the forecasting model: 
+
+*Example:*
+```R
+autoML1 <- h2o.automl(training_frame = train_h,
+                      x = x,
+                      y = y,
+                      nfolds = 5,
+                      max_runtime_secs = 60*20,
+                      seed = 1234)
+```
+
+Note that we can **set the runtime** of the function. A longer running time could potentially yield better results.
+
+In the preceding example, the function's running time was set to 20 minutes. The function returns a list with the leaderboard of all the tested models: 
+
+```R
+autoML1@leaderboard
+```
+
+## Selecting the Final Model
+
+Now that we've finished the training and testing process of the models, it's time to finalize the process and **choose the model to forecast** with the series. We trained the following models:
+
+-   **Baseline model**: Linear regression model with **4% MAPE** score on the testing partition.
+
+-   **RF**: Using default tuning parameters with **3.74% MAPE** score on the testing partition.
+
+-   **RF**: Using grid search for tuning the model parameters with **3.33% MAPE** score on the testing partition.
+
+-   **GBM**: Using the default tuning parameters with **2.75% MAPE** score on the testing partition.
+
+-   **AutoML**: Selecting a deep learning model with **3.48% MAPE** score on the testing partition.
+
+Since all of these models achieved better results than the baseline, we can **drop the baseline model**. Also, since the second RF model (with grid search) achieved better results than the first, there is no point in keeping the first model. This leaves us with three forecasting models, that is, RF (with grid search), GBM, and AutoML. Generally, since the **GBM model achieved the best MAPE results**, we will select it. However, it is always **nice to plot** the actual forecast and check what the actual forecast looks like. 
+
+Before we plot the results, let's use these three models to **forecast the next 12 months** using the data.frame forecast we created in the Forecasting with the Random Forest model and Forecasting with the GBM model sections:
+
+```R
+forecast_h$pred_gbm <- h2o.predict(gbm_md, forecast_h)
+forecast_h$pred_rf <- h2o.predict(rf_grid_model, forecast_h)
+forecast_h$pred_automl <- h2o.predict(autoML1@leader, forecast_h)
+```
+
+We will transform the object back into a data.frame object with the as.data.frame function:
+
+```R
+final_forecast <- as.data.frame(forecast_h)
+```
+
+Now, we can plot the final forecast with the plotly package:
+
+```R
+plot_ly(x = df$date, 
+        y = df$y,
+        type = "scatter",
+        mode = "line",
+        name = "Actual") %>%
+    add_lines(x = final_forecast$date, 
+              y = final_forecast$pred_rf, 
+              name = "Random Forest") %>%
+    add_lines(x = final_forecast$date, 
+              y = final_forecast$pred_gbm, 
+              name = "GBM") %>%
+    add_lines(x = final_forecast$date, 
+              y = final_forecast$pred_automl, 
+              name = "Auto ML") %>%
+    layout(title = "Total Vehicle Sales - Final Forecast",
+          yaxis = list(title = "Thousands of Units", 
+                      range = c(1100, 1750)),
+          xaxis = list(title = "Month", 
+                      range = c(as.Date("2016-01-01"),
+                      as.Date("2020-01-01")))
+)
+```
+
+It seems that all **three models capture the seasonality** component of the vehicle sales series. However, it seems that the oscillation of **AutoML** is higher with respect to one of the RF and GBM models. Therefore, it would make sense to **select either the GBM or RF models as the final forecast**. 
+
+A more conservative approach would be to create and **ensemble of the three forecasts** by either weighted on regular average. For instance, you can use a simple function for testing the different average of different models and select the combination that minimizes the forecast error rate on the testing set.
