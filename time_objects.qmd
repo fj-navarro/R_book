@@ -316,8 +316,7 @@ The `plot.ts` function from the **stats package** is built-in R function for vis
 plot.ts(tvs_ts,
         main = "US Monthly Total Vehicle Sales",
         ylab = "Thousands of Vehicle",
-        xlab = "Time"
-)
+        xlab = "Time")
 ```
 
 Similarly, we can use the function to plot an **mts object**:
@@ -345,7 +344,7 @@ dygraph(tvs_ts,
   dyRangeSelector()
 ```
 
-For **multiple objects** we will use the `US_indicators_ts` series, adding a second y-axis, which allows us to plot and compare the two series that are not on the same scale (for example, thousands of units versus percentage):
+For **multiple objects**, we will use the `US_indicators_ts` series, adding a second y-axis, which allows us to plot and compare the two series that are not on the same scale (for example, thousands of units versus percentage):
 
 *Example:*
 
@@ -359,13 +358,13 @@ dygraph(US_indicators_ts,
   dyLegend(width = 400)
 ```
 
-Looking at the plot of the US_indicator_ts series when using two y-axes, you can see that it is **easier to identify the relationship** between the two series as opposed to plotting them on a separate plot (as we did with the plot.ts function earlier).
+Looking at the plot of the `US_indicator_ts` series when using two y-axes, you can see that it is **easier to identify the relationship** between the two series as opposed to plotting them on a separate plot (as we did with the `plot.ts` function earlier).
 
-The dygraph uses an object-oriented approach, which allows you to add a different component to the plot with the pipe operator (%\>%). This allows the user to add additional arguments for the plot, as opposed to a large amount of arguments in one function.
+The **dygraph** uses an **object-oriented approach**, which allows you to add a different component to the plot with the pipe operator (`%>%`). This allows the user to add additional arguments for the plot, as opposed to a large amount of arguments in one function.
 
-### TSstudio pacckage
+### TSstudio package
 
-The TSstudio package provides the `ts_plot` function for visualizing time series objects using the plotly package visualization engine. In addition, this function supports both time series objects, such as **ts**, **mts**, **zoo**, and **xts**, and also data frame types such as data.frame, data.table, and tibble.
+The **TSstudio package** provides the `ts_plot` function for visualizing time series objects using the **plotly package** visualization engine. In addition, this function supports both time series objects, such as **ts**, **mts**, **zoo**, and **xts**, and also data frame types such as data.frame, data.table, and tibble.
 
 *Example:*
 
