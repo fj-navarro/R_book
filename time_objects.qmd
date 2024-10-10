@@ -2,7 +2,7 @@
 
 R provides several classes for representing time series objects for a variety of applications. Among those classes, **ts** is one of the main formats for time series data in R, mainly due to its simplicity and the wide adoption of this class by the main packages in R for time series analysis, for example, the **forecast** and **stats** packages.
 
-Typically, when loading a new dataset, it is recommended that you **plot the series** before moving to the next step in the analysis. This allows you to have a quick look at the series to observe whether the data has been appropriately transformed and get a general understanding of the series' structure.
+Typically, when loading a new dataset, it is recommended that you **plot the series before moving to the next step in the analysis**. This allows you to have a quick look at the series to observe whether the data has been appropriately transformed and get a general understanding of the series' structure.
 
 ## The ts class
 
@@ -10,7 +10,7 @@ The **ts class** is R's built-in format for a regular **univariate** time series
 
 A **regular time series** is defined as an ordered sequence of observations over time, which is captured at equally spaced time intervals (that is, every day, week, month, and so on). Whenever this condition ceases to exist, the series becomes an **irregular time series**. We are specifically going to focus on the analysis and the forecasting of regular time series data.
 
-The main characteristics of regular time series data is as follows:
+The main **characteristics of regular time series** data is as follows:
 
 -   **Cycle/period**: A regular and repeating unit of time that split the series into consecutive and equally long subsets (for example, for monthly series, a full cycle would be a year).
 
@@ -18,58 +18,59 @@ The main characteristics of regular time series data is as follows:
 
 -   **Timestamp**: Provides the time each observation in the series was captured, and can be used as the series index. By definition, in a regular time series the time difference (or delta) between two consecutive observations must be equal.
 
-A ts object is composed of two elements:
+A **ts object** is composed of two elements:
 
 -   the **series values** and,
 
 -   its corresponding **timestamp**.
 
-In addition, it also has several attributes, such as the series, cycle, frequency, and the time interval between each consecutive observation.
+In addition, it also has several **attributes**, such as the series, cycle, frequency, and the time interval between each consecutive observation.
 
-After loading new data into the environment, it is always recommended that you check and verify whether the data structure is aligned with your expectations. A fast and recommended check to start with would be to verify the **data class** and **length**, which can be done with the `is.ts` and `length` functions:
+After loading new data into the environment, it is always recommended that you check and verify whether the **data structure** is aligned with your expectations. A fast and recommended check to start with would be to verify the **data class** and **length**, which can be done with the `is.ts` and `length` functions:
 
 *Example:*
 
-``` r
+``` {r}
+library(TSstudio)
+
 # Test if the object is a "ts" class
-is.ts(NGC) 
+is.ts(USgas) 
 
 # Get the number of observations
-length(NGC) 
+length(USgas) 
 ```
 
-The structure of the ts object is a bit different from most data structures in R (matrix, data.frame, data.table, tibble, and so on). While the **ts object** is a **two-dimensional dataset** (time/index and the series observations), it doesn't share the common attributes of most of the regular tables in R (such as matrix or data.frame) since the series index is embedded within the object itself. Therefore, some of the common functions for R's tables won't work with a ts object (such as the dim function).
+The **structure of the ts object** is a bit different from most data structures in R (matrix, data.frame, data.table, tibble, and so on). While the ts object is a **two-dimensional dataset** (time/index and the series observations), it doesn't share the common attributes of most of the regular tables in R (such as matrix or data.frame) since the series index is embedded within the object itself. Therefore, some of the common functions for R's tables won't work with a ts object (such as the dim function).
 
-A practical and concise method to get the characteristics of the series is with the `frequency` and `deltat` functions from the stats package, which provide the **series frequency** and the **time interval** between the observations:
+A practical and concise method to get the **characteristics of the series** is with the `frequency` and `deltat` functions from the stats package, which provide the series **frequency** and the **time interval** between the observations:
 
 *Example:*
 
-``` r
-frequency(NGC)
-deltat(NGC)
+``` {r}
+frequency(USgas)
+deltat(USgas)
 ```
 
 Other useful utility functions are the `start` and `end` functions, which, as their names imply, return the series **timestamp's** starting and ending point, respectively:
 
 *Example:*
 
-``` r
-start(NGC)
-end(NGC)
+``` {r}
+start(USgas)
+end(USgas)
 ```
 
 The `ts_info` function from the **TSstudio package** provides a concise **summary** of most of the preceding functions, including the object class, the number of observations, the frequency, and the starting and ending of the series.
 
 *Example:*
 
-``` r
-library(TSstudio)
-ts_info(NGC)
+``` {r}
+ts_info(USgas)
 ```
 
 ## Creating a ts Object
 
-The `ts` function from the stats package allows you to create a ts object by assigning sequential observations and mapping their attributes.
+The `ts` function from the stats package allows you to **create a ts object** by assigning sequential observations and mapping their attributes.
 
 *Example:*
 
@@ -78,7 +79,7 @@ library(TSstudio)
 my_ts1 <- ts(data = 1:60, # The series values
             start = c(2010, 1), # The time of the first observation
             end = c(2014, 12), # The time of the last observation
-            frequency = 12) # The Series frequency
+            frequency = 12) # The series frequency
 
 # Review the attributes of the new object
 ts_info(my_ts1)
@@ -86,11 +87,11 @@ ts_info(my_ts1)
 my_ts1
 ```
 
-Note that when creating a new ts objecct it is sufficient to define **either the start or end arguments**, as the end or start value of the series can be derived from the length of the series and its frequency.
+Note that when creating a new ts object it is sufficient to **define either the start or end arguments**, as the end or start value of the series can be derived from the length of the series and its frequency.
 
 ### Preprocessing steps (ts)
 
-It is most likely that your raw data won't come in **ts** format and some **preprocessing steps** may be required before transforming the input to a ts object. Those preprocessing steps may include the following:
+It is most likely that your **raw data won't come in ts format** and some **preprocessing steps** may be required before transforming the input to a ts object. Those preprocessing steps may include the following:
 
 -   Exporting the data from an external source, for example, an Excel or CSV file, SQL database, GitHub, and so on.
 
@@ -107,16 +108,12 @@ str(US_indicators)
 
 1.  **Extract the data**. We are going to convert the **vehicle sales series into a ts object**, so we will extract the first two columns of the series and assign them to a new data frame named `tvs`, which denotes the total vehicle sales:
 
-    *Example:*
-
     ```{r}
     tvs <- US_indicators[, 1:2]
     str(tvs)
     ```
 
 2.  **Arrange the data**. Before converting the data frame, or generally any other R table format (such as tibble and data.table) to a ts object, you will need to **arrange the data** in chronological order.
-
-    *Example:*
 
     ```{r message=FALSE}
     library(dplyr)
@@ -127,8 +124,6 @@ str(US_indicators)
 
 3.  **Set the start (or end) of the series**. Since the input series is monthly, we need to define the cycle (year) and frequency (month) units of the first observation of the series. This can be done manually, by observing the first date of the series and set the start point accordingly. In this case, the series started in January 1976, and therefore we can define it as `start = c(1976, 1)`, or we can write a code to capture the starting point of the series.
 
-    *Example:*
-
     ```{r message=FALSE}
     library(lubridate)
     start_point <- c(year(min(tvs$Date)),
@@ -137,8 +132,6 @@ str(US_indicators)
     ```
 
 4.  **Define the series with the ts function**. Utilize the start_point variable to define the beginning of the series:
-
-    *Example:*
 
     ```{r}
     tvs_ts <- ts(data = tvs$`Vehicle Sales`,
@@ -149,12 +142,13 @@ str(US_indicators)
 
 ## Multivariate time series objects
 
-In some instances, such as **correlation analysis**, you may need to work with multivariate time series objects. In this case you can use the **mts (multiple time series) class**, an extension of the ts class. The mts class is a combination of the **ts and matrix** classes, and its advantage is that it shares the attributes of both those classes.
+In some instances, such as **correlation analysis**, you may need to work with multivariate time series objects. In this case you can use the **mts (multiple time series) class**, an extension of the ts class. 
+
+The **mts class** is a combination of the **ts and matrix** classes, and its advantage is that it shares the attributes of both those classes.
 
 *Example:*
 
 ```{r}
-library(TSstudio)
 data(Coffee_Prices)
 ts_info(Coffee_Prices)
 class(Coffee_Prices)
@@ -173,11 +167,17 @@ Note that two or more series can be **merged to an mts** object only if all the 
 
 ### Creating a mts Object
 
-The process of converting a multiple time series object from a data frame to ts format is fairly similar to that of the ts object.
+The process of **converting a mts** series object from a data frame **to ts** format is fairly similar to that of the ts object.
+
+In the following example we are going to use the **US_indicators** series:
+
+*Example:*
+
+```{r}
+data("US_indicators")
+```
 
 1.  **Order the series by chronological order**. Make sure that the series is sorted in chronological order with the arrange function:
-
-    *Example:*
 
     ```{r}
     US_indicators <- US_indicators |>
@@ -185,8 +185,6 @@ The process of converting a multiple time series object from a data frame to ts 
     ```
 
 2.  **Create the ts object**. Use the ts function to create the ts objects, where the input data includes two columns (as opposed to a single one for the ts object):
-
-    *Example:*
 
     ```{r}
     US_indicators_ts <- ts(data = US_indicators[, c("Vehicle Sales", "Unemployment Rate")],
@@ -196,50 +194,46 @@ The process of converting a multiple time series object from a data frame to ts 
 
 3.  **Review the transformed object**. Use the `ts_info` and `head` functions:
 
-    \*Example:\*\*
-
     ```{r}
     ts_info(US_indicators_ts)
     head(US_indicators_ts)
     ```
 
-4.  **Set the frequency**. Setting the frequency impacts the structure of the ts object output. As an example we will use the seq.Date method to create a sequence of 3,650 days (or 365 times 10, which is 10 years excluding the extra day during leap years) starting on January 1, 2010. We will then use the rnorm function to generate the corresponding values of the series following a normal distribution with a mean of 15 and a standard deviation (sd) of 2:
+### Setting the frequency
 
-    *Example:*
+Note that **setting the frequency** impacts the structure of the ts object output. 
 
-    ```{r}
-    daily_df <- data.frame(date = seq.Date(from = as.Date("2010-01-01"),
-    length.out = 365 * 10, by = "day"),
-    y = rnorm(365 * 10, mean = 15, sd = 2))
+As an **example** we will use the `seq.Date` method to create a sequence of 3,650 days (or 365 times 10, which is 10 years excluding the extra day during leap years) starting on January 1, 2010. We will then use the `rnorm` function to generate the corresponding values of the series following a normal distribution with a mean of 15 and a standard deviation (sd) of 2:
 
-    str(daily_df)
-    ```
+```{r}
+daily_df <- data.frame(date = seq.Date(from = as.Date("2010-01-01"),
+                                       length.out = 365 * 10, 
+                                       by = "day"),
+                       y = rnorm(365 * 10, mean = 15, sd = 2))
 
-    We will assign the first date of the series to a variable (start_date) and use it to set the start point of the series:
+str(daily_df)
+```
 
-    *Example:*
+We will assign the first date of the series to a variable (`start_date`) and use it to **set the start point** of the series:
 
-    ```{r}
-    start_date <- min(daily_df$date)
-    ```
+```{r}
+start_date <- min(daily_df$date)
+```
 
-    For a daily series with weekly cycles, the frequency of the series should be set to seven (for example, Monday to Sunday) as can be seen in the following example:
+For a daily series with weekly cycles, the **frequency** of the series should be set to seven (for example, Monday to Sunday) as can be seen in the following example:
 
-    *Example:*
-
-    ```{r}
-    days_week_ts <- ts(daily_df$y, 
-                      start = c(1, wday(start_date)),
-                      frequency = 7)
-                      
-    ts_info(days_week_ts)
-    ```
+```{r}
+days_week_ts <- ts(daily_df$y, 
+                   start = c(1, wday(start_date)),
+                   frequency = 7)
+ts_info(days_week_ts)
+```
 
 ## Data Manipulation of ts Objects
 
-Once the series is transformed into a ts object, it might still be necessary to continue applying some additional transformation or preprocessing steps. These can include steps such as **extracting or subsetting** a specific element of the series or **aggregating** the series to a different frequency (for example, from monthly to quarterly).
+Once the series is transformed into a ts object, it might still be necessary to continue applying some additional transformation or **preprocessing steps**. These can include steps such as **extracting or subsetting** a specific element of the series or **aggregating** the series to a different frequency (for example, from monthly to quarterly).
 
-Note that due to the unique structure of the ts object, in most cases, the common extraction methods for `data.frame` **do not apply to ts objects**.
+Note that due to the unique structure of the ts object, in most cases, the common **extraction methods for `data.frame` do not apply to ts objects**.
 
 ### The window function (stats)
 
@@ -247,57 +241,60 @@ The main purpose of the `window` function is to **subset a ts** object based on 
 
 *Example:*
 
-``` r
+``` {r}
 # Extract all the observations of the year 2005
-window(NGC, start = c(2005,1), end = c(2005, 4))
+window(USgas, start = c(2005,1), end = c(2005, 12))
 ```
 
 Similarly, we can **extract a specific frequency unit** from the series. For example, let's assume that we are interested in extracting all the observations of the series that occurred in the third quarter of the year.
 
 *Example:*
 
-``` r
-# Extract observations from the third quarter of the year
-window(NGC, start = c(2000, 3), frequency = 1)
-
-# Extract the third quarter between 2006 and 2012
-window(NGC, start = c(2006, 3), end = c(2012, 3), frequency = 1)
+``` {r}
+# Extract observations from the quarters of the year 2005
+window(USgas, start = c(2005,1), end = c(2005, 12), frequency = 3)
 ```
 
 ### Aggregate ts objects (stats)
 
-The `aggregate` function is a generic function for aggregating **ts and \`data.frame objects**. This splits the data into subsets, computes specific summary statistics (based on the user's choice), and then aggregates the results to a ts or data.frame object (depending on the input type).
+The `aggregate` function is a generic function for **aggregating ts and data.frame objects**. This splits the data into subsets, computes specific summary statistics (based on the user's choice), and then aggregates the results to a `ts` or `data.frame` object (depending on the input type).
 
 *Example:*
 
-``` r
-# Transform the NGC series from a quarterly frequency to yearly
-NGC_year <- aggregate(NGC, nfrequency = 1, FUN = "sum")
+``` {r}
+# Transform the USVSales series from a monthly frequency to quarterly
+USVSales_q <- aggregate(USVSales, nfrequency = 3, FUN = "sum")
+ts_info(USVSales_q)
 ```
 
 Handling **missing values**, if these exist, can be done by using the `na.action` argument of the `aggregate` function, which, by default, ignores missing values.
 
 ### Creating lags and leads for ts objects (stats)
 
-The use of lags in time series analysis is widespread because, typically, a time series is correlated with some of its previous lags.
+The **use of lags** in time series analysis is widespread because, typically, a time series is correlated with some of its previous lags.
 
 We can generally distinguish between **two types of lags**:
 
--   **Past lags**, or simply lags, represent a shift in the series by n steps back, with respect to the original series. For a series with t observations, the n lag of the series begins at time n+1 and ends at time t+n (where the first n observations are missing).
+-   **Past lags**, or simply lags, represent a shift in the series by $n$ steps back, with respect to the original series. For a series with $t$ observations, the $n$ lag of the series begins at time $n+1$ and ends at time $t+n$ (where the first $n$ observations are missing).
 
     *Example:*
 
-    ``` r
-    NGC_lag4 <- stats::lag(NGC, k = -4) # Sets the number of lags or leads to be created
+    ``` {r}
+    # k Sets the number of lags (or leads) to be created
+    USVSales_lag4 <- stats::lag(USVSales, k = -4) 
     ```
 
--   **Lead (or negative lags)** represent a shift in the series by n steps forward, with respect to the original series. In this case, for a series with t observations, the lead n of the series begins at the time n and end at time t-n (where the last n observations are missing).
+-   **Lead (or negative lags)** represent a shift in the series by $n$ steps forward, with respect to the original series. In this case, for a series with $t$ observations, the lead $n$ of the series begins at the time $n$ and end at time $t-n$ (where the last $n$ observations are missing).
+
+    ``` {r}
+    USVSales_lead1 <- stats::lag(USVSales, k = 1)
+    ```
 
 ## Visualizing Time Series Objects
 
 There are **two approaches** for visualizing a time series object:
 
--   **Direct**: This approach uses a visualization function to plot the object without any data transformation or conversion to another class. There are few packages that provide direct tools for visualizing time series objects:
+-   **Direct**: This approach uses a visualization function to plot the object **without any data transformation** or conversion to another class. There are few packages that provide direct tools for visualizing time series objects:
 
     -   **stats**: In addition to the ts objects, this provides the `plot.ts` function for visualizing time series objects. This function is an extension of the plot function, which is an R built-in visualization function.
 
@@ -305,9 +302,9 @@ There are **two approaches** for visualizing a time series object:
 
     -   **TSstudio**: This is a designated package for descriptive and predictive analysis of time series data. This includes rich and interactive visualization applications for time series objects, such as ts, mts, zoo, xts, and other table-based formats (such as data.frame and tibble). Like the previous package, the TSstudio package uses the plotly package engine.
 
--   **In-direct**: This approach involves applying some data transformation steps to restructure the data as a numeric two-dimensional structure (values over time). This includes the use of packages such as **ggplot2**, **plotly**, **highcharter**, and **rbokeh**.
+-   **In-direct**: This approach involves **applying some data transformation** steps to restructure the data as a numeric two-dimensional structure (values over time). This includes the use of packages such as **ggplot2**, **plotly**, **highcharter**, and **rbokeh**.
 
-The **main difference** between the direct and indirect approaches is that the former was designed to work with the ts objects and it therefore automatically transfers the value of the series and timestamp onto a y-axis and x-axis respectively. On the other hand, in the indirect approach, you will have to define those two dimensions (values versus time) manually.
+The **main difference** between the direct and indirect approaches is that the former was designed to work with the ts objects and it therefore automatically transfers the value of the series and timestamp onto a y-axis and x-axis respectively. On the other hand, in the indirect approach, you will have to define those two dimensions (values vs. time) manually.
 
 ### The plot.ts function
 

@@ -459,6 +459,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Forecasting with ARIMA Models</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_forecast_ml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Forecasting with Machine Learning Models</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -473,13 +479,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./products.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Building Data Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./product_repro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Reproducible Reporting</span></span></a>
   </div>
 </li>
       </ul>
@@ -595,13 +601,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-      a     b       c      d
-  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1 1     1     1       0.0762
-2 0.748 0     0.144   0.382 
-3 0.932 0.653 0.283   0     
-4 0.872 0.184 0       1     
-5 0     0.378 0.00812 0.349 </code></pre>
+      a     b     c     d
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 0     0.760 0.331 0.558
+2 0.274 1     0     0.312
+3 1     0     0.385 1    
+4 0.607 0.747 0.429 0    
+5 0.198 0.853 1     0.946</code></pre>
 </div>
 </div>
 <p>To write a function you need to first analyse your <strong>repeated code</strong> to figure what parts are constant and what parts vary. If we take the code above and pull it outside of <code>mutate()</code>, it’s a little easier to see the pattern because each repetition is now one line:</p>
@@ -633,13 +639,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-      a     b       c      d
-  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1 1     1     1       0.0762
-2 0.748 0     0.144   0.382 
-3 0.932 0.653 0.283   0     
-4 0.872 0.184 0       1     
-5 0     0.378 0.00812 0.349 </code></pre>
+      a     b     c     d
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 0     0.760 0.331 0.558
+2 0.274 1     0     0.312
+3 1     0     0.385 1    
+4 0.607 0.747 0.429 0    
+5 0.198 0.853 1     0.946</code></pre>
 </div>
 </div>
 </section>

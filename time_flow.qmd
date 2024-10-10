@@ -1,6 +1,8 @@
 # TS Analysis Workflow
 
-Time series analysis is the process of **extracting meaningful insights from time series data** with the use of data visualization tools, statistical applications, and mathematical models. Those insights can be used to learn and explore past events and to forecast future events. The analysis process can be divided into the following steps:
+Time series analysis is the process of **extracting meaningful insights from time series data** with the use of data visualization tools, statistical applications, and mathematical models. Those insights can be used to learn and explore past events and to forecast future events.
+
+The **analysis process** can be divided into the following steps:
 
 1.  **Data collection**: This step includes extracting data from different data sources, such as flat files (such as CSV, TXT, and XLMS), databases (for example, SQL Server, and Teradata), or other internet sources (such as academic resources and the Bureau of Statistics datasets).
 

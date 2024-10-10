@@ -1,6 +1,6 @@
 project:
   type: book
-
+  
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
@@ -75,6 +75,7 @@ format:
   html:
     theme: cosmo
   #pdf:
-    #documentclass: scrreprt # problem w/ hmtlwidgets en products.qmd > Interactivity
+    #documentclass: scrreprt # problema w/ hmtlwidgets en products.qmd > Interactivity
+
 editor: visual
 
