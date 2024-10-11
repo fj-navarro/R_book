@@ -1,12 +1,12 @@
 # Types of Graphs
 
-## Visualizing Categorial Variables
+## Visualizing Categorical Variables
 
-A variable is **categorical** if it can only take one of a small set of values.
+A variable is **categorical** if it can only take one of a **small set of values**.
 
 ### Bar Chart
 
-To examine the distribution of a categorical variable, you can use a bar chart. The height of the bars displays how many observations occurred with each `x` value.
+To examine the **distribution of a categorical variable**, you can use a **bar chart**. The height of the bars displays **how many observations** occurred with each `x` value.
 
 ```{r message=FALSE}
 library(tidyverse)
@@ -23,7 +23,7 @@ ggplot(penguins, aes(x = species)) +
 
 ### Bar Plots
 
-In bar plots of categorical variables with non-ordered levels, like the penguin species above, it’s often preferable to reorder the bars based on their frequencies. Doing so requires transforming the variable to a factor (how R handles categorical data) and then reordering the levels of that factor.
+In **bar plots** of categorical variables with non-ordered levels, like the penguin species above, it’s often preferable to reorder the bars based on their **frequencies**. Doing so requires transforming the variable to a **factor** (how R handles categorical data) and then reordering the levels of that factor.
 
 *Example:*
 

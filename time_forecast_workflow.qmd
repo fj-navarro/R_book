@@ -1,6 +1,6 @@
 # Forecasting Workflow
 
-Forecasting is the third and last component of the time series analysis. Traditional time series forecasting follows the same **workflow** as most of the fields of predictive analysis, such as regression or classification, and typically includes the following steps:
+Forecasting is the third and last component of the time series analysis. **Traditional time series forecasting follows the same workflow** as most of the fields of predictive analysis, such as regression or classification, and typically includes the following steps:
 
 1.  **Data preparation**: Here, we prepare the data for the training and testing process of the model. This step includes splitting the series into training (in-sample) and testing (out-sample) partitions, creating new features (when applicable), and applying a transformation if needed (for example, log transformation, scaling, and so on).
 
@@ -10,11 +10,11 @@ Forecasting is the third and last component of the time series analysis. Traditi
 
 4.  **Model evaluation**: Last but not least, after the model was trained and tested, it is time to evaluate the overall performance of the model on both the training and testing partitions. Based on the evaluation process of the model, if the model meets a certain threshold or criteria, then we either retain the model using the full series in order to generate the final forecast or select a new training parameter/different model and repeat the training process.
 
-In time series, this process has its own unique characteristics, which distinguish it from other predictive fields:
+In time series, **this process has its own unique characteristics**, which distinguish it from other predictive fields:
 
 -   The training and testing partitions must be **ordered in chronological order**, as opposed to random sampling.
 
--   Once we have trained and tested the model using the training and testing partitions, we will **retrain the model** with all of the data (or at least the most recent observation in chronological order).
+-   Once we have trained and tested the model using the training and testing partitions, we will **retrain the model with all of the data** (or at least the most recent observation in chronological order).
 
 <center>
 
@@ -24,9 +24,9 @@ In time series, this process has its own unique characteristics, which distingui
 
 ## Training Approaches
 
-One of the core elements of the forecasting workflow is the model training process. The quality of the model's training will have a direct impact on the forecast output. The main goals of this process are as follows:
+One of the core elements of the forecasting workflow is the model training process. **The quality of the model's training will have a direct impact on the forecast output**. The main goals of this process are as follows:
 
--   **Formalize the relationship of the series with other factors**, such as seasonal and trend patterns, correlation with past lags, and external variables in a predictive manner
+-   **Formalize the relationship of the series with other factors**, such as seasonal and trend patterns, correlation with past lags, and external variables in a predictive manner.
 
 -   **Tune the model parameters** (when applicable).
 
@@ -36,48 +36,50 @@ Prior to the training process, the series is split into training and testing par
 
 ### Training with single training and testing partitions
 
-One of the most common training approaches is using **single training and testing** (or single out-of-sample) partitions. This approach is based on splitting the series into training and testing partitions (or in-sample and out-sample partitions, respectively), training the model on the training partition, and testing its performance on the testing set.
+One of the most common training approaches is using **single training and testing** (or single out-of-sample) partitions. This approach is based on splitting the series into training and testing partitions (or in-sample and out-sample partitions, respectively), **training the model on the training partition, and testing its performance on the testing set**.
 
 This approach has a single parameter —**the length of the out-of-sample** (or the length of the testing partition). Typically, the length of the testing partition is derived from the following rules of thumb: **up to 30% of the total length of the series** in order to have enough observation data for the training process.
 
-There are **two methods to split a time series** into a training and testing partitions: the **window** method and the `ts_split` function. Let's see how they work.
+There are **two methods to split a time series** into a training and testing partitions: 
 
-*Example:*
+-   The **window** method.
 
-Split the **USgas** series into partitions, leaving the last 12 observations of the series as the testing partition and the rest as training.
+    *Example:*
 
-```{r}
-library(TSstudio)
-data(USgas)
-ts_info(USgas)
+    Split the **USgas** series into partitions, leaving the last 12 observations of the series as the testing partition and the rest as training.
 
-# Use the window function to split the series into training and testing
-# partitions
-train <- window(USgas, 
-                start = time(USgas)[1], 
-                end = time(USgas)[length(USgas) - 12])
-test <- window(USgas,
-              start = time(USgas)[length(USgas) - 12 + 1],
-              end = time(USgas)[length(USgas)])
-ts_info(train)
-ts_info(test)
-```
+    ```{r}
+    library(TSstudio)
+    data(USgas)
+    ts_info(USgas)
 
-**Alternatively**, the `ts_split` function from the TSstudio package provides a customized way for creating training and testing partitions for time series data:
+    # Use the window function to split the series into training and testing
+    # partitions
+    train <- window(USgas, 
+                    start = time(USgas)[1], 
+                    end = time(USgas)[length(USgas) - 12])
+    test <- window(USgas,
+                   start = time(USgas)[length(USgas) - 12 + 1],
+                   end = time(USgas)[length(USgas)])
+    ts_info(train)
+    ts_info(test)
+    ```
 
-*Example:*
+-   The `ts_split` function from the **TSstudio package**, which provides a customized way for creating training and testing partitions for time series data:
 
-```{r}
-USgas_partitions <- ts_split(USgas, sample.out = 12)
-train <- USgas_partitions$train
-test <- USgas_partitions$test
-ts_info(train)
-ts_info(test)
-```
+    *Example:*
 
-The **main advantage** of this method is its simplicity, as it is fairly fast to train and test a model while using (relatively) cheap compute power. On the other hand, it isn't possible to come to a conclusion about the stability and scalability of the model's performance based on a single test unit. One way to mitigate that risk is with the **backtesting approach**, which is based on training a model with multiple training and testing partitions.
+    ```{r}
+    USgas_partitions <- ts_split(USgas, sample.out = 12)
+    train <- USgas_partitions$train
+    test <- USgas_partitions$test
+    ts_info(train)
+    ts_info(test)
+    ```
 
-###Forecasting with backtesting
+    The **main advantage of this method is its simplicity**, as it is fairly fast to train and test a model while using (relatively) cheap compute power. On the other hand, it isn't possible to come to a conclusion about the **stability and scalability of the model's performance** based on a single test unit. One way to mitigate that risk is with the **backtesting approach**, which is based on training a model with **multiple training and testing partitions**.
+
+### Forecasting with backtesting
 
 The **backtesting approach** for training a forecasting model is an advanced version of the single out-of-sample approach we saw previously. It is based on the use of a **rolling window** to split the series into multiple pairs of training and testing partitions.
 
@@ -335,7 +337,7 @@ USgas_forecast <- train_model(USgas,
                                 )
 ```
 
-The model provides a **leaderboard** that's ordered based on the error criteria that's set. In this case, the **hw model** had the lowest error rate, and therefore the function recommended that we use it (although all of the models and their forecasts are available for extraction from the function output). 
+The model provides a **leaderboard** that's ordered based on the error criteria that's set. In this case, the **hw model** had the lowest error rate, and therefore the function recommended that we use it (although all of the models and their forecasts are available for extraction from the function output).
 
 <!-- NoA: not possible to include this, due to function 'ts_backtesting" on the book has been deprecated. 
 Text: We can **plot the error rate** and the suggested forecast using the model stored in the output object. Those **error plots** provide an informative overview of the performance of each model. We consider a model good if the error distribution is both narrow and low with respect to the rest of the tested models (such as the bsts model). -->

@@ -14,7 +14,7 @@ When seasonality exists in the time series data, we can classify it into one of 
 
 *Example:*
 
-```{r}
+```{r warning=FALSE}
 # USgas dataset represents the total monthly consumptions of naturalgas in the US since # January 2000
 library(TSstudio)
 data(USgas)
@@ -27,15 +27,84 @@ ts_plot(USgas,
             Ygrid = TRUE)
 ```
 
+## Seasonal Analysis with the TSstudio Package
+
+The **TSstudio package** provides a set of interactive data visualization functions **based on the plotly package engine** for seasonal analysis. It supports multiple time series objects, such as `ts`, `xts`, `zoo`, and `data frame` objects (data.frame, data.table, and tbl).
+
+The `ts_seasonal` function provides several types of **seasonal plots**. The `type` argument sets the type of plot. The default option of the `type` argument is `normal`, which splits the series by full cycle units and provides a similar seasonal plot as the `ggseasonplot` function.
+
+*Example:*
+
+```{r}
+ts_seasonal(USgas, type ="normal")
+```
+
+The `cycle` option group plots the **series frequency** units over time in chronological order; for example, all the observations that occurred during January over a certain amount of time for a monthly series. This allows us to identify seasonal pattern without de-trending the series. For instance, in the following plot of the `USgas` series, you can see that, despite the growth from year to year, in most of the cases the order of the months (from high to low) remains the same:
+
+*Example:*
+
+```{r}
+ts_seasonal(USgas, type = "cycle")
+```
+
+The `box` option provides a box plot representation for each frequency unit. The box plot can be very informative plot, as it provides the **range and quartile** representation of the observations of each frequency unit:
+
+*Example:*
+
+```{r}
+ts_seasonal(USgas,type ="box")
+```
+
+The `all` option returns a plot of all of the three plots (normal, cycle, and box) side by side. This allows you to connect the information from the three different representations of the series to get a better understanding of the patterns (if any exist) and characteristics of the series:
+
+*Example:*
+
+```{r}
+ts_seasonal(USgas,type ="all")
+```
+
+The `ts_heatmap` function returns a **heatmap plot** of the time series object where the y-axis represents the frequency units (the months, for example, in the case of a monthly series) and the x-axis represents the cycle units of the series (the years, for example, in the case of a monthly series). The magnitude of each observation is represented by the color scale of the map, so the darker it is, the higher the value of the observation with respect to the overall values of the series:
+
+*Example:*
+
+```{r}
+ts_heatmap(USgas, color = "Reds")
+```
+
+Last but not least, the `ts_quantile` function provides a visual of the **quantile plot** of time series data. It's mainly useful on **high-frequency time series data**, such as hourly or daily. By default, the function returns a quantile plot of the series frequency units, where the middle line represents the median and the lower and upper lines represent the 25th and 75th percentiles.
+
+*Example:*
+
+```{r warning=FALSE}
+# Visualize the 24 cycles of the UKgrid dataset
+library(UKgrid)
+ts_quantile(UKgrid)
+```
+
+## Seasonal Analysis with the Forecast Package
+
+The **forecast package** provides several functions for seasonal analysis based on the **ggplot2 package** graphics engine (and the base plot function) and it supports `ts` objects. The `ggseasonplot` function creates a **seasonal plot** of the series by splitting and plotting each year as a separate line. This allows the user to obtain the changes in the series from year to year.
+
+*Example:*
+
+```{r message=FALSE}
+# Create the seasonal plot of the USgas series
+library(forecast)
+ggseasonplot(USgas, year.labels=TRUE, continuous=TRUE)
+ggseasonplot(USgas, polar = TRUE)
+```
+
+We can learn from this representations of the `USgas` series that the series has a strong repeated pattern, which indicates the existence of the **monthly seasonal pattern**. Furthermore, as you can see from the color scale and the years labels, the series is growing from year to year. In the polar representation you can see that the series has repeated seasonal patterns along with a year-to-year growth or trend.
+
 ## Seasonal Analysis with Descriptive Statistics
 
-**Descriptive statistics** are a simple yet powerful method to describe the key statistical characteristics of the data. This method is based on the use of summary statistics tables and is a summary of the key statistical indicators, such as the mean, median, quantile, and standard deviation, and data visualization tools, such as box plots and bar charts.
+**Descriptive statistics** are a simple yet powerful method to describe the key statistical characteristics of the data. This method is **based on the use of summary statistics tables** and is a summary of the key statistical indicators, such as the mean, median, quantile, and standard deviation, and data visualization tools, such as box plots and bar charts.
 
 Descriptive statistics can be used to describe the characteristics of the **frequency units** of a series. This allows us to identify whether we can segment each period of the series by some statistical criteria, for example, the mean, the quantile range, and so on.
 
 *Example:*
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 # We group the USgas series by its frequency units and then summarize the mean and 
 # standard deviation of each frequency unit
 
@@ -60,13 +129,15 @@ plot_ly (data = USgas_summary, x = ~ month, y = ~ mean, type = "bar", name = "Me
             range = c(1500, 2700)))
 ```
 
-From the summary statistic table of the series you can see that, on average, each month is different from the next consecutive month by its standard deviation with the exception of the two pairs May/June and July/August, which are relatively close to each other. This allows us to characterize some months with a **distinct behavior** from the rest, such as January, February, March, and November.
+From the summary statistic table of the series you can see that, on average, each month is different from the next consecutive month by its **standard deviation** with the exception of the two pairs May/June and July/August, which are relatively close to each other. This allows us to characterize some months with a **distinct behavior** from the rest, such as January, February, March, and November.
+
+### Multiple seasonal patterns
 
 The first indication for the potential existence of **multiple seasonal patterns** in the series is a high frequency, such as daily, hourly, and minutely. In those cases, there is more than one way to set the frequency of the series.
 
 *Example:*
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 # UKgrid is an hourly time series, which marks it automatically as a suspect of
 # having multiple seasonal patterns
 library(xts)
@@ -82,7 +153,7 @@ UKgrid_xts <- extract_grid(type = "xts",
 
 The national demand of the UK high-voltage electric power transmission network (or the UKgrid series) has a **strong seasonal pattern**.
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 # Transform the UKgrid series into data.frame format
 UKgrid_df <- data.frame(time = index(UKgrid_xts), UKgrid = as.numeric(UKgrid_xts))
 str(UKgrid_df)
@@ -128,7 +199,7 @@ Looking at the plot of the preceding summary statistic table, we can see the fol
 
 -   On the other hand, the high standard deviation throughout the high-demand hours could indicate that the demand is distributed differently on different periodicity views (such as weekday or month of the year).
 
-To examine the last point, we will subset the series into two groups representing the demand in the middle of the night and the demand throughout the day (3 a.m. and 9 a.m., respectively), and then we will group them by the weekday:
+To examine the last point, we will **subset the series into two groups** representing the demand in the middle of the night and the demand throughout the day (3 a.m. and 9 a.m., respectively), and then we will group them by the weekday:
 
 *Example:*
 
@@ -148,7 +219,7 @@ plot_ly(data = UKgrid_weekday,
                    xaxis = list(title = "Weekday"))
 ```
 
-You will see in the preceding bar chart that the demand for electricity at **3 a.m.** is relatively stable throughout all the days of the week, with a slight difference between the average during the weekdays and the days in the weekend (about 2% different). On the other hand, there is a significant difference between the weekday and weekend demand at **9 a.m.** (that is, the demand on Monday is higher on average by 28% from the one on Sunday).
+You will see in the preceding bar chart that the demand for electricity at **3 a.m.** is **relatively stable** throughout all the days of the week, with a slight difference between the average during the weekdays and the days in the weekend (about 2% different). On the other hand, there is a **significant difference** between the weekday and weekend demand at **9 a.m.** (that is, the demand on Monday is higher on average by 28% from the one on Sunday).
 
 ## Seasonal Analysis with Density Plots
 
@@ -160,21 +231,20 @@ Another approach for analyzing seasonal patterns in time series data is by plott
 # Plot the density of each of the USgas months 
 library(ggplot2)
 ggplot(USgas_df, aes(x = USgas)) +
-geom_density(aes(fill = month)) +
-ggtitle("USgas - Kernel Density Estimates by Month") +
-facet_grid(rows = vars(as.factor(month)))
+  geom_density(aes(fill = month)) +
+  ggtitle("USgas - Kernel Density Estimates by Month") +
+  facet_grid(rows = vars(as.factor(month)))
 ```
 
-The shape of the density plot of each month provides us with insights about the characteristics of each month (or frequency unit). We can see some indication of a seasonal pattern series, as the density plots are **not overlapping** on each other (with the exception of some consecutive months, such as May and June).
+The shape of the density plot of each month provides us with insights about the characteristics of each month (or frequency unit). We can see some indication of a **seasonal pattern series**, as the density plots are **not overlapping** on each other (with the exception of some consecutive months, such as May and June).
 
-Now let's subset one of the hours during the day in the UKgrid dataset and plot its distribution by the day of the week. We should expect an overlapping during the nighttime and be able to distinguish between the distribution during the weekdays and weekend, as opposed to just the weekday.
+Now let's **subset one of the hours** during the day in the `UKgrid` dataset and plot its distribution by the day of the week. We should expect an overlapping during the nighttime and be able to distinguish between the distribution during the weekdays and weekend, as opposed to just the weekday.
 
 *Example:*
 
 ```{r}
-# Plot represents the distribution of the demand at 9 a.m. throughout the days of the 
+# This plot represents the distribution of the demand at 9 a.m. throughout the days of the 
 # week
-
 UKgrid_df$weekday <- as.factor(UKgrid_df$weekday)
 UKgrid_df %>% 
   dplyr::filter(hour == 0) %>%
@@ -184,74 +254,4 @@ UKgrid_df %>%
     facet_grid(rows = vars(as.factor(weekday)))
 ```
 
-You can see that the distribution during the weekdays is distinguished from the one at the weekend.
-
-## Seasonal Analysis with the Forecast Package
-
-The **forecast package** provides several functions for seasonal analysis based on the ggplot2 package graphics engine (and the base plot function) and it supports the `ts` objects. The `ggseasonplot` function creates a **seasonal plot** of the series by splitting and plotting each year as a separate line. This allows the user to obtain the changes in the series from year to year.
-
-*Example:*
-
-```{r message=FALSE}
-# Create the seasonal plot of the USgas series
-library(forecast)
-ggseasonplot(USgas,year.labels=TRUE,continuous=TRUE)
-ggseasonplot(USgas, polar = TRUE)
-```
-
-We can learn from this representations of the USgas series that the series has a strong repeated pattern, which indicates the existence of the monthly seasonal pattern. Furthermore, as you can see from the color scale and the years labels, the series is growing from year to year. In the polar representation of the USgas series that the series has repeated seasonal patterns along with a year-to-year growth or trend.
-
-## Seasonal Analysis with the TSstudio Package
-
-The **TSstudio package** provides a set of interactive data visualization functions based on the plotly package engine for seasonal analysis. It supports multiple time series objects, such as `ts`, `xts`, `zoo`, and data frame objects (data.frame, data.table, and tbl).
-
-The `ts_seasonal` function provides several types of seasonal plots. The `type` argument sets the type of plot. The default option of the `type` argument is `normal`, which provides a similar seasonal plot as the `ggseasonplot` function:
-
-*Example:*
-
-```{r}
-ts_seasonal(USgas,type ="normal")
-ts_seasonal(USgas, type = "cycle")
-```
-
-The `cycle` option group plots the series frequency units over time in chronological order; for example, all the observations that occurred during January over a certain amount of time for a monthly series. This allows us to identify seasonal pattern without de-trending the series. For instance, in the following plot of the USgas series, you can see that, despite the growth from year to year, in most of the cases the order of the months (from high to low) remains the same:
-
-*Example:*
-
-```{r}
-ts_seasonal(USgas, type = "cycle")
-```
-
-The `box` option provides a box plot representation for each frequency unit. The box plot can be very informative plot, as it provides the **range and quartile** representation of the observations of each frequency unit:
-
-*Example:*
-
-```{r}
-ts_seasonal(USgas,type ="box")
-```
-
-The `all` option returns a plot of all of the three plots (normal, cycle, and box) side by side. This allows you to connect the information from the three different representations of the series to get a better understanding of the patterns (if any exist) and characteristics of the series:
-
-*Example:*
-
-```{r}
-ts_seasonal(USgas,type ="all")
-```
-
-The `ts_heatmap` function returns a **heatmap plot** of the time series object where the y-axis represents the frequency units (the months, for example, in the case of a monthly series) and the x-axis represents the cycle units of the series (the years, for example, in the case of a monthly series). The magnitude of each observation is represented by the color scale of the map, so the darker it is, the higher the value of the observation with respect to the overall values of the series:
-
-*Example:*
-
-```{r}
-ts_heatmap(USgas, color = "Reds")
-```
-
-Last but not least, the `ts_quantile` function provides a visual of the **quantile plot** of time series data. It's mainly useful on **high-frequency time series data**, such as hourly or daily. By default, the function returns a quantile plot of the series frequency units, where the middle line represents the median and the lower and upper lines represent the 25th and 75th percentiles.  
-
-*Example:*
-
-```{r warning=FALSE}
-# Visualize the 24 cycles of the UKgrid dataset
-ts_quantile(UKgrid)
-```
-
+You can see that the distribution during the **weekdays** is distinguished from the one at the **weekend**.

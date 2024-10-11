@@ -1,6 +1,6 @@
 # Correlation Analysis
 
-Due to the continuous and chronologically ordered nature of time series data, there is a likelihood that there will be some degree of **correlation between the series observations**. For instance, the temperature in the next hour is not a random event since, in most cases, it has a strong relationship with the current temperature or the temperatures that have occurred during the past 24 hours. In many cases, the series of past observations contains predictive information about future events, which can be utilized to forecast the series' future observations.
+Due to the continuous and chronologically ordered nature of time series data, there is a likelihood that there will be some degree of **correlation between the series observations**. For instance, the temperature in the next hour is not a random event since, in most cases, it has a strong relationship with the current temperature or the temperatures that have occurred during the past 24 hours. In many cases, the series of past observations **contains predictive information** about future events, which can be utilized to forecast the series' future observations.
 
 ## Correlation Between Two Variables
 
@@ -32,7 +32,7 @@ Note that while in **lags analysis** we extract the required data (the series la
 
 ## Lags Analysis
 
-The goal of **lags analysis** is to identify and quantify the relationship between a series and its lags. This relationship is typically measured by calculating the correlation between the two and with the use of data visualization tools.
+The goal of **lags analysis** is to identify and quantify the **relationship between a series and its lags**. This relationship is typically measured by calculating the correlation between the two and with the use of data visualization tools.
 
 *Example 1:*
 
@@ -45,7 +45,7 @@ ts_plot(USgas,
         Xtitle = "Year")
 ```
 
-Note that one of the main characteristic of the USgas series is the **strong seasonal pattern**.
+Note that one of the main characteristic of the `USgas` series is the **strong seasonal pattern**.
 
 *Example 2:*
 
@@ -57,7 +57,7 @@ ts_plot(EURO_Brent,
         Xtitle = "Year")
 ```
 
-As you can see the EURO_Brent series plot, which represents the monthly prices of the Brent crude oil in USD, the price of the oil **does not have seasonal patterns** or general trends.
+As you can see the `EURO_Brent` series plot, which represents the monthly prices of the Brent crude oil in USD, the price of the oil **does not have seasonal patterns** or general trends.
 
 *Example 3:*
 
@@ -69,15 +69,15 @@ ts_plot(USVSales,
         Xtitle = "Year")
 ```
 
-The plot of USVSales, the US monthly total vehicle sales, is an example of a series with both **seasonal and cycle patterns**.
+The plot of `USVSales`, the US monthly total vehicle sales, is an example of a series with both **seasonal and cycle patterns**.
 
 ### The autocorrelation function
 
-The **autocorrelation function (ACF)** is the main method in time series analysis for quantifying the level of correlation between a series and its lags. The `acf` function from the stats package is R's built-in ACF, which, by default, visualizes the results using a bar plot.
+The **autocorrelation function (ACF)** is the main method in time series analysis for quantifying the level of correlation between a series and its lags. The `acf` function from the **stats package** is R's built-in ACF, which, by default, visualizes the results using a bar plot.
 
 *Example 1:*
 
-Use the `acf` function to plot the correlation of the USgas series and its first 60 lags (by setting the lag.max argument to 60)
+Use the `acf` function to plot the correlation of the `USgas` series and its first **60 lags** (by setting the lag.max argument to 60)
 
 ```{r}
 acf(USgas, lag.max = 60)
@@ -85,7 +85,7 @@ acf(USgas, lag.max = 60)
 
 Each **bar** in the ACF plot represents the level of correlation between the series and its lags in chronological order. Note that according to the x-axis notation lags 1 and 2 represent the 12 and 24 lags. The **blue dotted lines** indicate whether the level of correlation between the series and each lag is significant or not. By testing the **null hypothesis** that the correlation of the lag with the series is equal to zero, we can reject it whenever the level of correlation is either above or below the upper and lower dotted lines, respectively, with a level of significance of 5%. Otherwise, whenever the correlation is between the upper and lower dotted lines, we fail to reject the null hypothesis, and we can therefore ignore those lags (or assume that there is no significant correlation between the two).
 
-As you can see from the **USgas ACF plot**, the series has a strong positive correlation with the seasonal lags (which decay over time) along with negative correlation with the mid-seasonal lags (for example, lags 6, 18, and 30).
+As you can see from the `USgas` **ACF plot**, the series has a **strong positive correlation** with the seasonal lags (which decay over time) along with negative correlation with the mid-seasonal lags (for example, lags 6, 18, and 30).
 
 *Example 2:*
 
@@ -93,7 +93,7 @@ As you can see from the **USgas ACF plot**, the series has a strong positive cor
 acf(EURO_Brent, lag.max = 60)
 ```
 
-You can see that the correlation of the series with its **lags is decaying over time**, whereas the closer the lag is, chronologically to the series, the stronger the relationship with the series. This type of correlation is also an indication that the series is not stationary and a differencing of the series is required.
+You can see that the correlation of the series with its **lags is decaying over time**, whereas the closer the lag is, chronologically to the series, the stronger the relationship with the series. This type of correlation is also an indication that the **series is not stationary** and a differencing of the series is required.
 
 *Example 3:*
 
@@ -101,11 +101,11 @@ You can see that the correlation of the series with its **lags is decaying over 
 acf(USVSales, lag.max = 60)
 ```
 
-The correlation plot has a **cyclic shape** as a result of the seasonal pattern of the series. On the other hand, the decay rate of USVSales is faster compared to the rate of USgas due to the cycle pattern of the series, which shifts the series direction over time. As a result, the series is mainly correlated with the first seasonal lag. That being said, if we remove the series cycle (or detrend it) we will probably have a similar correlation pattern as USgas.
+The correlation plot has a **cyclic shape** as a result of the seasonal pattern of the series. On the other hand, the decay rate of `USVSales` is faster compared to the rate of `USgas` due to the cycle pattern of the series, which shifts the series direction over time. As a result, the series is mainly correlated with the first seasonal lag. That being said, if we remove the series cycle (or detrend it) we will probably have a similar correlation pattern as `USgas`.
 
 ### Lag plots
 
-A **lag plot** is a simplistic and non-statistical approach for analyzing the relationship between a series and its lags. This method is based on data visualization tools, with the use of **two-dimensional scatter plots** for visualizing the series (typically on the y-axis) against the k lag of the series. Hence, each pair of points represents a combination of the series observations and their corresponding lagged values. As more points on the lag plot are closer to the 45 degree line, the higher the correlation will be between the series and the corresponding lag.
+A **lag plot** is a **non-statistical approach** for analyzing the relationship between a series and its lags. This method is based on data visualization tools, with the use of **two-dimensional scatter plots** for visualizing the series (typically on the y-axis) against the $k$ lag of the series. Hence, each pair of points represents a combination of the series observations and their corresponding lagged values. As more points on the lag plot are closer to the **45 degree line**, the higher the correlation will be between the series and the corresponding lag.
 
 *Example 1:*
 
@@ -113,7 +113,7 @@ A **lag plot** is a simplistic and non-statistical approach for analyzing the re
 ts_lags(USgas)
 ```
 
-You can see that, moving along from the first lag up to the sixth lag, the relationship between the series and its lags become **less linear**. This process starts to reverse from the seventh lag as the relationship gradually becomes **more linear**, where the seasonal lag (or lag 12) has the strongest relationship with the series. Those results are aligned with the ones we saw earlier with the ACF plot.
+You can see that, moving along from the first lag up to the sixth lag, the relationship between the series and its lags become **less linear**. This process starts to reverse from the **seventh lag** as the relationship gradually becomes **more linear**, where the seasonal lag (or lag 12) has the strongest relationship with the series. Those results are aligned with the ones we saw earlier with the ACF plot.
 
 ```{r}
 # Plot the most recent seasonal lags (that is, lags 12, 24, 36, and 48)
@@ -126,7 +126,7 @@ ts_lags(USgas, lags = c(12, 24, 36, 48))
 ts_lags(EURO_Brent)
 ```
 
-As you can see, the results are aligned with the ones we received before with the ACF. The EURO_Brent series has a strong linear relationship with the first lag, where the strength of that relationship decays as the distance of the lag from the series is higher.
+As you can see, the results are aligned with the ones we received before with the ACF. The `EURO_Brent` series has a **strong linear relationship** with the first lag, where the strength of that relationship decays as the distance of the lag from the series is higher.
 
 *Example 3:*
 
@@ -134,32 +134,33 @@ As you can see, the results are aligned with the ones we received before with th
 ts_lags(USVSales)
 ```
 
-In the case of USVSales, the 12 lag has the closest linear relationship with the series (as we observed before with the ACF plot).
+In the case of `USVSales`, the **12 lag has the closest linear relationship** with the series (as we observed before with the ACF plot).
 
 ## Causality Analysis
 
-The goal of **causality analysis**, in the context of time series analysis, is to identify whether a causality relationship exists between the series we wish to forecast and other potential exogenous factors. The use of those external factors as drivers of the forecasting model (whenever exists) could potentially provide accurate and robust forecast (as oppose of using only the past observation of the series).
+The goal of **causality analysis**, in the context of time series analysis, is to identify **whether a causality relationship exists** between the series we wish to forecast and other potential exogenous factors. The use of those external factors as drivers of the forecasting model (whenever exists) could potentially provide **accurate and robust forecast** (as oppose of using only the past observation of the series).
 
 ### Causality vs correlation
 
-Two variables will have a **causality relationship** whenever the change of one variable triggers a direct change of the second variable. This is also known as a cause-and-effect. For instance, the temperatures in Chicago have a direct impact on the comsumption of natural gas throughout the year (as most of the heating systems operate with natural gas) and we can therefore assume that there is a causality relationship between the two. One of the main characteristics of causality is a high correlation between the two variables.
+Two variables will have a **causality relationship** whenever the change of one variable triggers a direct change of the second variable. This is also known as a **cause-and-effect**. For instance, the temperatures in Chicago have a direct impact on the consumption of natural gas throughout the year (as most of the heating systems operate with natural gas) and we can therefore assume that there is a causality relationship between the two. One of the main characteristics of causality is a **high correlation between the two variables**.
 
-However, this could be **misleading in some cases**, as high **correlation** by itself between two variables should not instantly imply the existence of a causality relationship, as the two may have a high dependency on a third variable. For example, you should expect to have a high correlation between the sales of ice cream and bathing suits (high demand during the summer and low throughout the winter), but there is no causal relationship between the two besides the fact that both are highly correlated with the same factor —the season of the year (or weather patterns).
+However, this could be **misleading in some cases**, as high **correlation** by itself between two variables should not instantly imply the existence of a causality relationship, as the two may have a high dependency on a third variable. For example, you should expect to have a high correlation between the sales of ice cream and bathing suits (high demand during the summer and low throughout the winter), but there is no causal relationship between the two besides the fact that both are highly correlated with the same factor ---the season of the year (or weather patterns).
 
 The following diagram describes this type of relationship:
 
 <center>
+
 ![Figure 13. Relationships of causality and correlation](/img/Picture13.png)
+
 </center>
 
-In the context of time series analysis, the causality between two time series can be
-categorized into the following two types:
+In the context of time series analysis, the causality between two time series can be **categorized** into the following two types:
 
 -   **Direct causality**: This is where series B reacts immediately to the changes of series A at time t. For example, the speed of the wind will have a direct impact on the level of electricity production of a wind turbine.
 
--   **In-direct causality**: This is where the change of series A at time t triggers a change of series B at time t + n (where n > 0). This lag effect is common in economic indicators, such as Gross Domestic Product (GDP) and consumption or the unemployment rate, where the change in the first triggers a gradual change in the other over time (for example, a drop in the GDP this quarter will impact the employment rate in the next quarter). 
+-   **In-direct causality**: This is where the change of series A at time t triggers a change of series B at time t + n (where n \> 0). This lag effect is common in economic indicators, such as Gross Domestic Product (GDP) and consumption or the unemployment rate, where the change in the first triggers a gradual change in the other over time (for example, a drop in the GDP this quarter will impact the employment rate in the next quarter).
 
-Typically, a series from the first type will have a **stronger dependency and a higher level of correlation** compared to the second type. Yet, it is harder (or even not practical in some cases) to utilize series A as a predictor of series B, as the future values of series A are unknown and therefore need to be forecast as well (unless the future values are deterministic). 
+Typically, a series from the first type will have a **stronger dependency and a higher level of correlation** compared to the second type. Yet, it is harder (or even not practical in some cases) to utilize series A as a predictor of series B, as the future values of series A are unknown and therefore need to be forecast as well (unless the future values are deterministic).
 
 This could potentially increase the **level of uncertainty** of the model output, due to the fact that the input values are forecasted and will therefore come with some degree of uncertainty (as opposed to the actual input values of series A that were used in the training process). For example, if you wish to forecast the level of electricity production of a wind turbine during the next 10 days by using the wind speed as a predictor, you will have to forecast the wind speed in the next 10 days as well.
 
@@ -167,13 +168,13 @@ In conclusion, analyzing and identifying causality between two series is based o
 
 ### The cross-correlation function
 
-The **cross-correlation function (CCF)** is the sister function of the `ACF` and it measures the level of correlation between two series and their lags in a fairly similar way. 
+The **cross-correlation function (CCF)** is the sister function of the `ACF` and it **measures the level of correlation between two series and their lags** in a fairly similar way.
 
 *Example:*
 
-Analyze the relationship between the total vehicle sales (**USVSales**) and the unemployment rate (**USUnRate**) in the US to understand whether there is a cause and effect relationship between the two.
+Analyze the relationship between the total vehicle sales (**USVSales**) and the unemployment rate (**USUnRate**) in the US to understand whether there is a **cause and effect relationship** between the two.
 
-``` {r}
+```{r}
 data(USUnRate)
 ts_plot(USUnRate,
         title = "US Monthly Civilian Unemployment Rate",
@@ -181,42 +182,40 @@ ts_plot(USUnRate,
         Xtitle = "Year")
 ```
 
-Howevver, as the USUnRate series starts during the 1950s, as opposed to the USVSales series, which began in 1976, we need before starting to align the two series to the same time frame using the window function:
+However, as the `USUnRate` series starts during the 1950s, as opposed to the `USVSales` series, which began in 1976, we need before starting to **align the two series to the same time frame** using the `window` function:
 
 ```{r}
 us_vsales <- window(USVSales, start = c(1976,1), end = c(2018,6))
 us_unrate <- window(USUnRate, start = c(1976,1), end = c(2018,6)) 
 ```
 
-Next, we will plot the two series on a two-y-axis plot (as the units of the two series are different) using the plotly package:
+Next, we will **plot the two series on a two-y-axis plot** (as the units of the two series are different) using the **plotly package**:
 
 ```{r message=FALSE}
 library(plotly)
 plot_ly(x = time(us_vsales),
-            y = us_vsales,
-            type = "scatter",
-            mode = "line",
-            name = "Total Vehicle Sales") %>%
+        y = us_vsales,
+        type = "scatter",
+        mode = "line",
+        name = "Total Vehicle Sales") %>%
   add_lines(x = time(us_unrate),
             y = us_unrate,
             name = "Unemployment Rate",
             yaxis = "y2") %>%
   layout(title = "Total Monthly Vehicle Sales vs Unemployment Rate in the US",
          yaxis2 = list(overlaying = "y",
-         side = "right",
-         title = "Percentage",
-         showgrid = FALSE),
-  yaxis = list(title = "Thousands of Units",
-               showgrid = FALSE),
-  legend = list(orientation = 'h'),
-  margin = list(l = 50, r = 50, b = 50, t = 50, pad = 2)
-)
+                       side = "right",
+                       title = "Percentage",
+                       showgrid = FALSE),
+         yaxis = list(title = "Thousands of Units",
+                      showgrid = FALSE),
+         legend = list(orientation = 'h'),
+         margin = list(l = 50, r = 50, b = 50, t = 50, pad = 2))
 ```
 
-From the preceding plot one can see that the two series move to the opposite direction,
-so when the vehicle sales increase, the unemployment rate decreases and the other way around. You can also see that, in most of the cases, the changes in the vehicle sales series are leading to the changes in the unemployment rate. 
+From the preceding plot one can see that **the two series move to the opposite direction**, so when the vehicle sales increase, the unemployment rate decreases and the other way around. You can also see that, in most of the cases, the changes in the vehicle sales series are leading to the changes in the unemployment rate.
 
-To explore this assumption further, we can **measure the level of correlation** between the unemployment rate and the vehicle sales and its lags using the `ccf` function from the stats package as well:
+To explore this assumption further, we can **measure the level of correlation** between the unemployment rate and the vehicle sales and its lags using the `ccf` function from the **stats package** as well:
 
 *Example:*
 
@@ -224,14 +223,14 @@ To explore this assumption further, we can **measure the level of correlation** 
 ccf(x = us_vsales, y = us_unrate, lag.max = 36)
 ```
 
-Similarly to the ACF output, each bar in the **CCF plot** represents the **level of correlation** between the main series and the lags of the secondary. Lag 0 represents the direct correlation between the two series, where the negative and positive lags represent the correlation between the unemployment rate and the past and leading lags of the vehicle sales series, respectively. The main thing to note from the preceding plot is that the unemployment rate is correlated more to the past lags as opposed to the leading lags of the vehicle sales.
+Similarly to the ACF output, each bar in the **CCF plot** represents the **level of correlation** between the main series and the lags of the secondary. **Lag 0** represents the direct correlation between the two (original) series, where the **negative and positive lags** represent the correlation between the unemployment rate and the past and leading lags of the vehicle sales series, respectively. The main thing to note from the preceding plot is that the **unemployment rate is correlated more to the past lags** as opposed to the leading lags of the vehicle sales.
 
 It is difficult (and probably even wrong) to conclude from the results that the vehicle sales explicitly drive the changes in the unemployment rate (and it is definitely not in the scope of this book). However, there is **some indication of a causality relationship**, which can be derived from the level of correlation along with common sense, given the size of the vehicle industry in the US and its historical impact on the economy.
 
-Alternatively, you can **plot the relationship** between US vehicle sales and the lags of the unemployment rate with the `ccf_plot` function from the TSstudio package. This function works similarly to the `ts_lags` function we previously introduced: 
+Alternatively, you can **plot the relationship** between US vehicle sales and the lags of the unemployment rate with the `ccf_plot` function from the TSstudio package. This function works similarly to the `ts_lags` function we previously introduced:
 
 ```{r}
 ccf_plot(x = USVSales, y = USUnRate, lags = 0:12)
 ```
 
-The **main advantage** of the `ccf_plot` function over the `ccf` function is that the first automatically aligns the two series according to their chronological order, whereas the `ccf` function does not have this automatic functionality, and therefore requires a preprocessing step (as we used previously with the window function). 
+The **main advantage** of the `ccf_plot` function over the `ccf` function is that the first **automatically aligns the two series according to their chronological order**, whereas the `ccf` function does not have this automatic functionality, and therefore requires a pre-processing step (as we used previously with the `window` function).
