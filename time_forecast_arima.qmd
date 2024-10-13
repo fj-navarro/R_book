@@ -4,13 +4,15 @@ The **Autoregressive Integrated Moving Average (ARIMA)** model is the generic na
 
 ## The Stationary Process
 
-One of the **main assumptions of the ARIMA** family of models is that the input series **follows the stationary process structure**. This assumption is based on the Wold representation theorem, which states that any stationary process can be represented as a **linear combination of white noise**.
+One of the **main assumptions of the ARIMA** family of models is that the input series **follows the stationary process structure**. Much of the probability theory of time series is concerned with stationary time series, and for this reason time series analysis often requires one to transform a non-stationary series into a stationary one so as to use this theory. This assumption is based on the Wold representation theorem, which states that any stationary process can be represented as a **linear combination of white noise**.
 
 Time series data is stationary if the following **conditions** take place:
 
 -   The **mean and variance** of the series do not change over time.
 
 -   The **correlation** structure of the series, along with its lags, remains the same over time.
+
+In other words, the properties of one section of the data are much like those of any other section.
 
 The `arima.sim` function from the **stats package** enables us to simulate a stationary and non-stationary time series data and plot it with the `ts_plot` function from the **TSstudio package**.
 
@@ -677,7 +679,7 @@ ts_plot(USgas_d12_1,
       Xtitle = "Year")
 ```
 
-6.    After taking the **first order differencing**, along with the first order seasonal differencing, the series seems to stabilize around the zero $x$ axis line (or fairly close to being stable). After transforming the series into a **stationary state**, we can review the `ACF` and `PACF` functions again to identify the required process:
+6.  After taking the **first order differencing**, along with the first order seasonal differencing, the series seems to stabilize around the zero $x$ axis line (or fairly close to being stable). After transforming the series into a **stationary state**, we can review the `ACF` and `PACF` functions again to identify the required process:
 
 ```{r}
 par(mfrow=c(1,2))

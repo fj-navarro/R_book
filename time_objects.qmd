@@ -30,7 +30,7 @@ After loading new data into the environment, it is always recommended that you c
 
 *Example:*
 
-``` {r}
+```{r}
 library(TSstudio)
 
 # Test if the object is a "ts" class
@@ -46,7 +46,7 @@ A practical and concise method to get the **characteristics of the series** is w
 
 *Example:*
 
-``` {r}
+```{r}
 frequency(USgas)
 deltat(USgas)
 ```
@@ -55,7 +55,7 @@ Other useful utility functions are the `start` and `end` functions, which, as th
 
 *Example:*
 
-``` {r}
+```{r}
 start(USgas)
 end(USgas)
 ```
@@ -64,7 +64,7 @@ The `ts_info` function from the **TSstudio package** provides a concise **summar
 
 *Example:*
 
-``` {r}
+```{r}
 ts_info(USgas)
 ```
 
@@ -142,7 +142,7 @@ str(US_indicators)
 
 ## Multivariate time series objects
 
-In some instances, such as **correlation analysis**, you may need to work with multivariate time series objects. In this case you can use the **mts (multiple time series) class**, an extension of the ts class. 
+In some instances, such as **correlation analysis**, you may need to work with multivariate time series objects. In this case you can use the **mts (multiple time series) class**, an extension of the ts class.
 
 The **mts class** is a combination of the **ts and matrix** classes, and its advantage is that it shares the attributes of both those classes.
 
@@ -201,7 +201,7 @@ data("US_indicators")
 
 ### Setting the frequency
 
-Note that **setting the frequency** impacts the structure of the ts object output. 
+Note that **setting the frequency** impacts the structure of the ts object output.
 
 As an **example** we will use the `seq.Date` method to create a sequence of 3,650 days (or 365 times 10, which is 10 years excluding the extra day during leap years) starting on January 1, 2010. We will then use the `rnorm` function to generate the corresponding values of the series following a normal distribution with a mean of 15 and a standard deviation (sd) of 2:
 
@@ -241,7 +241,7 @@ The main purpose of the `window` function is to **subset a ts** object based on 
 
 *Example:*
 
-``` {r}
+```{r}
 # Extract all the observations of the year 2005
 window(USgas, start = c(2005,1), end = c(2005, 12))
 ```
@@ -250,7 +250,7 @@ Similarly, we can **extract a specific frequency unit** from the series. For exa
 
 *Example:*
 
-``` {r}
+```{r}
 # Extract observations from the quarters of the year 2005
 window(USgas, start = c(2005,1), end = c(2005, 12), frequency = 3)
 ```
@@ -261,7 +261,7 @@ The `aggregate` function is a generic function for **aggregating ts and data.fra
 
 *Example:*
 
-``` {r}
+```{r}
 # Transform the USVSales series from a monthly frequency to quarterly
 USVSales_q <- aggregate(USVSales, nfrequency = 3, FUN = "sum")
 ts_info(USVSales_q)
@@ -279,14 +279,14 @@ We can generally distinguish between **two types of lags**:
 
     *Example:*
 
-    ``` {r}
+    ```{r}
     # k Sets the number of lags (or leads) to be created
     USVSales_lag4 <- stats::lag(USVSales, k = -4) 
     ```
 
 -   **Lead (or negative lags)** represent a shift in the series by $n$ steps forward, with respect to the original series. In this case, for a series with $t$ observations, the lead $n$ of the series begins at the time $n$ and end at time $t-n$ (where the last $n$ observations are missing).
 
-    ``` {r}
+    ```{r}
     USVSales_lead1 <- stats::lag(USVSales, k = 1)
     ```
 
@@ -386,3 +386,13 @@ ts_plot(US_indicators_ts,
         title = "US Monthly Vehicle Sales vs. Unemployment Rate",
         type = "multiple")
 ```
+
+## Transformations
+
+Plotting the data may suggest that it is sensible to consider transforming them, for example, by taking logarithms or square roots. The three main reasons for making a transformation are as follows:
+
+1.    **To stabilize the variance**. If there is a trend in the series and the variance appears to increase with the mean, then it may be advisable to transform the data. In particular, if the standard deviation is directly proportional to the mean, a **logarithmic transformation** is indicated. On the other hand, if the variance changes through time without a trend being present, then a transformation will not help. Instead, a model that allows for changing variance should be considered.
+
+2.    **To make the seasonal effect additive**. If there is a trend in the series and the size of the seasonal effect appears to increase with the mean, then it may be advisable to transform the data so as to make the seasonal effect constant from year to year. The seasonal effect is then said to be additive. In particular, if the size of the seasonal effect is directly proportional to the mean, then the seasonal effect is said to be multiplicative and a logarithmic transformation is appropriate to make the effect additive. 
+
+3.    **To make the data normally distributed**.  Model building and forecasting are usually carried out on the assumption that the data are normally distributed. In practice this is not necessarily the case. This effect can be difficult to eliminate with a transformation and it may be necessary to model the data using a different ‘error’ distribution.

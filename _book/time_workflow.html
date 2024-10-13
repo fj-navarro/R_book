@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R for Research in Action - 31&nbsp; TS Analysis Workflow</title>
+<title>R for Research in Action - 31&nbsp; TS Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./time_workflow.html">Part 6: Time Series</a></li><li class="breadcrumb-item"><a href="./time_workflow.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis Workflow</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./time_workflow.html">Part 6: Time Series</a></li><li class="breadcrumb-item"><a href="./time_workflow.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -362,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./time_workflow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -468,14 +468,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#ts-analysis-workflow" id="toc-ts-analysis-workflow" class="nav-link active" data-scroll-target="#ts-analysis-workflow"><span class="header-section-number">31.1</span> TS Analysis Workflow</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis Workflow</span></h1>
+<h1 class="title"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis</span></h1>
 </div>
 
 
@@ -490,6 +496,15 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>There are <strong>several possible objectives</strong> in analysing a time series. These objectives may be classified as description, explanation, prediction, and control, and will be considered in turn.</p>
+<ul>
+<li><p><strong>Description</strong>. When presented with a time series, the first step in the analysis is usually to plot the observations against time to give what is called a <strong>time plot</strong>, and then to obtain simple descriptive measures of the main properties of the series. A graph will not only show up <strong>trend and seasonal variation</strong>, but will also reveal <strong>missing observations</strong> and any ‘wild’ observations or <strong>outliers</strong> that do not appear to be consistent with the rest of the data. Other features to look for in a time plot include <strong>sudden or gradual changes</strong> in the properties of the series.</p></li>
+<li><p><strong>Explanation</strong>. When observations are taken on <strong>two or more variables</strong>, it may be possible to use the variation in one time series to explain the variation in another series. This may lead to a deeper understanding of the mechanism that generated a given time series. For example, it is of interest to see how sea level is affected by temperature and pressure, and to see how sales are affected by price and economic conditions.</p></li>
+<li><p><strong>Prediction</strong>. Given an observed time series, one may want to <strong>predict the future values</strong> of the series. This is an important task in sales forecasting, and in the analysis of economic and industrial time series. Many authors use the terms ‘prediction’ and ‘forecasting’ interchangeably, but note that some authors do not. For example, Brown (1963) uses ‘prediction’ to describe subjective methods and ‘forecasting’ to describe objective methods.</p></li>
+<li><p><strong>Control</strong>. Time series are sometimes collected or analysed so as to <strong>improve control over some physical or economic system</strong>. For example, when a time series is generated that measures the ‘quality’ of a manufacturing process, the aim of the analysis may be to keep the process operating at a ‘high’ level. Control problems are closely related to prediction in many situations. For example, if one can predict that a manufacturing process is going to move off target, then appropriate corrective action can be taken.</p></li>
+</ul>
+<section id="ts-analysis-workflow" class="level2" data-number="31.1">
+<h2 data-number="31.1" class="anchored" data-anchor-id="ts-analysis-workflow"><span class="header-section-number">31.1</span> TS Analysis Workflow</h2>
 <p>Time series analysis is the process of <strong>extracting meaningful insights from time series data</strong> with the use of data visualization tools, statistical applications, and mathematical models. Those insights can be used to learn and explore past events and to forecast future events.</p>
 <p>The <strong>analysis process</strong> can be divided into the following steps:</p>
 <ol type="1">
@@ -500,6 +515,7 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

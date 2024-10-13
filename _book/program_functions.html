@@ -396,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./time_workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -601,13 +601,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-      a     b     c     d
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 0.941 0.167 0.693 0.752
-2 0.748 1     1     0.182
-3 0     0.652 0.683 0.615
-4 1     0     0.838 1    
-5 0.741 0.344 0     0    </code></pre>
+      a      b     c     d
+  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 1     0.930  0     1    
+2 0.115 0.207  0.337 0.546
+3 0     0      0.377 0.239
+4 0.145 1      1     0    
+5 0.561 0.0856 0.350 0.773</code></pre>
 </div>
 </div>
 <p>To write a function you need to first analyse your <strong>repeated code</strong> to figure what parts are constant and what parts vary. If we take the code above and pull it outside of <code>mutate()</code>, it’s a little easier to see the pattern because each repetition is now one line:</p>
@@ -639,13 +639,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-      a     b     c     d
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 0.941 0.167 0.693 0.752
-2 0.748 1     1     0.182
-3 0     0.652 0.683 0.615
-4 1     0     0.838 1    
-5 0.741 0.344 0     0    </code></pre>
+      a      b     c     d
+  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 1     0.930  0     1    
+2 0.115 0.207  0.337 0.546
+3 0     0      0.377 0.239
+4 0.145 1      1     0    
+5 0.561 0.0856 0.350 0.773</code></pre>
 </div>
 </div>
 </section>

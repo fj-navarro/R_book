@@ -1,0 +1,45 @@
+# TS Analysis
+
+There are **several possible objectives** in analysing a time series. These objectives may be classified as description, explanation, prediction, and control, and will be considered in turn.
+
+-   **Description**. When presented with a time series, the first step in the analysis is usually to plot the observations against time to give what is called a **time plot**, and then to obtain simple descriptive measures of the main properties of the series. A graph will not only show up **trend and seasonal variation**, but will also reveal **missing observations** and any ‘wild’ observations or **outliers** that do not appear to be consistent with the rest of the data. Other features to look for in a time plot include **sudden or gradual changes** in the properties of the series.
+
+-   **Explanation**. When observations are taken on **two or more variables**, it may be possible to use the variation in one time series to explain the variation in another series. This may lead to a deeper understanding of the mechanism that generated a given time series. For example, it is of interest to see how sea level is affected by temperature and pressure, and to see how sales are affected by price and economic conditions.
+
+-   **Prediction**. Given an observed time series, one may want to **predict the future values** of the series. This is an important task in sales forecasting, and in the analysis of economic and industrial time series. Many authors use the terms ‘prediction’ and ‘forecasting’ interchangeably, but note that some authors do not. For example, Brown (1963) uses ‘prediction’ to describe subjective methods and ‘forecasting’ to describe objective methods.
+
+-   **Control**. Time series are sometimes collected or analysed so as to **improve control over some physical or economic system**. For example, when a time series is generated that measures the ‘quality’ of a manufacturing process, the aim of the analysis may be to keep the process operating at a ‘high’ level. Control problems are closely related to prediction in many situations. For example, if one can predict that a manufacturing process is going to move off target, then appropriate corrective action can be taken.
+
+## TS Analysis Workflow
+
+Time series analysis is the process of **extracting meaningful insights from time series data** with the use of data visualization tools, statistical applications, and mathematical models. Those insights can be used to learn and explore past events and to forecast future events.
+
+The **analysis process** can be divided into the following steps:
+
+1.  **Data collection**: This step includes extracting data from different data sources, such as flat files (such as CSV, TXT, and XLMS), databases (for example, SQL Server, and Teradata), or other internet sources (such as academic resources and the Bureau of Statistics datasets).
+
+2.  **Data preparation**: In most cases, raw data is unstructured and may require cleaning, transformation, aggregation, and reformatting.
+
+3.  **Descriptive analysis**: This is used in summary statistics and data visualization tools to extract insights from the data, such as patterns, distributions, cycles, and relationships with other drivers to learn more about past events.
+
+4.  **Predictive analysis**: We use this to apply statistical methods in order to forecast future events, including forecasting strategies, forecasting with linear regression, forecasting with exponential smoothing models, forecasting with ARIMA models, and forecasting with machine learning models.
+
+## TS Checklist
+
+The following is a checklist of possible actions that the analyst needs to consider when facing a TS analysis. The checklist needs to be adapted to the particular problem under consideration and is not exhaustive: 
+
+-   Do you understand the context? Have the ‘right’ variables been measured?
+
+-   Have all the time series been plotted?
+
+-   Are there any missing values? If so, what should be done about them?
+
+-   Are there any outliers? If so, what should be done about them?
+
+-   Are there any obvious discontinuities in the data? If so, what does this mean?
+
+-   Does it make sense to transform any of the variables?
+
+-   Is trend present? If so, what should be done about it?
+
+-   Is seasonality present? If so, what should be done about it?

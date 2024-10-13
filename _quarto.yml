@@ -4,7 +4,7 @@ project:
 book:
   title: "R for Research in Action"
   author: "Francisco J. Navarro"
-  date: "10/11/2024"
+  date: "10/13/2024"
   chapters:
     - index.qmd
     - part: "Introduction"
@@ -51,7 +51,7 @@ book:
         - model_random.qmd
     - part: "Part 6: Time Series"
       chapters: 
-        - time_workflow.qmd
+        - time_analysis.qmd
         - time_objects.qmd
         - time_components.qmd
         - time_decomposition.qmd
