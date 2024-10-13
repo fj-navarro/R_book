@@ -40,7 +40,7 @@ One of the most common training approaches is using **single training and testin
 
 This approach has a single parameter —**the length of the out-of-sample** (or the length of the testing partition). Typically, the length of the testing partition is derived from the following rules of thumb: **up to 30% of the total length of the series** in order to have enough observation data for the training process.
 
-There are **two methods to split a time series** into a training and testing partitions: 
+There are **two methods to split a time series** into a training and testing partitions:
 
 -   The **window** method.
 
@@ -81,9 +81,9 @@ There are **two methods to split a time series** into a training and testing par
 
 ### Forecasting with backtesting
 
-The **backtesting approach** for training a forecasting model is an advanced version of the single out-of-sample approach we saw previously. It is based on the use of a **rolling window** to split the series into multiple pairs of training and testing partitions.
+The **backtesting approach** for training a forecasting model is an advanced version of the single out-of-sample approach we saw previously. It is based on the use of a **rolling window** to split the series into **multiple pairs of training and testing partitions**.
 
-The following diagram demonstrates the \*structure of the backtesting\*\* with an expanding window:
+The following diagram demonstrates the **structure of the backtesting** with an expanding window:
 
 <center>
 
@@ -91,13 +91,13 @@ The following diagram demonstrates the \*structure of the backtesting\*\* with a
 
 </center>
 
-As you can see in the preceding diagram, all of the training partitions of the expanding window method start at the same index point, $T_0$, where each training partition is a combination of the previous training partition with the following `n` observations (where `n` is a constant that represents the expanded rate of the window). It would make sense to use this method when the series has a **strong seasonal pattern and stable trend**. In this case, the first observations of the series could, potentially, have predictive information that can be utilized by the model.
+As you can see in the preceding diagram, all of the training partitions of the expanding window method start at the same index point, $T_0$, where each training partition is a combination of the previous training partition with the following $n$ observations (where $n$ is a constant that represents the expanded rate of the window). It would make sense to **use this method when the series has a strong seasonal pattern and stable trend**. In this case, the first observations of the series could, potentially, have predictive information that can be utilized by the model.
 
-The **downside** of this method is training the model with different length partitions, as typically a model tends to learn more and therefore perform better when more data is available. Therefore, we may observe that the performance of models that are trained on the latest partitions perform better than the ones that are trained with the first partitions.
+The **downside** of this method is training the model with **different length partitions**, as typically a model tends to learn more and therefore perform better when more data is available. Therefore, we may observe that the performance of models that are trained on the latest partitions perform better than the ones that are trained with the first partitions.
 
 ## Forecast evaluation
 
-The primary goal of the evaluation step is to **assess the ability of the trained model to forecast** (or based on other criteria) the future observations of the series accurately. This process includes doing the following:
+The **primary goal** of the evaluation step is to **assess the ability of the trained model to forecast** (or based on other criteria) the future observations of the series accurately. This process includes doing the following:
 
 -   **Residual analysis**: This focuses on the quality of the model, with fitted values in the training partition.
 
@@ -105,15 +105,15 @@ The primary goal of the evaluation step is to **assess the ability of the traine
 
 ### Residual analysis
 
-**Residual analysis** tests how well the model captured and identified the series patterns. In addition, it provides information about the residuals distributions, which are required to build confidence intervals for the forecast.
+**Residual analysis tests how well the model captured and identified the series patterns**. In addition, it provides information about the residuals distributions, which are required to build confidence intervals for the forecast.
 
 The **mathematical definition** of a residual is the difference between the actual observation and the corresponding fitted value of the model, which was observed in the training process, or as the following equation:
 
-<center>$\epsilon_t = Y_t - \hat{Y_t}$</center>
+$$\epsilon_t = Y_t - \hat{Y_t}$$
 
 Where, $\epsilon_t$, $Y_t$, and $\hat{Y_t}$ represent the residual, actual, and fitted values, respectively, at time $t$.
 
-To demonstrate the **residual analysis process**, we will train an ARIMA model on the training partition we created earlier for the USgas series.
+To demonstrate the **residual analysis process**, we will train an ARIMA model on the training partition we created earlier for the `USgas` series.
 
 *Example:*
 
@@ -122,7 +122,12 @@ library(forecast)
 md <- auto.arima(train)
 ```
 
-The `checkresiduals` function from the **forecast package** returns the following four outputs: Time series plot of the residuals, ACF plot of the residuals, Distribution plot of the residuals, the output of the Ljung-Box test. The **Ljung-Box test** is a statistical method for testing whether the autocorrelation of a series (which, in this case, is the residuals) is different from zero.
+The `checkresiduals` function from the **forecast package** returns the following four outputs:
+
+-   Time series plot of the residuals.
+-   ACF plot of the residuals.
+-   Distribution plot of the residuals.
+-   The output of the Ljung-Box test. Recall that the Ljung-Box test is a statistical method for testing whether the autocorrelation of a series (which, in this case, is the residuals) is different from zero.
 
 ```{r}
 checkresiduals(md)
@@ -318,7 +323,7 @@ methods <- list(ets1 = list(method = "ets",
                               notes = "ARIMA(2,1,0)"),
                 arima2 = list(method = "arima",
                               method_arg = list(order = c(2,1,2),
-                                                seasonal = list(order = c(1,1,1))),
+                                                seasonal = list(order = c(1,1,1))), 
                               notes = "SARIMA(2,1,2)(1,1,1)"),
                 hw = list(method = "HoltWinters",
                           method_arg = NULL,
@@ -326,15 +331,13 @@ methods <- list(ets1 = list(method = "ets",
                 tslm = list(method = "tslm",
                             method_arg = list(formula = input ~ trend + season),
                             notes = "tslm model with trend and seasonal components"))
-
 USgas_forecast <- train_model(USgas, 
-                                methods = methods,
-                                train_method= list(partitions = 4, 
-                                      sample.out = 12, 
-                                      space = 3),
-                                error = "MAPE",
-                                horizon = 60
-                                )
+                              methods = methods,
+                              train_method= list(partitions = 4, 
+                                                 sample.out = 12, 
+                                                 space = 3),
+                              error = "MAPE",
+                              horizon = 60)
 ```
 
 The model provides a **leaderboard** that's ordered based on the error criteria that's set. In this case, the **hw model** had the lowest error rate, and therefore the function recommended that we use it (although all of the models and their forecasts are available for extraction from the function output).

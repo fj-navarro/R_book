@@ -1,10 +1,10 @@
 # Forecasting with ARIMA Models
 
-The **Autoregressive Integrated Moving Average (ARIMA)** model is the generic name for a family of forecasting models that are based on the Autoregressive (AR) and Moving Average (MA) processes. Among the traditional forecasting models (e.g., linear regression, exponential smoothing, and so on), the ARIMA model is considered as **the most advanced and robust approach**.
+The **Autoregressive Integrated Moving Average (ARIMA)** model is the generic name for a **family of forecasting models** that are based on the Autoregressive (AR) and Moving Average (MA) processes. Among the traditional forecasting models (e.g., linear regression, exponential smoothing, and so on), the ARIMA model is considered as **the most advanced and robust approach**.
 
 ## The Stationary Process
 
-One of the **main assumptions of the ARIMA** family of models is that the input series follows the stationary process structure. This assumption is based on the **Wold representation theorem**, which states that any stationary process can be represented as a linear combination of white noise.
+One of the **main assumptions of the ARIMA** family of models is that the input series **follows the stationary process structure**. This assumption is based on the Wold representation theorem, which states that any stationary process can be represented as a **linear combination of white noise**.
 
 Time series data is stationary if the following **conditions** take place:
 
@@ -22,7 +22,7 @@ The `arima.sim` function allows us to simulate time series data based on the **A
 
 -   **Integrated (I) process**: The process of differencing the series with its $d$ lags to transform the series into a stationary state.
 
-Here, the model argument of the function defines $p$, $q$, and $d$, as well as the order of the AR, MA, and I processes of the model.
+Here, the **model argument** of the function defines $p$, $q$, and $d$, as well as the order of the **AR**, **MA**, and **I** processes of the model.
 
 ### Stationary series
 
@@ -32,10 +32,9 @@ In the following example, we will **simulate an AR process** with one lag (that 
 
 ```{r}
 set.seed(12345) 
-stationary_ts <- arima.sim(
-  model = list(order = c(1,0,0), 
-               ar = 0.5 ), 
-  n = 500)
+stationary_ts <- arima.sim(model = list(order = c(1,0,0), 
+                                        ar = 0.5), 
+                           n = 500)
 ```
 
 Now let's **plot** the simulate time series with the `ts_plot` function:
@@ -60,10 +59,9 @@ Let's utilize the `arima.sim` function to create an example for **non-stationary
 
 ```{r}
 set.seed(12345)
-non_stationary_ts <- arima.sim(
-  model = list(order = c(1,1,0),
-               ar = 0.3),
-  n = 500)
+non_stationary_ts <- arima.sim(model = list(order = c(1,1,0),
+                                            ar = 0.3),
+                               n = 500)
 ts_plot(non_stationary_ts,
         title = "Non-Stationary Time Series",
         Ytitle = "Value",
@@ -90,9 +88,15 @@ ts_plot(AirPassengers,
 
 ### Transforming a non-stationary series into a stationary series
 
-In most cases, unless you are very lucky, your **raw data** would probably come with a trend or other form of oscillation that violates the assumptions of the stationary process. To handle this, you will have to **apply some transformation steps** in order to bring the series into a stationary state.
+In most cases, unless you are very lucky, your **raw data** would probably come **with a trend or other form of oscillation** that violates the assumptions of the stationary process. To handle this, you will have to **apply some transformation steps** in order to bring the series into a stationary state.
 
-**Common transformations methods** are differencing the series (or de-trending) and log transformation (or both).
+**Common transformations methods** are:
+
+-   Differencing the series (or de-trending).
+
+-   Log transformation
+
+-   or both.
 
 [**DIFFERENCING TIME SERIES**]{.underline}
 
@@ -110,9 +114,9 @@ ts_plot(diff(AirPassengers, lag = 1),
         Ytitle = "Differencing of Thousands of Passengers")
 ```
 
-You can see that the **first difference** of the AirPassenger series removed the series trend and that the **mean** of the series is, overall, constant over time. On the other hand, there is clear evidence that the **variation** of the series is increasing over time, and therefore the series is **not stationary** yet.
+You can see that the **first difference** of the `AirPassenger` series removed the series trend and that the **mean** of the series is, overall, constant over time. On the other hand, there is clear evidence that the **variation** of the series is increasing over time, and therefore the series is **not stationary** yet.
 
-In addition to the first order difference, taking the seasonal difference of the series could solve this issue. Let's **add the seasonal difference** to the first order difference and plot it again:
+In addition to the first order difference, taking the seasonal difference of the series could solve this issue. Let's **add the seasonal difference (double differencing)** to the first order difference and plot it again:
 
 *Example:*
 
@@ -129,7 +133,7 @@ The **seasonal difference** did a good job of stabilizing the series variation, 
 
 We can utilize the **log transformation** approach to stabilize a **multiplicative** seasonal oscillation, if it exists. This approach is not a replacement for differencing, but an addition.
 
-For instance, in the example of the AirPassenger in the preceding section, we saw that the first differencing is doing a great job in stabilizing the mean of the series, but is not sufficient enough to stabilize the variance of the series. Therefore, we can apply a log transformation to transform the seasonal structure from \*+multiplicative to additive\*\* and then apply the first-order difference to stationarize the series:
+For instance, in the example of the `AirPassenger` in the preceding section, we saw that the first differencing is doing a great job in stabilizing the mean of the series, but is not sufficient enough to stabilize the variance of the series. Therefore, we can apply a `log` transformation to transform the seasonal structure from **multiplicative to additive** and then apply the first-order difference to stationarize the series:
 
 *Example:*
 
@@ -190,13 +194,13 @@ p2 %>% layout(title = "Simulate Random Walk with First-Order Differencing",
 
 ## The AR Process
 
-The **AR process** defines the current value of the series, $Y_t$, as a **linear combination** of the previous $p$ lags of the series, and can be formalized with the following equation:
+The $AR$ process defines the current value of the series, $Y_t$, as a **linear combination** of the previous $p$ lags of the series, and can be formalized with the following equation:
 
 $$AR(p): Y_t = c + \sum^{p}_{i=1} \phi_i Y_{t-i} + \epsilon_t$$
 
 Where:
 
--   $AR(p)$ is the notation for an AR process with p-order.
+-   $AR(p)$ is the notation for an $AR$ process with p-order.
 
 -   $c$ represents a constant (or drift).
 
@@ -208,9 +212,27 @@ Where:
 
 -   $\epsilon_t$ represents the error term, which is white noise.
 
-An **AR process can be used on time series data if, and only if, the series is stationary**. Therefore, before applying an AR process on a series, you will have to verify that the series is stationary. Otherwise, you will have to apply some transformation method (such as differencing, log transformation, and so on) to transform the series into a stationary state.
+An **AR process can be used on time series data if, and only if, the series is stationary**. Therefore, before applying an $AR$ process on a series, you will have to verify that the series is stationary. Otherwise, you will have to apply some transformation method (such as differencing, log transformation, and so on) to transform the series into a stationary state.
 
-In the following example, we will utilize the `arima.sim` function again to simulate an **AR(2) process structure time series data with 500 observations**, and then use it to fit an AR model. We will use the model argument to set the AR order to $2$ and set the lags coefficients $\phi_1 = 0.9$ and $\phi_2 = -0.3$:
+### Example of AR process
+
++-----------------------------------------------------------------------------------+-------------------+-----------+
+| Task                                                                              | Function          | Variable  |
++===================================================================================+===================+===========+
+| Simulate and plot a AR(2) series                                                  | `arima.sim`       | `ar2`     |
+|                                                                                   |                   |           |
+|                                                                                   | `ts_plot`         |           |
++-----------------------------------------------------------------------------------+-------------------+-----------+
+| Model (fit) a AR(2)                                                               | `ar(ar2)`         | `md_ar`   |
++-----------------------------------------------------------------------------------+-------------------+-----------+
+| Identify the AR(2) process - `acf` output tails off and `pacf`cuts off at lag $p$ | `acf(ar2)`        | N/A       |
+|                                                                                   |                   |           |
+|                                                                                   | `pacf(ar2)`       |           |
++-----------------------------------------------------------------------------------+-------------------+-----------+
+| Forecast                                                                          | `forecast(md_ar)` | `ar_fc`   |
++-----------------------------------------------------------------------------------+-------------------+-----------+
+
+1.  In the following example, we will utilize the `arima.sim` function again to simulate an $AR(2)$ process structure time series data with 500 observations, and then use it to fit an $AR$ model. We will use the model argument to set the $AR$ order to $2$ and set the lags coefficients $\phi_1 = 0.9$ and $\phi_2 = -0.3$:
 
 *Example:*
 
@@ -230,9 +252,9 @@ ts_plot(ar2,
         Xtitle = "Index")
 ```
 
-The `ar` function from the **stats package** allows us to fit an AR model on time series data and then forecast its future values. This function identifies the AR order automatically based on the **Akaike Information Criterion (AIC)**. The `method` argument allows you to define the coefficients estimation method, such as the ordinary least squares (OLS), maximum likelihood estimation (MLE), and Yule-Walker (default).
+2.  The `ar` function from the **stats package** allows us to fit an $AR$ model on time series data and then forecast its future values. This function **identifies the** $AR$ order automatically based on the Akaike Information Criterion (AIC). The `method` argument allows you to define the coefficients estimation method, such as the ordinary least squares (OLS), maximum likelihood estimation (MLE), and Yule-Walker (default).
 
-Let's apply the `ar` function to identify the **AR order** and estimate its coefficients accordingly:
+Let's apply the `ar` function to **identify the** $AR$ order and **estimate its coefficients** accordingly:
 
 *Example:*
 
@@ -243,31 +265,47 @@ md_ar
 
 As you can see the `ar` function was able to identify that the input series is a **second order AR process**, and provided a fairly close estimate for the value of the actual coefficients, $\hat\phi_1 = 0.88$, $\hat\phi_2 = -0.29$ (as opposed to the actual coefficients' values, $\phi_1 = 0.9$, $\phi_2 = -0.3$).
 
+3.  Forecast the AR model
+
+The following code demonstrates the **forecast of the next 100 observations** of the $AR$ model we trained previously with the `ar` function:
+
+*Example:*
+
+```{r message=FALSE}
+library(forecast)
+ar_fc <- forecast(md_ar, h = 100)
+# Use `plot_forecast to plot the forecast output:
+plot_forecast(ar_fc,
+              title = "Forecast AR(2) Model",
+              Ytitle = "Value",
+              Xtitle = "Year")
+```
+
 ### Identifying the AR process and its characteristics
 
-In the preceding example, we simulated an AR(2) series, and it was clear that we need to apply an AR model on the data. However, when **working with real-time series data**, you will have to identify the structure of the series before modeling it.
+In the preceding example, we simulated an $AR(2)$ series, and it was clear that we need to apply an $AR$ model on the data. However, when **working with real-time series data**, you will have to identify the structure of the series before modeling it.
 
 In the world of the **non-seasonal ARIMA family of models**, a series could have one of the following structures:
 
--   AR.
+-   $AR$.
 
--   MA.
+-   $MA$.
 
 -   Random walk.
 
--   A combination of the preceding three (for example, AR and MA processes).
+-   A combination of the preceding three (for example, $AR$ and $MA$ processes).
 
 Identifying the series structure includes the following **two steps**:
 
--   Categorizing **the type** of process (for example, AR, MA, and so on).
+-   Categorizing **the type** of process (for example, $AR$, $MA$, and so on).
 
--   Once we have classified the process type, we need to identify **the order** of the process (for example, AR(1), AR(2), and so on).
+-   Once we have classified the process type, we need to identify **the order** of the process (for example, $AR(1)$, $AR(2)$, and so on).
 
 Utilizing the **autocorrelation function (ACF) and partial autocorrelation function (PACF)**, allows us to classify the process type and identify its order.
 
-If the **ACF output tails off** and the **PACF output cuts off** at lag $p$, this indicates that the series is an **AR(p) process**.
+If the **ACF output tails off** and the **PACF output cuts off** at lag $p$, this indicates that the series is an $AR(p)$ process.
 
-*Exxample:*
+*Example:*
 
 ```{r}
 # Use the `par` function to plot the two plots side by side
@@ -281,13 +319,13 @@ In the case of the `ar2` series, you can see that the **ACF plot** is tailing of
 
 ## The MA Process
 
-In some cases, the forecasting model is unable to capture all the series patterns, and therefore some information is left over in model residuals (or forecasting error). The goal of the **moving average process is to capture patterns in the residuals**, if they exist, by modeling the relationship between $Y_t$, the error term, $\epsilon_t$, and the past $q$ error terms of the models (for example, $\epsilon_{t-1}$, $\epsilon_{t-2}$, $\epsilon_{t-q}$).
+In some cases, the forecasting model is **unable to capture all the series patterns**, and therefore some information is left over in model residuals (or forecasting error). The goal of the **moving average process is to capture patterns in the residuals**, if they exist, by modeling the relationship between $Y_t$, the error term, $\epsilon_t$, and the past $q$ error terms of the models (for example, $\epsilon_{t-1}$, $\epsilon_{t-2}$, $\epsilon_{t-q}$).
 
-The **structure of the MA process** is fairly similar to the ones of the AR. The following equation defines an MA process with a $q$ order:
+The **structure of the MA process** is fairly similar to the ones of the $AR$. The following equation defines an $MA$ process with a $q$ order:
 
 $$MA(q): Y_t = \mu + \epsilon_t +  \sum^{q}_{i=1} \theta_i \epsilon_{t-i}$$ Where:
 
--   $MA(q)$ is the notation for an MA process with q-order.
+-   $MA(q)$ is the notation for an $MA$ process with q-order.
 
 -   $\mu$ represents the mean of the series.
 
@@ -297,9 +335,27 @@ $$MA(q): Y_t = \mu + \epsilon_t +  \sum^{q}_{i=1} \theta_i \epsilon_{t-i}$$ Wher
 
 -   $q$ defines the number of past error terms to be used in the equation.
 
-Like the AR process, the **MA equation holds only if the series is a stationary process**; otherwise, a transformation must be used on the series before applying the MA process.
+Like the $AR$ process, the **MA equation holds only if the series is a stationary process**; otherwise, a transformation must be used on the series before applying the $MA$ process.
 
-We will utilize the arima.sim function to simulate a series with an MA(2) structure. In this case, we will set the q parameter in the order argument to 2 and set the MA coefficients to and :
+### Example of MA process
+
++---------------------------------------------------------------------------+-------------------+------------+
+| Task                                                                      | Function          | Variable   |
++===========================================================================+===================+============+
+| Simulate and plot a MA(2) series                                          | `arima.sim`       | `ma2`      |
+|                                                                           |                   |            |
+|                                                                           | `ts_plot`         |            |
++---------------------------------------------------------------------------+-------------------+------------+
+| Model (fit) a MA(2)                                                       | `arima`           | `md_ma`    |
++---------------------------------------------------------------------------+-------------------+------------+
+| Identify the MA process - `acf`is cut off at lag $q$ and `pacf` tails off | `acf(ma2)`        | N/A        |
+|                                                                           |                   |            |
+|                                                                           | `ccf(ma2)`        |            |
++---------------------------------------------------------------------------+-------------------+------------+
+| Forecast the MA model                                                     | `forecast(md_ma)` | `ma_fc`    |
++---------------------------------------------------------------------------+-------------------+------------+
+
+1.  We will utilize the `arima.sim` function to simulate a series with an $MA(2)$ structure. In this case, we will set the $q$ parameter in the order argument to $2$ and set the $MA$ coefficients to $0.5$ and $-0.3$:
 
 *Example:*
 
@@ -315,7 +371,7 @@ ts_plot(ma2,
         Xtitle = "Index")
 ```
 
-**Modeling the MA process** can be done with the `arima` function from the stats package. This function, when setting the order of the AR and the differencing components of the model to $0$ with the order argument (that is, $p = 0$ and $d = 0$), is modeling only on the MA component.
+2.  **Modeling the MA process** can be done with the `arima` function from the **stats package**. This function, when setting the order of the $AR$ and the differencing components of the model to $0$ with the order argument (that is, $p = 0$ and $d = 0$), is modeling only on the MA component.
 
 *Example:*
 
@@ -327,7 +383,7 @@ md_ma <- arima(ma2, order = c(0,0,2), method = "ML")
 
 Similar to the `ar` function, you can select the **coefficients estimation** approach. In this case, there are three methods: maximum likelihood (ML), minimize conditional sum-of-squares (CSS), and the combination of the two, which is known as CSS-ML.
 
-The **output of the arima function** is more detailed than the ones of the ar function, as it also provides the level of significance of each coefficient (the s.e.):
+The **output of the arima function** is more detailed than the ones of the `ar` function, as it also provides the level of significance of each coefficient (the s.e.):
 
 ```{r}
 md_ma
@@ -335,7 +391,7 @@ md_ma
 
 ### Identifying the MA process and its characteristics
 
-Similar to the AR process, we can **identify an MA process and its order** with the ACF and PACF functions. **If the ACF is cut off at lag** $q$ and the PACF function tails off, we can conclude that the process is an **MA(q)**. Let's repeat the process we applied on the `ar2` series with the `ma2` series:
+Similar to the \$AR4 process, we can **identify an MA process and its order** with the $ACF$ and $PACF$ functions. **If the ACF is cut off at lag** $q$ and the PACF function tails off, we can conclude that the process is an $MA(q)$. Let's repeat the process we applied on the `ar2` series with the `ma2` series:
 
 *Example:*
 
@@ -345,15 +401,33 @@ acf(ma2)
 pacf(ma2)
 ```
 
-In the case of the `ma2` series, the **ACF plot is cut off on the second lag** (note that lag $0$ is the correlation of the series with itself, and therefore it is equal to $1$ and we can ignore it), and so the **PACF tails off**. Therefore, we can conclude that the `ma2` series is an **MA(2) process**.
+In the case of the `ma2` series, the $ACF$ plot is cut off on the second lag (note that lag $0$ is the correlation of the series with itself, and therefore it is equal to $1$ and we can ignore it), and so the $PACF$ tails off. Therefore, we can conclude that the `ma2` series is an $MA(2)$ process.
 
 ## The ARMA model
 
-Up until now, we have seen how the applications of AR and MA are processed separately. However, in some cases, combining the two allows us to handle more complex time series data. The ARMA model is a **combination of the AR(p) and MA(q) processes** and can be written as follows:
+Up until now, we have seen how the applications of $AR$ and $MA$ are processed separately. However, in some cases, combining the two allows us to handle more complex time series data. The ARMA model is a **combination of the** $AR(p)$ and $MA(q)$ processes and can be written as follows:
 
 $$ARMA(p,q): Y_t = c + \sum^{p}_{i=1} \phi_i Y_{t-i} + \sum^{q}_{i=1} \theta_i \epsilon_{t-i} + \epsilon_t$$ For instance, an **ARMA(3,2) model** is defined by the following equation:
 
-$$Y_t = c + \phi_1 Y_{t-i} + \phi_2 Y_{t-2} + \phi_3 Y_{t-3} + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \epsilon_t$$ Let's **simulate a time series data with an ARMA(1,2) structure** with the `arima.sim` function and review the characteristics of the ARMA model. We will set the p and q parameters of the order argument to 1 and 2, respectively, and set the AR coefficient as , and the MA coefficients as and :
+$$Y_t = c + \phi_1 Y_{t-i} + \phi_2 Y_{t-2} + \phi_3 Y_{t-3} + \theta_1 \epsilon_{t-1} + \theta_2 \epsilon_{t-2} + \epsilon_t$$
+
+### Example of ARMA process
+
++--------------------------------------------------------------------------------------------------------------------------------------+---------------------+-----------+
+| Task                                                                                                                                 | Function            | Variable  |
++======================================================================================================================================+=====================+===========+
+| Simulate and plot a ARMA(1,2) series                                                                                                 | `arima.sim`         | `arma`    |
++--------------------------------------------------------------------------------------------------------------------------------------+---------------------+-----------+
+| Model (fit) a ARMA(1,2)                                                                                                              | `arima`             | `arma.md` |
++--------------------------------------------------------------------------------------------------------------------------------------+---------------------+-----------+
+| Identify the ARMA process - `acf`is cut off at lag $q$ and `pacf` tails offIdentify the MA process - both `acf` and `pacf` tails off | `acf`               | N/A       |
+|                                                                                                                                      |                     |           |
+|                                                                                                                                      | `ccf`               |           |
++--------------------------------------------------------------------------------------------------------------------------------------+---------------------+-----------+
+| Forecast the ARMA model                                                                                                              | `forecast(arma.md)` | `arma_fc` |
++--------------------------------------------------------------------------------------------------------------------------------------+---------------------+-----------+
+
+1.  Let's **simulate a time series data with an ARMA(1,2) structure** with the `arima.sim` function and review the characteristics of the $ARMA$ model. We will set the $p$ and $q$ parameters of the order argument to $1$ and $2$, respectively, and set the $AR$ coefficient as $0.7$, and the $MA$ coefficients as $0.5$ and $-0.3$:
 
 *Example:*
 
@@ -370,7 +444,7 @@ ts_plot(arma,
         Xtitle = "Index")
 ```
 
-**Fitting an ARMA model** is straightforward with the `arima` function. In this case, we have to set the p and q parameters on the order argument:
+2.  **Fitting an ARMA model** is straightforward with the `arima` function. In this case, we have to set the $p$ and $q$ parameters on the order argument:
 
 ```{r}
 arma_md <- arima(arma, order = c(1,0,2))
@@ -383,7 +457,7 @@ Here, as the coefficient's name implies, `ar1`, `ma1`, and `ma2` represent the e
 
 ### Identifying an ARMA process
 
-Identifying the ARMA process follows the same approach that we used previously with the AR and MA processes. An **ARMA process exists in time series data if both the ACF and PACF plots tail off**, as we can see in the following example:
+Identifying the $ARMA$ process follows the same approach that we used previously with the $AR$ and $MA$ processes. An **ARMA process exists in time series data if both the ACF and PACF plots tail off**, as we can see in the following example:
 
 *Example:*
 
@@ -393,7 +467,7 @@ acf(arma)
 pacf(arma)
 ```
 
-On the other hand, unlike the AR and MA processes, **we cannot conclude the order of the ARMA process**. There are several approaches for tuning the ARMA $p$ and $q$ parameters:
+On the other hand, unlike the $AR$ and $MA$ processes, **we cannot conclude the order of the ARMA process**. There are several approaches for tuning the ARMA $p$ and $q$ parameters:
 
 -   **Manual tuning**: By starting with a combination of $p$ and $q$ and using some error criteria for identifying the model parameters.
 
@@ -401,29 +475,13 @@ On the other hand, unlike the AR and MA processes, **we cannot conclude the orde
 
 -   **Algorithm-based search**: By using a function or algorithm for tuning the model parameters.
 
-## Forecasting AR, MA, and ARMA models
-
-Forecasting any of the models we saw until now was straightforward: we used the `forecast` function from the **forecast package**. The following code demonstrates the **forecast of the next 100 observations of the AR model** we trained previously in "The AR Process" section with the `ar` function:
-
-\*Example:\*\*
-
-```{r message=FALSE}
-library(forecast)
-ar_fc <- forecast(md_ar, h = 100)
-# Use `plot_forecast to plot the forecast output:
-plot_forecast(ar_fc,
-              title = "Forecast AR(2) Model",
-              Ytitle = "Value",
-              Xtitle = "Year")
-```
-
 ## The ARIMA model
 
-One of the limitations of the AR, MA, and ARMA models is that **they cannot handle non-stationary time series data**. Therefore, if the input series is non-stationary, a pre-processing step is required to transform the series from a non-stationary state into a stationary state.
+One of the limitations of the $AR$, $MA$, and $ARMA$ models is that **they cannot handle non-stationary time series data**. Therefore, if the input series is non-stationary, a pre-processing step is required to transform the series from a non-stationary state into a stationary state.
 
-The ARIMA model provides a solution for this issue by adding the integrated process for the ARMA model. The **Integrated (I) process** is simply differencing the series with its lags, where the degree of the differencing is represented by the $d$ parameter.
+The **ARIMA model** provides a solution for this issue by adding the integrated process for the $ARMA$ model. The **Integrated (I) process** is simply differencing the series with its lags, where the degree of the differencing is represented by the $d$ parameter.
 
-The **differencing process** is one of the ways you can transform the methods of a series from non-stationary to stationary. For instance, $Y_t - Y_{t-1}$ represents the **first differencing** of the series, while $(Y_t - Y_{t-1}) - (Y_{t-1} - Y_{t-2})$ represents the **second differencing**.
+The **differencing process** is one of the ways you can transform the methods of a series **from non-stationary to stationary**. For instance, $Y_t - Y_{t-1}$ represents the **first differencing** of the series, while $(Y_t - Y_{t-1}) - (Y_{t-1} - Y_{t-2})$ represents the **second differencing**.
 
 We can **generalize the differencing process** with the following equation:
 
@@ -431,9 +489,11 @@ $$Y_d = (Y_t - Y_{t-1}) - ... - (Y_{t-d+1} - Y_{t-d})$$
 
 Where, $Y_d$ is the $d$ differencing of the series.
 
-Let's add the differencing component to the ARMA model and formalize **the** $ARIMA(p,d,q)$ process with a p-order AR process, d-degree of differencing, and q-order MA process:
+Let's add the differencing component to the $ARMA$ model and formalize **the** $ARIMA(p,d,q)$ process with a p-order $AR$ process, d-degree of differencing, and q-order $MA$ process:
 
-$$ARIMA(p,q,d): Y_d = c + \sum^{p}_{i=1} \phi_i Y_{d-i} + \sum^{q}_{i=1} \theta_i \epsilon_{t-i} + \epsilon_t$$ Note that both the AR and MA models can be represented with the ARMA model, and that you can also represent the AR, MA, or ARMA models with the ARIMA model, for example:
+$$ARIMA(p,q,d): Y_d = c + \sum^{p}_{i=1} \phi_i Y_{d-i} + \sum^{q}_{i=1} \theta_i \epsilon_{t-i} + \epsilon_t$$
+
+Note that both the $AR$ and $MA$ models can be represented with the $ARMA$ model, and that you can also represent the $AR$, $MA$, or $ARMA$ models with the $ARIMA$ model, for example:
 
 -   The ARIMA(0, 0, 0) model is equivalent to white noise.
 -   The ARIMA(0, 1, 0) model is equivalent to a random walk.
@@ -443,7 +503,7 @@ $$ARIMA(p,q,d): Y_d = c + \sum^{p}_{i=1} \phi_i Y_{d-i} + \sum^{q}_{i=1} \theta_
 
 ### Identifying an ARIMA process
 
-Identifying and setting the ARIMA model is a **two-step process** based on the following steps:
+Identifying and setting the $ARIMA model$ is a **two-step process** based on the following steps:
 
 1.  Identify the **degree of differencing** that is required to transfer the series into a stationary state.
 
@@ -452,6 +512,26 @@ Identifying and setting the ARIMA model is a **two-step process** based on the f
 Based on the findings of these steps, we will set the model parameters $p$, $d$, and $q$.
 
 Similar to the setting the $d$ parameter (the degree of differencing of the series) can be done with the **ACF** and **PACF** plots. In the following example, we will use the monthly prices of **Robusta coffee** since 2000.
+
+### Example of ARIMA process
+
++-----------------------------------------------------------+------------------------------------------------+--------------------+
+| Task                                                      | Function                                       | Variable           |
++===========================================================+================================================+====================+
+| Plot the series                                           | `ts_plot (robusta_price)`                      | `robusta_price`    |
++-----------------------------------------------------------+------------------------------------------------+--------------------+
+| Identify the relationship between the series and its lags | `acf(robusta_price)`                           | N/A                |
++-----------------------------------------------------------+------------------------------------------------+--------------------+
+| First differencing the series                             | `diff(robusta_price)`                          | `robusta_price_d1` |
++-----------------------------------------------------------+------------------------------------------------+--------------------+
+| Determine the order of the model                          | `acf(robusta_price_d1) pacf(robusta_price_d1)` | N/A                |
++-----------------------------------------------------------+------------------------------------------------+--------------------+
+| Fit the model ARIMA                                       | `arima(robusta_price)`                         | `robusta_md`       |
++-----------------------------------------------------------+------------------------------------------------+--------------------+
+| Check the residuals                                       | `checkresiduals(robusta_md)`                   |                    |
++-----------------------------------------------------------+------------------------------------------------+--------------------+
+
+1.  We first start the $ARIMA$ process by extracting the data set and **visually analyzing** its structure with a plot of the series.
 
 *Example:*
 
@@ -464,21 +544,21 @@ ts_plot(robusta_price,
         Xtitle = "Year")
 ```
 
-As you can see, the Robusta coffee prices over time are **trending up**, and therefore it is not in a stationary state. In addition, since this series represents continues prices, it is likely that the series has a strong **correlation relationship** with its past lags (as changes in price are typically close to the previous price).
+2.  As you can see, the $Robusta$ coffee prices over time are **trending up**, and therefore it is not in a stationary state. In addition, since this series represents continues prices, it is likely that the series has a strong **correlation relationship** with its past lags (as changes in price are typically close to the previous price).
 
 ```{r}
 # Identify the type of relationship between the series and it lags
 acf(robusta_price)
 ```
 
-As you can see in the preceding output of the **ACF plot**, the **correlation of the series** with its lags is slowly decaying over time in a linear manner. Removing both the series trend and correlation between the series and its lags can be done by differencing the series.
+3.  As you can see in the preceding output of the **ACF plot**, the **correlation of the series** with its lags is slowly decaying over time in a linear manner. Removing both the series trend and correlation between the series and its lags can be done by **differencing the series**.
 
 ```{r}
 # We will start with the first differencing using the diff function
 robusta_price_d1 <- diff(robusta_price)
 ```
 
-Let's review the **first difference** of the series with the `acf` and `pacf` functions:
+4.  Let's review the **first difference** of the series with the `acf` and `pacf` functions:
 
 ```{r}
 par(mfrow=c(1,2))
@@ -486,7 +566,7 @@ acf(robusta_price_d1)
 pacf(robusta_price_d1)
 ```
 
-The ACF and PACF plots of the first difference of the series indicate that an AR(1) process is appropriate to use on the differenced series since the **ACF is tailing off** and the **PACF cuts on the first lag**. Therefore, **we will apply an ARIMA(1,1,0)** model on the `robusta_price` series to include the first difference:
+5.  The $ACF$ and $PACF$ plots of the first difference of the series indicate that an $AR(1)$ process is appropriate to use on the differenced series since the $ACF$ is tailing off and the **PACF cuts on the first lag**. Therefore, **we will apply an** $ARIMA(1,1,0)$ model on the `robusta_price` series to include the first difference:
 
 ```{r}
 robusta_md <- arima(robusta_price, order = c(1, 1, 0))
@@ -494,21 +574,21 @@ robusta_md <- arima(robusta_price, order = c(1, 1, 0))
 summary(robusta_md)
 ```
 
-You can see from the model summary output that the `ar1` coefficient is statistically significant. Last but not least, we will check the model **residuals**:
+6.  You can see from the model summary output that the `ar1` coefficient is statistically significant. Last but not least, we will check the model **residuals**:
 
 ```{r}
 checkresiduals(robusta_md)
 ```
 
-Overall, the plot of the **model's residuals** and the **Ljung-Box test** indicate that the residuals are white noise. The ACF plot indicates that there are some correlated lags, but they are only on the border of being significant and so we can ignore them.
+Overall, the plot of the **model's residuals** and the **Ljung-Box test** indicate that the residuals are white noise. The $ACF$ plot indicates that there are some correlated lags, but they are only on the border of being significant and so we can ignore them.
 
 ## The Seasonal ARIMA Model (SARIMA)
 
-The **Seasonal ARIMA (SARIMA)** model is a version of the ARIMA model for time series with a seasonal component. Recall that a time series with a seasonal component has a strong relationship with its seasonal lags. The SARIMA model is utilizing the seasonal lags in a similar manner to how the ARIMA model is utilizing the non-seasonal lags with the AR and MA processes and differencing. It does this by adding the following three components to the ARIMA model:
+The **Seasonal ARIMA (SARIMA)** model is a version of the $ARIMA$ model for time series with a seasonal component. Recall that a time series with a seasonal component has a strong relationship with its seasonal lags. The $SARIMA$ model is utilizing the seasonal lags in a similar manner to how the $ARIMA$ model is utilizing the non-seasonal lags with the $AR$ and $MA$ processes and differencing. It does this by adding the following three components to the $ARIMA$ model:
 
--   **SAR(P) process**: A seasonal AR process of the series with its past $P$ seasonal lags. For example, a SAR(2) is an AR process of the series with its past two seasonal lags, that is, $Y_t = c + \Phi_1 Y_{t-f} + \Phi_2 Y_{t-2f} + \epsilon_t$ , where $\Phi$ represents the seasonal coefficient of the SAR process, and $f$ represents the series frequency.
+-   **SAR(P) process**: A seasonal $AR$ process of the series with its past $P$ seasonal lags. For example, a $SAR(2)$ is an $AR$ process of the series with its past two seasonal lags, that is, $Y_t = c + \Phi_1 Y_{t-f} + \Phi_2 Y_{t-2f} + \epsilon_t$ , where $\Phi$ represents the seasonal coefficient of the SAR process, and $f$ represents the series frequency.
 
--   **SMA(Q) process**: A seasonal MA process of the series with its past Q seasonal error terms. For instance, a SMA(1) is a moving average process of the series with its past seasonal error term, that is, $Y_t = \mu + \epsilon_t + \Theta_1 \epsilon_{t-f}$, where $\Theta$ represents the seasonal coefficient of the SMA process, and $f$ represents the series frequency.
+-   **SMA(Q) process**: A seasonal $MA$ process of the series with its past $Q$ seasonal error terms. For instance, a $SMA(1)$ is a moving average process of the series with its past seasonal error term, that is, $Y_t = \mu + \epsilon_t + \Theta_1 \epsilon_{t-f}$, where $\Theta$ represents the seasonal coefficient of the SMA process, and $f$ represents the series frequency.
 
 -   **SI(D) process**: A seasonal differencing of the series with its past $D$ seasonal lags. In a similar manner, we can difference the series with its seasonal lag, that is, $Y_{D=1} = Y_t - Y_{t-f}$.
 
@@ -516,11 +596,35 @@ We use the following notation to denote the **SARIMA parameters**:
 
 $$SARIMA(p,d,q) \times (P,D,Q)_s$$
 
-The $p$ and $q$ parameters define the order of the **AR and MA processes** with its non-seasonal lags, respectively, and $d$ defines the degree of differencing of the series with its non-seasonal lags. Likewise, the $P$ and $Q$ parameters represent the corresponding order of the seasonal **AR and MA processes** of the series with its seasonal lags, and $D$ defines the degree of differencing of the series with its non-seasonal lags. For example, a $SARIMA(1,0,0) \times (1,1,0)_s$ model is a combination of an AR process of one non-seasonal and one seasonal lag, along with seasonal differencing.
+The $p$ and $q$ parameters define the order of the $AR$ and $MA$ processes with its non-seasonal lags, respectively, and $d$ defines the degree of differencing of the series with its non-seasonal lags. Likewise, the $P$ and $Q$ parameters represent the corresponding order of the seasonal $AR$ and $MA$ processes of the series with its seasonal lags, and $D$ defines the degree of differencing of the series with its non-seasonal lags. For example, a $SARIMA(1,0,0) \times (1,1,0)_s$ model is a combination of an $AR$ process of one non-seasonal and one seasonal lag, along with seasonal differencing.
 
 ### Forecasting US monthly natural gas consumption with the SARIMA model
 
-We will forecast the monthly consumption of natural gas in the US using the SARIMA model. Let's load the **USgas** series from the TSstudio package:
+We will **forecast the monthly consumption** of natural gas in the US using the $SARIMA$ model. Let's load the $USgas$ series from the **TSstudio package**:
+
++----------------------------------------------------------------------------------------------------+-------------------------------------------------+---------------+
+| Task                                                                                               | Function                                        | Variable      |
++====================================================================================================+=================================================+===============+
+| Plot the series                                                                                    | `ts_plot(USgas)`                                |               |
++----------------------------------------------------------------------------------------------------+-------------------------------------------------+---------------+
+| Split the series into training and testing partitions                                              | `ts_split(USgas, sample.out = 12)`              | `train`       |
+|                                                                                                    |                                                 |               |
+|                                                                                                    |                                                 | `test`        |
++----------------------------------------------------------------------------------------------------+-------------------------------------------------+---------------+
+| Diagnose the series correlation with its seasonal lags                                             | `acf(train, lag.max = 60)`                      | N/A           |
+|                                                                                                    |                                                 |               |
+|                                                                                                    | `pacf(train, lag.max = 60)`                     |               |
++----------------------------------------------------------------------------------------------------+-------------------------------------------------+---------------+
+| Conduct a seasonal differencing of the series and plot the output and check if in stationary state | `diff(train, 12)` `ts_plot(USgas)`              | `USgas_d12`   |
++----------------------------------------------------------------------------------------------------+-------------------------------------------------+---------------+
+| Add the first differencing of the series                                                           | `diff(diff(USgas_d12, 1)) ts_plot(USgas_d12_1)` | `USgas_d12_1` |
++----------------------------------------------------------------------------------------------------+-------------------------------------------------+---------------+
+| Review the `ACF` and `PACF` functions again to identify the required process                       | `acf(USgas_d12_1)`                              | N/A           |
+|                                                                                                    |                                                 |               |
+|                                                                                                    | `ccf(USgas_d12_1)`                              |               |
++----------------------------------------------------------------------------------------------------+-------------------------------------------------+---------------+
+
+1.  We will first start plotting the $USgas$ series and **reviewing its main characteristics**.
 
 *Example:*
 
@@ -533,9 +637,9 @@ ts_plot(USgas,
         Xtitle = "Year")
 ```
 
-The **USgas series** has a **strong seasonal pattern**, and therefore among the ARIMA family of models, the SARIMA model is the most appropriate model to use. In addition, since the series is trending up, we can already conclude that the series is **not stationary** and some differencing of the series is required.
+The **USgas series** has a **strong seasonal pattern**, and therefore among the $ARIMA$ family of models, the $SARIMA$ model is the most appropriate model to use. In addition, since the series is trending up, we can already conclude that the series is **not stationary** and some differencing of the series is required.
 
-We will start by setting the **training and testing partitions** with the `ts_split` functions, leaving the last 12 months of the series as the testing partition:
+2.  We will start by setting the **training and testing partitions** with the `ts_split` functions, leaving the last 12 months of the series as the testing partition:
 
 ```{r}
 USgas_split <- ts_split(USgas, sample.out = 12)
@@ -543,7 +647,7 @@ train <- USgas_split$train
 test <- USgas_split$test
 ```
 
-We will conduct diagnostics in regards to the series correlation with the `ACF` and `PACF` functions. Since we are interested in viewing the **relationship of the series with its seasonal lags**, we will increase the number of lags to calculate and display by setting the `lag.max` argument to $60$ lags:
+3.  We will conduct diagnostics in regards to the series correlation with the `ACF` and `PACF` functions. Since we are interested in viewing the **relationship of the series with its seasonal lags**, we will increase the number of lags to calculate and display by setting the `lag.max` argument to $60$ lags:
 
 ```{r}
 par(mfrow=c(1,2))
@@ -553,7 +657,7 @@ pacf(train, lag.max = 60)
 
 The preceding **ACF plot** indicates that the series has a **strong correlation with both the seasonal and non-seasonal lags**. Furthermore, the linear decay of the seasonal lags indicates that the series is **not stationary** and that seasonal differencing is required.
 
-We will start with a **seasonal differencing** of the series and **plot the output** to identify whether the series is in a stationary state:
+4.  We will start with a **seasonal differencing** of the series and plot the output to **identify whether the series is in a stationary state**:
 
 ```{r}
 USgas_d12 <- diff(train, 12)
@@ -563,7 +667,7 @@ ts_plot(USgas_d12,
       Xtitle = "Year")
 ```
 
-While we **removed the series trend**, the variation of the series is not stable yet. Therefore, we will also try to take the first difference of the series:
+5.  While we **removed the series trend**, the variation of the series is **not stable yet**. Therefore, we will also try to take the **first difference of the series**:
 
 ```{r}
 USgas_d12_1 <- diff(diff(USgas_d12, 1))
@@ -573,7 +677,7 @@ ts_plot(USgas_d12_1,
       Xtitle = "Year")
 ```
 
-After taking the **first order differencing**, along with the first order seasonal differencing, the series seems to stabilize around the zero $x$ axis line (or fairly close to being stable). After transforming the series into a **stationary state**, we can review the `ACF` and `PACF` functions again to identify the required process:
+6.    After taking the **first order differencing**, along with the first order seasonal differencing, the series seems to stabilize around the zero $x$ axis line (or fairly close to being stable). After transforming the series into a **stationary state**, we can review the `ACF` and `PACF` functions again to identify the required process:
 
 ```{r}
 par(mfrow=c(1,2))
@@ -581,11 +685,11 @@ acf(USgas_d12_1, lag.max = 60)
 pacf(USgas_d12_1, lag.max = 60)
 ```
 
-The main observation from the preceding ACF and PACF plots is that both the **non-seasonal and seasonal lags (in both plots) are tailing off**. Hence, we can conclude that after we difference the series and transform them into a stationary state, **we should apply an ARMA process** for both the seasonal and non-seasonal components of the SARIMA model.
+The main observation from the preceding $ACF$ and $PACF$ plots is that both the **non-seasonal and seasonal lags (in both plots) are tailing off**. Hence, we can conclude that after we difference the series and transform them into a stationary state, **we should apply an ARMA process** for both the seasonal and non-seasonal components of the SARIMA model.
 
 [**TUNING PROCESS**]{.underline}
 
-The **tuning process** of the SARIMA model parameters follow the same steps that we applied previously with the ARMA model:
+The **tuning process** of the $SARIMA$ model parameters follow the same steps that we applied previously with the $ARMA$ model:
 
 -   We set the model maximum order (that is, the sum of the six parameters of the model).
 
@@ -627,7 +731,7 @@ arima_grid <- arima_grid %>% filter(k <= 7)
 
 Now that the grid search table is ready, we can **start the search process**. We will use the `lapply` function to iterate over the grid search table. This function will **train the SARIMA model** and score its AIC for each set of parameters in the grid search table. The `arima` function can train the SARIMA model by setting the seasonal argument of the model with the values of $P$, $D$, and $Q$:
 
-```R
+``` r
 arima_search <- lapply(1:nrow(arima_grid), function(i){
   md <- NULL
   md <- arima(train, order = c(arima_grid$p[i], 1, arima_grid$q[i]), seasonal = list(order = c(arima_grid$P[i], 1, arima_grid$Q[i])))
@@ -639,7 +743,7 @@ arima_search <- lapply(1:nrow(arima_grid), function(i){
 
 We used the `bind_rows` and `arrange` functions to append the search results and arranged the table for the **dplyr functions**. Let's review the top results of the search table:
 
-```R
+``` r
 head(arima_search)
 ```
 
@@ -659,7 +763,6 @@ The **model coefficients**, as we can see in the following model summary, are al
 USgas_best_md
 ```
 
-
 Let's use the `USgas_best_md` trained model to forecast the corresponding observations of the testing set:
 
 ```{r}
@@ -672,7 +775,7 @@ Like we did previously, we will **assess the model's performance** with the `acc
 accuracy(USgas_test_fc, test)
 ```
 
-We can use the performance of the **seasonal naive model** as a **benchmark** for the SARIMA model's performance. Recall that the seasonal naive model's MAPE score was 5.2% on the training set and 9.7% on the testing set. Therefore, the SARIMA provides us with a lift in accuracy with a **MAPE score** of 3.52% and 3.31% on the training and testing partitions, respectively. 
+We can use the performance of the **seasonal naive model** as a **benchmark** for the SARIMA model's performance. Recall that the seasonal naive model's MAPE score was 5.2% on the training set and 9.7% on the testing set. Therefore, the SARIMA provides us with a lift in accuracy with a **MAPE score** of 3.52% and 3.31% on the training and testing partitions, respectively.
 
 Now, we will use the `test_forecast` function to get a more intuitive view of the model's **performance on the training and testing partitions**:
 
@@ -682,12 +785,7 @@ forecast.obj = USgas_test_fc,
 test = test)
 ```
 
-As you can see, the **SARIMA model successfully captures** the seasonal and trend pattern of
-the series. On the other hand, the model finds it challenging to capture the seasonal peaks
-(month of January) on the training partition and has 5.49% absolute error for the month of
-January (yearly peak) in the testing partition. This is the result of high fluctuation during
-the winter time. We can handle this uncertainty of the model during peak times with the
-model confidence intervals or path simulations.
+As you can see, the **SARIMA model successfully captures** the seasonal and trend pattern of the series. On the other hand, the model finds it challenging to capture the seasonal peaks (month of January) on the training partition and has 5.49% absolute error for the month of January (yearly peak) in the testing partition. This is the result of high fluctuation during the winter time. We can handle this uncertainty of the model during peak times with the model confidence intervals or path simulations.
 
 At this point, you should pause and evaluate the general performance of the model thus far on the major metrics:
 
@@ -699,8 +797,7 @@ At this point, you should pause and evaluate the general performance of the mode
 
 If you are satisfied with the results of the model on the different performance metrics, you should move forward and **retrain the model with all the series** and generate the final forecast. Otherwise, you should return the model parameters and repeat the evaluation process.
 
-Now that we've satisfied the preceding conditions, we can move on to the **last step of the
-forecasting process and generate the final forecast** with the selected model. We will start by retraining the selected model on all the series:
+Now that we've satisfied the preceding conditions, we can move on to the **last step of the forecasting process and generate the final forecast** with the selected model. We will start by retraining the selected model on all the series:
 
 ```{r}
 final_md <- arima(USgas, order = c(1,1,1), 
@@ -728,11 +825,9 @@ plot_forecast(USgas_fc,
 
 ## The `auto.arima` function
 
-One of the main challenges of forecasting with the ARIMA family of models is the **cumbersome tuning process of the models**. As we saw in this chapter, this process includes many manual steps that are required for verifying the structure of the series (stationary or non-stationary), data transformations, descriptive analysis with the ACF and PACF plots to identify the type of process, and eventually tune the model parameters. While it might take a few minutes to train an ARIMA model for a single series, it may not scale up if you have dozens of series to forecast.
+One of the main challenges of forecasting with the ARIMA family of models is the **cumbersome tuning process of the models**. As we saw in this chapter, this process includes many manual steps that are required for verifying the structure of the series (stationary or non-stationary), data transformations, descriptive analysis with the $ACF$ and $PACF$ plots to identify the type of process, and eventually tune the model parameters. While it might take a few minutes to train an ARIMA model for a single series, it may not scale up if you have dozens of series to forecast.
 
-The `auto.arima` function from the **forecast package** provides a solution to this issue. This algorithm **automates the tuning process of the ARIMA model** with the use of statistical
-methods to identify both the structure of the series (stationary or not) and type (seasonal or
-not), and sets the model's parameters accordingly. 
+The `auto.arima` function from the **forecast package** provides a solution to this issue. This algorithm **automates the tuning process of the ARIMA model** with the use of statistical methods to identify both the structure of the series (stationary or not) and type (seasonal or not), and sets the model's parameters accordingly.
 
 *Example:*
 
@@ -740,25 +835,19 @@ not), and sets the model's parameters accordingly.
 USgas_auto_md1 <- auto.arima(train)
 ```
 
-Using the default arguments of the `auto.arima` function returns the ARIMA model that minimizes the AIC score. In this case, a model was selected with an AIC score of 2480.57:
+Using the default arguments of the `auto.arima` function returns the $ARIMA$ model that minimizes the `AIC` score. In this case, a model was selected with an `AIC` score of $2599,67$:
 
 ```{r}
 USgas_auto_md1
 ```
 
-By default, the `auto.arima` function applies a **shorter model search** by using a step-wise
-approach for reducing the search time. The trade-off of this approach is that the model may
-miss some models that may achieve better results.  
+By default, the `auto.arima` function applies a **shorter model search** by using a step-wise approach for reducing the search time. The **trade-off** of this approach is that the model may **miss some models** that may achieve better results.
 
-We can improvise with the `auto.arima` results by setting the search argument of the
-model. The `stepwise` argument, when set to FALSE, allows you to set a more robust and
-thorough search, with the cost of higher search time. This trade-off between performance
-and compute time can be balanced whenever you have prior knowledge about the series'
-structure and characteristics. 
+We can improvise with the `auto.arima` results by setting the `search` argument of the model. The `stepwise` argument, when set to `FALSE`, allows you to set a more robust and thorough search, with the cost of higher search time. This trade-off between performance and compute time can be balanced whenever you have prior knowledge about the series' structure and characteristics.
 
 *Example:*
 
-```  {r}
+```{r}
 # Retrain the training set of the USgas series again
 USgas_auto_md2 <- auto.arima(train,
                              max.order = 5,
@@ -768,8 +857,7 @@ USgas_auto_md2 <- auto.arima(train,
                              approximation = FALSE)
 ```
 
-You can see from the following results that with the robust search, the `auto.arima`
-algorithm returns the same model that was identified with the **grid search** we used in the Seasonal ARIMA model section:
+You can see from the following results that with the robust search, the `auto.arima` algorithm returns the same model that was identified with the **grid search** we used in the **Seasonal ARIMA** model section:
 
 ```{r}
 USgas_auto_md2
@@ -777,10 +865,9 @@ USgas_auto_md2
 
 ## Linear Regression with ARIMA Errors
 
-One of the main assumptions of the linear regression model is that the error term of the
-series,$\epsilon$, is the **white noise series** (for example, there is no correlation between the residuals and their lags). However, when working with time series data, this **assumption is violated** as, typically, the model predictors do not explain all the variations of the series, and some patterns are left on the model residuals. 
+One of the main assumptions of the linear regression model is that the error term of the series,$\epsilon$, is the **white noise series** (for example, there is no correlation between the residuals and their lags). However, when working with time series data, this **assumption is violated** as, typically, the model predictors do not explain all the variations of the series, and some patterns are left on the model residuals.
 
-An example of the failure of this assumption can be seen while fitting a linear regression model to forecast the **AirPassenger** series. To illustrate this point, we will utilize the `tslm` function to **regress** the AirPassenger series with its trend, seasonal component, and seasonal lag (lag 12), and then evaluate the model **residuals** with the `checkresiduals` function.
+An example of the failure of this assumption can be seen while fitting a linear regression model to **forecast the AirPassenger** series. To illustrate this point, we will utilize the `tslm` function to **regress the AirPassenger** series with its trend, seasonal component, and seasonal lag (lag 12), and then evaluate the model **residuals** with the `checkresiduals` function.
 
 *Example:*
 
@@ -793,7 +880,7 @@ df$month <- factor(month(df$date, label = TRUE), ordered = FALSE)
 df$trend <- 1:nrow(df)
 ```
 
-Now, we will **split the series** into training and testing partitions, leaving the last 12 months for testing using the ts_split function:
+Now, we will **split the series** into training and testing partitions, leaving the last 12 months for testing using the `ts_split` function:
 
 ```{r}
 par <- ts_split(ts.obj = AirPassengers, sample.out = 12)
@@ -801,7 +888,7 @@ train <- par$train
 test <- par$test
 ```
 
-For the regression of the time series object with an external `data.frame` object (df), we will apply the same split for training and testing partitions on the predictor's data.frame object: 
+For the **regression of the time series** object with an external `data.frame` object (`df`), we will apply the same split for training and testing partitions on the predictor's data.frame object:
 
 ```{r}
 train_df <- df[1:(nrow(df) - 12), ]
@@ -818,16 +905,15 @@ checkresiduals(md1)
 
 In the preceding **ACF plot**, the residuals series has a **strong correlation** with its past lags, and therefore the series **is not white noise**. We can conclude from the residuals plot that the regression model could not capture all the series patterns. Generally, this should not come as a surprise since the variation of the series could be affected by other variables, such as the ticket and oil prices, the unemployment rate, and other external factors.
 
-A simple solution to this problem is to **model the error terms** with the ARIMA model and add it to the regression. 
+A simple solution to this problem is to **model the error terms** with the $ARIMA$ model and add it to the regression.
 
 ### Modeling the residuals with the ARIMA model
 
-As we saw in the preceding ACF plot, the **AirPassengers residuals** indicate that the model was unable to capture all the patterns of the series. Another way to think about this is that the modeling of the series is **not complete yet**, and additional modeling can be applied on the model residuals to reveal the true error term of the model. 
+As we saw in the preceding ACF plot, the **AirPassengers residuals** indicate that the model was unable to capture all the patterns of the series. Another way to think about this is that the modeling of the series is **not complete yet**, and additional modeling can be applied on the model residuals to reveal the true error term of the model.
 
-Let's **remodel the AirPassengers series**, but this time with a linear regression model with ARIMA errors. While modeling the model's error term with an ARIMA model, we should treat the residuals as a series by itself and **set the model components $p$, $d$, and $q$** (and $P$, $D$, and $Q$ if the residuals series has seasonal component) using any of the approaches we introduced in this chapter (for example, manual tuning, grid search, or automating the search process with theauto.arima process). For simplicity, we will utilize the `auto.arima` function. 
-The `auto.arima` function can be used to model a linear regression model with ARIMA errors via the use of the `xreg` argument:
+Let's **remodel the AirPassengers series**, but this time with a linear regression model with ARIMA errors. While modeling the model's error term with an ARIMA model, we should treat the residuals as a series by itself and **set the model components** $p$, $d$, and $q$ (and $P$, $D$, and $Q$ if the residuals series has seasonal component) using any of the approaches we introduced in this chapter (for example, manual tuning, grid search, or automating the search process with theauto.arima process). For simplicity, we will utilize the `auto.arima` function. The `auto.arima` function can be used to model a linear regression model with ARIMA errors via the use of the `xreg` argument:
 
-*Example:**
+*Example:*
 
 ```{r}
 md2 <- auto.arima(train,
@@ -843,7 +929,7 @@ Note that the `auto.arima` and `arima` functions **do not support categorical va
 
 Therefore, we used the `model.matrix` function from the **stats package** on the `xreg` argument of the `auto.arima` function to transfer the month variable from a categorical variable into a binary variable. In addition, we dropped the first column, which represents the first category (in this case, the month of January), to **avoid the dummy variable trap**.
 
-We set the `seasonal` argument to `TRUE` to **include a search of both non-seasonal and seasonal models**. The `auto.arima` function will conduct a full search when the step-wise and approximation arguments are set to `FALSE`. Let's use the `summary` function to review the **model summary**: 
+We set the `seasonal` argument to `TRUE` to **include a search of both non-seasonal and seasonal models**. The `auto.arima` function will conduct a full search when the step-wise and approximation arguments are set to `FALSE`. Let's use the `summary` function to review the **model summary**:
 
 ```{r}
 summary(md2)
@@ -855,7 +941,7 @@ The `auto.arima` function regresses the series with the `trend`, `month`, and `l
 checkresiduals(md2)
 ```
 
-You can see the change in the **ACF plot** after applying the linear regression model with ARIMA errors as the majority of the **lags are not statistically significant**, as opposed to the preceding linear regression model (`md1`). 
+You can see the change in the **ACF plot** after applying the linear regression model with ARIMA errors as the majority of the **lags are not statistically significant**, as opposed to the preceding linear regression model (`md1`).
 
 Let's evaluate the **performance** of both models (`md1` and `md2`) on the testing set:
 
@@ -873,8 +959,4 @@ accuracy(fc1, test)
 accuracy(fc2, test)
 ```
 
-You can see from the **output** of the `accuracy` function that the linear regression with the ARIMA model provides a significant improvement in the model's accuracy with a lift of 43% on the MAPE score on the training set (from 4.5% to 2.5%) and 31% on the testing set (from 3.8% to 2.9%). 
-
-
-
-
+You can see from the **output** of the `accuracy` function that the linear regression with the $ARIMA$ model provides a significant improvement in the model's accuracy with a lift of 43% on the $MAP$E score on the training set (from 4.5% to 2.5%) and 31% on the testing set (from 3.8% to 2.9%).
