@@ -57,10 +57,10 @@ book:
         - time_decomposition.qmd
         - time_seasonality.qmd
         - time_correlation.qmd
-        - time_forecast_workflow.qmd
-        - time_forecast_regression.qmd
+        - time_forecast_basics.qmd
         - time_forecast_ma.qmd
-        - time_forecast_smooth.qmd
+        - time_forecast_exponential.qmd
+        - time_forecast_regression.qmd
         - time_forecast_arima.qmd
         - time_forecast_ml.qmd
     - part: "Part 7: Data Products"

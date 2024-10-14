@@ -395,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_workflow.html" class="sidebar-item-text sidebar-link">
+  <a href="./time_analysis.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">TS Analysis</span></span></a>
   </div>
 </li>
@@ -603,11 +603,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 4
       a      b     c     d
   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 1     0.930  0     1    
-2 0.115 0.207  0.337 0.546
-3 0     0      0.377 0.239
-4 0.145 1      1     0    
-5 0.561 0.0856 0.350 0.773</code></pre>
+1 0.680 0.379  0.657 1    
+2 0     0      1     0.446
+3 0.691 1      0.732 0.392
+4 1     0.158  0.690 0    
+5 0.440 0.0893 0     0.564</code></pre>
 </div>
 </div>
 <p>To write a function you need to first analyse your <strong>repeated code</strong> to figure what parts are constant and what parts vary. If we take the code above and pull it outside of <code>mutate()</code>, it’s a little easier to see the pattern because each repetition is now one line:</p>
@@ -641,11 +641,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 4
       a      b     c     d
   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 1     0.930  0     1    
-2 0.115 0.207  0.337 0.546
-3 0     0      0.377 0.239
-4 0.145 1      1     0    
-5 0.561 0.0856 0.350 0.773</code></pre>
+1 0.680 0.379  0.657 1    
+2 0     0      1     0.446
+3 0.691 1      0.732 0.392
+4 1     0.158  0.690 0    
+5 0.440 0.0893 0     0.564</code></pre>
 </div>
 </div>
 </section>

@@ -1,16 +1,24 @@
-# Forecasting with Moving Average Models
+# Forecasting with Smoothing Methods (MA Models)
 
-The **moving average functions** (i.e. the simple and weighted moving average) can be used as a forecasting model with a small tweak. These models are the foundation for the exponential smoothing forecasting models.
+**Smoothing methods** are based on averaging the past observations of the series over multiple time periods in order to reduce the noise. **Moving average** and **simple exponential smoothing** are the most popular and flexible methods for forecasting time series that rely on smoothing.
+
+Such methods **"smooth" out the noise** in a series in an attempt to uncover the patterns and forecast the future values of the series. Different smoothers differ by the number of values averaged, how the average is computed, how many times averaging is performed, etc.
+
+The **main distinction** between the exponential smoothing and the moving average approaches are summarized below:
+
+-   The **moving average functions** (i.e. the simple and weighted moving average) can be used as a forecasting model with a small tweak. Moving average models are the foundation for the exponential smoothing forecasting models.
+
+-   The **exponential smoothing** involves averaging all series observations, as opposed to a subset of $m$ observations by the moving average method. Furthermore, the advance exponential smoothing functions can handle series with a trend and seasonal components.
 
 ## The Simple Moving Average
 
-The **simple moving average (SMA)** function for smooth time series data can be utilized, with some simple steps, as a forecasting model.
+The **simple moving average (**$SMA$) function for smooth time series data can be utilized, with some simple steps, as a forecasting model. This method is recommended when the **input series has no structural patterns**, such as trend and seasonal components. In this case, it is reasonable to assume that the forecasted values are relatively close to the last observations of the series.
 
-[Forecasting with the SMA function is recommended when the **input series has no structural patterns**]{.underline}, such as trend and seasonal components. In this case, it is reasonable to assume that the forecasted values are relatively close to the last observations of the series.
+However, there are a few popular methods for removing trends (**de-trending**) and removing seasonality (**de-seasonalizing**) from a series, such as regression models, advanced exponential smoothing methods, and the operation of differencing. The moving average can then be used to forecast such de-trended and de-seasonalized series, and then the trend and seasonality can be added back to the forecast.
 
-In the following example, we will create a customized SMA function and use it to forecast the monthly prices of the **Robusta coffee prices** in the next 12 months. The Robusta coffee prices (USD per kg) are an example of time series data that has no specific trend or seasonal patterns. Rather, this series has a cycle component, where the magnitude and length of the cycle keep changing from cycle to cycle.
+*Example:*
 
-*Example*
+In the following example, we will create a customized $SMA$ function and use it to forecast the monthly prices of the **Robusta coffee prices** in the next 12 months. The Robusta coffee prices (USD per kg) are an example of time series data that has **no specific trend or seasonal patterns**. Rather, this series has a cycle component, where the magnitude and length of the cycle keep changing from cycle to cycle.
 
 ```{r}
 library(TSstudio)
@@ -25,9 +33,7 @@ ts_plot(robusta,
         Xtitle = "Year")
 ```
 
-Next, we will create a **basic SMA function** using some of the functionality of the tidyr package:
-
-*Example:*
+Next, we will create a **basic** $SMA$ function using some of the functionality of the **tidyr package**:
 
 ```{r}
 library(tidyr)
@@ -79,7 +85,7 @@ The **function arguments** are as follows:
 
 -   **df**: The input series in a two-column data frame format, where the first column is a Date object and the second one is the actual values of the series.
 
--   **h**: The horizon of the forecast. For the purpose of the following example, the function set the last h observations as a testing set. This allows us to compare model performance.
+-   **h**: The horizon of the forecast. For the purpose of the following example, the function set the last $h$ observations as a testing set. This allows us to compare model performance.
 
 -   **m**: The length of the rolling window.
 
@@ -93,9 +99,7 @@ The `sma_forecast` function has the following components:
 
 -   **Data calculation**: Calculates the simple moving average and return the results.
 
-Now, let's utilize the `sma_forecast` function to demonstrate the **performance of the SMA function**. We will forecast the last 24 months of the Robusta series using a rolling window of 3, 6, 12, 24, and 36 months:
-
-*Example:*
+Now, let's utilize the `sma_forecast` function to demonstrate the **performance of the** $SMA$ function. We will forecast the last 24 months of the Robusta series using a rolling window of 3, 6, 12, 24, and 36 months:
 
 ```{r}
 robusta_df <- ts_to_prophet(robusta)
@@ -106,9 +110,7 @@ robusta_fc_m24 <- sma_forecast(robusta_df, h = 24, m = 24)
 robusta_fc_m36 <- sma_forecast(robusta_df, h = 24, m = 36)
 ```
 
-We will use the plotly package to **plot the results** of the different moving average functions:
-
-*Example:*
+We will use the **plotly package** to **plot the results** of the different moving average functions:
 
 ```{r message=FALSE}
 library(plotly)
@@ -136,25 +138,25 @@ The **main observations** from the preceding plot are as follows:
     -   The range of the forecast is fairly close to the most recent observations of the series.
     -   The faster the forecast converges to some constant value.
 -   If the window length is longer:
-    -   The longer it takes until the forecast converges to some constant value
+    -   The longer it takes until the forecast converges to some constant value.
     -   It can handle better shocks and outliers.
--   An SMA forecasting model with a rolling window of a length of 1 is equivalent to the Naïve forecasting model.
+-   An $SMA$ forecasting model with a rolling window of a length of 1 is equivalent to the Naïve forecasting model.
 
-Note that While the **`SMA` function** is fairly simple to use and cheap on compute power, it has **some limitations**:
+Note that While the $SMA$ function is fairly simple to use and cheap on compute power, it has **some limitations**:
 
--   The forecasting power of the SMA function is limited to a short horizon and may have poor performance in the long run.
+-   The forecasting power of the $SMA$ function is limited to a **short horizon** and may have poor performance in the long run.
 
--   This method is limited for time series data, with no trend or seasonal patterns. This mainly effects the arithmetic average that smooths the seasonal pattern and becomes flat in the long run.
+-   This method is limited for time series data, with **no trend or seasonal patterns**. This mainly effects the arithmetic average that smooths the seasonal pattern and becomes flat in the long run.
 
 ## Weighted Moving Average
 
-The **weighted moving average (WMA)** is an extended version of the SMA function, and it is based on the use of the weighted average (as opposed to arithmetic average).
+The **weighted moving average (WMA)** is an extended version of the $SMA$ function, and it is based on the use of the weighted average (as opposed to arithmetic average).
 
-The **main advantage** of the WMA function, with respect to the SMA function, is that it allows you to distribute the weight of the lags on the rolling window. This can be useful when the series has a **high correlation with some of its lags**. The use of the WMA provides more flexibility as it can handle series with a seasonal pattern.
-
-In the **following example**, we will use the `sma_forecast` function we created previously to forecast the last 24 months of the **USgas** dataset. In this case, we will utilize the w argument to set the average weight and therefore transform the function from SMA to WMA. Like we did previously, we will first transform the series into `data.frame` format with the `ts_to_prophet` function:
+The **main advantage** of the $WMA$ function, with respect to the $SMA$ function, is that it allows you to distribute the weight of the lags on the rolling window. This can be useful when the series has a **high correlation with some of its lags**. The use of the $WMA$ provides more flexibility as it can handle series with a seasonal pattern.
 
 *Example:*
+
+In the **following example**, we will use the `sma_forecast` function we created previously to forecast the last 24 months of the **USgas** dataset. In this case, we will utilize the `w` argument to set the average weight and therefore transform the function from $SMA$ to $WMA$. Like we did previously, we will first transform the series into `data.frame` format with the `ts_to_prophet` function:
 
 ```{r}
 data(USgas)
@@ -163,31 +165,25 @@ USgas_df <- ts_to_prophet(USgas)
 
 For this example, we will use the following **two strategies**:
 
--   The WMA model for applying all the weight on the seasonal lag (lag 12):
+1.  The $WMA$ model for applying **all the weight on the seasonal lag (lag 12)**:
 
-*Example:*
+    ```{r}
+    USgas_fc_m12a <- sma_forecast(USgas_df,
+                                  h = 24,
+                                  m = 12,
+                                  w = c(1, rep(0,11)))
+    ```
 
-```{r}
-USgas_fc_m12a <- sma_forecast(USgas_df,
-                              h = 24,
-                              m = 12,
-                              w = c(1, rep(0,11)))
-```
+2.  The $WMA$ model for weighting the **first lag with** $0.2$ and the **seasonal lag (lag 12)** with $0.8$:
 
--   The WMA model for weighting the first lag with $0.2$ and the seasonal lag (lag 12) with $0.8$:
+    ```{r}
+    USgas_fc_m12b <- sma_forecast(USgas_df,
+                                  h = 24,
+                                  m = 12,
+                                  w = c(0.8, rep(0,10), 0.2))
+    ```
 
-*Example:*
-
-```{r}
-USgas_fc_m12b <- sma_forecast(USgas_df,
-                              h = 24,
-                              m = 12,
-                              w = c(0.8, rep(0,10), 0.2))
-```
-
-Let's utilize the plotly package to **plot the output** of both of the WMA models:
-
-*Example:*
+Let's utilize the **plotly package** to **plot the output** of both $WMA$ models:
 
 ```{r}
 plot_ly(data = USgas_df[190:nrow(USgas_df),],
@@ -210,8 +206,32 @@ plot_ly(data = USgas_df[190:nrow(USgas_df),],
          yaxis = list(title = "Billion Cubic Feet"))
 ```
 
-As you can see in the preceding plot, both models captured the **seasonal oscillation** of the series to some extent. Setting the full weight on the seasonal lag is equivalent to the seasonal Naïve model. This strategy could be useful for a series with a dominant seasonal pattern, such as **USgas**.
+As you can see in the preceding plot, both models captured the **seasonal oscillation** of the series to some extent. Setting the full weight on the seasonal lag is equivalent to the **seasonal Naïve model**. This strategy could be useful for a series with a dominant seasonal pattern, such as $USgas$.
 
 In the second example, we weighted the average between the most recent lag and the seasonal lag. It would make sense to distribute the weights between the different lags when the series has a **high correlation with those lags**.
 
-While**WMA** can capture the **seasonal component** of a series, it cannot capture the series **trend** (due to the average effect). Therefore, this method will start to lose its effectiveness once the forecast horizon crosses the length of the series frequency (for example, more than a year for monthly series).
+While the $WMA$ can capture the **seasonal component** of a series, it cannot capture the series **trend** (due to the average effect). Therefore, this method will start to lose its effectiveness once the forecast horizon crosses the length of the series frequency (for example, more than a year for monthly series).
+
+## Removing Trend and Season (Differencing)
+
+A simple and popular method for **removing a trend and/or a seasonal pattern** from a series is by the operation of **differencing**.
+
+**Differencing** means taking the difference between two values:
+
+-   A **lag-1 difference** (also called first difference) means taking the difference between every two consecutive values in the series ($y_t − y_{t−1}$). Lag-1 differencing is useful for removing a trend.
+
+-   Differencing at **lag-k** means subtracting the value from $k$ periods back ($y_t − y_{t−k}$). For example, for a daily series, lag-7 differencing means subtracting from each value ($y_t$) the value on the same day in the previous week ($y_{t−7}$).
+
+### Removing trend (de-trending)
+
+**Lag-1 differencing** is useful for removing a trend. For quadratic and exponential trends, often another round of lag-1 differencing must be applied in order to remove the trend. This means taking lag-1 differences of the differenced series.
+
+One advantage of differencing over other methods (e.g., a regression with a trend) is that differencing does not assume that the trend is global.
+
+### Removing seasonality (de-seasonalizing)
+
+For removing a seasonal pattern with $M$ seasons, we difference at $lag M$. For example, to remove a day-of-week pattern in daily data, we can take lag- 7 differences. With a lag-12 differenced series the monthly pattern will no longer appears in a differenced series.
+
+### Removing trend and seasonality
+
+When both trend and seasonality exist, we can **apply differencing twice** to the series in order to de-trend and deseasonalize it. For example, we can first apply differencing at lag-12, and then applying a lag-1 difference to the differenced series. The result is a series with no trend and no monthly seasonality in a monthly data series.
