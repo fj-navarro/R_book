@@ -431,26 +431,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_forecast_workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Forecasting Workflow</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./time_forecast_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Forecasting with Linear Regression</span></span></a>
+  <a href="./time_forecast_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Forecasting Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./time_forecast_ma.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Forecasting with Moving Average Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Forecasting with Smoothing Methods (MA Models)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_forecast_smooth.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Forecasting with Exponential Smoothing</span></span></a>
+  <a href="./time_forecast_exponential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Forecasting with Exponential Smoothing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_forecast_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Forecasting with Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -547,51 +547,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Elapsed time &gt; user time </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">readLines</span>(<span class="st">"http://www.amazon.com"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 1 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 5 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 6 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 8 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 12 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 14 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 15 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): line 18 appears to contain an
-embedded nul</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in readLines("http://www.amazon.com"): incomplete final line found on
-'http://www.amazon.com'</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.00    0.00    0.49 </code></pre>
+   0.00    0.00    0.32 </code></pre>
 </div>
 </div>
 <p>You can time longer expressions by wrapping them in curly braces within the call to <code>system.time()</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({ </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## expression or loop or function</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({ </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## expression or loop or function</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="the-r-profiler" class="level2" data-number="23.2">
 <h2 data-number="23.2" class="anchored" data-anchor-id="the-r-profiler"><span class="header-section-number">23.2</span> The R Profiler</h2>
@@ -599,20 +563,20 @@ embedded nul</code></pre>
 <p>In conjunction with <code>Rprof()</code>, we will use the <code>summaryRprof()</code> function which summarizes the output from <code>Rprof()</code>.</p>
 <p><code>Rprof()</code> keeps track of the function call stack at regularly sampled intervals and tabulates how much time is spent inside each function.</p>
 <p>The profiler is started by calling the <code>Rprof()</code> function:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Rprof</span>()  <span class="do">## Turn on the profiler</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Rprof</span>()  <span class="do">## Turn on the profiler</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once you call the <code>Rprof()</code> function, everything that you do from then on will be measured by the profiler. Therefore, you usually only want to run a single R function or expression once you turn on the profiler and then immediately turn it off.</p>
 <p>The profiler can be turned off by passing NULL to <code>Rprof()</code>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Rprof</span>(<span class="cn">NULL</span>)  <span class="do">## Turn off the profiler</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summaryRprof</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Rprof</span>(<span class="cn">NULL</span>)  <span class="do">## Turn off the profiler</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summaryRprof</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>summaryRprof()</code> function tabulates the R profiler output and calculates how much time is spend in which function. There are two methods for normalizing the data:</p>
 <ul>
 <li><strong>“by.total”</strong>: divides the time spend in each function by the total run time.</li>
 <li><strong>“by.self”</strong>: does the same as “by.total” but first subtracts out time spent in functions above the current function in the call stack.</li>
 </ul>
 <p>The final bit of output that <code>summaryRprof()</code> provides is the sampling interval and the total runtime.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>sample.interval </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>sample.interval </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 0.02</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>sampling.time </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>sampling.time </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[1] 7.41</p>
 
 

@@ -2,9 +2,9 @@
 
 The **linear regression model** is one of the most common methods for identifying and quantifying the relationship between a dependent variable and a single (univariate linear regression) or multiple (multivariate linear regression)independent variables. This model has a wide range of applications, from causal inference to predictive analysis and, in particular, time series forecasting.
 
-## The linear regression
+## The Linear Regression
 
-The primary usage of the linear regression model is to quantify the relationship between the dependent variable Y (also known as the response variable) and the independent variable/s X (also known as the predictor, driver, or regressor variables) in a linear manner. In other words, the model expresses the dependent variable as a linear combination of the independent variables.
+The primary usage of the linear regression model is to **quantify the relationship** between the dependent variable $Y$ (also known as the response variable) and the independent variable/s $X$ (also known as the predictor, driver, or regressor variables) in a linear manner. In other words, the model expresses the dependent variable as a linear combination of the independent variables.
 
 A **linear relationship** between the dependent and independent variables can be generalized by the following equations:
 
@@ -12,13 +12,15 @@ A **linear relationship** between the dependent and independent variables can be
 
 <center>$$Y_i = \beta_0 + \beta_1 * X_{1,i} + \epsilon_i$$</center>
 
+Here we are modeling three of the four time series components: level ($\beta_0$), trend ($\beta_1$) and noise ($\epsilon$). Seasonality is not modeled.
+
 -   For **n independent variables**, the equation looks as follows:
 
 <center>$$Y_i = \beta_0 + \beta_1 * X_{1,i} + \beta_2 * X_{2,i} + ... + \beta_n * X_{n,i} + \epsilon_i$$</center>
 
 The **term linear, in the context of regression**, referred to the model coefficients, which must follow a linear structure (as this allows us to construct a linear combination from the independent variables). On the other hand, the independent variables can follow both a linear and nonlinear formation.
 
-A **linear regression model** provides an estimation for those coefficients (that is, ), which can be formalized by the following equations:
+A **linear regression model** provides an estimation for those coefficients (that is, $\beta_0$, $\beta_1$,..., $\beta_n$), which can be formalized by the following equations:
 
 -   For the **univariate** linear regression model, the equation is as follows:
 
@@ -32,27 +34,27 @@ A **linear regression model** provides an estimation for those coefficients (tha
 
 The **estimation of the model's coefficients** is based on the following two steps:
 
--   Define a **cost function** (also known as loss function) —setting some error metric to minimize 
+-   Define a **cost function** (also known as loss function) ---setting some error metric to minimize
 
--   Apply mathematical optimization for **minimizing the cost function**. 
+-   Apply mathematical optimization for **minimizing the cost function**.
 
 The most common estimation approach is applying the **Ordinary Least Squares (OLS)** method as an optimization technique for identifying the coefficients that minimize the residuals sum of squares:
 
-<center>$$\sum_{i=1}^{N} \hat{\epsilon_i^2}$$</center>
+$$\sum_{i=1}^{N} \hat{\epsilon_i^2}$$
 
-Besides the OLS, there are other multiple estimation methods, such as the maximum likelihood, method of moments, and Bayesian.
+Besides the $OLS$, there are other multiple estimation methods, such as the maximum likelihood, method of moments, and Bayesian.
 
 ## Forecasting with Linear Regression
 
-The linear regression model, unlike the traditional time series models such as the ARIMA or Holt-Winters, was **not designed explicitly** to handle and forecast time series data. Instead, it is a generic model with a wide range of applications from causal inference to predictive analysis. Therefore, forecasting with a linear regression model is mainly based on the following two steps:
+The linear regression model, unlike the traditional time series models such as the $ARIMA$ or $Holt-Winters$, was **not designed explicitly** to handle and forecast time series data. Instead, it is a generic model with a wide range of applications from causal inference to predictive analysis. Therefore, forecasting with a linear regression model is mainly based on the following **two steps**:
 
-1.    Identifying the series structure, key characteristics, patterns, outliers, and other features.
+1.  Identifying the **series structure**, key characteristics, patterns, outliers, and other features.
 
-2.    Transforming those features into input variables and regressing them with the series to create a forecasting model.
+2.  Transforming those features into **input variables and regressing** them with the series to create a forecasting model.
 
 ### Forecasting the trend and seasonal components
 
-For the sake of simplicity, we can **drop the cycle component** as it typically merged into the trend component (or ignored the cycle component). We can now transform the (additive and multiplicativve) time series decomposition equations for a linear regression model:
+For the sake of simplicity, we can **drop the cycle component** as it typically merged into the trend component (or ignored the cycle component). We can now transform the (additive and multiplicative) time series decomposition equations for a linear regression model:
 
 <center>$$Y_t = \beta_0 + \beta_1 T_t + \beta_2 S_t + \epsilon_t$$</center>
 
@@ -66,27 +68,27 @@ Where:
 
 -   $\epsilon_t$, the regression error term, represents the irregular component or any pattern that is not captured by the series trend and seasonal component.
 
--   $\beta_0, \beta_1, \beta_2$ represent the model intercept, and coefficients of the trend and seasonal components, respectively.
+-   $\beta_0, \beta_1, \beta_2$ represent the level (model intercept), and coefficients of the trend and seasonal components, respectively.
 
 For the sake of convenience and in the context of working with time series, we will change the observations notation from $i$ to $t$, as it represents the time dimension of the series.
 
 The transformation of a series with a **multiplicative structure into a linear regression** is done in two steps:
 
-1.    The transformation of the series by applying a `log` transformation for both sides of the equations of the series:
+1.  The transformation of the series by applying a `log` transformation for both sides of the equations of the series:
 
 <center>$$log(Y_t) = log(T_t) + log(S_t) + log(I_t)$$</center>
 
-2.    Once the series is transformed into an additive structure, the transformation to a linear regression formation:
+2.  Once the series is transformed into an additive structure, the transformation to a linear regression formation:
 
 <center>$$log(Y_t) = \beta_0 + \beta_1 log(T_t) + \beta_2 log(S_t) + \epsilon_t$$</center>
 
 ### Features engineering of the series components
 
-Before creating the regression inputs that represent the series trend and seasonal components, we first have to understand their structure.
+Before creating the regression inputs that represent the series trend and seasonal components, we first need to **understand their structure**.
 
 *Example:*
 
-```{r}
+```{r warning=FALSE}
 library(TSstudio)
 data(USgas)
 ts_plot(USgas,
@@ -95,15 +97,13 @@ ts_plot(USgas,
         Xtitle = "Year")
 ```
 
-As you can see in the series plot, and as we saw on the previous chapters, **USgas** is a monthly series with a **strong monthly seasonal component and fairly stable trend line**. 
+As you can see in the series plot, and as we saw on the previous chapters, **USgas** is a monthly series with a **strong monthly seasonal component and fairly stable trend line**.
 
 ```{r}
 ts_info(USgas)
 ```
 
 We can explore the series **components structure** with the `ts_decompose` function further:
-
-*Example:*
 
 ```{r}
 ts_decompose(USgas)
@@ -113,7 +113,6 @@ You can see in the preceding plot that **the trend** of the series is fairly fla
 
 Next we have to **transform** the series from a `ts object` to a `data.frame` object. Therefore, we will utilize the `ts_to_prophet` function from the TSstudio package:
 
-*Example:*
 ```{r}
 USgas_df <- ts_to_prophet(USgas)
 head(USgas_df)
@@ -121,24 +120,19 @@ head(USgas_df)
 
 Now we can start to **create the regression input** features. The first feature we will create is the series **trend**. A basic approach for constructing the trend variable is by indexing the series observations in chronological order:
 
-*Example:*
 ```{r}
 USgas_df$trend <- 1:nrow(USgas_df)
 ```
 
 The second feature we want to create is the **seasonal component**. Since we want to measure the contribution of each frequency unit to the oscillation of the series, we will use a categorical variable for each frequency unit. Therefore, we will create a categorical variable with 12 categories, each category corresponding to a specific month of the year in the USgas series.
 
-*Example:*
-
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(lubridate)
 USgas_df$seasonal <- factor(month(USgas_df$ds, label = T), ordered = FALSE)
 head(USgas_df)
 ```
 
 Last but not least, before we start to regress the series with those features, we will split the series into a **training and testing partition**. We will set the last 12 months of the series as a testing partition:
-
-*Example:*
 
 ```{r}
 h <- 12 # setting a testing partition length
@@ -152,39 +146,37 @@ Now we can proceed and review **how the regression model captures** each one of 
 
 **TREND COMPONENT**
 
-We will first model the series **trend** by regressing the series with the trend variable, on the training partition:
+We will first model the series **trend** by regressing the series with the trend variable, on the **training partition**:
 
 *Example:*
+
 ```{r}
 md_trend <- lm(y ~ trend, data = train)
 summary(md_trend)
 ```
 
-As you can see from the preceding regression output, the **coefficient of the trend variable** is statistically significant to a level of 0.001. However, the adjusted **R-squared** of the regression is fairly low, which generally makes sense, as most of the series variation of the series is related to the seasonal pattern as we saw in the plots previously. 
+As you can see from the preceding regression output, the **coefficient of the trend variable** is statistically significant to a level of 0.001. However, the **adjusted R-squared** of the regression is fairly low, which generally makes sense, as most of the series variation of the series is related to the **seasonal pattern** as we saw in the plots previously.
 
-**Explanation**: As you can note from the preceding regression output, the fourth column represents the p-value of each one of the model coefficients. The p-value provides the probability that we will reject the null hypothesis given it is actually true, or the type I error. Therefore, for the p-value smaller than $\alpha$, the threshold value, we will reject the null hypothesis with a level of significance of $\alpha$, where typical values of $\alpha$ are 0.1,0.05, 0.01, and so on. 
+[**Explanation**]{.underline}: As you can note from the preceding regression output, the fourth column represents the p-value of each one of the model coefficients. The p-value provides the probability that we will reject the null hypothesis given it is actually true, or the type I error. Therefore, for the p-value smaller than $\alpha$, the threshold value, we will reject the null hypothesis with a level of significance of $\alpha$, where typical values of $\alpha$ are 0.1, 0.05, 0.01, and so on.
 
-Our next step is to use the model we created to **predict the fitted values** on the training partition and the forecasted values on the testing partition. 
+Our next step is to use the model we created to **predict the fitted values** on the training partition and the forecasted values on the testing partition.
 
-*Example:*
 ```{r}
 train$yhat <- predict(md_trend, newdata = train)
 test$yhat <- predict(md_trend, newdata = test)
 ```
 
-We will create a utility function that plots the series and the model output, utilizing the plotly package:
-
-*Example:*
+We will create a utility function that plots the series and the model output, utilizing the **plotly package**:
 
 ```{r message=FALSE}
 library(plotly)
 plot_lm <- function(data, train, test, title = NULL){
   p <- plot_ly(data = data,
-              x = ~ ds,
-              y = ~ y,
-              type = "scatter",
-              mode = "line",
-              name = "Actual") %>%
+               x = ~ ds,
+               y = ~ y,
+               type = "scatter",
+               mode = "line",
+               name = "Actual") %>%
     add_lines(x = ~ train$ds, 
               y = ~ train$yhat,
               line = list(color = "red"),
@@ -203,7 +195,6 @@ plot_lm <- function(data, train, test, title = NULL){
 
 Let's set the inputs of the `plot_lm` function with the **model output**:
 
-*Example:*
 ```{r}
 plot_lm(data = USgas_df,
         train = train,
@@ -211,11 +202,9 @@ plot_lm(data = USgas_df,
         title = "Predicting the Trend Component of the Series")
 ```
 
-Overall, the model was able to capture the general movement of the trend, yet a linear trend may fail to capture the structural break of the trend that occurred around 2010. 
+Overall, the model was able to capture the general movement of the trend, yet a linear trend may fail to capture the structural break of the trend that occurred around 2010.
 
 Last but not least, for **comparison analysis**, we want to measure the model error rate both in the training and the testing sets:
-
-*Example:*
 
 ```{r}
 mape_trend <- c(mean(abs(train$y - train$yhat) / train$y),
@@ -228,16 +217,16 @@ mape_trend
 The process of modeling and forecasting the **seasonal component** follows the same process as we applied with the trend, by regressing the series with the seasonal variable we created before:
 
 *Example:*
+
 ```{r}
 md_seasonal <- lm(y ~ seasonal, data = train)
 summary(md_seasonal)
 ```
 
-Since we regress the dependent variable with a categorical variable, the regression model creates coefficients for 11 out of the 12 categories, which are those embedded with the slope values. As you can see in the regression summary of the seasonal model, all the model's coefficients are statistically significant. Also, you can notice that the adjusted **R-squared** of the seasonal model is somewhat higher with respect to the trend model (0.78 as opposed to 0.1). 
+Since we regress the dependent variable with a categorical variable, the regression model creates coefficients for 11 out of the 12 categories, which are those embedded with the slope values. As you can see in the regression summary of the seasonal model, all the model's coefficients are statistically significant. Also, you can notice that the adjusted **R-squared** of the seasonal model is somewhat higher with respect to the trend model (0.78 as opposed to 0.1).
 
 Before we plot the fitted model and forecast values with the `plot_lm` function, we will **update the values** of `yhat` with the `predict` function:
 
-*Example:*
 ```{r}
 train$yhat <- predict(md_seasonal, newdata = train)
 test$yhat <- predict(md_seasonal, newdata = test)
@@ -245,7 +234,6 @@ test$yhat <- predict(md_seasonal, newdata = test)
 
 Now we can use the `plot_lm function` to **visualize the fitted model and forecast values**:
 
-*Example:*
 ```{r}
 plot_lm(data = USgas_df,
         train = train,
@@ -255,18 +243,16 @@ plot_lm(data = USgas_df,
 
 As you can see in the preceding plot, the model is doing a fairly good job of capturing the structure of the series seasonal pattern. However, you can observe that the series **trend is missing**. Before we add both the trend and the seasonal components, we will score the model performance:
 
-*Example:*
 ```{r}
 mape_seasonal <- c(mean(abs(train$y - train$yhat) / train$y),
 mean(abs(test$y - test$yhat) / test$y))
 mape_seasonal
 ```
 
-The high error rate on the testing set is related to the trend component that was not included in the model. 
+The high error rate on the testing set is related to the trend component that was not included in the model.
 
-The next step is to **join the two components** into one model and to forecast the feature values of the series: 
+The next step is to **join the two components** into one model and to forecast the feature values of the series:
 
-*Example:*
 ```{r}
 md1 <- lm(y ~ seasonal + trend, data = train)
 summary(md1)
@@ -274,7 +260,6 @@ summary(md1)
 
 Regressing the series with both the **trend and the seasonal components together** provides additional lift to the **adjusted R-squared** of the model from 0.78 to 0.91. This can be seen in the plot of the model output:
 
-*Example:*
 ```{r}
 train$yhat <- predict(md1, newdata = train)
 test$yhat <- predict(md1, newdata = test)
@@ -282,11 +267,10 @@ plot_lm(data = USgas_df,
         train = train,
         test = test,
         title = "Predicting the Trend and Seasonal Components of the Series")
-``` 
+```
 
-Let's measure the model's MAPE score on both the training and testing artitions:
+Let's measure the model's $MAPE$ score on both the training and testing pPartitions:
 
-*Example:*
 ```{r}
 mape_md1 <- c(mean(abs(train$y - train$yhat) / train$y),
 mean(abs(test$y - test$yhat) / test$y))
@@ -297,21 +281,21 @@ Regressing the series with both the trend and the seasonal components provides a
 
 **CAPTURING A NON-LINEAR TREND**
 
-When looking at the plot of the model fit and forecast, you can notice that the model **trend is too linear** and missing the structural break of the series trend. This is the point where **adding a polynomial component** for the model could potentially provide additional improvement for the model accuracy. 
+When looking at the plot of the model fit and forecast, you can notice that the model **trend is too linear** and missing the structural break of the series trend. This is the point where **adding a polynomial component** for the model could potentially provide additional improvement for the model accuracy.
 
-A simple technique to **capture a non-linear trend** is to add a polynomial component to the series trend in order to capture the **trend curvature over time**. We will use the `I` argument, which allows us to apply mathematical operations on any of the input objects. Therefore, we will use this argument to add a second degree of the polynomial for the trend input: 
+A simple technique to **capture a non-linear trend** is to add a polynomial component to the series trend in order to capture the **trend curvature over time**. We will use the `I` argument, which allows us to apply mathematical operations on any of the input objects. Therefore, we will use this argument to add a second degree of the polynomial for the trend input:
 
-*Exxxample:*
+*Example:*
+
 ```{r}
 md2 <- lm(y ~ seasonal + trend + I(trend^2), data = train)
 summary(md2)
 ```
 
-Adding the second-degree polynomial to the regression model did not lead to a significant improvement of the goodness of fit of the model. 
+Adding the second-degree polynomial to the regression model did not lead to a significant improvement of the goodness of fit of the model.
 
 On the other model, as you can see in the following **model output plot**, this simple change in the model structure allows us to capture the structural break of the trend over time:
 
-*Example:*
 ```{r}
 train$yhat <- predict(md2, newdata = train)
 test$yhat <- predict(md2, newdata = test)
@@ -321,55 +305,52 @@ plot_lm(data = USgas_df,
         title = "Predicting the Trend (Polynomial) and Seasonal Components of the Series")
 ```
 
-As we can see from the model following the **MAPE score**, the model accuracy significantly improved from adding the polynomial trend to the regression model, as the error on the testing set dropped from 9.2% to 4.5%:
+As we can see from the model following the **MAPE score**, the **model accuracy** significantly improved from adding the polynomial trend to the regression model, as the error on the testing set dropped from 9.2% to 4.5%:
 
-*Example:*
 ```{r}
 mape_md2 <- c(mean(abs(train$y - train$yhat) / train$y),
 mean(abs(test$y - test$yhat) / test$y))
 mape_md2
 ```
 
-### The tslm function
+### The tslm Function
 
 So far, we have seen the **manual process** of transforming a `ts` object to a linear regression forecasting model format. The `tslm`function from the **forecast package** provides a built-in function for transforming a `ts` object into a linear regression forecasting model. Using the `tslm` function, you can set the regression component along with other features.
 
-We will now repeat the previous example and forecast the last 12 observations of the USgas series with the `tslm` function using the trend, square of the trend, and the seasonal components. First, let's split the series to training and testing partitions using the ts_split function:
+We will now repeat the previous example and forecast the last 12 observations of the $USgas$ series with the `tslm` function using the trend, square of the trend, and the seasonal components. First, let's **split the series** to training and testing partitions using the `ts_split` function:
 
 *Example:*
+
 ```{r}
 USgas_split <- ts_split(USgas, sample.out = h)
 train.ts <- USgas_split$train
 test.ts <- USgas_split$test
 ```
 
-Next, we will apply the same formula we used to create the preceding md2 **forecasting model** using the `tslm` function:
+Next, we will apply the same formula we used to create the preceding $md2$ **forecasting model** using the `tslm` function:
 
-*Example:*
-
-```{r}
+```{r message=FALSE}
 library(forecast)
 md3 <- tslm(train.ts ~ season + trend + I(trend^2))
 ```
 
-Let's now review md3, the output of the tslm function, and compare it with the output of md2:
+Let's now review $md3$, the output of the `tslm` function, and compare it with the output of $md2$:
 
-*Example:*
 ```{r}
 summary(md3)
 ```
 
-As you can observe from the preceding output, both models (md2 and md3) are **identical**. 
+As you can observe from the preceding output, both models ($md2$ and $md3$) are **identical**.
 
-There are several **advantages** to using the `tslm` function, as opposed to manually setting a regression model for the series with the `lm` function: 
+There are several **advantages** to using the `tslm` function, as opposed to manually setting a regression model for the series with the `lm` function:
 
--   **Efficiency** —does not require transforming the series to a data.frame object and feature engineering.
+-   **Efficiency** ---does not require transforming the series to a data.frame object and feature engineering.
 
 -   The **output object** supports all the functionality of the forecast (such as the `accuracy` and `checkresiduals` functions) and TSstudio packages (such as the `test_forecast` and `plot_forecast` functions).
 
 ### Forecasting a series with multiseasonality components
 
-We will use the **UKgrid series**, which represents the national grid demand for electricity in the UK and it is available in the UKgrid package, to demonstrate the forecasting approach of a **multiseasonality series** with a linear regression model. 
+We will use the **UKgrid series**, which represents the national grid demand for electricity in the UK and it is available in the **UKgrid package**, to demonstrate the forecasting approach of a **multiseasonality series** with a linear regression model.
 
 *Example:*
 
@@ -385,13 +366,12 @@ head(UKdaily)
 
 As you can see, this series has **two variables**:
 
--   TIMESTAMP: A date object used as the series timestamp or index.
+-   $TIMESTAMP$: A date object used as the series timestamp or index.
 
--   ND: The net demand of electricity.
+-   $ND$: The net demand of electricity.
 
-We will use the `ts_plot` function to **plot and review** the series structure: 
+We will use the `ts_plot` function to **plot and review** the series structure:
 
-*Example:*
 ```{r}
 ts_plot(UKdaily,
         title = "The UK National Demand for Electricity",
@@ -407,9 +387,7 @@ As you can see in the preceding plot, the series has a clear **downtrend** and h
 
 -   Monthly: Effected from the weather.
 
-Evidence for those patterns can be seen in the following heatmap of the series since 2016 using the ts_heatmap function from the TSstudio package:
-
-*Example:*
+Evidence for those patterns can be seen in the following **heatmap** of the series since 2016 using the `ts_heatmap` function from the **TSstudio package**:
 
 ```{r}
 ts_heatmap(UKdaily[which(year(UKdaily$TIMESTAMP) >= 2016),],
@@ -417,3 +395,25 @@ ts_heatmap(UKdaily[which(year(UKdaily$TIMESTAMP) >= 2016),],
 ```
 
 As you can see in the series **heatmap**, the overall demand increases throughout the winter weeks (for example, calendar weeks 1 to 12 and weeks 44 to 52). In addition, you can observe the change of the series during the days of the weeks, as the demand increases during the working days of the week, and decreases over the weekend.
+
+## Alternative Trend Shapes
+
+### Exponential Trend
+
+Besides linear trend, several alternative trend shapes can be fitted via a linear regression model. An **exponential trend** implies a **multiplicative increase/decrease** of the series over time.
+
+To fit an exponential trend, simply replace the output variable y with $log(y)$ and fit a linear regression: 
+
+$$log(y_t) = \beta_0 + \beta_1t + \epsilon$$
+Exponential trends are **popular in sales data**, where they reflect percentage growth.
+
+### Polynomial Trend
+
+Another nonlinear trend shape that is easy to fit via linear regression
+is a **polynomial trend**, and in particular, a **quadratic relationship of the form:
+
+$$y_t = \beta_0 + \beta_1t + \beta_2t^2 + \epsilon$$
+
+This is done by creating an **additional predictor $t^2$** (the square
+of $t$) and fitting a multiple linear regression with the two predictors
+$t$ and $t^2$.

@@ -431,26 +431,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_forecast_workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Forecasting Workflow</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./time_forecast_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Forecasting with Linear Regression</span></span></a>
+  <a href="./time_forecast_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Forecasting Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./time_forecast_ma.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Forecasting with Moving Average Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Forecasting with Smoothing Methods (MA Models)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_forecast_smooth.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Forecasting with Exponential Smoothing</span></span></a>
+  <a href="./time_forecast_exponential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Forecasting with Exponential Smoothing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_forecast_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Forecasting with Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -725,27 +725,32 @@ Levels: yes &lt; no</code></pre>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>num2factor <span class="ot">&lt;-</span> <span class="fu">cut</span>(numvar, <span class="at">breaks=</span><span class="dv">5</span>) <span class="do">## the levels are produced using the actual range of values</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>num2factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] (-1.14,-0.204] (-2.09,-1.14]  (-2.09,-1.14]  (0.736,1.68]   (-0.204,0.736]
-  [6] (-0.204,0.736] (-2.09,-1.14]  (-0.204,0.736] (0.736,1.68]   (-1.14,-0.204]
- [11] (1.68,2.62]    (-0.204,0.736] (0.736,1.68]   (-1.14,-0.204] (0.736,1.68]  
- [16] (1.68,2.62]    (-2.09,-1.14]  (-0.204,0.736] (-1.14,-0.204] (-0.204,0.736]
- [21] (0.736,1.68]   (-0.204,0.736] (-0.204,0.736] (-1.14,-0.204] (-2.09,-1.14] 
- [26] (-1.14,-0.204] (-0.204,0.736] (-0.204,0.736] (1.68,2.62]    (1.68,2.62]   
- [31] (-0.204,0.736] (-2.09,-1.14]  (-1.14,-0.204] (0.736,1.68]   (-1.14,-0.204]
- [36] (-0.204,0.736] (0.736,1.68]   (-1.14,-0.204] (-0.204,0.736] (-0.204,0.736]
- [41] (-0.204,0.736] (-0.204,0.736] (0.736,1.68]   (1.68,2.62]    (-0.204,0.736]
- [46] (-0.204,0.736] (-1.14,-0.204] (-0.204,0.736] (-1.14,-0.204] (1.68,2.62]   
- [51] (0.736,1.68]   (-0.204,0.736] (-1.14,-0.204] (-0.204,0.736] (-0.204,0.736]
- [56] (0.736,1.68]   (-1.14,-0.204] (-2.09,-1.14]  (0.736,1.68]   (-0.204,0.736]
- [61] (-0.204,0.736] (-0.204,0.736] (-2.09,-1.14]  (-1.14,-0.204] (1.68,2.62]   
- [66] (-1.14,-0.204] (0.736,1.68]   (-0.204,0.736] (-1.14,-0.204] (1.68,2.62]   
- [71] (-1.14,-0.204] (-0.204,0.736] (-0.204,0.736] (-1.14,-0.204] (-1.14,-0.204]
- [76] (-1.14,-0.204] (-2.09,-1.14]  (-1.14,-0.204] (-0.204,0.736] (-1.14,-0.204]
- [81] (-1.14,-0.204] (-0.204,0.736] (-0.204,0.736] (0.736,1.68]   (0.736,1.68]  
- [86] (-1.14,-0.204] (-0.204,0.736] (0.736,1.68]   (-0.204,0.736] (-0.204,0.736]
- [91] (-0.204,0.736] (-0.204,0.736] (-0.204,0.736] (-0.204,0.736] (-0.204,0.736]
- [96] (0.736,1.68]   (-1.14,-0.204] (0.736,1.68]   (-2.09,-1.14]  (-0.204,0.736]
-5 Levels: (-2.09,-1.14] (-1.14,-0.204] (-0.204,0.736] ... (1.68,2.62]</code></pre>
+<pre><code>  [1] (1.8,2.71]       (-0.925,-0.0175] (0.889,1.8]      (-1.84,-0.925]  
+  [5] (0.889,1.8]      (-0.0175,0.889]  (0.889,1.8]      (-0.0175,0.889] 
+  [9] (-0.925,-0.0175] (0.889,1.8]      (0.889,1.8]      (-0.0175,0.889] 
+ [13] (-0.0175,0.889]  (-0.925,-0.0175] (-1.84,-0.925]   (-1.84,-0.925]  
+ [17] (1.8,2.71]       (-0.0175,0.889]  (-0.0175,0.889]  (-0.925,-0.0175]
+ [21] (-0.925,-0.0175] (0.889,1.8]      (-1.84,-0.925]   (-0.0175,0.889] 
+ [25] (-0.0175,0.889]  (1.8,2.71]       (-1.84,-0.925]   (-1.84,-0.925]  
+ [29] (-0.925,-0.0175] (-0.0175,0.889]  (-0.0175,0.889]  (-0.925,-0.0175]
+ [33] (-1.84,-0.925]   (-0.0175,0.889]  (-0.0175,0.889]  (-1.84,-0.925]  
+ [37] (-0.0175,0.889]  (-0.0175,0.889]  (-0.925,-0.0175] (-0.925,-0.0175]
+ [41] (-1.84,-0.925]   (-0.0175,0.889]  (1.8,2.71]       (-1.84,-0.925]  
+ [45] (-0.925,-0.0175] (-0.925,-0.0175] (-0.925,-0.0175] (-1.84,-0.925]  
+ [49] (-0.0175,0.889]  (-0.0175,0.889]  (-0.925,-0.0175] (-1.84,-0.925]  
+ [53] (0.889,1.8]      (-0.0175,0.889]  (1.8,2.71]       (-1.84,-0.925]  
+ [57] (-0.0175,0.889]  (-0.0175,0.889]  (-0.0175,0.889]  (-0.0175,0.889] 
+ [61] (-1.84,-0.925]   (-0.925,-0.0175] (0.889,1.8]      (0.889,1.8]     
+ [65] (-0.0175,0.889]  (-1.84,-0.925]   (-0.925,-0.0175] (-1.84,-0.925]  
+ [69] (-1.84,-0.925]   (-1.84,-0.925]   (-1.84,-0.925]   (-0.0175,0.889] 
+ [73] (-0.0175,0.889]  (0.889,1.8]      (-0.0175,0.889]  (-0.925,-0.0175]
+ [77] (0.889,1.8]      (-0.0175,0.889]  (0.889,1.8]      (-0.0175,0.889] 
+ [81] (-0.925,-0.0175] (-0.0175,0.889]  (0.889,1.8]      (0.889,1.8]     
+ [85] (-0.0175,0.889]  (-0.0175,0.889]  (-0.925,-0.0175] (-0.0175,0.889] 
+ [89] (-0.0175,0.889]  (-1.84,-0.925]   (-0.0175,0.889]  (-0.0175,0.889] 
+ [93] (-1.84,-0.925]   (-0.925,-0.0175] (-1.84,-0.925]   (-0.0175,0.889] 
+ [97] (-0.925,-0.0175] (-0.925,-0.0175] (-0.0175,0.889]  (-0.925,-0.0175]
+5 Levels: (-1.84,-0.925] (-0.925,-0.0175] (-0.0175,0.889] ... (1.8,2.71]</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -753,11 +758,11 @@ Levels: yes &lt; no</code></pre>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">table</span>(num2factor)) <span class="do">## displaying the data in tabular form</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          num2factor Freq
-1       lowest group   10
-2 lower middle group   25
-3       middle group   40
-4       upper middle   17
-5      highest group    8</code></pre>
+1       lowest group   22
+2 lower middle group   22
+3       middle group   37
+4       upper middle   14
+5      highest group    5</code></pre>
 </div>
 </div>
 </section>
@@ -1080,19 +1085,19 @@ NULL</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.16160801  0.08643612  2.31342408 -0.58057143</code></pre>
+<pre><code>[1] -0.01319113  0.29164417  0.60707309 -0.75228819</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.83391643 -1.79930061 -0.05789268  1.32567866</code></pre>
+<pre><code>[1] -0.08234827  2.03351596  0.80688968 -0.84877228</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.14323621 -0.46048577 -0.06978751 -1.26832360</code></pre>
+<pre><code>[1] -0.2555036  0.2758331 -0.4575270  0.4815118</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>(mat.array[,,<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.1908060 -0.3691164 -0.9327972 -1.6291899</code></pre>
+<pre><code>[1] -0.3694175 -1.2920554  0.4641638 -1.8507654</code></pre>
 </div>
 </div>
 

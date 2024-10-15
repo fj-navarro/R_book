@@ -431,26 +431,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_forecast_workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Forecasting Workflow</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./time_forecast_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Forecasting with Linear Regression</span></span></a>
+  <a href="./time_forecast_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Forecasting Basics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./time_forecast_ma.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Forecasting with Moving Average Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Forecasting with Smoothing Methods (MA Models)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time_forecast_smooth.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Forecasting with Exponential Smoothing</span></span></a>
+  <a href="./time_forecast_exponential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Forecasting with Exponential Smoothing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./time_forecast_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Forecasting with Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -678,7 +678,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [1] 3
 
 $b
-[1] -0.08385088</code></pre>
+[1] 0.06745293</code></pre>
 </div>
 </div>
 <p>Note that when you pass a function to another function, you do not need to include the open and <strong>closed parentheses ()</strong> like you do when you are calling a function.</p>
@@ -732,8 +732,8 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the mean of each column</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>(k <span class="ot">&lt;-</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, mean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.40447379  0.23439096  0.37546168  0.15585788 -0.07244978  0.05183433
- [7] -0.20376378 -0.29303680  0.29647601  0.28973080</code></pre>
+<pre><code> [1]  0.04168174  0.08773975  0.71939692 -0.05490636  0.15448643  0.42077055
+ [7]  0.24133166  0.06644796  0.10800921  0.24473749</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -742,10 +742,10 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Take the mean of each row</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(x, <span class="dv">1</span>, sum) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  2.4893854  7.0966243  1.8882892 -0.4909162  3.4453517  0.3791876
- [7] -4.9371742  3.5087928  6.9348847  0.9471728  6.3389552  5.5466703
-[13] -5.5083668 -2.8846054 -2.7331648 -0.1789576 -2.4972649  1.9192524
-[19]  2.3727538  1.1426307</code></pre>
+<pre><code> [1]  9.92331520 -2.56971400  3.14284653 -0.01395232  5.33129904  4.13383089
+ [7] -1.42376234 -0.18856277 -1.98215196  6.15338035  0.22468957  1.67002175
+[13]  7.33066601  2.17081559  1.69224123  3.03451970 -0.42843437  1.36219543
+[19] -3.20906140  4.23972491</code></pre>
 </div>
 </div>
 <p>For the special case of <strong>column/row sums</strong> and <strong>column/row means</strong> of matrices, there are some useful <strong>shortcuts</strong>:</p>
@@ -767,11 +767,11 @@ Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">runif</span>(<span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.15521783  1.51679811 -0.51307291 -0.61822231 -0.32980162 -0.60190058
- [7]  0.60923020 -1.00621455  1.03987666  2.02292153  0.70021024  0.06512115
-[13]  0.89375142  0.28757226  0.63592306  0.02124539  0.51844442  0.33504451
-[19]  0.65065802  0.06400500  2.75833998  2.41455994  0.67278292  2.23940602
-[25]  0.40463246  0.13993697  1.34295951  0.25785486  1.13472745  1.34265056</code></pre>
+<pre><code> [1] -0.4363987  1.5019058 -1.6574512 -0.3513219 -1.1374821 -0.4368890
+ [7]  0.1478809 -0.9183989 -1.5205382  1.4545766  0.6123394  0.1958416
+[13]  0.7198455  0.1377169  0.6441409  0.1459906  0.7927653  0.8695431
+[19]  0.4262494  0.5234373  1.2975019  0.6942108  2.5123533  2.8037674
+[25]  1.3166795  3.3020498  1.9053153  2.1447803  1.2423761  1.4854390</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define some groups with a factor variable</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>(f <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">3</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -781,14 +781,14 @@ Levels: 1 2 3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(x, f, mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        1         2         3 
-0.2274832 0.4171975 1.2707851 </code></pre>
+<pre><code>         1          2          3 
+-0.3354117  0.5067870  1.8704473 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can reduce the noise as follows:</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">tapply</span>(x, f, mean), <span class="at">digits=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  1   2   3 
-0.2 0.4 1.3 </code></pre>
+<pre><code>   1    2    3 
+-0.3  0.5  1.9 </code></pre>
 </div>
 </div>
 </section>
@@ -827,19 +827,19 @@ Levels: 1 2 3</code></pre>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mapply</span>(noise, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-[1] -1.375685
+[1] 0.8461155
 
 [[2]]
-[1] 3.6838059 0.3186973
+[1]  4.777517 -2.078090
 
 [[3]]
-[1] 0.5509344 3.2034392 2.0378568
+[1] 1.069768 1.644797 2.552039
 
 [[4]]
-[1] 3.287980 2.089694 1.855650 3.322842
+[1] 3.191726 4.215515 5.165400 4.978412
 
 [[5]]
-[1] 7.412869 3.996534 7.140415 4.237925 3.780545</code></pre>
+[1] 3.006546 6.029292 4.330416 3.469290 4.241129</code></pre>
 </div>
 </div>
 <p>The <code>mapply()</code> function can be used to automatically “vectorize” a function. What this means is that it can be used to take a function that typically only takes single arguments and create a new function that can take vector arguments. This is often needed when you want to plot functions.</p>
@@ -874,16 +874,16 @@ Levels: 1 2 3</code></pre>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>(j <span class="ot">&lt;-</span> <span class="fu">split</span>(x, f))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$`1`
- [1]  0.22227192  0.14782076 -2.37819198  0.49847216 -0.06768972 -0.25136792
- [7]  0.38245614 -0.05503260  0.44177990 -0.07455669
+ [1]  0.0629394  1.0724789  0.5686003 -1.1819952  0.2470391 -0.6708517
+ [7]  0.5824676  0.5510063 -1.1393110 -1.5216324
 
 $`2`
- [1] 0.8503151 0.5530341 0.4141160 0.7800159 0.9960815 0.8997617 0.5731052
- [8] 0.6703226 0.8425692 0.1567325
+ [1] 0.35129036 0.55467936 0.91695450 0.01759054 0.80072695 0.55217638
+ [7] 0.76621098 0.26458764 0.43429237 0.27616492
 
 $`3`
- [1]  0.3905038  0.1204307  1.0540798  4.0313574  0.8263027  0.1838344
- [7]  0.5647109 -0.2678350  1.8224630  0.5900102</code></pre>
+ [1]  0.89599940 -0.06543365  2.02753048  0.86473222  0.86873436  1.95504430
+ [7]  2.77469914  0.36018415  1.26486852  0.99622823</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -924,9 +924,9 @@ $`3`
 <span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
-      n       a     b      c     d
-  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1    10 -0.0202 0.943 -0.455 0.345</code></pre>
+      n      a      b     c      d
+  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1    10 0.0175 -0.475 0.378 0.0445</code></pre>
 </div>
 </div>
 <p>But you can imagine that this will get very tedious if you have tens or even hundreds of columns. Instead, you can use <code>across()</code>:</p>
@@ -938,9 +938,9 @@ $`3`
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
-      n       a     b      c     d
-  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1    10 -0.0202 0.943 -0.455 0.345</code></pre>
+      n      a      b     c      d
+  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1    10 0.0175 -0.475 0.378 0.0445</code></pre>
 </div>
 </div>
 <p>There are two additional selection techniques that are particularly useful for <code>across()</code>:</p>
