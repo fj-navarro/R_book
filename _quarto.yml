@@ -2,9 +2,9 @@ project:
   type: book
   
 book:
-  title: "R for Research in Action"
+  title: "Computational Methods for Research in Economics and Business in R"
   author: "Francisco J. Navarro"
-  date: "10/13/2024"
+  date: "10/16/2024"
   chapters:
     - index.qmd
     - part: "Introduction"

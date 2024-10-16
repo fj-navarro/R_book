@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-Welcome to *R for Research in Action*, a guide designed to empower learners at all levels in mastering the R programming language for their research endeavors. Whether you are a beginner just starting with R or an advanced user seeking to refine your skills, this book will serve as a comprehensive companion to help you elevate the quality of your research, making it more **robust, in-depth, and reproducible**.
+Welcome to *R for Research in Action*, a guide designed to empower learners at all levels in mastering the R programming language for their research endeavors. Whether you are a beginner just starting with R or an advanced user seeking to refine your skills through computational methods, this book will serve as a comprehensive companion to help you elevate the quality of your research, making it more **robust, in-depth, and reproducible**.
 
 Research today demands more than just data collection—it requires the ability to analyze, visualize, and interpret findings in ways that are reliable and transparent. R, with its powerful ecosystem of packages and its open-source nature, has become an essential tool across various fields for achieving these goals. From data wrangling to advanced statistical modeling, R offers unparalleled flexibility to researchers, allowing them to explore their data deeply and communicate results with precision.
 
